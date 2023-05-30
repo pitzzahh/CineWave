@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "mWffnHXkr5old6sIdNtdg1GrqkVOEjg7hDdQdV6dclVJ8ENWyiT7DSY2Ory4QWd7tBQbd5f8+q1K5L50r3R9gw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\pitzzahh\\RiderProjects\\CineWave\\CineWave\\CineWave.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pitzzahh\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\pitzzahh\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

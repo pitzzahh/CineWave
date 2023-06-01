@@ -43,22 +43,26 @@
 
             <!-- Control Bar -->
             <Border
-                Grid.ColumnSpan="2">
+                Grid.ColumnSpan="2"
+                CornerRadius="10,10,0,0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0.88,0.05" EndPoint="1,40">
+                        <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
+                        <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
                 <StackPanel x:Name="ControlBarPanel"
-
                             Orientation="Horizontal"
                             FlowDirection="RightToLeft"
                             Background="Transparent"
-                            Margin="0,0,0,5"
                             MouseLeftButtonDown="OnMoveWindow"
                             MouseEnter="OnEnterControlBar">
                 </StackPanel>
             </Border>
 
             <!-- Nav Section -->
-            <Border Grid.Row="0" Grid.Column="0"
-                    Grid.RowSpan="2"
-                    CornerRadius="10,0,0,10">
+            <Border Grid.Row="1" Grid.Column="0"
+                    CornerRadius="0,0,0,10">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0.02,0.2" EndPoint="1.5,1.9">
                         <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
@@ -101,10 +105,7 @@
             </Border>
 
             <!-- Main Section -->
-            <Border Grid.Row="0"
-                    Grid.RowSpan="2"
-                    Grid.Column="1" CornerRadius="0,10,10,0">
-
+            <Border Grid.Row="1" Grid.Column="1" CornerRadius="0,0,10,0">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0.88,0.02" EndPoint="1,1">
                         <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />

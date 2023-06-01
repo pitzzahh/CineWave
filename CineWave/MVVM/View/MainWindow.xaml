@@ -7,7 +7,6 @@
         xmlns:fontawesome="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         WindowStyle="None"
-        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True"
@@ -27,6 +26,14 @@
         </Border.BorderBrush>
 
         <Grid>
+
+            <Grid.RowDefinitions>
+                <!-- ControlBar -->
+                <RowDefinition Height="25" />
+                <!-- Header -->
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
                 <!--Nav-->
                 <ColumnDefinition Width="180" />
@@ -34,9 +41,23 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <!-- Control Bar -->
+            <Border
+                Grid.ColumnSpan="2">
+                <StackPanel x:Name="ControlBarPanel"
+
+                            Orientation="Horizontal"
+                            FlowDirection="RightToLeft"
+                            Background="Transparent"
+                            Margin="0,0,0,5"
+                            MouseLeftButtonDown="OnMoveWindow"
+                            MouseEnter="OnEnterControlBar">
+                </StackPanel>
+            </Border>
+
             <!-- Nav Section -->
-            <Border Grid.Column="0"
-                    MinWidth="180"
+            <Border Grid.Row="0" Grid.Column="0"
+                    Grid.RowSpan="2"
                     CornerRadius="10,0,0,10">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0.02,0.2" EndPoint="1.5,1.9">
@@ -63,33 +84,50 @@
                     <RadioButton Style="{StaticResource MenuButton}"
                                  Tag="{StaticResource QuinaryBrush}">
                         <StackPanel Orientation="Horizontal">
-                            <fontawesome:IconImage Icon="Dashboard" Style="{StaticResource MenuButtonIcon}"/>
-                            <TextBlock Text="Dashboard" Style="{StaticResource MenuButtonText}"/>
+                            <fontawesome:IconImage Icon="Dashboard" Style="{StaticResource MenuButtonIcon}" />
+                            <TextBlock Text="Dashboard" Style="{StaticResource MenuButtonText}" />
                         </StackPanel>
                     </RadioButton>
-                    
+
                     <RadioButton Style="{StaticResource MenuButton}"
                                  Tag="{StaticResource QuinaryBrush}">
                         <StackPanel Orientation="Horizontal">
-                            <fontawesome:IconImage Icon="Book" Style="{StaticResource MenuButtonIcon}"/>
-                            <TextBlock Text="Reservations" Style="{StaticResource MenuButtonText}"/>
+                            <fontawesome:IconImage Icon="Book" Style="{StaticResource MenuButtonIcon}" />
+                            <TextBlock Text="Reservations" Style="{StaticResource MenuButtonText}" />
                         </StackPanel>
                     </RadioButton>
-                    
+
                 </StackPanel>
             </Border>
 
             <!-- Main Section -->
-            <Border Grid.Column="1" CornerRadius="0,10,10,0">
+            <Border Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="1" CornerRadius="0,10,10,0">
+
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0.88,0.02" EndPoint="1,1">
                         <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
                         <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
                     </LinearGradientBrush>
                 </Border.Background>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <!-- ControlBar -->
+                        <RowDefinition Height="25" />
+                        <!-- Header -->
+                        <RowDefinition Height="35" />
+                        <!-- Content -->
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                </Grid>
             </Border>
 
         </Grid>
+
+
     </Border>
 
 </Window>

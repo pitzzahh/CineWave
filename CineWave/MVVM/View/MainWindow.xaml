@@ -12,8 +12,8 @@
         Background="Transparent"
         AllowsTransparency="True"
         Title="MainWindow"
-        Height="450"
-        Width="900">
+        Height="600"
+        Width="1000">
 
     <Border CornerRadius="10"
             BorderThickness="2">

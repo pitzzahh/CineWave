@@ -40,9 +40,17 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "dependencies": {
+            "FontAwesome.Sharp": {
+              "target": "Package",
+              "version": "[6.1.1, )"
+            },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "Russkyc.ModernControls.WPF": {
+              "target": "Package",
+              "version": "[1.7.1, )"
             }
           },
           "imports": [

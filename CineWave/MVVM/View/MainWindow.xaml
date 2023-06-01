@@ -4,40 +4,92 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CineWave"
+        xmlns:fontawesome="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Title="MainWindow"
+        Height="450"
+        Width="900">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Border CornerRadius="10"
+            BorderThickness="2">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="70" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
+                <GradientStop Color="{StaticResource SecondaryColor}" Offset="0.5" />
+                <GradientStop Color="{StaticResource TertiaryColor}" Offset="1" />
+            </LinearGradientBrush>
+        </Border.BorderBrush>
 
-        <Label Content="CineWave"
-               Grid.ColumnSpan="2"
-               FontSize="20"
-               FontWeight="Bold"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <!--Nav-->
+                <ColumnDefinition Width="180" />
+                <!--Content-->
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="1" Grid.Column="0">
-            <RadioButton Content="Home"
-                         Margin="0 2"
-                         Command="{Binding NavigateToHomeCommand}" />
-            <RadioButton Content="Settings"
-                         Margin="0 2"
-                         Command="{Binding NavigateToSettingsCommand}" />
-        </StackPanel>
+            <!-- Nav Section -->
+            <Border Grid.Column="0"
+                    MinWidth="180"
+                    CornerRadius="10,0,0,10">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0.02,0.2" EndPoint="1.5,1.9">
+                        <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
+                        <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
 
-        <ContentControl Grid.Row="1" Grid.Column="1"
-                        Content="{Binding Navigation.CurrentView}">
+                <StackPanel>
+                    <StackPanel Height="35"
+                                Margin="5,25"
+                                Orientation="Horizontal">
+                        <Image Source="/Resources/Images/logo.png" Margin="5,0,0,0" />
+                        <TextBlock Text="CineWave"
+                                   FontSize="20"
+                                   FontFamily="Segoe UI"
+                                   FontWeight="Medium"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,0,0"
+                                   Foreground="WhiteSmoke" />
+                    </StackPanel>
 
-        </ContentControl>
-    </Grid>
+                    <!-- Menus -->
+                    <RadioButton Style="{StaticResource MenuButton}"
+                                 Tag="{StaticResource QuinaryBrush}">
+                        <StackPanel Orientation="Horizontal">
+                            <fontawesome:IconImage Icon="Dashboard" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock Text="Dashboard" Style="{StaticResource MenuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    
+                    <RadioButton Style="{StaticResource MenuButton}"
+                                 Tag="{StaticResource QuinaryBrush}">
+                        <StackPanel Orientation="Horizontal">
+                            <fontawesome:IconImage Icon="Book" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock Text="Reservations" Style="{StaticResource MenuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    
+                </StackPanel>
+            </Border>
+
+            <!-- Main Section -->
+            <Border Grid.Column="1" CornerRadius="0,10,10,0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0.88,0.02" EndPoint="1,1">
+                        <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
+                        <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+        </Grid>
+    </Border>
 
 </Window>

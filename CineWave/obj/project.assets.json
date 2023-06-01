@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net7.0-windows7.0": {
+      "FontAwesome.Sharp/6.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0-windows7.0/FontAwesome.Sharp.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/FontAwesome.Sharp.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App"
+        ]
+      },
       "Microsoft.Extensions.DependencyInjection/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -36,10 +48,40 @@
         "build": {
           "buildTransitive/net6.0/_._": {}
         }
+      },
+      "Russkyc.ModernControls.WPF/1.7.1": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0-windows7.0/Russkyc.ModernControls.WPF.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0-windows7.0/Russkyc.ModernControls.WPF.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       }
     }
   },
   "libraries": {
+    "FontAwesome.Sharp/6.1.1": {
+      "sha512": "p6dnSMcKQg790vGSJgvFk6S8gXQnEcCugfaJ21WFxZz9h+9KyxL+sX6kbGv8p4iVoX/e5BAMnTV4QJFJvx8QxQ==",
+      "type": "package",
+      "path": "fontawesome.sharp/6.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "fontawesome.sharp.6.1.1.nupkg.sha512",
+        "fontawesome.sharp.nuspec",
+        "lib/net40/FontAwesome.Sharp.dll",
+        "lib/net45/FontAwesome.Sharp.dll",
+        "lib/net472/FontAwesome.Sharp.dll",
+        "lib/net48/FontAwesome.Sharp.dll",
+        "lib/net5.0-windows7.0/FontAwesome.Sharp.dll",
+        "lib/net6.0-windows7.0/FontAwesome.Sharp.dll",
+        "lib/netcoreapp3.1/FontAwesome.Sharp.dll"
+      ]
+    },
     "Microsoft.Extensions.DependencyInjection/7.0.0": {
       "sha512": "elNeOmkeX3eDVG6pYVeV82p29hr+UKDaBhrZyWvWLw/EVZSYEkZlQdkp0V39k/Xehs2Qa0mvoCvkVj3eQxNQ1Q==",
       "type": "package",
@@ -97,11 +139,30 @@
         "microsoft.extensions.dependencyinjection.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Russkyc.ModernControls.WPF/1.7.1": {
+      "sha512": "9DjIaeFDenj571UUfQUVTt2xN2l9jHqDgHweY/cXBkSlbs2l0bLtVHJ7uaVp+rNgkZ2i+4oKddGHvmuAXO7FQw==",
+      "type": "package",
+      "path": "russkyc.moderncontrols.wpf/1.7.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Russkyc.png",
+        "lib/net46/Russkyc.ModernControls.WPF.dll",
+        "lib/net47/Russkyc.ModernControls.WPF.dll",
+        "lib/net48/Russkyc.ModernControls.WPF.dll",
+        "lib/net6.0-windows7.0/Russkyc.ModernControls.WPF.dll",
+        "lib/net7.0-windows7.0/Russkyc.ModernControls.WPF.dll",
+        "russkyc.moderncontrols.wpf.1.7.1.nupkg.sha512",
+        "russkyc.moderncontrols.wpf.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
-      "Microsoft.Extensions.DependencyInjection >= 7.0.0"
+      "FontAwesome.Sharp >= 6.1.1",
+      "Microsoft.Extensions.DependencyInjection >= 7.0.0",
+      "Russkyc.ModernControls.WPF >= 1.7.1"
     ]
   },
   "packageFolders": {
@@ -143,9 +204,17 @@
       "net7.0-windows7.0": {
         "targetAlias": "net7.0-windows",
         "dependencies": {
+          "FontAwesome.Sharp": {
+            "target": "Package",
+            "version": "[6.1.1, )"
+          },
           "Microsoft.Extensions.DependencyInjection": {
             "target": "Package",
             "version": "[7.0.0, )"
+          },
+          "Russkyc.ModernControls.WPF": {
+            "target": "Package",
+            "version": "[1.7.1, )"
           }
         },
         "imports": [

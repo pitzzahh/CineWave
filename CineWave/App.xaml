@@ -6,19 +6,32 @@
              xmlns:view="clr-namespace:CineWave.MVVM.View">
     <Application.Resources>
         
-        <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
-            <view:LoginWindow/>
-        </DataTemplate>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+                <view:LoginWindow/>
+            </DataTemplate>
         
-        <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-             <view:HomeView/>
-         </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
         
-        <DataTemplate DataType="{x:Type viewModel:ReservationsViewModel}">
-            <view:ReservationsView/>
-        </DataTemplate>
-        
-        <ResourceDictionary x:Key="Colours" Source="Syles/Colors.xaml"/>
+            <DataTemplate DataType="{x:Type viewModel:ReservationsViewModel}">
+                <view:ReservationsView/>
+            </DataTemplate>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <!--  ModernControls WPF  -->
+                <ResourceDictionary
+                    Source="pack://application:,,,/Russkyc.ModernControls.WPF;component/Themes/BaseTheme/DefaultDark.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/Russkyc.ModernControls.WPF;component/Themes/ColorThemes/Blue.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/Russkyc.ModernControls.WPF;component/Themes/Generic.xaml" />
+                <ResourceDictionary Source="Resources/Syles/Colors.xaml"/>
+                <ResourceDictionary Source="Resources/Syles/ButtonStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
+        </ResourceDictionary>
 
     </Application.Resources>
     

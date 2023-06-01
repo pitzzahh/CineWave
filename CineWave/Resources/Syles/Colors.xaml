@@ -38,4 +38,23 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!-- Additional Styles -->
+    
+    <SolidColorBrush x:Key="PrimaryBrush" Color="#FF0D1B2A"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="#FF31572C"/>
+    <SolidColorBrush x:Key="TertiaryBrush" Color="#FF4F772D"/>
+    <SolidColorBrush x:Key="QuaternaryBrush" Color="#FF4F772D"/>
+    <SolidColorBrush x:Key="QuinaryBrush" Color="#FFECF39E"/>
+    
+
+    <!-- Window Border Color -->
+    <SolidColorBrush x:Key="WindowBorderColorBrush" Color="{StaticResource SecondaryColor}"/>
+
+    <!-- Additional Background Colors -->
+    <SolidColorBrush x:Key="CustomBackgroundColor1" Color="{StaticResource SecondaryColor}"/>
+    <SolidColorBrush x:Key="CustomBackgroundColor2" Color="{StaticResource TertiaryColor}"/>
+    <SolidColorBrush x:Key="CustomBackgroundColor3" Color="{StaticResource QuaternaryColor}"/>
+    <SolidColorBrush x:Key="CustomBackgroundColor4" Color="{StaticResource QuinaryColor}"/>
+
 </ResourceDictionary>

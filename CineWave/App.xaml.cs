@@ -5,7 +5,6 @@ using CineWave.MVVM.View;
 using CineWave.MVVM.ViewModel;
 using CineWave.Services;
 using Microsoft.Extensions.DependencyInjection;
-
 namespace CineWave
 {
     /// <summary>

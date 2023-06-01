@@ -13,18 +13,32 @@
         Background="Transparent"
         AllowsTransparency="True"
         Title="LoginView" Height="450" Width="800">
-    
+
     <Border CornerRadius="30"
-            Background="#31572c"
-            BorderBrush="{StaticResource ForegroundBrush}"
-            BorderThickness="5">
-        <Border>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-            </Grid>        
-        </Border>
+            BorderThickness="5"
+            Opacity="0.95">
+        
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
+                <GradientStop Color="{StaticResource SecondaryColor}" Offset="0.5" />
+                <GradientStop Color="{StaticResource TertiaryColor}" Offset="1" />
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
+                <GradientStop Color="{StaticResource SecondaryColor}" Offset="0.5" />
+                <GradientStop Color="{StaticResource TertiaryColor}" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+        </Grid>
     </Border>
 </Window>

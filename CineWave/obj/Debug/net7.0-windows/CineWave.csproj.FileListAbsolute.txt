@@ -26,8 +26,11 @@ C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\obj\Debug\net7.0-windows\refin
 C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\obj\Debug\net7.0-windows\CineWave.pdb
 C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\obj\Debug\net7.0-windows\CineWave.genruntimeconfig.cache
 C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\obj\Debug\net7.0-windows\ref\CineWave.dll
-C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\obj\Debug\net7.0-windows\Syles\Colors.baml
 C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\obj\Debug\net7.0-windows\MVVM\View\LoginWindow.g.cs
 C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\obj\Debug\net7.0-windows\MVVM\View\LoginWindow.baml
 C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\obj\Debug\net7.0-windows\MVVM\View\ReservationsView.g.cs
 C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\obj\Debug\net7.0-windows\MVVM\View\ReservationsView.baml
+C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\bin\Debug\net7.0-windows\Russkyc.ModernControls.WPF.dll
+C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\obj\Debug\net7.0-windows\Resources\Syles\Colors.baml
+C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\obj\Debug\net7.0-windows\Resources\Syles\ButtonStyles.baml
+C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\bin\Debug\net7.0-windows\FontAwesome.Sharp.dll

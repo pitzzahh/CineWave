@@ -8,10 +8,20 @@
     ".NETCoreApp,Version=v7.0": {
       "CineWave/1.0.0": {
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection": "7.0.0"
+          "FontAwesome.Sharp": "6.1.1",
+          "Microsoft.Extensions.DependencyInjection": "7.0.0",
+          "Russkyc.ModernControls.WPF": "1.7.1"
         },
         "runtime": {
           "CineWave.dll": {}
+        }
+      },
+      "FontAwesome.Sharp/6.1.1": {
+        "runtime": {
+          "lib/net6.0-windows7.0/FontAwesome.Sharp.dll": {
+            "assemblyVersion": "6.1.1.0",
+            "fileVersion": "6.1.1.0"
+          }
         }
       },
       "Microsoft.Extensions.DependencyInjection/7.0.0": {
@@ -32,6 +42,14 @@
             "fileVersion": "7.0.22.51805"
           }
         }
+      },
+      "Russkyc.ModernControls.WPF/1.7.1": {
+        "runtime": {
+          "lib/net7.0-windows7.0/Russkyc.ModernControls.WPF.dll": {
+            "assemblyVersion": "1.7.1.0",
+            "fileVersion": "1.7.1.0"
+          }
+        }
       }
     }
   },
@@ -40,6 +58,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FontAwesome.Sharp/6.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-p6dnSMcKQg790vGSJgvFk6S8gXQnEcCugfaJ21WFxZz9h+9KyxL+sX6kbGv8p4iVoX/e5BAMnTV4QJFJvx8QxQ==",
+      "path": "fontawesome.sharp/6.1.1",
+      "hashPath": "fontawesome.sharp.6.1.1.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection/7.0.0": {
       "type": "package",
@@ -54,6 +79,13 @@
       "sha512": "sha512-h3j/QfmFN4S0w4C2A6X7arXij/M/OVw3uQHSOFxnND4DyAzO1F9eMX7Eti7lU/OkSthEE0WzRsfT/Dmx86jzCw==",
       "path": "microsoft.extensions.dependencyinjection.abstractions/7.0.0",
       "hashPath": "microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+    },
+    "Russkyc.ModernControls.WPF/1.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9DjIaeFDenj571UUfQUVTt2xN2l9jHqDgHweY/cXBkSlbs2l0bLtVHJ7uaVp+rNgkZ2i+4oKddGHvmuAXO7FQw==",
+      "path": "russkyc.moderncontrols.wpf/1.7.1",
+      "hashPath": "russkyc.moderncontrols.wpf.1.7.1.nupkg.sha512"
     }
   }
 }

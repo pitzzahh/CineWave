@@ -43,7 +43,7 @@ namespace CineWave
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            var window = _serviceProvider.GetRequiredService<LoginWindow>();
+            var window = _serviceProvider.GetRequiredService<MainWindow>();
             window.Show();
             base.OnStartup(e);
         }

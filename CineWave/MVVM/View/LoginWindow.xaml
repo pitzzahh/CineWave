@@ -16,8 +16,15 @@
     
     <Border CornerRadius="30"
             Background="#31572c"
-            BorderBrush="MediumSeaGreen"
+            BorderBrush="{StaticResource ForegroundBrush}"
             BorderThickness="5">
-        
+        <Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+            </Grid>        
+        </Border>
     </Border>
 </Window>

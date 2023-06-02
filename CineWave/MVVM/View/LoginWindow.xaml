@@ -5,6 +5,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:CineWave.MVVM.View"
         xmlns:viewModel="clr-namespace:CineWave.MVVM.ViewModel"
+        xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
+        xmlns:wpf="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
         mc:Ignorable="d"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -18,14 +20,6 @@
             BorderThickness="5"
             Opacity="0.95">
         
-        <Border.BorderBrush>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
-                <GradientStop Color="{StaticResource SecondaryColor}" Offset="0.5" />
-                <GradientStop Color="{StaticResource TertiaryColor}" Offset="1" />
-            </LinearGradientBrush>
-        </Border.BorderBrush>
-
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
@@ -37,8 +31,71 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="10" />
-                <RowDefinition />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+
+            <StackPanel x:Name="ControlBarPanel"
+                        Orientation="Horizontal"
+                        FlowDirection="RightToLeft"
+                        Background="Transparent"
+                        MouseLeftButtonDown="OnMoveWindow"
+                        MouseEnter="OnEnterControlBar">
+            </StackPanel>
+
+            <StackPanel
+                Grid.Row="1"
+                Orientation="Vertical"
+                Width="350">
+                
+                <Image Source="../../Resources/Images/logo.png"
+                       Width="100" />
+                
+                <Label Content="CineWave"
+                       HorizontalAlignment="Center"
+                       FontSize="40"
+                       FontWeight="Medium"
+                       Foreground="{StaticResource BackgroundColor}" />
+
+                <Label Content="Username"
+                       FontSize="14"
+                       FontWeight="Medium"
+                       Foreground="{StaticResource BackgroundColor}" />
+                <moderncontrols:ModernTextBox
+                    Background="{StaticResource PrimaryBrush}"
+                    Foreground="White"
+                    LeftIcon="{wpf:MaterialIconExt User}"
+                    FontSize="14"
+                    Padding="15,10,10,10"
+                    FontWeight="Medium"
+                    HelperText="Required *">
+                </moderncontrols:ModernTextBox>
+
+                <Label Content="Password"
+                       FontSize="14"
+                       FontWeight="Medium"
+                       Foreground="{StaticResource BackgroundColor}" />
+
+                <moderncontrols:ModernTextBox
+                    Background="{StaticResource PrimaryBrush}"
+                    Foreground="White"
+                    LeftIcon="{wpf:MaterialIconExt Password}"
+                    FontSize="14"
+                    FontWeight="Medium"
+                    HelperText="Required *"
+                    Padding="15,10,10,10">
+                </moderncontrols:ModernTextBox>
+
+                <moderncontrols:ModernButton Margin="0,12,0,0"
+                                      VerticalAlignment="Bottom"
+                                      Content="LOGIN"
+                                      CornerRadius="5"
+                                      DefaultBackground="{StaticResource PrimaryBrush}"
+                                      HoverBackground="{StaticResource PrimaryBrush}"
+                                      PressedBackground="{StaticResource PrimaryBrush}"
+                                      FontWeight="Medium" />
+            </StackPanel>
+
         </Grid>
+
     </Border>
 </Window>

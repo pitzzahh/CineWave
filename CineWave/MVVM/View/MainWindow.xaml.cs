@@ -29,5 +29,20 @@ namespace CineWave.MVVM.View
         {
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         }
+
+        private void OnCloseWindow(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void OnMaximizeWindow(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
+        }
+
+        private void OnMinimizeWindow(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
     }
 }

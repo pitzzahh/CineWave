@@ -4,6 +4,6 @@ namespace CineWave.Services;
 
 public interface INavigationService
 {
-    ViewModel CurrentView { get; }
+    ViewModel? CurrentView { get; }
     void NavigateTo<T>() where T : ViewModel;
 }

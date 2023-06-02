@@ -6,6 +6,8 @@
     <Color x:Key="TertiaryColor">#FF4F772D</Color>
     <Color x:Key="QuaternaryColor">#FF90A955</Color>
     <Color x:Key="QuinaryColor">#FFECF39E</Color>
+    
+    <Color x:Key="Red">#e63946</Color>
 
     <!-- Background Colors -->
     <SolidColorBrush x:Key="BackgroundColor" Color="#FFF2F2F2"/>

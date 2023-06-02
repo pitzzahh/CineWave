@@ -7,7 +7,7 @@ public class MainViewModel : Core.ViewModel
 {
     private readonly INavigationService _navigation = null!;
 
-    private INavigationService NavigationService
+    private INavigationService Navigation
     {
         get => _navigation;
         init
@@ -17,19 +17,24 @@ public class MainViewModel : Core.ViewModel
         }
     }
 
+    public RelayCommand NavigateToLoginViewCommand { get; set; }
     public RelayCommand NavigateToHomeViewCommand { get; set; }
     public RelayCommand NavigateToSettingsViewCommand { get; set; }
     
-    public MainViewModel(INavigationService navigationService)
+    public MainViewModel(INavigationService navigation)
     {
-        NavigationService = navigationService;
+        Navigation = navigation;
+        NavigateToLoginViewCommand = new RelayCommand(o => true, o =>
+        {
+            Navigation.NavigateTo<LoginViewModel>();
+        });
         NavigateToHomeViewCommand = new RelayCommand(o => true, o =>
         {
-            NavigationService.NavigateTo<HomeViewModel>();
+            Navigation.NavigateTo<DashboardViewModel>();
         });
         NavigateToSettingsViewCommand = new RelayCommand(o => true, o =>
         {
-            NavigationService.NavigateTo<ReservationsViewModel>();
+            Navigation.NavigateTo<ReservationsViewModel>();
         });
     }
 

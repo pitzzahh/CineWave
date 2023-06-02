@@ -10,18 +10,18 @@
             <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
                 <view:LoginWindow/>
             </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
+                <view:MainWindow/>
+            </DataTemplate>
         
-            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-                <view:HomeView/>
+            <DataTemplate DataType="{x:Type viewModel:DashboardViewModel}">
+                <view:DashboardView/>
             </DataTemplate>
         
             <DataTemplate DataType="{x:Type viewModel:ReservationsViewModel}">
                 <view:ReservationsView/>
             </DataTemplate>
-            
-            <Style x:Key="FontAwesome">
-                <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/fonts/#FontAwesome" />
-            </Style>
             
             <ResourceDictionary.MergedDictionaries>
                 <!--  ModernControls WPF  -->

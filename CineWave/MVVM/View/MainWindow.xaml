@@ -4,11 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CineWave"
+        xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
         xmlns:fontawesome="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
+        ResizeMode="CanResize"
         AllowsTransparency="True"
         Title="MainWindow"
         Height="600"
@@ -28,41 +30,20 @@
         <Grid>
 
             <Grid.RowDefinitions>
-                <!-- ControlBar -->
-                <RowDefinition Height="25" />
                 <!-- Header -->
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
                 <!--Nav-->
-                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="230" />
                 <!--Content-->
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!-- Control Bar -->
-            <Border
-                Grid.ColumnSpan="2"
-                CornerRadius="10,10,0,0">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0.88,0.05" EndPoint="1,40">
-                        <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
-                        <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
-                    </LinearGradientBrush>
-                </Border.Background>
-                <StackPanel x:Name="ControlBarPanel"
-                            Orientation="Horizontal"
-                            FlowDirection="RightToLeft"
-                            Background="Transparent"
-                            MouseLeftButtonDown="OnMoveWindow"
-                            MouseEnter="OnEnterControlBar">
-                </StackPanel>
-            </Border>
-
             <!-- Nav Section -->
-            <Border Grid.Row="1" Grid.Column="0"
-                    CornerRadius="0,0,0,10">
+            <Border CornerRadius="10,0,0,10">
+                <!-- Border content goes here -->
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0.02,0.2" EndPoint="1.5,1.9">
                         <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
@@ -81,38 +62,50 @@
                                Height="50"
                                Margin="5,0,0,0"
                                Source="/Resources/Images/logo.png" />
-                        
+
                         <TextBlock Text="CineWave"
-                                   FontSize="20"
+                                   FontSize="30"
                                    FontFamily="Segoe UI"
-                                   FontWeight="Medium"
+                                   FontWeight="Bold"
                                    VerticalAlignment="Center"
                                    Margin="10,0,0,0"
                                    Foreground="WhiteSmoke" />
                     </StackPanel>
 
                     <!-- Menus -->
-                    <RadioButton Style="{StaticResource MenuButton}"
-                                 Tag="{StaticResource QuinaryBrush}">
-                        <StackPanel Orientation="Horizontal">
-                            <fontawesome:IconImage Icon="Dashboard" Style="{StaticResource MenuButtonIcon}" />
-                            <TextBlock Text="Dashboard" Style="{StaticResource MenuButtonText}" />
-                        </StackPanel>
-                    </RadioButton>
+                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <RadioButton Style="{StaticResource MenuButton}"
+                                     Command="{Binding NavigateToHomeViewCommand}"
+                                     Tag="{StaticResource QuinaryBrush}">
+                            <StackPanel Orientation="Horizontal">
+                                <fontawesome:IconImage Icon="Home" Style="{StaticResource MenuButtonIcon}" />
+                                <TextBlock Text="Gallery" Style="{StaticResource MenuButtonText}" />
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton Style="{StaticResource MenuButton}"
+                                     Command="{Binding NavigateToSettingsViewCommand}"
+                                     Tag="{StaticResource QuinaryBrush}">
+                            <StackPanel Orientation="Horizontal">
+                                <fontawesome:IconImage Icon="Bookmark" Style="{StaticResource MenuButtonIcon}" />
+                                <TextBlock Text="Reservations" Style="{StaticResource MenuButtonText}" />
+                            </StackPanel>
+                        </RadioButton>
+                    </StackPanel>
 
-                    <RadioButton Style="{StaticResource MenuButton}"
-                                 Tag="{StaticResource QuinaryBrush}">
-                        <StackPanel Orientation="Horizontal">
-                            <fontawesome:IconImage Icon="Book" Style="{StaticResource MenuButtonIcon}" />
-                            <TextBlock Text="Reservations" Style="{StaticResource MenuButtonText}" />
-                        </StackPanel>
-                    </RadioButton>
+                    <moderncontrols:ModernButton Content="Logout"
+                                                 Command="{Binding NavigateToSettingsViewCommand}"
+                                                 HoverBackground="{StaticResource QuinaryBrush}"
+                                                 DefaultBackground="DimGray"
+                                                 Margin="0,10"
+                                                 HoverForeground="{StaticResource PrimaryBrush}"
+                                                 PressedBackground="{StaticResource PrimaryBrush}"
+                                                 PressedForeground="{StaticResource QuinaryBrush}"/>
 
                 </StackPanel>
             </Border>
 
             <!-- Main Section -->
-            <Border Grid.Row="1" Grid.Column="1" CornerRadius="0,0,10,0">
+            <Border Grid.Row="0" Grid.Column="1" CornerRadius="0,10,10,0">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0.88,0.02" EndPoint="1,1">
                         <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
@@ -120,22 +113,63 @@
                     </LinearGradientBrush>
                 </Border.Background>
 
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <!-- ControlBar -->
-                        <RowDefinition Height="25" />
-                        <!-- Header -->
-                        <RowDefinition Height="35" />
-                        <!-- Content -->
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                </Grid>
+                <ContentControl Content="{Binding Navigation.CurrentView}" />
             </Border>
+
+            <!-- Control Bar -->
+            <StackPanel Grid.Column="1" Orientation="Horizontal"
+                        Background="Transparent"
+                        FlowDirection="RightToLeft"
+                        Margin="5,2"
+                        VerticalAlignment="Top"
+                        MouseLeftButtonDown="OnMoveWindow"
+                        MouseEnter="OnEnterControlBar">
+                <Button Tag="{StaticResource Red}"
+                        Click="OnCloseWindow"
+                        Style="{StaticResource ControlButton}">
+                    <fontawesome:IconImage Icon="Xmark" Style="{StaticResource ControlButtonIcon}" />
+                </Button>
+                <Button Tag="{StaticResource QuinaryBrush}"
+                        Click="OnMaximizeWindow"
+                        Style="{StaticResource ControlButton}">
+                    <fontawesome:IconImage Icon="Square" Style="{StaticResource ControlButtonIcon}">
+                        <fontawesome:IconImage.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                         Duration="0:0:0.3"
+                                                         From="50"
+                                                         To="100" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </fontawesome:IconImage.Triggers>
+                    </fontawesome:IconImage>
+                </Button>
+                <Button Tag="{StaticResource QuinaryBrush}"
+                        Click="OnMinimizeWindow"
+                        Style="{StaticResource ControlButton}">
+                    <fontawesome:IconImage Icon="WindowMinimize"
+                                           Width="14"
+                                           Style="{StaticResource ControlButtonIcon}">
+                        <fontawesome:IconImage.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                         Duration="0:0:0.3"
+                                                         From="50"
+                                                         To="10" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </fontawesome:IconImage.Triggers>
+                    </fontawesome:IconImage>
+                </Button>
+            </StackPanel>
 
         </Grid>
 
-
     </Border>
-
 </Window>

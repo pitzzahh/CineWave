@@ -55,8 +55,44 @@
                 Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=RadioButton}}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontWeight" Value="Medium"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <!-- Control Button -->
+    <Style x:Key="ControlButton" TargetType="Button">
+        <!-- Normal Style -->
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Width" Value="25" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource QuinaryBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="4">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <!-- Control Over -->
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource QuinaryBrush}" />
+                <Setter Property="Foreground"
+                        Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=Button}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Control Button Icon Styles -->
+    <Style x:Key="ControlButtonIcon" TargetType="fontawesome:IconImage">
+        <Setter Property="Foreground"
+                Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
+        <Setter Property="Height" Value="9" />
+        <Setter Property="Width" Value="9" />
     </Style>
 
 </ResourceDictionary>

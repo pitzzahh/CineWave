@@ -32,7 +32,7 @@ namespace CineWave
             
             serviceCollection.AddSingleton<LoginViewModel>();
             serviceCollection.AddSingleton<MainViewModel>();
-            serviceCollection.AddSingleton<HomeViewModel>();
+            serviceCollection.AddSingleton<DashboardViewModel>();
             serviceCollection.AddSingleton<ReservationsViewModel>();
             
             serviceCollection.AddSingleton<INavigationService, NavigationService>();

@@ -5,6 +5,8 @@ using CineWave.MVVM.View;
 using CineWave.MVVM.ViewModel;
 using CineWave.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualBasic.Logging;
+
 namespace CineWave
 {
     /// <summary>
@@ -42,7 +44,7 @@ namespace CineWave
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            var window = _serviceProvider.GetRequiredService<MainWindow>();
+            var window = _serviceProvider.GetRequiredService<LoginWindow>();
             window.Show();
             base.OnStartup(e);
         }

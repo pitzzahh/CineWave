@@ -100,6 +100,14 @@
                             <TextBlock Text="Reservations" Style="{StaticResource MenuButtonText}" />
                         </StackPanel>
                     </RadioButton>
+                    
+                    <RadioButton Style="{StaticResource MenuButton}"
+                                 Tag="{StaticResource QuinaryBrush}">
+                        <StackPanel Orientation="Horizontal">
+                            <fontawesome:IconImage Icon="TruckMoving" Style="{StaticResource MenuButtonIcon}" />
+                            <TextBlock Text="Preview" Style="{StaticResource MenuButtonText}" />
+                        </StackPanel>
+                    </RadioButton>
 
                 </StackPanel>
             </Border>

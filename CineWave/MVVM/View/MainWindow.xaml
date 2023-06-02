@@ -74,7 +74,14 @@
                     <StackPanel Height="35"
                                 Margin="5,25"
                                 Orientation="Horizontal">
-                        <Image Source="/Resources/Images/logo.png" Margin="5,0,0,0" />
+
+                        <Image HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Width="50"
+                               Height="50"
+                               Margin="5,0,0,0"
+                               Source="/Resources/Images/logo.png" />
+                        
                         <TextBlock Text="CineWave"
                                    FontSize="20"
                                    FontFamily="Segoe UI"
@@ -98,14 +105,6 @@
                         <StackPanel Orientation="Horizontal">
                             <fontawesome:IconImage Icon="Book" Style="{StaticResource MenuButtonIcon}" />
                             <TextBlock Text="Reservations" Style="{StaticResource MenuButtonText}" />
-                        </StackPanel>
-                    </RadioButton>
-                    
-                    <RadioButton Style="{StaticResource MenuButton}"
-                                 Tag="{StaticResource QuinaryBrush}">
-                        <StackPanel Orientation="Horizontal">
-                            <fontawesome:IconImage Icon="TruckMoving" Style="{StaticResource MenuButtonIcon}" />
-                            <TextBlock Text="Preview" Style="{StaticResource MenuButtonText}" />
                         </StackPanel>
                     </RadioButton>
 

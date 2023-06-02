@@ -19,7 +19,7 @@
     <Border CornerRadius="30"
             BorderThickness="5"
             Opacity="0.95">
-        
+
         <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
@@ -86,13 +86,10 @@
                 </moderncontrols:ModernTextBox>
 
                 <moderncontrols:ModernButton Margin="0,12,0,0"
-                                      VerticalAlignment="Bottom"
-                                      Content="LOGIN"
-                                      CornerRadius="5"
-                                      DefaultBackground="{StaticResource PrimaryBrush}"
-                                      HoverBackground="{StaticResource SecondaryBrush}"
-                                      PressedBackground="{StaticResource PrimaryBrush}"
-                                      FontWeight="Medium" />
+                                             VerticalAlignment="Bottom"
+                                             Content="LOGIN"
+                                             CornerRadius="5"
+                                             FontWeight="Medium" />
             </StackPanel>
 
         </Grid>

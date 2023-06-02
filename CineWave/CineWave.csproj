@@ -5,6 +5,7 @@
         <TargetFramework>net7.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
+        <ApplicationIcon>Resources\Images\ico.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -28,6 +29,11 @@
       <PackageReference Include="Material.Icons.WPF" Version="2.0.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
       <PackageReference Include="Russkyc.ModernControls.WPF" Version="1.7.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\Images\logo.png" />
+      <Resource Include="Resources\Images\logo.png" />
     </ItemGroup>
 
 </Project>

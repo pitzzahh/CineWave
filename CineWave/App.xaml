@@ -7,14 +7,6 @@
     <Application.Resources>
         
         <ResourceDictionary>
-            <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
-                <view:LoginWindow/>
-            </DataTemplate>
-            
-            <DataTemplate DataType="{x:Type viewModel:MainViewModel}">
-                <view:MainWindow/>
-            </DataTemplate>
-        
             <DataTemplate DataType="{x:Type viewModel:GalleryViewModel}">
                 <view:GalleryView/>
             </DataTemplate>

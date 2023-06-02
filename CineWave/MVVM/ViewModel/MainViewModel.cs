@@ -18,8 +18,8 @@ public class MainViewModel : Core.ViewModel
     }
 
     public RelayCommand NavigateToLoginViewCommand { get; set; }
-    public RelayCommand NavigateToHomeViewCommand { get; set; }
-    public RelayCommand NavigateToSettingsViewCommand { get; set; }
+    public RelayCommand NavigateToGalleryViewCommand { get; set; }
+    public RelayCommand NavigateToReservationsViewCommand { get; set; }
     
     public MainViewModel(INavigationService navigation)
     {
@@ -28,11 +28,11 @@ public class MainViewModel : Core.ViewModel
         {
             Navigation.NavigateTo<LoginViewModel>();
         });
-        NavigateToHomeViewCommand = new RelayCommand(o => true, o =>
+        NavigateToGalleryViewCommand = new RelayCommand(o => true, o =>
         {
-            Navigation.NavigateTo<DashboardViewModel>();
+            Navigation.NavigateTo<GalleryViewModel>();
         });
-        NavigateToSettingsViewCommand = new RelayCommand(o => true, o =>
+        NavigateToReservationsViewCommand = new RelayCommand(o => true, o =>
         {
             Navigation.NavigateTo<ReservationsViewModel>();
         });

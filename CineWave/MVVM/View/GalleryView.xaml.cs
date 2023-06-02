@@ -2,9 +2,9 @@ using System.Windows.Controls;
 
 namespace CineWave.MVVM.View;
 
-public partial class DashboardView : UserControl
+public partial class GalleryView : UserControl
 {
-    public DashboardView()
+    public GalleryView()
     {
         InitializeComponent();
     }

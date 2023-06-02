@@ -15,8 +15,8 @@
                 <view:MainWindow/>
             </DataTemplate>
         
-            <DataTemplate DataType="{x:Type viewModel:DashboardViewModel}">
-                <view:DashboardView/>
+            <DataTemplate DataType="{x:Type viewModel:GalleryViewModel}">
+                <view:GalleryView/>
             </DataTemplate>
         
             <DataTemplate DataType="{x:Type viewModel:ReservationsViewModel}">

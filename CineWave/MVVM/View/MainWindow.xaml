@@ -75,7 +75,7 @@
                     <!-- Menus -->
                     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                         <RadioButton Style="{StaticResource MenuButton}"
-                                     Command="{Binding NavigateToHomeViewCommand}"
+                                     Command="{Binding NavigateToGalleryViewCommand}"
                                      Tag="{StaticResource QuinaryBrush}">
                             <StackPanel Orientation="Horizontal">
                                 <fontawesome:IconImage Icon="Home" Style="{StaticResource MenuButtonIcon}" />
@@ -83,7 +83,7 @@
                             </StackPanel>
                         </RadioButton>
                         <RadioButton Style="{StaticResource MenuButton}"
-                                     Command="{Binding NavigateToSettingsViewCommand}"
+                                     Command="{Binding NavigateToReservationsViewCommand}"
                                      Tag="{StaticResource QuinaryBrush}">
                             <StackPanel Orientation="Horizontal">
                                 <fontawesome:IconImage Icon="Bookmark" Style="{StaticResource MenuButtonIcon}" />

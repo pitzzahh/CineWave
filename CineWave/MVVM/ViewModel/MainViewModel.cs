@@ -5,12 +5,12 @@ namespace CineWave.MVVM.ViewModel;
 
 public class MainViewModel : Core.ViewModel
 {
-    private readonly INavigationService _navigation = null!;
+    private INavigationService _navigation;
 
-      private INavigationService Navigation
+    public INavigationService Navigation
     {
         get => _navigation;
-        init
+        set
         {
             _navigation = value;
             OnPropertyChanged();
@@ -27,5 +27,5 @@ public class MainViewModel : Core.ViewModel
         NavigateToLogin = new RelayCommand(o => { Navigation.NavigateTo<LoginViewModel>(); }, o => true);
         NavigateToHome = new RelayCommand(o => { Navigation.NavigateTo<HomeViewModel>(); }, o => true);
         NavigateToReservations = new RelayCommand(o => { Navigation.NavigateTo<ReservationsViewModel>(); }, o => true);
-    } 
+    }
 }

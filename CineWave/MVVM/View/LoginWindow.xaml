@@ -90,7 +90,7 @@
                                       Content="LOGIN"
                                       CornerRadius="5"
                                       DefaultBackground="{StaticResource PrimaryBrush}"
-                                      HoverBackground="{StaticResource PrimaryBrush}"
+                                      HoverBackground="{StaticResource SecondaryBrush}"
                                       PressedBackground="{StaticResource PrimaryBrush}"
                                       FontWeight="Medium" />
             </StackPanel>

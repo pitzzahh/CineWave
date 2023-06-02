@@ -19,6 +19,10 @@
                 <view:ReservationsView/>
             </DataTemplate>
             
+            <Style x:Key="FontAwesome">
+                <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/fonts/#FontAwesome" />
+            </Style>
+            
             <ResourceDictionary.MergedDictionaries>
                 <!--  ModernControls WPF  -->
                 <ResourceDictionary

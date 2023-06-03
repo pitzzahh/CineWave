@@ -33,7 +33,7 @@ jobs:
         with:
           name: CineWave-Artifacts
           path: |
-            ${{ github.workspace }}\CineWave\CineWave\bin\Release\net7.0-windows\publish
+            ${{ github.workspace }}\CineWave\bin\Release\net7.0-windows\publish
 
       - uses: actions/create-release@v1
         id: create_release

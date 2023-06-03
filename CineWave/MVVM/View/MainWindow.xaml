@@ -107,7 +107,7 @@
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <!-- Control Bar -->
-                    <RowDefinition Height="25" />
+                    <RowDefinition Height="30" />
                     <!-- Content -->
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
@@ -173,9 +173,7 @@
                 </StackPanel>
 
                 <!-- Main Content -->
-                <ContentControl Grid.Row="1" Content="{Binding Navigation.CurrentView}" Padding="20">
-                    
-                </ContentControl>
+                <ContentControl Grid.Row="1" Content="{Binding Navigation.CurrentView}" Padding="20"/>
             </Grid>
 
         </Grid>

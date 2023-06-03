@@ -14,8 +14,18 @@
         Background="Transparent"
         AllowsTransparency="True"
         Title="LoginView" Height="450" Width="800">
+    
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
 
-    <Border CornerRadius="30"
+    <Window.Visibility>
+        <Binding Path="IsLoginFormVisible"
+                 Mode="TwoWay" 
+                 Converter="{StaticResource BooleanToVisibilityConverter}"/>
+    </Window.Visibility>
+
+    <Border CornerRadius="15"
             BorderThickness="5"
             Opacity="0.95">
 
@@ -41,40 +51,40 @@
                         MouseLeftButtonDown="OnMoveWindow"
                         MouseEnter="OnEnterControlBar">
                 <Button Tag="{StaticResource Red}"
-                            Click="OnCloseWindow"
-                            Style="{StaticResource ControlButton}">
-                        <fontawesome:IconImage Icon="Xmark" Style="{StaticResource ControlButtonIcon}" />
-                    </Button>
-                    <Button Tag="{StaticResource QuinaryBrush}"
-                            Click="OnMinimizeWindow"
-                            Style="{StaticResource ControlButton}">
-                        <fontawesome:IconImage Icon="WindowMinimize"
-                                               Width="12"
-                                               Style="{StaticResource ControlButtonIcon}">
-                            <fontawesome:IconImage.Triggers>
-                                <EventTrigger RoutedEvent="Button.Click">
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                             Duration="0:0:0.3"
-                                                             From="50"
-                                                             To="10" />
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </fontawesome:IconImage.Triggers>
-                        </fontawesome:IconImage>
-                    </Button>
+                        Click="OnCloseWindow"
+                        Style="{StaticResource ControlButton}">
+                    <fontawesome:IconImage Icon="Xmark" Style="{StaticResource ControlButtonIcon}" />
+                </Button>
+                <Button Tag="{StaticResource QuinaryBrush}"
+                        Click="OnMinimizeWindow"
+                        Style="{StaticResource ControlButton}">
+                    <fontawesome:IconImage Icon="WindowMinimize"
+                                           Width="12"
+                                           Style="{StaticResource ControlButtonIcon}">
+                        <fontawesome:IconImage.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                         Duration="0:0:0.3"
+                                                         From="50"
+                                                         To="10" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </fontawesome:IconImage.Triggers>
+                    </fontawesome:IconImage>
+                </Button>
             </StackPanel>
 
             <StackPanel
                 Grid.Row="1"
                 Orientation="Vertical"
                 Width="350">
-                
+
                 <Image Source="../../Resources/Images/logo.png"
                        Width="100" />
-                
+
                 <Label Content="CineWave"
                        HorizontalAlignment="Center"
                        FontSize="40"
@@ -90,6 +100,7 @@
                     Foreground="White"
                     LeftIcon="{wpf:MaterialIconExt User}"
                     FontSize="14"
+                    Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                     Padding="15,10,10,10"
                     FontWeight="Medium"
                     HelperText="Required *">
@@ -99,12 +110,13 @@
                        FontSize="14"
                        FontWeight="Medium"
                        Foreground="{StaticResource BackgroundColor}" />
-
+                    
                 <moderncontrols:ModernTextBox
                     Background="{StaticResource PrimaryBrush}"
                     Foreground="White"
                     LeftIcon="{wpf:MaterialIconExt Password}"
                     FontSize="14"
+                    Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
                     FontWeight="Medium"
                     HelperText="Required *"
                     Padding="15,10,10,10">
@@ -114,6 +126,7 @@
                                              VerticalAlignment="Bottom"
                                              Content="LOGIN"
                                              CornerRadius="5"
+                                             Command="{Binding LoginCommand}"
                                              FontWeight="Medium" />
             </StackPanel>
 

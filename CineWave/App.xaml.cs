@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using CineWave.Core;
 using CineWave.MVVM.View;
@@ -13,38 +14,39 @@ namespace CineWave
     /// </summary>
     public partial class App
     {
-        private readonly ServiceProvider _serviceProvider;
+        public static ServiceProvider? ServiceProvider;
 
         public App()
         {
             var serviceCollection = new ServiceCollection();
-            
+
             serviceCollection.AddSingleton<LoginWindow>(provider => new LoginWindow()
             {
                 DataContext = provider.GetRequiredService<LoginViewModel>()
             });
-            
+
             serviceCollection.AddSingleton<MainWindow>(provider => new MainWindow
             {
                 DataContext = provider.GetRequiredService<MainViewModel>()
             });
-            
+
             serviceCollection.AddSingleton<LoginViewModel>();
-            
+
             serviceCollection.AddSingleton<MainViewModel>();
             serviceCollection.AddSingleton<HomeViewModel>();
             serviceCollection.AddSingleton<ReservationsViewModel>();
             serviceCollection.AddSingleton<INavigationService, NavigationService>();
-            
-            serviceCollection.AddSingleton<Func<Type, ViewModel>>(provider => viewModelType => (ViewModel)provider.GetRequiredService(viewModelType));
 
-            _serviceProvider = serviceCollection.BuildServiceProvider();
+            serviceCollection.AddSingleton<Func<Type, ViewModel>>(provider =>
+                viewModelType => (ViewModel)provider.GetRequiredService(viewModelType));
+
+            ServiceProvider = serviceCollection.BuildServiceProvider();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            var window = _serviceProvider.GetRequiredService<LoginWindow>();
-            window.Show();
+            Debug.Assert(ServiceProvider != null, nameof(ServiceProvider) + " != null");
+            ServiceProvider.GetRequiredService<LoginWindow>().Show();
             base.OnStartup(e);
         }
     }

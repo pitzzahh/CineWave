@@ -32,7 +32,8 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: CineWave-Artifacts
-          path: CineWave/bin/Release/net7.0-windows/publish
+          path: |
+            ${{ github.workspace }}/CineWave/bin/Release/net7.0-windows/publish
 
       - uses: actions/create-release@v1
         id: create_release

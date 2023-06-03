@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: CineWave-Artifacts
-          path: CineWave/bin/Release/net7.0/win-x64/publish
+          path: CineWave/bin/Release/net7.0-windows/publish
 
       - uses: actions/create-release@v1
         id: create_release
@@ -45,5 +45,5 @@ jobs:
       - uses: csexton/release-asset-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          pattern: CineWave/bin/Release/net7.0-windows/publish/*.exe
+          pattern: CineWave-Artifacts/*.exe
           release-url: ${{ steps.create_release.outputs.upload_url }}

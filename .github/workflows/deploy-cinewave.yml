@@ -1,8 +1,6 @@
 ﻿name: "Deploy CineWave"
 on:
   push:
-    branches:
-      - main
     tags:
       - "CineWave/v*"
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace CineWave.Helpers;
@@ -7,7 +6,8 @@ namespace CineWave.Helpers;
 public class TMDBHelper
 {
     private const string BaseUrl = "https://api.themoviedb.org/3/";
-    private static readonly string? ApiKey = Environment.GetEnvironmentVariable("TMBD_API_KEY");
+
+    private static readonly string ApiKey = PseudoRandomEncryptor.Decrypt("NmViYmRmOWJiNzVjM2E0ZjVkNDRlODhiNjdhODVmYmY=");
 
     public static async Task<string> GetMovieData(string movieTitle)
     {

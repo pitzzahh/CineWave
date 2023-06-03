@@ -9,14 +9,9 @@
              Height="550"
              Width="353"
              Margin="10">
-    
-    <UserControl.Resources>
-        <helpers:ImageBrushConverter x:Key="ImageBrushConverter" />
-    </UserControl.Resources>
 
     <Border CornerRadius="20"
-            Padding="10"
-            Background="{Binding MovieImage, Converter={StaticResource ImageBrushConverter}}">
+            Padding="10">
         <Grid>
 
             <Grid.RowDefinitions>
@@ -24,6 +19,10 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+            
+            <Image Source="{Binding MovieImage}"
+                   Height="500"
+                   Width="350"/>
 
             <TextBlock Grid.Row="1"
                        Text="{Binding MovieName}"

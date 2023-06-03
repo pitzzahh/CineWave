@@ -14,23 +14,25 @@
 
         <TextBlock Text="Top Movies"
                    FontSize="20"
-                     FontWeight="Medium"
+                   FontWeight="Medium"
                    Margin="10 0 0 0"
-                   
-                   Foreground="{StaticResource QuinaryBrush}"/>
 
-        <ScrollViewer Grid.Row="1"
-                      d:Margin="10"
-                      VerticalScrollBarVisibility="Auto">
-            <ItemsControl
-                ItemsSource="{Binding MovieCardViewModels}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </ScrollViewer>
+                   Foreground="{StaticResource QuinaryBrush}" />
+        <UniformGrid Grid.Row="1">
+
+            <ScrollViewer d:Margin="10"
+                          VerticalScrollBarVisibility="Auto">
+                <ItemsControl
+                    ItemsSource="{Binding MovieCardViewModels}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+        </UniformGrid>
+
     </Grid>
 
 </UserControl>

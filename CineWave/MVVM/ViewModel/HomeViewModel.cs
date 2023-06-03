@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 using CineWave.Helpers;
 using Newtonsoft.Json.Linq;
 
@@ -16,7 +13,6 @@ public class HomeViewModel : Core.ViewModel
     public HomeViewModel()
     {
         _movies = new ObservableCollection<MovieCardViewModel>();
-
         // Fetch movie data from TMDb API
         var movieData = TMDBHelper.GetTopMovies();
 
@@ -30,12 +26,9 @@ public class HomeViewModel : Core.ViewModel
             var title = result["original_title"]?.ToString();
             var overview = result["overview"]?.ToString();
             var posterPath = result["poster_path"]?.ToString();
-            var imageUrl = $"https://image.tmdb.org/t/p/w500{posterPath}";
+            var imageUrl = $"https://image.tmdb.org/t/p/w500/{posterPath}";
 
-            var image = new Image();
-            image.Source = new BitmapImage(new Uri(imageUrl));
-
-            _movies.Add(new MovieCardViewModel(image, title, overview));
+            _movies.Add(new MovieCardViewModel(imageUrl, title, overview));
         }
     }
 

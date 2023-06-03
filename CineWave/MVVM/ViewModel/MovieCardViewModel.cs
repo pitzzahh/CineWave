@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace CineWave.MVVM.ViewModel;
+﻿namespace CineWave.MVVM.ViewModel;
 
 public class MovieCardViewModel : Core.ViewModel
 {

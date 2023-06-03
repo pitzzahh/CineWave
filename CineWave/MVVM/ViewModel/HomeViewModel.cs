@@ -8,18 +8,30 @@ namespace CineWave.MVVM.ViewModel;
 
 public class HomeViewModel : Core.ViewModel
 {
-    private readonly ObservableCollection<MovieCardViewModel> _movies;
+    private readonly ObservableCollection<MovieCardViewModel> _movies = new();
     public IEnumerable<MovieCardViewModel> MovieCardViewModels => _movies;
+
     public HomeViewModel()
     {
-        _movies = new ObservableCollection<MovieCardViewModel>();
+        try
+        {
+            GetMoviesFromApi();
+        }
+        catch (Exception)
+        {
+            // ignored
+        }
+    }
+
+    public void GetMoviesFromApi()
+    {
         // Fetch movie data from TMDb API
         var movieData = TmdbHelper.GetTopMovies();
 
         // Parse the JSON response
         var jsonObject = JObject.Parse(movieData);
         var results = jsonObject["results"];
-        
+
         if (results == null) return;
         foreach (var result in results)
         {
@@ -30,6 +42,6 @@ public class HomeViewModel : Core.ViewModel
 
             _movies.Add(new MovieCardViewModel(imageUrl, title, overview));
         }
-    }
 
+    }
 }

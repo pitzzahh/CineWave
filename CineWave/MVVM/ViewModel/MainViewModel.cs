@@ -1,4 +1,6 @@
+using System;
 using System.Diagnostics;
+using System.Linq;
 using CineWave.Core;
 using CineWave.MVVM.View;
 using CineWave.Services;
@@ -33,7 +35,21 @@ public class MainViewModel : Core.ViewModel
             App.ServiceProvider.GetRequiredService<MainWindow>().Hide();
             App.ServiceProvider.GetRequiredService<LoginViewModel>().IsLoginFormVisible = true;
         }, o => true);
-        NavigateToHome = new RelayCommand(o => { Navigation.NavigateTo<HomeViewModel>(); }, o => true);
+        NavigateToHome = new RelayCommand(o =>
+        {
+            Navigation.NavigateTo<HomeViewModel>();
+            Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+            var homeViewModel = App.ServiceProvider.GetRequiredService<HomeViewModel>();
+            if (homeViewModel.MovieCardViewModels.Any()) return;
+            try
+            {
+                homeViewModel.GetMoviesFromApi();
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+        }, o => true);
         NavigateToReservations = new RelayCommand(o => { Navigation.NavigateTo<ReservationsViewModel>(); }, o => true);
         Navigation.NavigateTo<HomeViewModel>();
     }

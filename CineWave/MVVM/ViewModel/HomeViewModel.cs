@@ -14,7 +14,7 @@ public class HomeViewModel : Core.ViewModel
     {
         _movies = new ObservableCollection<MovieCardViewModel>();
         // Fetch movie data from TMDb API
-        var movieData = TMDBHelper.GetTopMovies();
+        var movieData = TmdbHelper.GetTopMovies();
 
         // Parse the JSON response
         var jsonObject = JObject.Parse(movieData);

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace CineWave.Helpers;
 
-public class TMDBHelper
+internal static class TmdbHelper
 {
     private const string BaseUrl = "https://api.themoviedb.org/3/";
 

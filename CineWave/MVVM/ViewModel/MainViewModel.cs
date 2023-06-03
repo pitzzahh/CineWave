@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using CineWave.Core;
 using CineWave.MVVM.View;
 using CineWave.Services;
@@ -43,11 +44,11 @@ public class MainViewModel : Core.ViewModel
             if (homeViewModel.MovieCardViewModels.Any()) return;
             try
             {
-                homeViewModel.GetMoviesFromApi();
+                Task.Run(homeViewModel.GetMoviesFromApi); // Run the method on a separate thread
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // ignored
+                Debug.Print(e.StackTrace);
             }
         }, o => true);
         NavigateToReservations = new RelayCommand(o => { Navigation.NavigateTo<ReservationsViewModel>(); }, o => true);

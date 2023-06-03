@@ -18,13 +18,13 @@ internal static class TmdbHelper
         return await response.Content.ReadAsStringAsync();
     }
 
-    public static string GetTopMovies(int limit = 20)
+    public static async Task<string> GetTopMovies(int limit = 20)
     {
         using var client = new HttpClient();
         var url = $"{BaseUrl}movie/top_rated?api_key={ApiKey}&page=1&per_page={limit}";
-        var response = client.GetAsync(url).GetAwaiter().GetResult();
+        var response = await client.GetAsync(url);
         response.EnsureSuccessStatusCode();
-        return response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+        return await response.Content.ReadAsStringAsync();
     }
 
 }

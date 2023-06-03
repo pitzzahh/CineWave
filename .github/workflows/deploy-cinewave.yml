@@ -45,5 +45,5 @@ jobs:
       - uses: csexton/release-asset-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          pattern: "CineWave-Artifacts/*.exe"
+          pattern: CineWave/bin/Release/net7.0-windows/publish/*.exe
           release-url: ${{ steps.create_release.outputs.upload_url }}

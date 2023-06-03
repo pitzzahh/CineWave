@@ -33,6 +33,7 @@ public class MainViewModel : Core.ViewModel
         NavigateToLogin = new RelayCommand(o =>
         {
             Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+            App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
             App.ServiceProvider.GetRequiredService<MainWindow>().Hide();
             App.ServiceProvider.GetRequiredService<LoginViewModel>().IsLoginFormVisible = true;
         }, o => true);

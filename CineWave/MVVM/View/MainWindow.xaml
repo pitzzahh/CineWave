@@ -73,7 +73,8 @@
 
                     <!-- Menus -->
                     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <RadioButton Style="{StaticResource MenuButton}"
+                        <RadioButton x:Name="GalleryButton"
+                                     Style="{StaticResource MenuButton}"
                                      IsChecked="True"
                                      Command="{Binding NavigateToHome}"
                                      Tag="{StaticResource QuinaryBrush}">

@@ -48,4 +48,3 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pattern: CineWave-Artifacts/*.exe
           release-url: ${{ steps.create_release.outputs.upload_url }}
-          

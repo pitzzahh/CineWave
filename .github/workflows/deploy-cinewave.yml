@@ -46,7 +46,7 @@ jobs:
           draft: false
           prerelease: false
 
-      - uses: csexton/release-asset-action@v1
+      - uses: csexton/release-asset-action@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pattern: "CineWave-Artifacts/*.exe"

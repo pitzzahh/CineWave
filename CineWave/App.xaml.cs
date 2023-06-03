@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using CineWave.Core;
-using CineWave.Helpers;
 using CineWave.MVVM.View;
 using CineWave.MVVM.ViewModel;
 using CineWave.Services;
@@ -44,12 +43,9 @@ namespace CineWave
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            // this would only search 2 directories up from the executing directory.
-            var window = _serviceProvider.GetRequiredService<MainWindow>();
+            var window = _serviceProvider.GetRequiredService<LoginWindow>();
             window.Show();
-
             base.OnStartup(e);
-
         }
     }
 }

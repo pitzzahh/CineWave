@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:CineWave.MVVM.View"
-        xmlns:viewModel="clr-namespace:CineWave.MVVM.ViewModel"
+        xmlns:fontawesome="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
         xmlns:wpf="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
         mc:Ignorable="d"
@@ -30,16 +29,42 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="10" />
+                <RowDefinition Height="25" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <StackPanel x:Name="ControlBarPanel"
                         Orientation="Horizontal"
                         FlowDirection="RightToLeft"
+                        Margin="15 0"
                         Background="Transparent"
                         MouseLeftButtonDown="OnMoveWindow"
                         MouseEnter="OnEnterControlBar">
+                <Button Tag="{StaticResource Red}"
+                            Click="OnCloseWindow"
+                            Style="{StaticResource ControlButton}">
+                        <fontawesome:IconImage Icon="Xmark" Style="{StaticResource ControlButtonIcon}" />
+                    </Button>
+                    <Button Tag="{StaticResource QuinaryBrush}"
+                            Click="OnMinimizeWindow"
+                            Style="{StaticResource ControlButton}">
+                        <fontawesome:IconImage Icon="WindowMinimize"
+                                               Width="12"
+                                               Style="{StaticResource ControlButtonIcon}">
+                            <fontawesome:IconImage.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                             Duration="0:0:0.3"
+                                                             From="50"
+                                                             To="10" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </fontawesome:IconImage.Triggers>
+                        </fontawesome:IconImage>
+                    </Button>
             </StackPanel>
 
             <StackPanel

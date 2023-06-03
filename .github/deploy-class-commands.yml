@@ -3,6 +3,9 @@ on:
   push:
     tags:
       - "CineWave/v*"
+env:
+  PROJECT_PATH: "CineWave/CineWave.csproj"
+
 jobs:
   deploy:
     runs-on: windows-latest

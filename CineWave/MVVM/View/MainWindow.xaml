@@ -17,7 +17,7 @@
         Width="1000">
 
     <Border CornerRadius="10"
-            BorderThickness="2">
+            BorderThickness="1">
 
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -104,77 +104,82 @@
                 </StackPanel>
             </Border>
 
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <!-- Control Bar -->
-                    <RowDefinition Height="30" />
-                    <!-- Content -->
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                
-                <Grid.Background>
+            <Border Grid.Column="1" CornerRadius="0 10 10 0">
+
+                <Border.Background>
                     <LinearGradientBrush StartPoint="0.88,0.02" EndPoint="1,1">
                         <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
                         <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
                     </LinearGradientBrush>
-                </Grid.Background>
-                
-                <!-- Control Bar -->
-                <StackPanel Grid.Row="0" Orientation="Horizontal"
-                            Background="Transparent"
-                            FlowDirection="RightToLeft"
-                            Margin="5"
-                            VerticalAlignment="Top"
-                            MouseLeftButtonDown="OnMoveWindow"
-                            MouseEnter="OnEnterControlBar">
-                    <Button Tag="{StaticResource Red}"
-                            Click="OnCloseWindow"
-                            Style="{StaticResource ControlButton}">
-                        <fontawesome:IconImage Icon="Xmark" Style="{StaticResource ControlButtonIcon}" />
-                    </Button>
-                    <Button Tag="{StaticResource QuinaryBrush}"
-                            Click="OnMaximizeWindow"
-                            Style="{StaticResource ControlButton}">
-                        <fontawesome:IconImage Icon="Square" Style="{StaticResource ControlButtonIcon}">
-                            <fontawesome:IconImage.Triggers>
-                                <EventTrigger RoutedEvent="Button.Click">
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                             Duration="0:0:0.3"
-                                                             From="50"
-                                                             To="100" />
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </fontawesome:IconImage.Triggers>
-                        </fontawesome:IconImage>
-                    </Button>
-                    <Button Tag="{StaticResource QuinaryBrush}"
-                            Click="OnMinimizeWindow"
-                            Style="{StaticResource ControlButton}">
-                        <fontawesome:IconImage Icon="WindowMinimize"
-                                               Width="12"
-                                               Style="{StaticResource ControlButtonIcon}">
-                            <fontawesome:IconImage.Triggers>
-                                <EventTrigger RoutedEvent="Button.Click">
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                             Duration="0:0:0.3"
-                                                             From="50"
-                                                             To="10" />
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </fontawesome:IconImage.Triggers>
-                        </fontawesome:IconImage>
-                    </Button>
-                </StackPanel>
+                </Border.Background>
 
-                <!-- Main Content -->
-                <ContentControl Grid.Row="1" Content="{Binding Navigation.CurrentView}" Padding="20"/>
-            </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <!-- Control Bar -->
+                        <RowDefinition Height="30" />
+                        <!-- Content -->
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Control Bar -->
+                    <Border CornerRadius="0 10 0 0">
+                        <StackPanel Orientation="Horizontal"
+                                    Background="Transparent"
+                                    FlowDirection="RightToLeft"
+                                    Margin="5"
+                                    VerticalAlignment="Top"
+                                    MouseLeftButtonDown="OnMoveWindow"
+                                    MouseEnter="OnEnterControlBar">
+                            <Button Tag="{StaticResource Red}"
+                                    Click="OnCloseWindow"
+                                    Style="{StaticResource ControlButton}">
+                                <fontawesome:IconImage Icon="Xmark" Style="{StaticResource ControlButtonIcon}" />
+                            </Button>
+                            <Button Tag="{StaticResource QuinaryBrush}"
+                                    Click="OnMaximizeWindow"
+                                    Style="{StaticResource ControlButton}">
+                                <fontawesome:IconImage Icon="Square" Style="{StaticResource ControlButtonIcon}">
+                                    <fontawesome:IconImage.Triggers>
+                                        <EventTrigger RoutedEvent="Button.Click">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                                     Duration="0:0:0.3"
+                                                                     From="50"
+                                                                     To="100" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </fontawesome:IconImage.Triggers>
+                                </fontawesome:IconImage>
+                            </Button>
+                            <Button Tag="{StaticResource QuinaryBrush}"
+                                    Click="OnMinimizeWindow"
+                                    Style="{StaticResource ControlButton}">
+                                <fontawesome:IconImage Icon="WindowMinimize"
+                                                       Width="12"
+                                                       Style="{StaticResource ControlButtonIcon}">
+                                    <fontawesome:IconImage.Triggers>
+                                        <EventTrigger RoutedEvent="Button.Click">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                                     Duration="0:0:0.3"
+                                                                     From="50"
+                                                                     To="10" />
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </fontawesome:IconImage.Triggers>
+                                </fontawesome:IconImage>
+                            </Button>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Main Content -->
+                    <ContentControl Grid.Row="1" Content="{Binding Navigation.CurrentView}" Padding="20" />
+                </Grid>
+            </Border>
 
         </Grid>
 

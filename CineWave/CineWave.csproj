@@ -21,13 +21,21 @@
       <Page Update="Resources\Syles\Colors.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
+      <Page Update="Components\MovieCard.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Avalonia" Version="11.0.0-rc1.1" />
+      <PackageReference Include="DotNetEnv" Version="2.5.0" />
       <PackageReference Include="FontAwesome.Sharp" Version="6.1.1" />
       <PackageReference Include="Material.Icons.Avalonia" Version="2.0.1" />
       <PackageReference Include="Material.Icons.WPF" Version="2.0.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
       <PackageReference Include="Russkyc.ModernControls.WPF" Version="1.7.1" />
     </ItemGroup>
 

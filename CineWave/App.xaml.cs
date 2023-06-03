@@ -47,6 +47,7 @@ namespace CineWave
             var window = _serviceProvider.GetRequiredService<MainWindow>();
             window.Show();
             base.OnStartup(e);
+            DotNetEnv.Env.Load();
         }
     }
 }

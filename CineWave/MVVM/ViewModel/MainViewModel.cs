@@ -27,5 +27,6 @@ public class MainViewModel : Core.ViewModel
         NavigateToLogin = new RelayCommand(o => { Navigation.NavigateTo<LoginViewModel>(); }, o => true);
         NavigateToHome = new RelayCommand(o => { Navigation.NavigateTo<HomeViewModel>(); }, o => true);
         NavigateToReservations = new RelayCommand(o => { Navigation.NavigateTo<ReservationsViewModel>(); }, o => true);
+        Navigation.NavigateTo<HomeViewModel>();
     }
 }

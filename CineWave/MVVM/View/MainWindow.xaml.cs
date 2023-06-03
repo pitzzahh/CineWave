@@ -9,7 +9,7 @@ namespace CineWave.MVVM.View
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {
@@ -18,11 +18,10 @@ namespace CineWave.MVVM.View
         }
 
         [DllImport("user32.dll")]
-        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wp, int lp);
         private void OnMoveWindow(object sender, MouseButtonEventArgs e)
         {
-            WindowInteropHelper windowInteropHelper = new WindowInteropHelper(this);
-            SendMessage(windowInteropHelper.Handle, 0x112, 0xF012, IntPtr.Zero);
+            SendMessage(new WindowInteropHelper(this).Handle, 161, 2, 0);
         }
 
         private void OnEnterControlBar(object sender, MouseEventArgs e)

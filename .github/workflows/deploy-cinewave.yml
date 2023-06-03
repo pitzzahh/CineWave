@@ -30,8 +30,17 @@ jobs:
       - name: Publish the project
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r win-x64 -p:PublishSingleFile=true --no-build
 
-      - name: Deploy artifacts
-        uses: actions/upload-artifact@v2
+      - uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: CineWave-Artifacts
-          path: CineWave/bin/Release/net6.0-windows/win-x64/publish
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - uses: csexton/release-asset-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pattern: "CineWave/bin/Release/net7.0/win-x64/publish/*.exe"
+          release-url: ${{ steps.create_release.outputs.upload_url }}

@@ -11,8 +11,8 @@
         Background="Transparent"
         AllowsTransparency="True"
         Title="MainWindow"
-        Height="600"
-        Width="1000">
+        Height="700"
+        Width="1350">
 
     <Border CornerRadius="10"
             BorderThickness="1">
@@ -72,34 +72,49 @@
 
                     <!-- Menus -->
                     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <RadioButton x:Name="GalleryButton"
-                                     Style="{StaticResource MenuButton}"
-                                     IsChecked="True"
-                                     Command="{Binding NavigateToHome}"
-                                     Tag="{StaticResource QuinaryBrush}">
+                        <moderncontrols:ModernRadioButton x:Name="GalleryButton"
+                                                          Style="{StaticResource MenuButton}"
+                                                          IsChecked="True"
+                                                          Command="{Binding NavigateToHome}"
+                                                          Tag="{StaticResource QuinaryBrush}">
                             <StackPanel Orientation="Horizontal">
                                 <fontawesome:IconImage Icon="Home" Style="{StaticResource MenuButtonIcon}" />
                                 <TextBlock Text="Gallery" Style="{StaticResource MenuButtonText}" />
                             </StackPanel>
-                        </RadioButton>
-                        <RadioButton Style="{StaticResource MenuButton}"
-                                     Command="{Binding NavigateToReservations}"
-                                     Tag="{StaticResource QuinaryBrush}">
+                        </moderncontrols:ModernRadioButton>
+                        <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
+                                                          Command="{Binding NavigateToReservations}"
+                                                          Tag="{StaticResource QuinaryBrush}">
                             <StackPanel Orientation="Horizontal">
                                 <fontawesome:IconImage Icon="Bookmark" Style="{StaticResource MenuButtonIcon}" />
                                 <TextBlock Text="Reservations" Style="{StaticResource MenuButtonText}" />
                             </StackPanel>
-                        </RadioButton>
-                        <RadioButton Style="{StaticResource MenuButton}"
-                                     Command="{Binding NavigateToSeatBooking}"
-                                     Tag="{StaticResource QuinaryBrush}">
+                        </moderncontrols:ModernRadioButton>
+                        <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
+                                                          Command="{Binding NavigateToSeatBooking}"
+                                                          Tag="{StaticResource QuinaryBrush}">
                             <StackPanel Orientation="Horizontal">
                                 <fontawesome:IconImage Icon="Chair" Style="{StaticResource MenuButtonIcon}" />
                                 <TextBlock Text="Seat Booking" Style="{StaticResource MenuButtonText}" />
                             </StackPanel>
-                        </RadioButton>
+                        </moderncontrols:ModernRadioButton>
+                        <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
+                                                          Command="{Binding NavigateToSeatBooking}"
+                                                          Tag="{StaticResource QuinaryBrush}">
+                            <StackPanel Orientation="Horizontal">
+                                <fontawesome:IconImage Icon="Add" Style="{StaticResource MenuButtonIcon}" />
+                                <TextBlock Text="Add Movies" Style="{StaticResource MenuButtonText}" />
+                            </StackPanel>
+                        </moderncontrols:ModernRadioButton>
+                        <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
+                                                          Command="{Binding NavigateToSeatBooking}"
+                                                          Tag="{StaticResource QuinaryBrush}">
+                            <StackPanel Orientation="Horizontal">
+                                <fontawesome:IconImage Icon="Edit" Style="{StaticResource MenuButtonIcon}" />
+                                <TextBlock Text="Manage Movies" Style="{StaticResource MenuButtonText}" />
+                            </StackPanel>
+                        </moderncontrols:ModernRadioButton>
                     </StackPanel>
-
                     <moderncontrols:ModernButton Content="Logout"
                                                  Command="{Binding NavigateToLogin}"
                                                  HoverBackground="{StaticResource QuinaryBrush}"
@@ -185,7 +200,9 @@
                     </Border>
 
                     <!-- Main Content -->
-                    <ContentControl Grid.Row="1" Content="{Binding Navigation.CurrentView}" Padding="20" />
+                    <ContentControl Grid.Row="1"
+                                    Content="{Binding Navigation.CurrentView}"
+                                    Padding="20" />
                 </Grid>
             </Border>
 

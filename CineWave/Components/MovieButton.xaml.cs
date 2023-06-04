@@ -1,8 +1,6 @@
-﻿using System.Windows.Controls;
+﻿namespace CineWave.Components;
 
-namespace CineWave.Components;
-
-public partial class MovieButton : UserControl
+public partial class MovieButton
 {
     public MovieButton()
     {

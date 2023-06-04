@@ -3,26 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:CineWave.MVVM.View"
+             xmlns:components="clr-namespace:CineWave.Components"
              mc:Ignorable="d"
-             Width="770"
-             Height="600">
+             d:DesignWidth="770"
+             d:DesignHeight="600">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <StackPanel
-            Background="{StaticResource PrimaryBrush}">
-            <Label Content="Cinemas"
+
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Background="{StaticResource PrimaryBrush}">
+            <Label Content="Cinemas:"
                    FontSize="20"
+                   FontWeight="Medium"
+                   Margin="15 0 10 0"
                    VerticalAlignment="Center"
-                   Foreground="{StaticResource QuinaryBrush}"/>
-            <ScrollViewer d:Margin="10"
-                          VerticalScrollBarVisibility="Disabled"
-                          HorizontalScrollBarVisibility="Auto">
+                   Foreground="{StaticResource QuinaryBrush}" />
+            <ScrollViewer
+                VerticalScrollBarVisibility="Disabled"
+                HorizontalScrollBarVisibility="Auto">
                 <ItemsControl
+                    HorizontalAlignment="Center"
                     ItemsSource="{Binding NowShowingMovies}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -31,21 +37,53 @@
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
             </ScrollViewer>
-        </StackPanel>
-        
-        <UniformGrid Grid.Row="1">
 
-            <ScrollViewer d:Margin="10"
-                          VerticalScrollBarVisibility="Auto">
-                <ItemsControl
-                    ItemsSource="{Binding MovieCardViewModels}">
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="35" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="35" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Background="{StaticResource SecondaryBrush}" />
+            <StackPanel Grid.Column="2" Background="{StaticResource SecondaryBrush}" />
+
+            <!-- Main Content -->
+            <ContentControl Grid.Column="1"
+                            Content="{Binding Navigation.CurrentView}"
+                            Padding="20" />
+
+            <!-- Seats -->
+            <Grid Grid.Column="1"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center">
+                <ItemsControl ItemsSource="{Binding Seats}"
+                              Width="900"
+                              HorizontalAlignment="Center"
+                              HorizontalContentAlignment="Center">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
-            </ScrollViewer>
-        </UniformGrid>
+            </Grid>
+        </Grid>
+
+        <!-- Cinema Screen -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="1">
+                <Path Data="M0 -1 Q300 20 600 0"
+                      Fill="{StaticResource PrimaryBrush}" />
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

@@ -1,9 +1,9 @@
 ﻿<Application x:Class="CineWave.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:CineWave" 
              xmlns:viewModel="clr-namespace:CineWave.MVVM.ViewModel"
-             xmlns:view="clr-namespace:CineWave.MVVM.View">
+             xmlns:view="clr-namespace:CineWave.MVVM.View"
+             xmlns:components="clr-namespace:CineWave.Components">
     <Application.Resources>
         
         <ResourceDictionary>
@@ -20,7 +20,15 @@
             </DataTemplate>
             
             <DataTemplate DataType="{x:Type viewModel:MovieCardViewModel}">
-                <view:MovieCard/>
+                <components:MovieCard/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:MovieButtonViewModel}">
+                <components:MovieButton/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:SeatCardViewModel}">
+                <components:SeatCard/>
             </DataTemplate>
             
             <ResourceDictionary.MergedDictionaries>

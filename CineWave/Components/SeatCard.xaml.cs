@@ -1,8 +1,8 @@
 ﻿namespace CineWave.Components;
 
-public partial class MovieCard
+public partial class SeatCard
 {
-    public MovieCard()
+    public SeatCard()
     {
         InitializeComponent();
     }

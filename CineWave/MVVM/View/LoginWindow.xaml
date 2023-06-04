@@ -96,6 +96,7 @@
                        FontWeight="Medium"
                        Foreground="{StaticResource BackgroundColor}" />
                 <moderncontrols:ModernTextBox
+                    x:Name="UsernameInput"
                     Background="{StaticResource PrimaryBrush}"
                     Foreground="White"
                     LeftIcon="{wpf:MaterialIconExt User}"

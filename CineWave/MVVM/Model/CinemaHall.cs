@@ -4,10 +4,12 @@ namespace CineWave.MVVM.Model;
 
 public class CinemaHall
 {
+    internal string RoomNumber { get; set; }
     internal List<Seat> Seats { get; } = new();
 
-    public CinemaHall(int numberOfSeats)
+    public CinemaHall(int numberOfSeats, string roomNumber)
     {
+        RoomNumber = roomNumber;
         InitializeSeats(numberOfSeats);
     }
 

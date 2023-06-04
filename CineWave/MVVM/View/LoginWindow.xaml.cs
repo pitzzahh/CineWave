@@ -13,6 +13,7 @@ namespace CineWave.MVVM.View
         public LoginWindow()
         {
             InitializeComponent();
+            UsernameInput.Focus();
         }
         
         [DllImport("user32.dll")]

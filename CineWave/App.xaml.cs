@@ -36,10 +36,10 @@ namespace CineWave
             serviceCollection.AddSingleton<HomeViewModel>();
             serviceCollection.AddSingleton<ReservationsViewModel>();
             serviceCollection.AddSingleton<SeatBookingViewModel>();
+            serviceCollection.AddSingleton<SeatCardViewModel>();
             serviceCollection.AddSingleton<INavigationService, NavigationService>();
 
-            serviceCollection.AddSingleton<Func<Type, ViewModel>>(provider =>
-                viewModelType => (ViewModel)provider.GetRequiredService(viewModelType));
+            serviceCollection.AddSingleton<Func<Type, ViewModel>>(provider => viewModelType => (ViewModel)provider.GetRequiredService(viewModelType));
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
         }

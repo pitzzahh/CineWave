@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows;
+using CineWave.Components;
 using CineWave.Core;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
@@ -34,6 +35,11 @@ namespace CineWave
             {
                 DataContext = provider.GetRequiredService<MainViewModel>()
             });
+            
+            serviceCollection.AddSingleton<SeatBookingRegistrationForm>(provider => new SeatBookingRegistrationForm
+            {
+                DataContext = provider.GetRequiredService<SeatBookingRegistrationFormViewModel>()
+            });
 
             serviceCollection.AddSingleton<LoginViewModel>();
 
@@ -42,6 +48,7 @@ namespace CineWave
             serviceCollection.AddSingleton<ReservationsViewModel>();
             serviceCollection.AddSingleton<SeatBookingViewModel>();
             serviceCollection.AddSingleton<SeatCardViewModel>();
+            serviceCollection.AddSingleton<SeatBookingRegistrationFormViewModel>();
             serviceCollection.AddSingleton<INavigationService, NavigationService>();
 
             serviceCollection.AddSingleton<Func<Type, ViewModel>>(provider => viewModelType => (ViewModel)provider.GetRequiredService(viewModelType));

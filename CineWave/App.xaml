@@ -1,28 +1,26 @@
 ﻿<Application x:Class="CineWave.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:viewModel="clr-namespace:CineWave.MVVM.ViewModel"
-             xmlns:view="clr-namespace:CineWave.MVVM.View"
              xmlns:components="clr-namespace:CineWave.Components"
              xmlns:seatsBooking="clr-namespace:CineWave.MVVM.ViewModel.SeatsBooking"
              xmlns:reservations="clr-namespace:CineWave.MVVM.ViewModel.Reservations"
              xmlns:gallery="clr-namespace:CineWave.MVVM.ViewModel.Gallery"
-             xmlns:gallery1="clr-namespace:CineWave.MVVM.View.Gallery"
-             xmlns:reservations1="clr-namespace:CineWave.MVVM.View.Reservations"
-             xmlns:seatsBooking1="clr-namespace:CineWave.MVVM.View.SeatsBooking">
+             xmlns:galleryView="clr-namespace:CineWave.MVVM.View.Gallery"
+             xmlns:reservationsView="clr-namespace:CineWave.MVVM.View.Reservations"
+             xmlns:seatsBookingView="clr-namespace:CineWave.MVVM.View.SeatsBooking">
     <Application.Resources>
         
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type gallery:HomeViewModel}">
-                <gallery1:HomeView/>
+                <galleryView:HomeView/>
             </DataTemplate>
         
             <DataTemplate DataType="{x:Type reservations:ReservationsViewModel}">
-                <reservations1:ReservationsView/>
+                <reservationsView:ReservationsView/>
             </DataTemplate>
             
             <DataTemplate DataType="{x:Type seatsBooking:SeatBookingViewModel}">
-                <seatsBooking1:SeatBookingView/>
+                <seatsBookingView:SeatBookingView/>
             </DataTemplate>
             
             <DataTemplate DataType="{x:Type gallery:MovieCardViewModel}">
@@ -35,6 +33,10 @@
             
             <DataTemplate DataType="{x:Type seatsBooking:SeatCardViewModel}">
                 <components:SeatCard/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type seatsBooking:SeatBookingRegistrationFormViewModel}">
+                <components:SeatBookingRegistrationForm/>
             </DataTemplate>
             
             <ResourceDictionary.MergedDictionaries>

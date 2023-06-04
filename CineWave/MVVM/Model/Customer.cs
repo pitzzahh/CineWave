@@ -1,9 +1,7 @@
 ﻿namespace CineWave.MVVM.Model;
 
-public abstract class Customer
+public record Customer(int Id, string? Name)
 {
-    public int Id { get; set; }
-    public string? Name { get; set; }
-    public string? Email { get; set; }
-    public string? Phone { get; set; }
+    public int Id { get; set; } = Id;
+    public string? Name { get; set; } = Name;
 }

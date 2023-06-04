@@ -8,6 +8,7 @@
     <Color x:Key="QuinaryColor">#FFECF39E</Color>
     
     <Color x:Key="Red">#e63946</Color>
+    <SolidColorBrush x:Key="RedBrush" Color="#e63946"/>
 
     <!-- Background Colors -->
     <SolidColorBrush x:Key="BackgroundColor" Color="#FFF2F2F2"/>

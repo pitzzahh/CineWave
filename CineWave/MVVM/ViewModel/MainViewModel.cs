@@ -26,6 +26,7 @@ public class MainViewModel : Core.ViewModel
     public RelayCommand NavigateToLogin { get; set; }
     public RelayCommand NavigateToHome { get; set; }
     public RelayCommand NavigateToReservations { get; set; }
+    public RelayCommand NavigateToSeatBooking { get; set; }
 
     public MainViewModel(INavigationService navigation)
     {
@@ -53,6 +54,7 @@ public class MainViewModel : Core.ViewModel
             }
         }, o => true);
         NavigateToReservations = new RelayCommand(o => { Navigation.NavigateTo<ReservationsViewModel>(); }, o => true);
+        NavigateToSeatBooking = new RelayCommand(o => { Navigation.NavigateTo<SeatBookingViewModel>(); }, o => true);
         Navigation.NavigateTo<HomeViewModel>();
     }
 }

@@ -15,6 +15,10 @@
                 <view:ReservationsView/>
             </DataTemplate>
             
+            <DataTemplate DataType="{x:Type viewModel:SeatBookingViewModel}">
+                <view:SeatBookingView/>
+            </DataTemplate>
+            
             <DataTemplate DataType="{x:Type viewModel:MovieCardViewModel}">
                 <view:MovieCard/>
             </DataTemplate>

@@ -9,7 +9,6 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        ResizeMode="CanResize"
         AllowsTransparency="True"
         Title="MainWindow"
         Height="600"
@@ -89,6 +88,14 @@
                             <StackPanel Orientation="Horizontal">
                                 <fontawesome:IconImage Icon="Bookmark" Style="{StaticResource MenuButtonIcon}" />
                                 <TextBlock Text="Reservations" Style="{StaticResource MenuButtonText}" />
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton Style="{StaticResource MenuButton}"
+                                     Command="{Binding NavigateToSeatBooking}"
+                                     Tag="{StaticResource QuinaryBrush}">
+                            <StackPanel Orientation="Horizontal">
+                                <fontawesome:IconImage Icon="Chair" Style="{StaticResource MenuButtonIcon}" />
+                                <TextBlock Text="Seat Booking" Style="{StaticResource MenuButtonText}" />
                             </StackPanel>
                         </RadioButton>
                     </StackPanel>

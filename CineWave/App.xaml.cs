@@ -3,7 +3,12 @@ using System.Diagnostics;
 using System.Windows;
 using CineWave.Core;
 using CineWave.MVVM.View;
+using CineWave.MVVM.View.Login;
 using CineWave.MVVM.ViewModel;
+using CineWave.MVVM.ViewModel.Gallery;
+using CineWave.MVVM.ViewModel.Login;
+using CineWave.MVVM.ViewModel.Reservations;
+using CineWave.MVVM.ViewModel.SeatsBooking;
 using CineWave.Services;
 using Microsoft.Extensions.DependencyInjection;
 

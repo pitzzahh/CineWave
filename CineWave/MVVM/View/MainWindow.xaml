@@ -99,7 +99,6 @@
                             </StackPanel>
                         </moderncontrols:ModernRadioButton>
                         <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
-                                                          Command="{Binding NavigateToSeatBooking}"
                                                           Tag="{StaticResource QuinaryBrush}">
                             <StackPanel Orientation="Horizontal">
                                 <fontawesome:IconImage Icon="Add" Style="{StaticResource MenuButtonIcon}" />
@@ -107,7 +106,6 @@
                             </StackPanel>
                         </moderncontrols:ModernRadioButton>
                         <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
-                                                          Command="{Binding NavigateToSeatBooking}"
                                                           Tag="{StaticResource QuinaryBrush}">
                             <StackPanel Orientation="Horizontal">
                                 <fontawesome:IconImage Icon="Edit" Style="{StaticResource MenuButtonIcon}" />

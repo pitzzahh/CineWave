@@ -1,9 +1,8 @@
-﻿<UserControl x:Class="CineWave.MVVM.View.SeatBookingView"
+﻿<UserControl x:Class="CineWave.MVVM.View.SeatsBooking.SeatBookingView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:components="clr-namespace:CineWave.Components"
              mc:Ignorable="d"
              d:DesignWidth="770"
              d:DesignHeight="600">
@@ -18,26 +17,17 @@
                     Orientation="Horizontal"
                     VerticalAlignment="Center"
                     Background="{StaticResource PrimaryBrush}">
-            <Label Content="Cinemas:"
+            <Label Content="Current Movie:"
                    FontSize="20"
                    FontWeight="Medium"
-                   Margin="15 0 10 0"
+                   Margin="10 0 10 0"
                    VerticalAlignment="Center"
                    Foreground="{StaticResource QuinaryBrush}" />
-            <ScrollViewer
-                VerticalScrollBarVisibility="Disabled"
-                HorizontalScrollBarVisibility="Auto">
-                <ItemsControl
-                    HorizontalAlignment="Center"
-                    ItemsSource="{Binding NowShowingMovies}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-            </ScrollViewer>
-
+            <Label Content="{Binding CurrentMovie}"
+                   FontSize="20"
+                   FontWeight="Medium"
+                   VerticalAlignment="Center"
+                   Foreground="{StaticResource QuinaryBrush}" />
         </StackPanel>
 
         <Grid Grid.Row="1">
@@ -50,11 +40,6 @@
 
             <StackPanel Grid.Column="0" Background="{StaticResource SecondaryBrush}" />
             <StackPanel Grid.Column="2" Background="{StaticResource SecondaryBrush}" />
-
-            <!-- Main Content -->
-            <ContentControl Grid.Column="1"
-                            Content="{Binding Navigation.CurrentView}"
-                            Padding="20" />
 
             <!-- Seats -->
             <Grid Grid.Column="1"
@@ -74,16 +59,17 @@
         </Grid>
 
         <!-- Cinema Screen -->
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Border Grid.Column="1">
-                <Path Data="M0 -1 Q300 20 600 0"
+
+        <Grid Grid.Row="2" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="10" />
+            </Grid.RowDefinitions>
+            <Border>
+                <Path Data="M4 -1 Q300 20 600 0"
                       Fill="{StaticResource PrimaryBrush}" />
             </Border>
+            <StackPanel Grid.Row="1" Margin="0 10" />
         </Grid>
     </Grid>
 </UserControl>

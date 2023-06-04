@@ -1,18 +1,16 @@
 using System.Diagnostics;
-using System.Windows;
 using CineWave.Core;
 using CineWave.MVVM.View;
-using CineWave.Services;
+using CineWave.MVVM.ViewModel.Gallery;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CineWave.MVVM.ViewModel;
+namespace CineWave.MVVM.ViewModel.Login;
 
 public class LoginViewModel : Core.ViewModel
 {
     private string? _username;
     private string? _password;
     private bool _isLogInFormVisible = true;
-    private readonly INavigationService _navigationService;
 
     public string? Username
     {
@@ -49,9 +47,8 @@ public class LoginViewModel : Core.ViewModel
 
     public RelayCommand LoginCommand { get; set; }
 
-    public LoginViewModel(INavigationService navigationService)
+    public LoginViewModel()
     {
-        _navigationService = navigationService;
         LoginCommand = new RelayCommand(LoginProcess, ValidateInput);
     }
 
@@ -66,6 +63,7 @@ public class LoginViewModel : Core.ViewModel
         Password = "";
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         App.ServiceProvider.GetRequiredService<MainWindow>().Show();
+        App.ServiceProvider.GetRequiredService<MainViewModel>().Navigation.NavigateTo<HomeViewModel>();
 
     }
     

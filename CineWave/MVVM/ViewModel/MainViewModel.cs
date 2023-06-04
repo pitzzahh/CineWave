@@ -4,6 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using CineWave.Core;
 using CineWave.MVVM.View;
+using CineWave.MVVM.View.Login;
+using CineWave.MVVM.ViewModel.Gallery;
+using CineWave.MVVM.ViewModel.Login;
+using CineWave.MVVM.ViewModel.Reservations;
+using CineWave.MVVM.ViewModel.SeatsBooking;
 using CineWave.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,12 +16,12 @@ namespace CineWave.MVVM.ViewModel;
 
 public class MainViewModel : Core.ViewModel
 {
-    private INavigationService _navigation = null!;
+    private readonly INavigationService _navigation = null!;
 
     public INavigationService Navigation
     {
         get => _navigation;
-        set
+        init
         {
             _navigation = value;
             OnPropertyChanged();
@@ -37,6 +42,7 @@ public class MainViewModel : Core.ViewModel
             App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
             App.ServiceProvider.GetRequiredService<MainWindow>().Hide();
             App.ServiceProvider.GetRequiredService<LoginViewModel>().IsLoginFormVisible = true;
+            App.ServiceProvider.GetRequiredService<LoginWindow>().UsernameInput.Focus();
         }, o => true);
         NavigateToHome = new RelayCommand(o =>
         {

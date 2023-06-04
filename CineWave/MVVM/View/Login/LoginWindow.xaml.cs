@@ -1,22 +1,22 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
 
-namespace CineWave.MVVM.View;
+namespace CineWave.MVVM.View.Login;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow
+public partial class LoginWindow
 {
-    public MainWindow()
+    public LoginWindow()
     {
         InitializeComponent();
-        MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+        UsernameInput.Focus();
     }
-
+        
     [DllImport("user32.dll")]
     private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wp, int lp);
     private void OnMoveWindow(object sender, MouseButtonEventArgs e)
@@ -32,11 +32,6 @@ public partial class MainWindow
     private void OnCloseWindow(object sender, RoutedEventArgs e)
     {
         Application.Current.Shutdown();
-    }
-
-    private void OnMaximizeWindow(object sender, RoutedEventArgs e)
-    {
-        WindowState = WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
     }
 
     private void OnMinimizeWindow(object sender, RoutedEventArgs e)

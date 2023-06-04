@@ -1,4 +1,4 @@
-<Window x:Class="CineWave.MVVM.View.LoginWindow"
+<Window x:Class="CineWave.MVVM.View.Login.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -82,7 +82,7 @@
                 Orientation="Vertical"
                 Width="350">
 
-                <Image Source="../../Resources/Images/logo.png"
+                <Image Source="../../../Resources/Images/logo.png"
                        Width="100" />
 
                 <Label Content="CineWave"

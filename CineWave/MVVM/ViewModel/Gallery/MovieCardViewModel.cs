@@ -1,4 +1,4 @@
-﻿namespace CineWave.MVVM.ViewModel;
+﻿namespace CineWave.MVVM.ViewModel.Gallery;
 
 public class MovieCardViewModel : Core.ViewModel
 {

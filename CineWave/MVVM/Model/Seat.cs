@@ -2,10 +2,11 @@
 
 public class Seat
 {
-    public int SeatNumber { get; }
+    public string SeatNumber { get; }
+    public int CustomerId { get; set; }
     public bool IsTaken { get; set; }
 
-    public Seat(int seatNumber)
+    public Seat(string seatNumber)
     {
         SeatNumber = seatNumber;
         IsTaken = false;

@@ -1,4 +1,4 @@
-﻿namespace CineWave.MVVM.ViewModel;
+﻿namespace CineWave.MVVM.ViewModel.SeatsBooking;
 
 public class SeatCardViewModel : Core.ViewModel
 {

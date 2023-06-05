@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CineWave.Core;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
+using CineWave.MVVM.ViewModel.AddMovie;
 using CineWave.MVVM.ViewModel.Gallery;
 using CineWave.MVVM.ViewModel.Login;
 using CineWave.MVVM.ViewModel.Reservations;
@@ -32,6 +33,7 @@ public class MainViewModel : Core.ViewModel
     public RelayCommand NavigateToHome { get; set; }
     public RelayCommand NavigateToReservations { get; set; }
     public RelayCommand NavigateToSeatBooking { get; set; }
+    public RelayCommand NavigateToAddMovie { get; set; }
 
     public MainViewModel(INavigationService navigation)
     {
@@ -61,6 +63,7 @@ public class MainViewModel : Core.ViewModel
         }, o => true);
         NavigateToReservations = new RelayCommand(o => { Navigation.NavigateTo<ReservationsViewModel>(); }, o => true);
         NavigateToSeatBooking = new RelayCommand(o => { Navigation.NavigateTo<SeatBookingViewModel>(); }, o => true);
+        NavigateToAddMovie = new RelayCommand(o => { Navigation.NavigateTo<AddMovieViewModel>(); }, o => true);
         Navigation.NavigateTo<HomeViewModel>();
     }
 }

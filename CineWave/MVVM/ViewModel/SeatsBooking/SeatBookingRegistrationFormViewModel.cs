@@ -65,8 +65,10 @@ public class SeatBookingRegistrationFormViewModel : Core.ViewModel
 
     public SeatBookingRegistrationFormViewModel()
     {
+        
         OnBuy = new RelayCommand(o =>
         {
+            var customer = new Customer(0, CustomerName);
             Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
             CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
         }, o => CheckInputs());

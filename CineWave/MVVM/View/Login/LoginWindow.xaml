@@ -13,7 +13,7 @@
         MouseDown="OnMoveWindow"
         Background="Transparent"
         AllowsTransparency="True"
-        Title="LoginView" Height="450" Width="800">
+        Title="LoginView" Height="450" Width="600">
     
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -51,10 +51,12 @@
                         MouseLeftButtonDown="OnMoveWindow"
                         MouseEnter="OnEnterControlBar">
                 <Button  Click="OnCloseWindow"
-                        Style="{StaticResource ControlButton}">
+                         Tag="{StaticResource RedBrush}"
+                         Style="{StaticResource ControlButton}">
                     <fontawesome:IconImage Icon="Xmark" Style="{StaticResource ControlButtonIcon}" />
                 </Button>
                 <Button Click="OnMinimizeWindow"
+                        Tag="{StaticResource QuinaryBrush}"
                         Style="{StaticResource ControlButton}">
                     <fontawesome:IconImage Icon="WindowMinimize"
                                            Width="12"

@@ -151,7 +151,7 @@
                                     VerticalAlignment="Top"
                                     MouseLeftButtonDown="OnMoveWindow"
                                     MouseEnter="OnEnterControlBar">
-                            <Button Tag="{StaticResource Red}"
+                            <Button Tag="{StaticResource RedBrush}"
                                     Click="OnCloseWindow"
                                     Style="{StaticResource ControlButton}">
                                 <fontawesome:IconImage Icon="Xmark" Style="{StaticResource ControlButtonIcon}" />

@@ -19,17 +19,16 @@ namespace CineWave.MVVM.ViewModel;
 
 public partial class MainViewModel : ObservableObject
 {
-    [ObservableProperty]
-    private INavigationService _navigation;
+    [ObservableProperty] private INavigationService _navigation;
 
     public MainViewModel(INavigationService navigation)
     {
         Navigation = navigation;
         NavigateToHome();
     }
-    
+
     [RelayCommand]
-    public void NavigateToHome()
+    public async Task NavigateToHome()
     {
         Navigation.NavigateTo<HomeViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
@@ -37,26 +36,26 @@ public partial class MainViewModel : ObservableObject
         if (homeViewModel.MovieCardViewModels.Any()) return;
         try
         {
-            Task.Run(homeViewModel.GetMoviesFromApi); // Run the method on a separate thread
+            await homeViewModel.GetMoviesFromApi(); // Run the method on a separate thread
         }
         catch (Exception e)
         {
             Debug.Print(e.StackTrace);
         }
     }
-    
+
     [RelayCommand]
     public void NavigateToReservations()
     {
         Navigation.NavigateTo<ReservationsViewModel>();
     }
-    
+
     [RelayCommand]
     public void NavigateToSeatBooking()
     {
         Navigation.NavigateTo<SeatBookingViewModel>();
     }
-    
+
     [RelayCommand]
     public void NavigateToAddMovie()
     {
@@ -64,7 +63,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void NavigateToLogin()
+    public void Logout()
     {
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;

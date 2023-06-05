@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Windows;
 using CineWave.Helpers;
 using Newtonsoft.Json.Linq;
 
@@ -34,16 +33,13 @@ public class HomeViewModel : Core.ViewModel
 
         if (results == null) return;
 
-        await Application.Current.Dispatcher.InvokeAsync(() =>
+        foreach (var result in results)
         {
-            foreach (var result in results)
-            {
-                _movies.Add(new MovieCardViewModel(
-                    $"https://image.tmdb.org/t/p/w500/{result["poster_path"]}",
-                    result["original_title"]?.ToString(),
-                    result["overview"]?.ToString()
-                ));
-            }
-        });
+            _movies.Add(new MovieCardViewModel(
+                $"https://image.tmdb.org/t/p/w500/{result["poster_path"]}",
+                result["original_title"]?.ToString(),
+                result["overview"]?.ToString()
+            ));
+        }
     }
 }

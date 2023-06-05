@@ -10,7 +10,6 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        MouseDown="OnMoveWindow"
         Background="Transparent"
         AllowsTransparency="True"
         Title="LoginView" Height="450" Width="600">
@@ -20,7 +19,7 @@
     </Window.Resources>
 
     <Window.Visibility>
-        <Binding Path="IsLoginFormVisible"
+        <Binding Path="IsLogInFormVisible"
                  Mode="TwoWay" 
                  Converter="{StaticResource BooleanToVisibilityConverter}"/>
     </Window.Visibility>
@@ -127,6 +126,7 @@
                                              VerticalAlignment="Bottom"
                                              Content="LOGIN"
                                              CornerRadius="5"
+                                             IsEnabled="{Binding CanLogin}"
                                              Command="{Binding LoginCommand}"
                                              FontWeight="Medium" />
             </StackPanel>

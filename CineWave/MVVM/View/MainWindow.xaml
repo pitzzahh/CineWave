@@ -76,7 +76,7 @@
                         <moderncontrols:ModernRadioButton x:Name="GalleryButton"
                                                           Style="{StaticResource MenuButton}"
                                                           IsChecked="True"
-                                                          Command="{Binding NavigateToHome}"
+                                                          Command="{Binding NavigateToHomeCommand}"
                                                           Tag="{StaticResource QuinaryBrush}">
                             <StackPanel Orientation="Horizontal">
                                 <fontawesome:IconImage Icon="Home" Style="{StaticResource MenuButtonIcon}" />
@@ -84,7 +84,7 @@
                             </StackPanel>
                         </moderncontrols:ModernRadioButton>
                         <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
-                                                          Command="{Binding NavigateToReservations}"
+                                                          Command="{Binding NavigateToReservationsCommand}"
                                                           Tag="{StaticResource QuinaryBrush}">
                             <StackPanel Orientation="Horizontal">
                                 <fontawesome:IconImage Icon="Bookmark" Style="{StaticResource MenuButtonIcon}" />
@@ -92,7 +92,7 @@
                             </StackPanel>
                         </moderncontrols:ModernRadioButton>
                         <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
-                                                          Command="{Binding NavigateToSeatBooking}"
+                                                          Command="{Binding NavigateToSeatBookingCommand}"
                                                           Tag="{StaticResource QuinaryBrush}">
                             <StackPanel Orientation="Horizontal">
                                 <fontawesome:IconImage Icon="Chair" Style="{StaticResource MenuButtonIcon}" />
@@ -100,7 +100,7 @@
                             </StackPanel>
                         </moderncontrols:ModernRadioButton>
                         <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
-                                                          Command="{Binding NavigateToAddMovie}"
+                                                          Command="{Binding NavigateToAddMovieCommand}"
                                                           Tag="{StaticResource QuinaryBrush}">
                             <StackPanel Orientation="Horizontal">
                                 <fontawesome:IconImage Icon="Add" Style="{StaticResource MenuButtonIcon}" />
@@ -116,7 +116,7 @@
                         </moderncontrols:ModernRadioButton>
                     </StackPanel>
                     <moderncontrols:ModernButton Content="Logout"
-                                                 Command="{Binding NavigateToLogin}"
+                                                 Command="{Binding LogoutCommand}"
                                                  HoverBackground="{StaticResource QuinaryBrush}"
                                                  DefaultBackground="DimGray"
                                                  Margin="0,10"

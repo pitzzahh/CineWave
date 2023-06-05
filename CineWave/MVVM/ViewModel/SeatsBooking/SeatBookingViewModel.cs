@@ -9,8 +9,8 @@ namespace CineWave.MVVM.ViewModel.SeatsBooking;
 public class SeatBookingViewModel : Core.ViewModel
 {
     public string CurrentMovie { get; set; }
-    public string SeatButtonId { get; set; }
-    
+    public string SeatButtonId { get; set; } = null!;
+
     private readonly ObservableCollection<SeatCardViewModel> _seats = new(); // For seats choose
     public IEnumerable<SeatCardViewModel> Seats => _seats;
 

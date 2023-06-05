@@ -50,13 +50,11 @@
                         Background="Transparent"
                         MouseLeftButtonDown="OnMoveWindow"
                         MouseEnter="OnEnterControlBar">
-                <Button Tag="{StaticResource Red}"
-                        Click="OnCloseWindow"
+                <Button  Click="OnCloseWindow"
                         Style="{StaticResource ControlButton}">
                     <fontawesome:IconImage Icon="Xmark" Style="{StaticResource ControlButtonIcon}" />
                 </Button>
-                <Button Tag="{StaticResource QuinaryBrush}"
-                        Click="OnMinimizeWindow"
+                <Button Click="OnMinimizeWindow"
                         Style="{StaticResource ControlButton}">
                     <fontawesome:IconImage Icon="WindowMinimize"
                                            Width="12"

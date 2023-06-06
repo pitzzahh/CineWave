@@ -1,5 +1,6 @@
 using System;
 using CineWave.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CineWave.Services;
 

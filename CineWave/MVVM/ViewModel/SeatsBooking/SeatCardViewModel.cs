@@ -1,30 +1,32 @@
 ﻿using System.Diagnostics;
 using CineWave.Components;
-using CineWave.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CineWave.MVVM.ViewModel.SeatsBooking;
 
-public class SeatCardViewModel : Core.ViewModel
+public partial class SeatCardViewModel : Core.ViewModel
 {
-    public bool IsSeatAvailable { get; set; }
-    public string SeatNumber { get; }
-
-    public RelayCommand OpenForm { get; set; }
+    [ObservableProperty] private bool _isSeatAvailable;
+    [ObservableProperty] private string? _seatNumber;
 
     public SeatCardViewModel(string seatNumber, bool isTaken)
     {
         IsSeatAvailable = !isTaken;
         SeatNumber = seatNumber;
-        OpenForm = new RelayCommand(o =>
+    }
+
+    [RelayCommand]
+    public void OpenForm()
+    {
+        if (!IsSeatAvailable) return;
+        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+        var seatBookingRegistrationForm = App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>();
+        if (seatBookingRegistrationForm.IsVisible)
         {
-            Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-            var seatBookingRegistrationForm = App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>();
-            if (seatBookingRegistrationForm.IsVisible)
-            {
-                seatBookingRegistrationForm.Hide();
-            }
-            else seatBookingRegistrationForm.Show();
-        }, o => IsSeatAvailable);
+            seatBookingRegistrationForm.Hide();
+        }
+        else seatBookingRegistrationForm.Show();
     }
 }

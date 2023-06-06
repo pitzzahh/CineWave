@@ -13,11 +13,10 @@ using CineWave.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
-using ObservableObject = CommunityToolkit.Mvvm.ComponentModel.ObservableObject;
 
 namespace CineWave.MVVM.ViewModel;
 
-public partial class MainViewModel : ObservableObject
+public partial class MainViewModel : Core.ViewModel
 {
     [ObservableProperty] private INavigationService _navigation;
 
@@ -25,7 +24,6 @@ public partial class MainViewModel : ObservableObject
     {
         Navigation = navigation;
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        NavigateToHome(); // Run the method on a separate thread
     }
 
     [RelayCommand]

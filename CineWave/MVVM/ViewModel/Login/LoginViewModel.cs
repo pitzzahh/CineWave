@@ -3,11 +3,10 @@ using CineWave.MVVM.View;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
-using ObservableObject = CommunityToolkit.Mvvm.ComponentModel.ObservableObject;
 
 namespace CineWave.MVVM.ViewModel.Login;
 
-public partial class LoginViewModel : ObservableObject
+public partial class LoginViewModel : Core.ViewModel
 {
     [ObservableProperty] private string? _username;
     [ObservableProperty] private string? _password;
@@ -32,6 +31,7 @@ public partial class LoginViewModel : ObservableObject
         Password = "";
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         App.ServiceProvider.GetRequiredService<MainWindow>().Show();
+        App.ServiceProvider.GetRequiredService<MainViewModel>().NavigateToHome(); 
     }
 
     private bool CheckInputs()

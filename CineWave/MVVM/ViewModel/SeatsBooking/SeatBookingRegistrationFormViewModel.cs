@@ -5,11 +5,10 @@ using CineWave.MVVM.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
-using ObservableObject = CommunityToolkit.Mvvm.ComponentModel.ObservableObject;
 
 namespace CineWave.MVVM.ViewModel.SeatsBooking;
 
-public partial class SeatBookingRegistrationFormViewModel : ObservableObject
+public partial class SeatBookingRegistrationFormViewModel : Core.ViewModel
 {
     [ObservableProperty]
     private string? _movieName;
@@ -24,13 +23,10 @@ public partial class SeatBookingRegistrationFormViewModel : ObservableObject
     [RelayCommand]
     public void OnBuy()
     {
-        if (CheckInputs()) // TODO: fix checking inputs
-        {
-            var customer = new Customer(0, CustomerName);
-            Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-            CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
-        }
-
+        if (!CheckInputs()) return; // TODO: fix checking inputs
+        var customer = new Customer(0, CustomerName);
+        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+        CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
     }
     
     [RelayCommand]

@@ -3,13 +3,14 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using CineWave.MVVM.Model;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CineWave.MVVM.ViewModel.SeatsBooking;
 
-public class SeatBookingViewModel : Core.ViewModel
+public partial class SeatBookingViewModel : Core.ViewModel
 {
-    public string CurrentMovie { get; set; }
-    public string SeatButtonId { get; set; } = null!;
+    [ObservableProperty] private string? _currentMovie;
+    [ObservableProperty] private string? _seatId;
 
     private readonly ObservableCollection<SeatCardViewModel> _seats = new(); // For seats choose
     public IEnumerable<SeatCardViewModel> Seats => _seats;
@@ -39,7 +40,7 @@ public class SeatBookingViewModel : Core.ViewModel
                 for (var column = 1; column <= 8; column++)
                 {
                     var seatNumber = $"{row}{column}";
-                    SeatButtonId = seatNumber;
+                    SeatId = seatNumber;
                     _seats.Add(new SeatCardViewModel(seatNumber, false));
                 }
             }

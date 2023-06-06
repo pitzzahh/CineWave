@@ -41,7 +41,7 @@
             <Button Width="80"
                     Height="80"
                     IsEnabled="{Binding IsSeatAvailable, Mode=TwoWay }"
-                    Command="{Binding OpenForm}"
+                    Command="{Binding OpenFormCommand}"
                     Uid="{Binding SeatNumber, Mode=OneWay}" />
             <Label Grid.Row="1"
                    HorizontalAlignment="Center"

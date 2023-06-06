@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -8,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace CineWave.MVVM.ViewModel.Gallery;
 
-public class HomeViewModel : Core.ViewModel
+public partial class HomeViewModel : Core.ViewModel
 {
     private readonly ObservableCollection<MovieCardViewModel> _movies = new();
     public IEnumerable<MovieCardViewModel> MovieCardViewModels => _movies;

@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace CineWave.MVVM.ViewModel.Gallery;
 
-public partial class HomeBaseViewModel : BaseViewModel
+public partial class HomeViewModel : BaseViewModel
 {
     private readonly ObservableCollection<MovieCardBaseViewModel> _movies = new();
     public IEnumerable<MovieCardBaseViewModel> MovieCardViewModels => _movies;

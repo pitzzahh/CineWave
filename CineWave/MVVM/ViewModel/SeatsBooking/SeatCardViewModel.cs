@@ -1,17 +1,20 @@
 ﻿using System.Diagnostics;
 using CineWave.Components;
+using CineWave.Messages.SeatsBooking;
+using CineWave.MVVM.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CineWave.MVVM.ViewModel.SeatsBooking;
 
-public partial class SeatCardBaseViewModel : BaseViewModel
+public partial class SeatCardViewModel : BaseViewModel
 {
     [ObservableProperty] private bool _isSeatAvailable;
     [ObservableProperty] private string? _seatNumber;
 
-    public SeatCardBaseViewModel(string seatNumber, bool isTaken)
+    public SeatCardViewModel(string seatNumber, bool isTaken)
     {
         IsSeatAvailable = !isTaken;
         SeatNumber = seatNumber;
@@ -27,6 +30,11 @@ public partial class SeatCardBaseViewModel : BaseViewModel
         {
             seatBookingRegistrationForm.Hide();
         }
-        else seatBookingRegistrationForm.Show();
+        else
+        {
+            seatBookingRegistrationForm.Show();
+            var currentMovie = App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().CurrentMovie;
+            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new ReservationInfo(currentMovie ?? "", SeatNumber ?? "")));
+        }
     }
 }

@@ -28,12 +28,12 @@ namespace CineWave
 
             serviceCollection.AddSingleton<LoginWindow>(provider => new LoginWindow()
             {
-                DataContext = provider.GetRequiredService<LoginBaseViewModel>()
+                DataContext = provider.GetRequiredService<LoginViewModel>()
             });
 
             serviceCollection.AddSingleton<MainWindow>(provider => new MainWindow
             {
-                DataContext = provider.GetRequiredService<MainBaseViewModel>()
+                DataContext = provider.GetRequiredService<MainViewModel>()
             });
             
             serviceCollection.AddSingleton<SeatBookingRegistrationForm>(provider => new SeatBookingRegistrationForm
@@ -41,15 +41,15 @@ namespace CineWave
                 DataContext = provider.GetRequiredService<SeatBookingRegistrationFormBaseViewModel>()
             });
 
-            serviceCollection.AddSingleton<LoginBaseViewModel>();
+            serviceCollection.AddSingleton<LoginViewModel>();
 
-            serviceCollection.AddSingleton<MainBaseViewModel>();
-            serviceCollection.AddSingleton<HomeBaseViewModel>();
-            serviceCollection.AddSingleton<ReservationsBaseViewModel>();
-            serviceCollection.AddSingleton<SeatBookingBaseViewModel>();
-            serviceCollection.AddSingleton<SeatCardBaseViewModel>();
+            serviceCollection.AddSingleton<MainViewModel>();
+            serviceCollection.AddSingleton<HomeViewModel>();
+            serviceCollection.AddSingleton<ReservationsViewModel>();
+            serviceCollection.AddSingleton<SeatBookingViewModel>();
+            serviceCollection.AddSingleton<SeatCardViewModel>();
             serviceCollection.AddSingleton<SeatBookingRegistrationFormBaseViewModel>();
-            serviceCollection.AddSingleton<AddMovieBaseViewModel>();
+            serviceCollection.AddSingleton<AddMovieViewModel>();
             serviceCollection.AddSingleton<INavigationService, NavigationService>();
 
             serviceCollection.AddSingleton<Func<Type, BaseViewModel>>(provider => viewModelType => (BaseViewModel)provider.GetRequiredService(viewModelType));

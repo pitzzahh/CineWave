@@ -7,15 +7,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CineWave.MVVM.ViewModel.SeatsBooking;
 
-public partial class SeatBookingBaseViewModel : BaseViewModel
+public partial class SeatBookingViewModel : BaseViewModel
 {
     [ObservableProperty] private string? _currentMovie;
-    [ObservableProperty] private string? _seatId;
+    [ObservableProperty] private string? _seatNumber;
 
-    private readonly ObservableCollection<SeatCardBaseViewModel> _seats = new(); // For seats choose
-    public IEnumerable<SeatCardBaseViewModel> Seats => _seats;
+    private readonly ObservableCollection<SeatCardViewModel> _seats = new(); // For seats choose
+    public IEnumerable<SeatCardViewModel> Seats => _seats;
 
-    public SeatBookingBaseViewModel()
+    public SeatBookingViewModel()
     {
         CurrentMovie = "Spider-man";
         Task.Run(CreateSeats);
@@ -40,8 +40,8 @@ public partial class SeatBookingBaseViewModel : BaseViewModel
                 for (var column = 1; column <= 8; column++)
                 {
                     var seatNumber = $"{row}{column}";
-                    SeatId = seatNumber;
-                    _seats.Add(new SeatCardBaseViewModel(seatNumber, false));
+                    SeatNumber = seatNumber;
+                    _seats.Add(new SeatCardViewModel(seatNumber, false));
                 }
             }
         });

@@ -112,6 +112,7 @@
                        Foreground="{StaticResource BackgroundColor}" />
                     
                 <moderncontrols:ModernTextBox
+                    x:Name="PasswordInput"
                     Background="{StaticResource PrimaryBrush}"
                     Foreground="White"
                     LeftIcon="{wpf:MaterialIconExt Password}"

@@ -13,19 +13,19 @@
     <Application.Resources>
         
         <ResourceDictionary>
-            <DataTemplate DataType="{x:Type gallery:HomeBaseViewModel}">
+            <DataTemplate DataType="{x:Type gallery:HomeViewModel}">
                 <galleryView:HomeView/>
             </DataTemplate>
         
-            <DataTemplate DataType="{x:Type reservations:ReservationsBaseViewModel}">
+            <DataTemplate DataType="{x:Type reservations:ReservationsViewModel}">
                 <reservationsView:ReservationsView/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type seatsBooking:SeatBookingBaseViewModel}">
+            <DataTemplate DataType="{x:Type seatsBooking:SeatBookingViewModel}">
                 <seatsBookingView:SeatBookingView/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type addMovie:AddMovieBaseViewModel}">
+            <DataTemplate DataType="{x:Type addMovie:AddMovieViewModel}">
                 <addMovieView:AddMovie/>
             </DataTemplate>
             
@@ -33,11 +33,11 @@
                 <components:MovieCard/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type seatsBooking:MovieButtonBaseViewModel}">
+            <DataTemplate DataType="{x:Type seatsBooking:MovieButtonViewModel}">
                 <components:MovieButton/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type seatsBooking:SeatCardBaseViewModel}">
+            <DataTemplate DataType="{x:Type seatsBooking:SeatCardViewModel}">
                 <components:SeatCard/>
             </DataTemplate>
             

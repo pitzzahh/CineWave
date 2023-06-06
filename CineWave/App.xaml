@@ -13,35 +13,35 @@
     <Application.Resources>
         
         <ResourceDictionary>
-            <DataTemplate DataType="{x:Type gallery:HomeViewModel}">
+            <DataTemplate DataType="{x:Type gallery:HomeBaseViewModel}">
                 <galleryView:HomeView/>
             </DataTemplate>
         
-            <DataTemplate DataType="{x:Type reservations:ReservationsViewModel}">
+            <DataTemplate DataType="{x:Type reservations:ReservationsBaseViewModel}">
                 <reservationsView:ReservationsView/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type seatsBooking:SeatBookingViewModel}">
+            <DataTemplate DataType="{x:Type seatsBooking:SeatBookingBaseViewModel}">
                 <seatsBookingView:SeatBookingView/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type addMovie:AddMovieViewModel}">
+            <DataTemplate DataType="{x:Type addMovie:AddMovieBaseViewModel}">
                 <addMovieView:AddMovie/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type gallery:MovieCardViewModel}">
+            <DataTemplate DataType="{x:Type gallery:MovieCardBaseViewModel}">
                 <components:MovieCard/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type seatsBooking:MovieButtonViewModel}">
+            <DataTemplate DataType="{x:Type seatsBooking:MovieButtonBaseViewModel}">
                 <components:MovieButton/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type seatsBooking:SeatCardViewModel}">
+            <DataTemplate DataType="{x:Type seatsBooking:SeatCardBaseViewModel}">
                 <components:SeatCard/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type seatsBooking:SeatBookingRegistrationFormViewModel}">
+            <DataTemplate DataType="{x:Type seatsBooking:SeatBookingRegistrationFormBaseViewModel}">
                 <components:SeatBookingRegistrationForm/>
             </DataTemplate>
             

@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CineWave.MVVM.ViewModel.SeatsBooking;
 
-public partial class SeatBookingRegistrationFormViewModel : Core.ViewModel
+public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel
 {
     [ObservableProperty]
     private string? _movieName;

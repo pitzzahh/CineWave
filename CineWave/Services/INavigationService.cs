@@ -1,9 +1,9 @@
-using CineWave.Core;
+using CineWave.MVVM.ViewModel;
 
 namespace CineWave.Services;
 
 public interface INavigationService
 {
-    ViewModel? CurrentView { get; }
-    void NavigateTo<T>() where T : ViewModel;
+    BaseViewModel? CurrentView { get; }
+    void NavigateTo<T>() where T : BaseViewModel;
 }

@@ -1,21 +1,21 @@
 using System;
-using CineWave.Core;
+using CineWave.MVVM.ViewModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CineWave.Services;
 
 public class NavigationService : ObservableObject, INavigationService
 {
-    private readonly Func<Type, ViewModel?> _viewModelFactory;
+    private readonly Func<Type, BaseViewModel?> _viewModelFactory;
     
-    private ViewModel? _currenView;
+    private BaseViewModel? _currenView;
 
-    public NavigationService(Func<Type, ViewModel?> viewModelFactory)
+    public NavigationService(Func<Type, BaseViewModel?> viewModelFactory)
     {
         _viewModelFactory = viewModelFactory;
     }
 
-    public ViewModel? CurrentView {
+    public BaseViewModel? CurrentView {
         get => _currenView;
         private set
         {
@@ -24,7 +24,7 @@ public class NavigationService : ObservableObject, INavigationService
         }
     }
     
-    public void NavigateTo<T>() where T : ViewModel
+    public void NavigateTo<T>() where T : BaseViewModel
     {
         CurrentView = _viewModelFactory.Invoke(typeof(T)); 
     }

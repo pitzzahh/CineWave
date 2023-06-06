@@ -7,10 +7,10 @@ using Newtonsoft.Json.Linq;
 
 namespace CineWave.MVVM.ViewModel.Gallery;
 
-public partial class HomeViewModel : Core.ViewModel
+public partial class HomeBaseViewModel : BaseViewModel
 {
-    private readonly ObservableCollection<MovieCardViewModel> _movies = new();
-    public IEnumerable<MovieCardViewModel> MovieCardViewModels => _movies;
+    private readonly ObservableCollection<MovieCardBaseViewModel> _movies = new();
+    public IEnumerable<MovieCardBaseViewModel> MovieCardViewModels => _movies;
 
     public async Task GetMoviesFromApi()
     {
@@ -23,7 +23,7 @@ public partial class HomeViewModel : Core.ViewModel
              _movies.Clear();
              foreach (var result in results)
              {
-                 _movies.Add(new MovieCardViewModel(
+                 _movies.Add(new MovieCardBaseViewModel(
                      $"https://image.tmdb.org/t/p/w500/{result["poster_path"]}",
                      result["original_title"]?.ToString(),
                      result["overview"]?.ToString()

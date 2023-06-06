@@ -6,12 +6,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CineWave.MVVM.ViewModel.SeatsBooking;
 
-public partial class SeatCardViewModel : Core.ViewModel
+public partial class SeatCardBaseViewModel : BaseViewModel
 {
     [ObservableProperty] private bool _isSeatAvailable;
     [ObservableProperty] private string? _seatNumber;
 
-    public SeatCardViewModel(string seatNumber, bool isTaken)
+    public SeatCardBaseViewModel(string seatNumber, bool isTaken)
     {
         IsSeatAvailable = !isTaken;
         SeatNumber = seatNumber;

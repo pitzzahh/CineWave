@@ -15,11 +15,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CineWave.MVVM.ViewModel;
 
-public partial class MainViewModel : Core.ViewModel
+public partial class MainBaseViewModel : BaseViewModel
 {
     [ObservableProperty] private INavigationService _navigation;
 
-    public MainViewModel(INavigationService navigation)
+    public MainBaseViewModel(INavigationService navigation)
     {
         Navigation = navigation;
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
@@ -28,11 +28,11 @@ public partial class MainViewModel : Core.ViewModel
     [RelayCommand]
     public void NavigateToHome()
     {
-        Navigation.NavigateTo<HomeViewModel>();
+        Navigation.NavigateTo<HomeBaseViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         try
         {
-            Task.Run(App.ServiceProvider.GetRequiredService<HomeViewModel>().GetMoviesFromApi) ; // Run the method on a separate thread
+            Task.Run(App.ServiceProvider.GetRequiredService<HomeBaseViewModel>().GetMoviesFromApi) ; // Run the method on a separate thread
         }
         catch (Exception e)
         {
@@ -43,19 +43,19 @@ public partial class MainViewModel : Core.ViewModel
     [RelayCommand]
     public void NavigateToReservations()
     {
-        Navigation.NavigateTo<ReservationsViewModel>();
+        Navigation.NavigateTo<ReservationsBaseViewModel>();
     }
 
     [RelayCommand]
     public void NavigateToSeatBooking()
     {
-        Navigation.NavigateTo<SeatBookingViewModel>();
+        Navigation.NavigateTo<SeatBookingBaseViewModel>();
     }
 
     [RelayCommand]
     public void NavigateToAddMovie()
     {
-        Navigation.NavigateTo<AddMovieViewModel>();
+        Navigation.NavigateTo<AddMovieBaseViewModel>();
     }
 
     [RelayCommand]
@@ -64,8 +64,8 @@ public partial class MainViewModel : Core.ViewModel
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
         App.ServiceProvider.GetRequiredService<MainWindow>().Hide();
-        App.ServiceProvider.GetRequiredService<LoginViewModel>().IsLogInFormVisible = true;
+        App.ServiceProvider.GetRequiredService<LoginBaseViewModel>().IsLogInFormVisible = true;
         App.ServiceProvider.GetRequiredService<LoginWindow>().UsernameInput.Focus();
-        App.ServiceProvider.GetRequiredService<SeatBookingRegistrationFormViewModel>().OnCancel();
+        App.ServiceProvider.GetRequiredService<SeatBookingRegistrationFormBaseViewModel>().OnCancel();
     }
 }

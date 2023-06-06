@@ -6,14 +6,14 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CineWave.MVVM.ViewModel.Login;
 
-public partial class LoginViewModel : Core.ViewModel
+public partial class LoginBaseViewModel : BaseViewModel
 {
     [ObservableProperty] private string? _username;
     [ObservableProperty] private string? _password;
     [ObservableProperty] private bool _isLogInFormVisible = true;
     [ObservableProperty] private bool _canLogin;
 
-    public LoginViewModel()
+    public LoginBaseViewModel()
     {
         CanLogin = CheckInputs();
     }
@@ -31,7 +31,7 @@ public partial class LoginViewModel : Core.ViewModel
         Password = "";
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         App.ServiceProvider.GetRequiredService<MainWindow>().Show();
-        App.ServiceProvider.GetRequiredService<MainViewModel>().NavigateToHome(); 
+        App.ServiceProvider.GetRequiredService<MainBaseViewModel>().NavigateToHome(); 
     }
 
     private bool CheckInputs()

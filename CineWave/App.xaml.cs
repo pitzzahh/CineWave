@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Windows;
 using CineWave.Components;
-using CineWave.Core;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
 using CineWave.MVVM.ViewModel;
@@ -29,31 +28,31 @@ namespace CineWave
 
             serviceCollection.AddSingleton<LoginWindow>(provider => new LoginWindow()
             {
-                DataContext = provider.GetRequiredService<LoginViewModel>()
+                DataContext = provider.GetRequiredService<LoginBaseViewModel>()
             });
 
             serviceCollection.AddSingleton<MainWindow>(provider => new MainWindow
             {
-                DataContext = provider.GetRequiredService<MainViewModel>()
+                DataContext = provider.GetRequiredService<MainBaseViewModel>()
             });
             
             serviceCollection.AddSingleton<SeatBookingRegistrationForm>(provider => new SeatBookingRegistrationForm
             {
-                DataContext = provider.GetRequiredService<SeatBookingRegistrationFormViewModel>()
+                DataContext = provider.GetRequiredService<SeatBookingRegistrationFormBaseViewModel>()
             });
 
-            serviceCollection.AddSingleton<LoginViewModel>();
+            serviceCollection.AddSingleton<LoginBaseViewModel>();
 
-            serviceCollection.AddSingleton<MainViewModel>();
-            serviceCollection.AddSingleton<HomeViewModel>();
-            serviceCollection.AddSingleton<ReservationsViewModel>();
-            serviceCollection.AddSingleton<SeatBookingViewModel>();
-            serviceCollection.AddSingleton<SeatCardViewModel>();
-            serviceCollection.AddSingleton<SeatBookingRegistrationFormViewModel>();
-            serviceCollection.AddSingleton<AddMovieViewModel>();
+            serviceCollection.AddSingleton<MainBaseViewModel>();
+            serviceCollection.AddSingleton<HomeBaseViewModel>();
+            serviceCollection.AddSingleton<ReservationsBaseViewModel>();
+            serviceCollection.AddSingleton<SeatBookingBaseViewModel>();
+            serviceCollection.AddSingleton<SeatCardBaseViewModel>();
+            serviceCollection.AddSingleton<SeatBookingRegistrationFormBaseViewModel>();
+            serviceCollection.AddSingleton<AddMovieBaseViewModel>();
             serviceCollection.AddSingleton<INavigationService, NavigationService>();
 
-            serviceCollection.AddSingleton<Func<Type, ViewModel>>(provider => viewModelType => (ViewModel)provider.GetRequiredService(viewModelType));
+            serviceCollection.AddSingleton<Func<Type, BaseViewModel>>(provider => viewModelType => (BaseViewModel)provider.GetRequiredService(viewModelType));
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
         }

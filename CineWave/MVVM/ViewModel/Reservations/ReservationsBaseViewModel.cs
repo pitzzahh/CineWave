@@ -1,6 +1,6 @@
 namespace CineWave.MVVM.ViewModel.Reservations;
 
-public class ReservationsViewModel : Core.ViewModel
+public class ReservationsBaseViewModel : BaseViewModel
 {
     
 }

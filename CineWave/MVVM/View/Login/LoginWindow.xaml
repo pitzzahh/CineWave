@@ -19,7 +19,7 @@
     </Window.Resources>
 
     <Window.Visibility>
-        <Binding Path="IsLogInFormVisible"
+        <Binding Path="IsLoginFormVisible"
                  Mode="TwoWay" 
                  Converter="{StaticResource BooleanToVisibilityConverter}"/>
     </Window.Visibility>

@@ -44,6 +44,7 @@
                        FontWeight="Medium"
                        Foreground="{StaticResource QuinaryBrush}" />
                 <DatePicker Background="{StaticResource PrimaryBrush}"
+                            Padding="10"
                             Foreground="{StaticResource QuinaryBrush}"/>
             </StackPanel>
 

@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using CineWave.MVVM.View;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,7 +10,7 @@ public partial class LoginViewModel : BaseViewModel
 {
     private string? _username;
     private string? _password;
-    public bool IsLogInFormVisible { get; set; }
+    [ObservableProperty] private bool _isLoginFormVisible = true;
     private bool _canLogin;
 
     public string? Username
@@ -45,7 +46,7 @@ public partial class LoginViewModel : BaseViewModel
         Debug.Assert(Password != null, nameof(Password) + " != null");
         var isAuthenticated = Username.Equals("pitzzahh") && Password.Equals("123456");
         if (!isAuthenticated) return;
-        IsLogInFormVisible = false;
+        IsLoginFormVisible = false;
         Username = "";
         Password = "";
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");

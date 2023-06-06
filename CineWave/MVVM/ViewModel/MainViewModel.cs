@@ -64,7 +64,7 @@ public partial class MainViewModel : BaseViewModel
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
         App.ServiceProvider.GetRequiredService<MainWindow>().Hide();
-        App.ServiceProvider.GetRequiredService<LoginViewModel>().IsLogInFormVisible = true;
+        App.ServiceProvider.GetRequiredService<LoginViewModel>().IsLoginFormVisible = true;
         App.ServiceProvider.GetRequiredService<LoginWindow>().UsernameInput.Focus();
         App.ServiceProvider.GetRequiredService<SeatBookingRegistrationFormBaseViewModel>().OnCancel();
     }

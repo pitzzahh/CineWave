@@ -1,6 +1,5 @@
 using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
@@ -31,11 +30,9 @@ public partial class MainViewModel : Core.ViewModel
     {
         Navigation.NavigateTo<HomeViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        var homeViewModel = App.ServiceProvider.GetRequiredService<HomeViewModel>();
-        if (homeViewModel.MovieCardViewModels.ToList().Count == 20) return;
         try
         {
-            Task.Run(homeViewModel.GetMoviesFromApi) ; // Run the method on a separate thread
+            Task.Run(App.ServiceProvider.GetRequiredService<HomeViewModel>().GetMoviesFromApi) ; // Run the method on a separate thread
         }
         catch (Exception e)
         {
@@ -69,5 +66,6 @@ public partial class MainViewModel : Core.ViewModel
         App.ServiceProvider.GetRequiredService<MainWindow>().Hide();
         App.ServiceProvider.GetRequiredService<LoginViewModel>().IsLogInFormVisible = true;
         App.ServiceProvider.GetRequiredService<LoginWindow>().UsernameInput.Focus();
+        App.ServiceProvider.GetRequiredService<SeatBookingRegistrationFormViewModel>().OnCancel();
     }
 }

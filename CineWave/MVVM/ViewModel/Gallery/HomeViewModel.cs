@@ -20,6 +20,7 @@ public partial class HomeViewModel : Core.ViewModel
         if (results == null) return;
          await Application.Current.Dispatcher.InvokeAsync(() =>
          {
+             _movies.Clear();
              foreach (var result in results)
              {
                  _movies.Add(new MovieCardViewModel(

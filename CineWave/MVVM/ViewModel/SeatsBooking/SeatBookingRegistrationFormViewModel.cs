@@ -1,104 +1,63 @@
 ﻿using System.Diagnostics;
 using System.Windows;
 using CineWave.Components;
-using CineWave.Core;
 using CineWave.MVVM.Model;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
+using ObservableObject = CommunityToolkit.Mvvm.ComponentModel.ObservableObject;
 
 namespace CineWave.MVVM.ViewModel.SeatsBooking;
 
-public class SeatBookingRegistrationFormViewModel : Core.ViewModel
+public partial class SeatBookingRegistrationFormViewModel : ObservableObject
 {
-    
+    [ObservableProperty]
     private string? _movieName;
+    [ObservableProperty]
     private string? _seatNumber;
+    [ObservableProperty]
     private string? _customerName;
+    [ObservableProperty]
     private string? _payment;
-    
-    public string? MovieName
-    {
-        get => _movieName;
-        set
-        {
-            if (value == _movieName) return;
-            _movieName = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string? SeatNumber
-    {
-        get => _seatNumber;
-        set
-        {
-            if (value == _seatNumber) return;
-            _seatNumber = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string? CustomerName
-    {
-        get => _customerName;
-        set
-        {
-            if (value == _customerName) return;
-            _customerName = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string? Payment
-    {
-        get => _payment;
-        set
-        {
-            if (value == _payment) return;
-            _payment = value;
-            OnPropertyChanged();
-        }
-    }
-
     public Customer? Customer { get; set; }
-    public RelayCommand OnBuy { get; set; }
-    public RelayCommand OnCancel { get; set; }
 
-    public SeatBookingRegistrationFormViewModel()
+    [RelayCommand]
+    public void OnBuy()
     {
-        
-        OnBuy = new RelayCommand(o =>
+        if (CheckInputs()) // TODO: fix checking inputs
         {
             var customer = new Customer(0, CustomerName);
             Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
             CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
-        }, o => CheckInputs());
-        OnCancel = new RelayCommand(o =>
-        {
-            Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-            CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
-        }, o => true);
+        }
+
+    }
+    
+    [RelayCommand]
+    public void OnCancel()
+    {
+        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+        CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
     }
 
     private void CloseRegistrationWindow(Window seatBookingRegistrationForm)
     {
-        if (seatBookingRegistrationForm.IsVisible)
-        {
-            seatBookingRegistrationForm.Hide();
-            MovieName = "";
-            SeatNumber = "";
-            CustomerName = "";
-            Payment = "";
-            Customer = null;
-        }
+        if (!seatBookingRegistrationForm.IsVisible) return;
+        seatBookingRegistrationForm.Hide();
+        MovieName = "";
+        SeatNumber = "";
+        CustomerName = "";
+        Payment = "";
+        Customer = null;
     }
 
     private bool CheckInputs()
     {
-        return string.IsNullOrEmpty(_customerName) || string.IsNullOrEmpty(_payment) || !IsValidPayment();
+        return string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Payment) || !IsValidPayment();
     }
 
     private bool IsValidPayment()
     {
-        return decimal.TryParse(_payment, out var paymentAmount) && paymentAmount >= 0;
+        return decimal.TryParse(Payment, out var paymentAmount) && paymentAmount >= 0;
     }
 }

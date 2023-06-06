@@ -77,13 +77,13 @@
             <StackPanel Orientation="Horizontal" Margin="5 20">
                 <moderncontrols:ModernButton Content="Buy"
                                              Width="100"
-                                             Command="{Binding OnBuy}"
+                                             Command="{Binding BuyCommand}"
                                              FontWeight="Bold"
                                              Margin="5" />
                 <moderncontrols:ModernButton Content="Cancel"
                                              Width="100"
                                              FontWeight="Bold"
-                                             Command="{Binding OnCancel}"
+                                             Command="{Binding CancelCommand}"
                                              HoverBackground="{StaticResource RedBrush}"
                                              PressedBackground="{StaticResource PrimaryBrush}"
                                              Margin="5" />

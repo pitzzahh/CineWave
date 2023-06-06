@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:CineWave.MVVM.View.AddMovie"
              xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
              mc:Ignorable="d">
+    
     <Grid>
         <StackPanel>
             <StackPanel>
@@ -42,11 +43,8 @@
                 <Label Content="Release Date"
                        FontWeight="Medium"
                        Foreground="{StaticResource QuinaryBrush}" />
-                <moderncontrols:ModernTextBox
-                    HelperText="Required"
-                    Text="{Binding Payment}"
-                    DefaultBackground="{StaticResource PrimaryBrush}"
-                    Foreground="{StaticResource QuinaryBrush}" />
+                <DatePicker Background="{StaticResource PrimaryBrush}"
+                            Foreground="{StaticResource QuinaryBrush}"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="5 20">

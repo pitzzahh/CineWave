@@ -9,7 +9,7 @@ public partial class LoginViewModel : BaseViewModel
 {
     private string? _username;
     private string? _password;
-    public bool IsLogInFormVisible { get; set; } = true;
+    public bool IsLogInFormVisible { get; set; }
     private bool _canLogin;
 
     public string? Username

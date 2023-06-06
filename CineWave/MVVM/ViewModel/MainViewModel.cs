@@ -24,19 +24,20 @@ public partial class MainViewModel : ObservableObject
     public MainViewModel(INavigationService navigation)
     {
         Navigation = navigation;
-        NavigateToHome();
+        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+        NavigateToHome(); // Run the method on a separate thread
     }
 
     [RelayCommand]
-    public async Task NavigateToHome()
+    public void NavigateToHome()
     {
         Navigation.NavigateTo<HomeViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         var homeViewModel = App.ServiceProvider.GetRequiredService<HomeViewModel>();
-        if (homeViewModel.MovieCardViewModels.Any()) return;
+        if (homeViewModel.MovieCardViewModels.ToList().Count == 20) return;
         try
         {
-            await homeViewModel.GetMoviesFromApi(); // Run the method on a separate thread
+            Task.Run(homeViewModel.GetMoviesFromApi) ; // Run the method on a separate thread
         }
         catch (Exception e)
         {

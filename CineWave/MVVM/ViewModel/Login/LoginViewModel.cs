@@ -1,6 +1,4 @@
-using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using CineWave.MVVM.View;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -22,7 +20,7 @@ public partial class LoginViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public async Task Login()
+    public void Login()
     {
         if (CheckInputs()) return;
         Debug.Assert(Username != null, nameof(Username) + " != null");
@@ -33,15 +31,7 @@ public partial class LoginViewModel : ObservableObject
         Username = "";
         Password = "";
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        try
-        {
-            App.ServiceProvider.GetRequiredService<MainWindow>().Show();
-            await App.ServiceProvider.GetRequiredService<MainViewModel>().NavigateToHome();
-        }
-        catch (Exception e)
-        {
-            Debug.Print(e.StackTrace);
-        }
+        App.ServiceProvider.GetRequiredService<MainWindow>().Show();
     }
 
     private bool CheckInputs()

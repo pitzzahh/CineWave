@@ -11,7 +11,7 @@ public partial class LoginViewModel : BaseViewModel
     [ObservableProperty] private bool _isLoginFormVisible = true;
     private string? _username;
     private string? _password;
-    private bool _canLogin;
+    [ObservableProperty] private bool _canLogin;
 
     public string? Username
     {
@@ -31,12 +31,6 @@ public partial class LoginViewModel : BaseViewModel
             SetProperty(ref _password, value);
             UpdateCanLogin();
         }
-    }
-
-    public bool CanLogin
-    {
-        get => _canLogin;
-        set => SetProperty(ref _canLogin, value);
     }
 
     [RelayCommand]

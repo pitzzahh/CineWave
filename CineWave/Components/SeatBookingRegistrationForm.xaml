@@ -6,7 +6,7 @@
         xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
         mc:Ignorable="d"
         Title="Seat Booking Registration Form"
-        Height="420"
+        Height="340"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
@@ -31,7 +31,7 @@
                            Foreground="{StaticResource QuinaryBrush}" />
             </StackPanel>
 
-            <!-- Movie Description -->
+            <!-- Movie Name -->
             <StackPanel Orientation="Horizontal"
                         Margin="0 20 0 5">
                 <Label Content="Movie:"
@@ -39,6 +39,17 @@
                        Margin="10 0"
                        Foreground="{StaticResource QuinaryBrush}" />
                 <Label Content="{Binding MovieName}"
+                       Foreground="{StaticResource QuinaryBrush}" />
+            </StackPanel>
+            
+            <!-- Movie Price -->
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 0 0 5">
+                <Label Content="Price:"
+                       FontWeight="Medium"
+                       Margin="10 0"
+                       Foreground="{StaticResource QuinaryBrush}" />
+                <Label Content="{Binding MoviePrice}"
                        Foreground="{StaticResource QuinaryBrush}" />
             </StackPanel>
 
@@ -54,16 +65,6 @@
             </StackPanel>
 
             <StackPanel Margin="5">
-                <Label Content="Name"
-                       FontWeight="Medium"
-                       Foreground="{StaticResource QuinaryBrush}" />
-                <moderncontrols:ModernTextBox
-                    HelperText="Required"
-                    Text="{Binding CustomerName}"
-                    DefaultBackground="{StaticResource PrimaryBrush}"
-                    Foreground="{StaticResource QuinaryBrush}" />
-            </StackPanel>
-            <StackPanel Margin="5">
                 <Label Content="_payment"
                        FontWeight="Medium"
                        Foreground="{StaticResource QuinaryBrush}" />
@@ -77,9 +78,11 @@
             <StackPanel Orientation="Horizontal" Margin="5 20">
                 <moderncontrols:ModernButton Content="Buy"
                                              Width="100"
+                                             IsEnabled="{Binding CanBuy}"
                                              Command="{Binding BuyCommand}"
                                              FontWeight="Bold"
-                                             Margin="5" />
+                                             Margin="5" >
+                </moderncontrols:ModernButton>
                 <moderncontrols:ModernButton Content="Cancel"
                                              Width="100"
                                              FontWeight="Bold"

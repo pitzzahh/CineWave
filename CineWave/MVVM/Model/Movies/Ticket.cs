@@ -1,13 +1,12 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CineWave.MVVM.Model.Movies;
 
-public class Ticket
+public record Ticket(int TicketId, string? MovieId, double Price, int CustomerId)
 {
     [Key]
-    public int Id { get; init; }
-    public string? MovieName { get; init; }
-    public double Price { get; init; }
-    public DateOnly ReleaseDate { get; init; }
+    public int TicketId { get; set; } = TicketId;
+    public string? MovieId { get; set; } = MovieId;
+    public double Price { get; set; } = Price;
+    public int CustomerId { get; set; } = CustomerId;
 }

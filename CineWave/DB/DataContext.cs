@@ -1,4 +1,5 @@
 ﻿using CineWave.MVVM.Model;
+using CineWave.MVVM.Model.Movies;
 using Microsoft.EntityFrameworkCore;
 
 namespace CineWave.DB;

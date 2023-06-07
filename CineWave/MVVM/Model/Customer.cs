@@ -1,7 +1,10 @@
-﻿namespace CineWave.MVVM.Model;
+﻿using System.ComponentModel.DataAnnotations;
 
-public record Customer(int Id, string? Name)
+namespace CineWave.MVVM.Model;
+
+public record Customer(int Id, int TicketId)
 {
+    [Key]
     public int Id { get; set; } = Id;
-    public string? Name { get; set; } = Name;
+    public int TicketId { get; set; } = TicketId;
 }

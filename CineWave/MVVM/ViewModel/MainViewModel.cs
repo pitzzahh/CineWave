@@ -5,7 +5,6 @@ using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
 using CineWave.MVVM.ViewModel.AddMovie;
 using CineWave.MVVM.ViewModel.Gallery;
-using CineWave.MVVM.ViewModel.Login;
 using CineWave.MVVM.ViewModel.Reservations;
 using CineWave.MVVM.ViewModel.SeatsBooking;
 using CineWave.MVVM.ViewModel.Trailer;
@@ -18,23 +17,23 @@ namespace CineWave.MVVM.ViewModel;
 
 public partial class MainViewModel : BaseViewModel
 {
-    [ObservableProperty] private INavigationService _navigation;
+    [ObservableProperty] private INavigationService _navService;
 
-    public MainViewModel(INavigationService navigation)
+    public MainViewModel(INavigationService navigationService)
     {
-        Navigation = navigation;
+        NavService = navigationService;
         ShowTrailer();
     }
 
     public void ShowTrailer()
     {
-        Navigation.NavigateTo<TrailerViewModel>();
+        NavService.NavigateTo<TrailerViewModel>();
     }
 
     [RelayCommand]
     public void NavigateToHome()
     {
-        Navigation.NavigateTo<HomeViewModel>();
+        NavService.NavigateTo<HomeViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         try
         {
@@ -49,19 +48,19 @@ public partial class MainViewModel : BaseViewModel
     [RelayCommand]
     public void NavigateToReservations()
     {
-        Navigation.NavigateTo<ReservationsViewModel>();
+        NavService.NavigateTo<ReservationsViewModel>();
     }
 
     [RelayCommand]
     public void NavigateToSeatBooking()
     {
-        Navigation.NavigateTo<SeatBookingViewModel>();
+        NavService.NavigateTo<SeatBookingViewModel>();
     }
 
     [RelayCommand]
     public void NavigateToAddMovie()
     {
-        Navigation.NavigateTo<AddMovieViewModel>();
+        NavService.NavigateTo<AddMovieViewModel>();
     }
 
     [RelayCommand]

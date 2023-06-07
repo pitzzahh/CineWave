@@ -169,7 +169,7 @@
 
                     <!-- Main Content -->
                     <ContentControl Grid.Row="1"
-                                    Content="{Binding Navigation.CurrentView}"
+                                    Content="{Binding NavService.CurrentView}"
                                     Padding="20" />
                 </Grid>
             </Border>

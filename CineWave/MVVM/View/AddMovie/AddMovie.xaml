@@ -33,7 +33,7 @@
                        Foreground="{StaticResource QuinaryBrush}" />
                 <moderncontrols:ModernTextBox
                     HelperText="Required"
-                    Text="{Binding Payment}"
+                    Text="{Binding Price}"
                     DefaultBackground="{StaticResource PrimaryBrush}"
                     Foreground="{StaticResource QuinaryBrush}" />
             </StackPanel>
@@ -50,7 +50,7 @@
             <StackPanel Orientation="Horizontal" Margin="5 20">
                 <moderncontrols:ModernButton Content="Add Movie"
                                              Width="100"
-                                             Command="{Binding OnBuy}"
+                                             Command="{Binding AddMovieCommand}"
                                              FontWeight="Bold"
                                              Margin="5" />
             </StackPanel>

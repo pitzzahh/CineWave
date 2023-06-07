@@ -60,7 +60,7 @@
                         Tag="{StaticResource QuinaryBrush}"
                         Style="{StaticResource ControlButton}">
                     <fontawesome:IconImage Icon="WindowMinimize"
-                                           Width="12"
+                                           Width="14"
                                            Style="{StaticResource ControlButtonIcon}">
                         <fontawesome:IconImage.Triggers>
                             <EventTrigger RoutedEvent="Button.Click">
@@ -135,12 +135,9 @@
                                              FontWeight="Medium" />
             </StackPanel>
             <StackPanel Grid.Row="2" Orientation="Horizontal" FlowDirection="RightToLeft">
-                <TextBlock Margin="10 0 0 0"
-                           Foreground="{StaticResource QuinaryBrush}">
-                    <Bold>
-                        Version 0.0.7-beta
-                    </Bold>
-                </TextBlock>
+                <TextBlock Margin="5 0 0 0"
+                           Text="version 0.0.7-beta© 2023 CineWave"
+                           Foreground="{StaticResource QuinaryBrush}" />
             </StackPanel>
         </Grid>
     </Border>

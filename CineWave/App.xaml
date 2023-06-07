@@ -2,16 +2,18 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:components="clr-namespace:CineWave.Components"
-             xmlns:addMovie="clr-namespace:CineWave.MVVM.ViewModel.AddMovie"
-             xmlns:seatsBooking="clr-namespace:CineWave.MVVM.ViewModel.SeatsBooking"
-             xmlns:reservations="clr-namespace:CineWave.MVVM.ViewModel.Reservations"
              xmlns:trailer="clr-namespace:CineWave.MVVM.ViewModel.Trailer"
              xmlns:gallery="clr-namespace:CineWave.MVVM.ViewModel.Gallery"
+             xmlns:reservations="clr-namespace:CineWave.MVVM.ViewModel.Reservations"
+             xmlns:seatsBooking="clr-namespace:CineWave.MVVM.ViewModel.SeatsBooking"
+             xmlns:addMovie="clr-namespace:CineWave.MVVM.ViewModel.AddMovie"
+             xmlns:manageMovies="clr-namespace:CineWave.MVVM.ViewModel.ManageMovies"
              xmlns:trailerView="clr-namespace:CineWave.MVVM.View.Trailer"
              xmlns:galleryView="clr-namespace:CineWave.MVVM.View.Gallery"
              xmlns:reservationsView="clr-namespace:CineWave.MVVM.View.Reservations"
              xmlns:seatsBookingView="clr-namespace:CineWave.MVVM.View.SeatsBooking"
-             xmlns:addMovieView="clr-namespace:CineWave.MVVM.View.AddMovie">
+             xmlns:addMovieView="clr-namespace:CineWave.MVVM.View.AddMovie"
+             xmlns:manageMoviesView="clr-namespace:CineWave.MVVM.View.ManageMovies">
     <Application.Resources>
         
         <ResourceDictionary>
@@ -36,6 +38,10 @@
                 <addMovieView:AddMovie/>
             </DataTemplate>
             
+            <DataTemplate DataType="{x:Type manageMovies:ManageMoviesViewModel}">
+                <manageMoviesView:ManageMoviesView/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type gallery:MovieCardBaseViewModel}">
                 <components:MovieCard/>
             </DataTemplate>

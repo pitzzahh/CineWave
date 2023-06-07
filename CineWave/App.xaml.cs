@@ -10,6 +10,7 @@ using CineWave.MVVM.ViewModel.Gallery;
 using CineWave.MVVM.ViewModel.Login;
 using CineWave.MVVM.ViewModel.Reservations;
 using CineWave.MVVM.ViewModel.SeatsBooking;
+using CineWave.MVVM.ViewModel.Trailer;
 using CineWave.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -26,7 +27,7 @@ namespace CineWave
         {
             var serviceCollection = new ServiceCollection();
 
-            serviceCollection.AddSingleton<LoginWindow>(provider => new LoginWindow()
+            serviceCollection.AddTransient<LoginWindow>(provider => new LoginWindow()
             {
                 DataContext = provider.GetRequiredService<LoginViewModel>()
             });
@@ -41,7 +42,7 @@ namespace CineWave
                 DataContext = provider.GetRequiredService<SeatBookingRegistrationFormBaseViewModel>()
             });
 
-            serviceCollection.AddSingleton<LoginViewModel>();
+            serviceCollection.AddTransient<LoginViewModel>();
 
             serviceCollection.AddSingleton<MainViewModel>();
             serviceCollection.AddSingleton<HomeViewModel>();
@@ -50,6 +51,7 @@ namespace CineWave
             serviceCollection.AddSingleton<SeatCardViewModel>();
             serviceCollection.AddSingleton<SeatBookingRegistrationFormBaseViewModel>();
             serviceCollection.AddSingleton<AddMovieViewModel>();
+            serviceCollection.AddSingleton<TrailerViewModel>();
             serviceCollection.AddSingleton<INavigationService, NavigationService>();
 
             serviceCollection.AddSingleton<Func<Type, BaseViewModel>>(provider => viewModelType => (BaseViewModel)provider.GetRequiredService(viewModelType));

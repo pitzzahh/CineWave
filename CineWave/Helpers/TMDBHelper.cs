@@ -27,4 +27,13 @@ internal static class TmdbHelper
         return await response.Content.ReadAsStringAsync();
     }
 
+    public static async Task<string> GetTrailers(int movieId = 569094)
+    {
+        using var client = new HttpClient();
+        var url = $"{BaseUrl}movie/{movieId}/videos??api_key={ApiKey}";
+        var response = await client.GetAsync(url);
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadAsStringAsync();
+    }
+
 }

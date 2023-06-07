@@ -5,7 +5,9 @@
              xmlns:addMovie="clr-namespace:CineWave.MVVM.ViewModel.AddMovie"
              xmlns:seatsBooking="clr-namespace:CineWave.MVVM.ViewModel.SeatsBooking"
              xmlns:reservations="clr-namespace:CineWave.MVVM.ViewModel.Reservations"
+             xmlns:trailer="clr-namespace:CineWave.MVVM.ViewModel.Trailer"
              xmlns:gallery="clr-namespace:CineWave.MVVM.ViewModel.Gallery"
+             xmlns:trailerView="clr-namespace:CineWave.MVVM.View.Trailer"
              xmlns:galleryView="clr-namespace:CineWave.MVVM.View.Gallery"
              xmlns:reservationsView="clr-namespace:CineWave.MVVM.View.Reservations"
              xmlns:seatsBookingView="clr-namespace:CineWave.MVVM.View.SeatsBooking"
@@ -13,6 +15,11 @@
     <Application.Resources>
         
         <ResourceDictionary>
+            
+            <DataTemplate DataType="{x:Type trailer:TrailerViewModel}">
+                <trailerView:TrailerView/>
+            </DataTemplate>
+            
             <DataTemplate DataType="{x:Type gallery:HomeViewModel}">
                 <galleryView:HomeView/>
             </DataTemplate>

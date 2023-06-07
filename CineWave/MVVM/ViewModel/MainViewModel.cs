@@ -8,6 +8,7 @@ using CineWave.MVVM.ViewModel.Gallery;
 using CineWave.MVVM.ViewModel.Login;
 using CineWave.MVVM.ViewModel.Reservations;
 using CineWave.MVVM.ViewModel.SeatsBooking;
+using CineWave.MVVM.ViewModel.Trailer;
 using CineWave.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -22,7 +23,12 @@ public partial class MainViewModel : BaseViewModel
     public MainViewModel(INavigationService navigation)
     {
         Navigation = navigation;
-        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+        ShowTrailer();
+    }
+
+    public void ShowTrailer()
+    {
+        Navigation.NavigateTo<TrailerViewModel>();
     }
 
     [RelayCommand]
@@ -64,8 +70,6 @@ public partial class MainViewModel : BaseViewModel
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
         App.ServiceProvider.GetRequiredService<MainWindow>().Hide();
-        App.ServiceProvider.GetRequiredService<LoginViewModel>().IsLoginFormVisible = true;
-        App.ServiceProvider.GetRequiredService<LoginWindow>().UsernameInput.Focus();
-        App.ServiceProvider.GetRequiredService<SeatBookingRegistrationFormBaseViewModel>().OnCancel();
+        App.ServiceProvider.GetRequiredService<LoginWindow>().Show();
     }
 }

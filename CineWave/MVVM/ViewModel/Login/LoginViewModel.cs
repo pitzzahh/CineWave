@@ -8,9 +8,9 @@ namespace CineWave.MVVM.ViewModel.Login;
 
 public partial class LoginViewModel : BaseViewModel
 {
+    [ObservableProperty] private bool _isLoginFormVisible = true;
     private string? _username;
     private string? _password;
-    [ObservableProperty] private bool _isLoginFormVisible = true;
     private bool _canLogin;
 
     public string? Username
@@ -42,16 +42,11 @@ public partial class LoginViewModel : BaseViewModel
     [RelayCommand]
     public void Login()
     {
-        Debug.Assert(Username != null, nameof(Username) + " != null");
-        Debug.Assert(Password != null, nameof(Password) + " != null");
-        var isAuthenticated = Username.Equals("pitzzahh") && Password.Equals("123456");
+        var isAuthenticated = Password != null && Username is "pitzzahh" && Password is "123456";
         if (!isAuthenticated) return;
         IsLoginFormVisible = false;
-        Username = "";
-        Password = "";
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         App.ServiceProvider.GetRequiredService<MainWindow>().Show();
-        App.ServiceProvider.GetRequiredService<MainViewModel>().NavigateToHome();
     }
 
     private void UpdateCanLogin()

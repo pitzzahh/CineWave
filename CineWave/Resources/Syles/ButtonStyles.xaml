@@ -91,8 +91,8 @@
     <Style x:Key="ControlButtonIcon" TargetType="fontawesome:IconImage">
         <Setter Property="Foreground"
                 Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}" />
-        <Setter Property="Height" Value="9" />
-        <Setter Property="Width" Value="9" />
+        <Setter Property="Height" Value="12" />
+        <Setter Property="Width" Value="12" />
     </Style>
 
 </ResourceDictionary>

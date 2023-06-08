@@ -1,10 +1,15 @@
-﻿namespace CineWave.MVVM.ViewModel.Gallery;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public class MovieCardBaseViewModel : BaseViewModel
+namespace CineWave.MVVM.ViewModel.Gallery;
+
+public partial class MovieCardBaseViewModel : BaseViewModel
 {
-    public string MovieImage { get; }
-    public string? MovieName { get; }
-    public string? MovieDescription { get; }
+    [ObservableProperty]
+    private string _movieImage;
+    [ObservableProperty]
+    private string? _movieName;
+    [ObservableProperty]
+    private string? _movieDescription;
 
     public MovieCardBaseViewModel(string movieImage, string? movieName, string? movieDescription)
     {

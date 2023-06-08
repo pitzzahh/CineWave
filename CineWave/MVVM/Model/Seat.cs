@@ -6,9 +6,10 @@ public class Seat
     public int CustomerId { get; set; }
     public bool IsTaken { get; set; }
 
-    public Seat(string seatNumber)
+    public Seat(string seatNumber, int customerId)
     {
         SeatNumber = seatNumber;
+        CustomerId = customerId;
         IsTaken = false;
     }
 }

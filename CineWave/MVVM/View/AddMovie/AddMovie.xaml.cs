@@ -2,7 +2,7 @@
 
 namespace CineWave.MVVM.View.AddMovie;
 
-public partial class AddMovie : UserControl
+public partial class AddMovie
 {
     public AddMovie()
     {

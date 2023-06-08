@@ -17,7 +17,7 @@ namespace CineWave.MVVM.ViewModel;
 
 public partial class MainViewModel : BaseViewModel
 {
-    [ObservableProperty] private readonly INavigationService _navService;
+    [ObservableProperty] private INavigationService _navService;
 
     public MainViewModel(INavigationService navigationService)
     {

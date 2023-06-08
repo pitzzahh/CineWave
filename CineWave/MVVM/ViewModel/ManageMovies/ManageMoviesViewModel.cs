@@ -1,6 +1,6 @@
 ﻿namespace CineWave.MVVM.ViewModel.ManageMovies;
 
-public class ManageMoviesViewModel : BaseViewModel
+public partial class ManageMoviesViewModel : BaseViewModel
 {
     
 }

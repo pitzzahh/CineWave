@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using CineWave.MVVM.View;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -9,8 +10,8 @@ namespace CineWave.MVVM.ViewModel.Login;
 public partial class LoginViewModel : BaseViewModel
 {
     [ObservableProperty] private bool _isLoginFormVisible = true;
-    private string? _username;
-    private string? _password;
+    [Required] private string? _username;
+    [Required] private string? _password;
     [ObservableProperty] private bool _canLogin;
 
     public string? Username

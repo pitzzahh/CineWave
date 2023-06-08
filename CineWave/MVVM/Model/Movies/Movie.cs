@@ -3,11 +3,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CineWave.MVVM.Model.Movies;
 
-public record Movie(string? MovieName, bool NowShowing, DateOnly ReleaseDate)
+public class Movie
 {
+    
     [Key]
     public int MovieId { get; set; }
-    public string? MovieName { get; set; } = MovieName;
-    public bool NowShowing { get; set; } = NowShowing;
-    public DateOnly ReleaseDate { get; set; } = ReleaseDate;
+    public string? MovieName { get; set; }
+    public bool NowShowing { get; set; }
+    public DateOnly ReleaseDate { get; set; }
+    
+    public Movie(string? movieName, bool nowShowing, DateOnly releaseDate)
+    {
+        MovieName = movieName;
+        NowShowing = nowShowing;
+        ReleaseDate = releaseDate;
+    }
+
 }

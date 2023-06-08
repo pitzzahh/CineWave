@@ -16,8 +16,8 @@ public partial class SeatCardViewModel : BaseViewModel
 
     public SeatCardViewModel(string seatNumber, bool isTaken)
     {
-        IsSeatAvailable = !isTaken;
         SeatNumber = seatNumber;
+        IsSeatAvailable = !isTaken;
     }
 
     [RelayCommand]

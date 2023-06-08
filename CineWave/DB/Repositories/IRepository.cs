@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CineWave.MVVM.Model;
+namespace CineWave.DB.Repositories;
 
 public interface IRepository<T> where T : class
 {

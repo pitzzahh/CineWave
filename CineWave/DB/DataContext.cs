@@ -11,5 +11,5 @@ public class MoviesDataContext : DbContext
         optionsBuilder.UseSqlite("Data Source=cinewave_movies.db");
     }
 
-    public DbSet<Movie> Movies { get; set; }
+    public DbSet<Movie> Movies { get; set; } = null!;
 }

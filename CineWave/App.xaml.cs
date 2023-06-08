@@ -67,10 +67,10 @@ namespace CineWave
         protected override void OnStartup(StartupEventArgs e)
         {
             Debug.Assert(ServiceProvider != null, nameof(ServiceProvider) + " != null");
-            ServiceProvider.GetRequiredService<LoginWindow>().Show();
             var databaseFacade = new DatabaseFacade(new MoviesDataContext());
-            base.OnStartup(e);
             databaseFacade.EnsureCreatedAsync();
+            ServiceProvider.GetRequiredService<LoginWindow>().Show();
+            base.OnStartup(e);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Windows;
 using CineWave.Components;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
+using CineWave.MVVM.Model.Movies;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -14,7 +15,6 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
 {
     [ObservableProperty] private string? _movieName;
     [ObservableProperty] private string? _seatNumber;
-    [ObservableProperty] private string? _customerName;
     [ObservableProperty] private string? _payment;
     public Customer? Customer { get; set; }
 
@@ -27,7 +27,11 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
     public void OnBuy()
     {
         if (!CheckInputs()) return; // TODO: fix checking inputs
-        var customer = new Customer(0, CustomerName);
+        var movieId = 1;
+        var moviePrice = 100;
+        var ticket = new Ticket(movieId, moviePrice);
+        var customer = new Customer(0, ticket.TicketId);
+        // TODO: save ticket and customer to database and cache
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
     }
@@ -45,14 +49,13 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
         seatBookingRegistrationForm.Hide();
         MovieName = "";
         SeatNumber = "";
-        CustomerName = "";
         Payment = "";
         Customer = null;
     }
 
     private bool CheckInputs()
     {
-        return string.IsNullOrEmpty(CustomerName) || string.IsNullOrEmpty(Payment) || !IsValidPayment();
+        return string.IsNullOrEmpty(Payment) || !IsValidPayment();
     }
 
     private bool IsValidPayment()

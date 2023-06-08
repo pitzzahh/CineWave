@@ -2,11 +2,18 @@
 
 namespace CineWave.MVVM.Model.Movies;
 
-public record Ticket(int TicketId, string? MovieId, double Price, int CustomerId)
+public class Ticket
 {
+    
     [Key]
-    public int TicketId { get; set; } = TicketId;
-    public string? MovieId { get; set; } = MovieId;
-    public double Price { get; set; } = Price;
-    public int CustomerId { get; set; } = CustomerId;
+    public int TicketId { get; set; }
+    public int MovieId { get; set; }
+    public double Price { get; set; }
+    
+    public Ticket(int movieId, double price)
+    {
+        MovieId = movieId;
+        Price = price;
+    }
+
 }

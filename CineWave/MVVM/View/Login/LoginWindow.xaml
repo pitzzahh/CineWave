@@ -103,7 +103,7 @@
                     Foreground="White"
                     LeftIcon="{wpf:MaterialIconExt User}"
                     FontSize="14"
-                    Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     Padding="15,10,10,10"
                     FontWeight="Medium"
                     HelperText="Required *">
@@ -120,7 +120,7 @@
                     Foreground="White"
                     LeftIcon="{wpf:MaterialIconExt Password}"
                     FontSize="14"
-                    Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding Password, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                     FontWeight="Medium"
                     HelperText="Required *"
                     Padding="15,10,10,10">

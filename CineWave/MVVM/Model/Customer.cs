@@ -2,9 +2,15 @@
 
 namespace CineWave.MVVM.Model;
 
-public record Customer(int Id, int TicketId)
+public class Customer
 {
     [Key]
-    public int Id { get; set; } = Id;
-    public int TicketId { get; set; } = TicketId;
+    public int Id { get; set; }
+    public int TicketId { get; set; }
+    
+    public Customer(int id, int ticketId)
+    {
+        Id = id;
+        TicketId = ticketId;
+    }
 }

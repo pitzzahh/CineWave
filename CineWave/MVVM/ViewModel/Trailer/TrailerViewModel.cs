@@ -6,7 +6,6 @@ namespace CineWave.MVVM.ViewModel.Trailer;
 public partial class TrailerViewModel : BaseViewModel
 {
     [ObservableProperty] private Uri? _videoSource;
-
     [ObservableProperty] private string? _youtubeVideoId;
 
     public TrailerViewModel()

@@ -1,5 +1,6 @@
 ﻿using System;
 using CineWave.DB;
+using CineWave.DB.Core;
 using CineWave.Helpers;
 using CineWave.MVVM.Model.Movies;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -12,13 +13,22 @@ public partial class AddMovieViewModel : BaseViewModel
     [ObservableProperty] private string? _movieName;
     [ObservableProperty] private string? _price;
     [ObservableProperty] private DateOnly _releaseDate;
+    private readonly IUnitOfWork _unitOfWork;
+
+    public AddMovieViewModel(IUnitOfWork unitOfWork)
+    {
+        _unitOfWork = unitOfWork;
+    }
 
     [RelayCommand]
     public void AddMovie()
     {
         if (MovieName is null || Price is null || !StringHelper.IsWholeNumberOrDecimal(Price)) return;
-        using var moviesDataContext = new MoviesDataContext();
-        moviesDataContext.Movies.Add(new Movie(MovieName, false, ReleaseDate));
-        moviesDataContext.SaveChangesAsync();
+        _unitOfWork.MoviesRepository.Add(new Movie(MovieName, false, ReleaseDate));
+        var complete = _unitOfWork.Complete();
+        if (complete == 1)
+        {
+            
+        }
     }
 }

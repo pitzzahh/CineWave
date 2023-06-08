@@ -34,7 +34,7 @@ public partial class SeatCardViewModel : BaseViewModel
         {
             seatBookingRegistrationForm.Show();
             var currentMovie = App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().CurrentMovie;
-            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new ReservationInfo(currentMovie ?? "", SeatNumber ?? "")));
+            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new ReservationInfo(currentMovie ?? "", "", SeatNumber ?? "")));
         }
     }
 }

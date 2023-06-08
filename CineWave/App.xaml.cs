@@ -3,6 +3,10 @@ using System.Diagnostics;
 using System.Windows;
 using CineWave.Components;
 using CineWave.DB;
+using CineWave.DB.Core;
+using CineWave.DB.Core.Repositories;
+using CineWave.DB.Persistence;
+using CineWave.DB.Persistence.Repositories;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
 using CineWave.MVVM.ViewModel;
@@ -29,7 +33,22 @@ namespace CineWave
         public App()
         {
             var serviceCollection = new ServiceCollection();
+            serviceCollection.AddSingleton<IUnitOfWork, UnitOfWork>();
+            serviceCollection.AddSingleton<MoviesDataContext>();
 
+            serviceCollection.AddTransient<LoginViewModel>();
+
+            serviceCollection.AddSingleton<MainViewModel>();
+            serviceCollection.AddSingleton<HomeViewModel>();
+            serviceCollection.AddSingleton<ReservationsViewModel>();
+            serviceCollection.AddSingleton<SeatBookingViewModel>();
+            serviceCollection.AddSingleton<SeatCardViewModel>();
+            serviceCollection.AddSingleton<SeatBookingRegistrationFormBaseViewModel>();
+            serviceCollection.AddSingleton<AddMovieViewModel>();
+            serviceCollection.AddSingleton<TrailerViewModel>();
+            serviceCollection.AddSingleton<ManageMoviesViewModel>();
+            serviceCollection.AddSingleton<INavigationService, NavigationService>();
+            
             serviceCollection.AddTransient<LoginWindow>(provider => new LoginWindow()
             {
                 DataContext = provider.GetRequiredService<LoginViewModel>()
@@ -44,21 +63,7 @@ namespace CineWave
             {
                 DataContext = provider.GetRequiredService<SeatBookingRegistrationFormBaseViewModel>()
             });
-
-            serviceCollection.AddTransient<LoginViewModel>();
-
-            serviceCollection.AddSingleton<MainViewModel>();
-            serviceCollection.AddSingleton<HomeViewModel>();
-            serviceCollection.AddSingleton<ReservationsViewModel>();
-            serviceCollection.AddSingleton<SeatBookingViewModel>();
-            serviceCollection.AddSingleton<SeatCardViewModel>();
-            serviceCollection.AddSingleton<SeatBookingRegistrationFormBaseViewModel>();
-            serviceCollection.AddSingleton<AddMovieViewModel>();
-            serviceCollection.AddSingleton<TrailerViewModel>();
-            serviceCollection.AddTransient<DbContext, MoviesDataContext>();
-            serviceCollection.AddSingleton<ManageMoviesViewModel>();
-            serviceCollection.AddSingleton<INavigationService, NavigationService>();
-
+            
             serviceCollection.AddSingleton<Func<Type, BaseViewModel>>(provider => viewModelType => (BaseViewModel)provider.GetRequiredService(viewModelType));
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
@@ -67,8 +72,6 @@ namespace CineWave
         protected override void OnStartup(StartupEventArgs e)
         {
             Debug.Assert(ServiceProvider != null, nameof(ServiceProvider) + " != null");
-            var databaseFacade = new DatabaseFacade(new MoviesDataContext());
-            databaseFacade.EnsureCreatedAsync();
             ServiceProvider.GetRequiredService<LoginWindow>().Show();
             base.OnStartup(e);
         }

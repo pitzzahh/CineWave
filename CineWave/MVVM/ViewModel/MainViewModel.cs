@@ -1,6 +1,8 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using CineWave.DB.Core;
+using CineWave.MVVM.Model.Movies;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
 using CineWave.MVVM.ViewModel.AddMovie;
@@ -19,9 +21,10 @@ public partial class MainViewModel : BaseViewModel
 {
     [ObservableProperty] private INavigationService _navService;
 
-    public MainViewModel(INavigationService navigationService)
+    public MainViewModel(INavigationService navigationService, IUnitOfWork unitOfWork)
     {
         NavService = navigationService;
+        _unitOfWork = unitOfWork;
         ShowTrailer();
     }
 

@@ -14,6 +14,7 @@ namespace CineWave.MVVM.ViewModel.SeatsBooking;
 public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, IRecipient<GetSeatInfoMessage>
 {
     [ObservableProperty] private string? _movieName;
+    [ObservableProperty] private string? _moviePrice;
     [ObservableProperty] private string? _seatNumber;
     [ObservableProperty] private string? _payment;
     public Customer? Customer { get; set; }
@@ -48,6 +49,7 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
         if (!seatBookingRegistrationForm.IsVisible) return;
         seatBookingRegistrationForm.Hide();
         MovieName = "";
+        MoviePrice = "";
         SeatNumber = "";
         Payment = "";
         Customer = null;
@@ -67,6 +69,7 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
     {
         var reservationInfo = message.Value;
         MovieName = reservationInfo.MovieName;
+        MoviePrice = reservationInfo.MoviePrice;
         SeatNumber = reservationInfo.SeatNumber;
     }
 }

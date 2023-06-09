@@ -45,7 +45,7 @@ namespace CineWave
             serviceCollection.AddSingleton<SeatCardViewModel>();
             serviceCollection.AddSingleton<SeatBookingRegistrationForm>();
             serviceCollection.AddTransient<SeatBookingRegistrationFormBaseViewModel>();
-            serviceCollection.AddSingleton<AddMovieViewModel>();
+            serviceCollection.AddTransient<AddMovieViewModel>();
             serviceCollection.AddSingleton<TrailerViewModel>();
             serviceCollection.AddSingleton<ManageMoviesViewModel>();
             serviceCollection.AddSingleton<INavigationService, NavigationService>();

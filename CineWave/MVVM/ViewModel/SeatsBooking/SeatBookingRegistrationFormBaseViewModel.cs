@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
+using System.Globalization;
 using System.Windows;
 using CineWave.Components;
+using CineWave.DB.Core;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.Movies;
@@ -17,10 +19,12 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
     [ObservableProperty] private string? _moviePrice;
     [ObservableProperty] private string? _seatNumber;
     [ObservableProperty] private string? _payment;
+    private readonly IUnitOfWork _unitOfWork;
     public Customer? Customer { get; set; }
 
-    public SeatBookingRegistrationFormBaseViewModel()
+    public SeatBookingRegistrationFormBaseViewModel(IUnitOfWork unitOfWork)
     {
+        _unitOfWork = unitOfWork;
         WeakReferenceMessenger.Default.Register(this);
     }
 
@@ -69,7 +73,7 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
     {
         var reservationInfo = message.Value;
         MovieName = reservationInfo.MovieName;
-        MoviePrice = reservationInfo.MoviePrice;
+        MoviePrice = reservationInfo.MoviePrice.ToString(CultureInfo.InvariantCulture);
         SeatNumber = reservationInfo.SeatNumber;
     }
 }

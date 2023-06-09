@@ -23,7 +23,7 @@
                        Foreground="{StaticResource QuinaryBrush}" />
                 <moderncontrols:ModernTextBox
                     HelperText="Required"
-                    Text="{Binding CustomerName}"
+                    Text="{Binding MovieName}"
                     DefaultBackground="{StaticResource PrimaryBrush}"
                     Foreground="{StaticResource QuinaryBrush}" />
             </StackPanel>
@@ -44,6 +44,7 @@
                        Foreground="{StaticResource QuinaryBrush}" />
                 <DatePicker Background="{StaticResource PrimaryBrush}"
                             Padding="10"
+                            SelectedDate="{Binding ReleaseDate}"
                             Foreground="{StaticResource QuinaryBrush}"/>
             </StackPanel>
 

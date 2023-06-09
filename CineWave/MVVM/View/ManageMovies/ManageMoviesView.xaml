@@ -11,7 +11,8 @@
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Content="Manage Movies" />
+        <Label Content="Manage Movies" 
+               Foreground="{StaticResource QuinaryBrush}"/>
         <movieCard:MovieInfoCard Grid.Row="1" DataContext="{Binding CardContext}" />
     </Grid>
 </UserControl>

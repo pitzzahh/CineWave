@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using CineWave.Components;
 using CineWave.MVVM.Model.Movies;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
@@ -23,7 +24,7 @@ public partial class MainViewModel : BaseViewModel
     public MainViewModel(INavigationService navigationService)
     {
         NavService = navigationService;
-        ShowTrailer();
+        NavigateToHome();
     }
 
     public void ShowTrailer()
@@ -70,6 +71,7 @@ public partial class MainViewModel : BaseViewModel
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
         App.ServiceProvider.GetRequiredService<MainWindow>().Hide();
+        App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>().Hide();
         App.ServiceProvider.GetRequiredService<LoginWindow>().Show();
     }
 }

@@ -68,6 +68,7 @@
                     <!-- Menus -->
                     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                         <moderncontrols:ModernRadioButton x:Name="GalleryButton"
+                                                          IsChecked="True"
                                                           Style="{StaticResource MenuButton}"
                                                           Command="{Binding NavigateToHomeCommand}"
                                                           Tag="{StaticResource QuinaryBrush}">

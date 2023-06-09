@@ -7,6 +7,7 @@ using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
 using CineWave.MVVM.ViewModel.AddMovie;
 using CineWave.MVVM.ViewModel.Gallery;
+using CineWave.MVVM.ViewModel.ManageMovies;
 using CineWave.MVVM.ViewModel.Reservations;
 using CineWave.MVVM.ViewModel.SeatsBooking;
 using CineWave.MVVM.ViewModel.Trailer;
@@ -63,6 +64,12 @@ public partial class MainViewModel : BaseViewModel
     public void NavigateToAddMovie()
     {
         NavService.NavigateTo<AddMovieViewModel>();
+    }
+    
+    [RelayCommand]
+    public void NavigateToManageMovie()
+    {
+        NavService.NavigateTo<ManageMoviesViewModel>();
     }
 
     [RelayCommand]

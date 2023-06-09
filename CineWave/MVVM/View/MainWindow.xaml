@@ -102,6 +102,7 @@
                             </StackPanel>
                         </moderncontrols:ModernRadioButton>
                         <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
+                                                          Command="{Binding NavigateToManageMovieCommand}"
                                                           Tag="{StaticResource QuinaryBrush}">
                             <StackPanel Orientation="Horizontal">
                                 <fontawesome:IconImage Icon="Edit" Style="{StaticResource MenuButtonIcon}" />

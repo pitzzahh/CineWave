@@ -3,10 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:CineWave.MVVM.View.ManageMovies"
+             xmlns:movieCard="clr-namespace:CineWave.Components"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="Manage Movies" />
+        <movieCard:MovieInfoCard Grid.Row="1" DataContext="{Binding CardContext}" />
     </Grid>
 </UserControl>

@@ -1,10 +1,10 @@
 ﻿using System;
-using CineWave.DB.Core;
+using CineWave.MVVM.ViewModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace CineWave.MVVM.ViewModel.ManageMovies;
+namespace CineWave.MVVM.View.ManageMovies;
 
-public partial class ManageMoviesViewModel : BaseViewModel
+public partial class MovieInfoCardViewModel : BaseViewModel
 {
     [ObservableProperty]
     private string? _movieName;
@@ -17,12 +17,4 @@ public partial class ManageMoviesViewModel : BaseViewModel
     
     [ObservableProperty]
     private bool _nowShowing;
-
-    private readonly IUnitOfWork _unitOfWork;
-
-    public ManageMoviesViewModel(IUnitOfWork unitOfWork)
-    {
-        _unitOfWork = unitOfWork;
-    }
-    
 }

@@ -32,7 +32,7 @@ public partial class AddMovieViewModel : BaseViewModel
             MessageBox.Show($"Movie {MovieName} Added Successfully");
         }
 
-        var enumerable = _unitOfWork.MoviesRepository.GetAll();
+        var enumerable = _unitOfWork.MoviesRepository.ToList();
         Debug.Print(enumerable.ToString());
     }
 }

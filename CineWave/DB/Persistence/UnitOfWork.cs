@@ -5,12 +5,13 @@ namespace CineWave.DB.Persistence;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly MoviesDataContext _context;
+    private readonly CineWaveDataContext _context;
 
-    public UnitOfWork(MoviesDataContext context)
+    public UnitOfWork(CineWaveDataContext context)
     {
         _context = context;
         MoviesRepository = new MoviesRepository(_context);
+        CustomersRepository = new CustomersRepository(_context);
     }
 
     public void Dispose()
@@ -19,6 +20,7 @@ public class UnitOfWork : IUnitOfWork
     }
 
     public MoviesRepository MoviesRepository { get; }
+    public CustomersRepository CustomersRepository { get; }
     
     public int Complete()
     {

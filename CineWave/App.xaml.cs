@@ -31,7 +31,7 @@ namespace CineWave
         {
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddSingleton<IUnitOfWork, UnitOfWork>();
-            serviceCollection.AddSingleton<MoviesDataContext>();
+            serviceCollection.AddSingleton<CineWaveDataContext>();
 
             serviceCollection.AddTransient<LoginViewModel>();
 
@@ -72,6 +72,7 @@ namespace CineWave
         protected override void OnStartup(StartupEventArgs e)
         {
             Debug.Assert(ServiceProvider != null, nameof(ServiceProvider) + " != null");
+            ServiceProvider.GetRequiredService<IUnitOfWork>().MoviesRepository.GetAll();
             ServiceProvider.GetRequiredService<LoginWindow>().Show();
             base.OnStartup(e);
         }

@@ -10,7 +10,7 @@ namespace CineWave.DB.Persistence.Repositories;
 
 public class MoviesRepository : Repository<Movie>
 {
-    public MoviesRepository(MoviesDataContext context) : base(context)
+    public MoviesRepository(CineWaveDataContext context) : base(context)
     {
         new DatabaseFacade(context).EnsureCreatedAsync();
     }

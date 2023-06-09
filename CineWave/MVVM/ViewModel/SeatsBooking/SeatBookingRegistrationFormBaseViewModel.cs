@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using CineWave.Components;
 using CineWave.DB.Core;
@@ -20,7 +21,6 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
     [ObservableProperty] private string? _seatNumber;
     [ObservableProperty] private string? _payment;
     private readonly IUnitOfWork _unitOfWork;
-    public Customer? Customer { get; set; }
 
     public SeatBookingRegistrationFormBaseViewModel(IUnitOfWork unitOfWork)
     {
@@ -32,10 +32,14 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
     public void OnBuy()
     {
         if (!CheckInputs()) return; // TODO: fix checking inputs
-        var movieId = 1;
-        var moviePrice = 100;
-        var ticket = new Ticket(movieId, moviePrice);
-        var customer = new Customer(0, ticket.TicketId);
+        var currentMovie = _unitOfWork.MoviesRepository.ToList().FirstOrDefault(m => m.NowShowing);
+        if (currentMovie != null)
+        {
+            var ticket = new Ticket(currentMovie.MovieId, currentMovie.MoviePrice);
+            var customer = new Customer(0, ticket.TicketId);
+            
+        }
+
         // TODO: save ticket and customer to database and cache
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
@@ -56,7 +60,6 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
         MoviePrice = "";
         SeatNumber = "";
         Payment = "";
-        Customer = null;
     }
 
     private bool CheckInputs()

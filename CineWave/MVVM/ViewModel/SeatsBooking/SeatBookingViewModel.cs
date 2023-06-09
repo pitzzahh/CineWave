@@ -20,7 +20,6 @@ public partial class SeatBookingViewModel : BaseViewModel
     public SeatBookingViewModel(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
-        CurrentMovie = unitOfWork.MoviesRepository.GetAll().First(m => m.NowShowing).MovieName;
         Task.Run(CreateSeats);
     }
 
@@ -38,6 +37,7 @@ public partial class SeatBookingViewModel : BaseViewModel
     {
         await Application.Current.Dispatcher.InvokeAsync(() =>
         {
+            CurrentMovie = _unitOfWork.MoviesRepository.ToList().FirstOrDefault(m => m.NowShowing)?.MovieName ?? "No movie is currently showing";
             for (var row = 'A'; row <= 'E'; row++)
             {
                 for (var column = 1; column <= 8; column++)

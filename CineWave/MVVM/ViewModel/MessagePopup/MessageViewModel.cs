@@ -26,7 +26,6 @@ public partial class MessageViewModel : BaseViewModel
     public MessageViewModel(Message messageView)
     {
         _messageView = messageView;
-        AddButton();
     }
 
     private void AddButton()
@@ -82,6 +81,7 @@ public partial class MessageViewModel : BaseViewModel
     
     public void ShowMessageWindow()
     {
+        AddButton();
         _messageView.Topmost = true;
         _messageView.Show();
         _messageView.Focus();

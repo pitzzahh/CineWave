@@ -6,12 +6,13 @@
         mc:Ignorable="d"
         WindowStyle="None"
         ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
         MouseLeftButtonDown="OnMoveWindow"
         MouseEnter="OnEnterControlBar"
         Background="Transparent"
         AllowsTransparency="True"
-        Width="150"
-        Height="100">
+        Width="450"
+        Height="250">
     <Border CornerRadius="5">
         <Border.Background>
             <LinearGradientBrush StartPoint="0.02,0.2" EndPoint="1.5,1.9">
@@ -28,6 +29,10 @@
             <StackPanel>
                 <TextBlock Text="{Binding Message}"
                            HorizontalAlignment="Center"
+                           Margin="10"
+                           FontSize="16"
+                           FontWeight="Medium"
+                           Foreground="{StaticResource QuinaryBrush}"
                            Padding="5" />
             </StackPanel>
             <StackPanel Grid.Row="1"

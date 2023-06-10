@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
         xmlns:fontawesome="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
@@ -120,8 +119,6 @@
                                                  HoverForeground="{StaticResource PrimaryBrush}"
                                                  PressedBackground="{StaticResource PrimaryBrush}"
                                                  PressedForeground="{StaticResource QuinaryBrush}" />
-                    <materialDesign:MaterialDateDisplay Margin="12"
-                                                        Foreground="{StaticResource QuinaryBrush}" />
                 </StackPanel>
             </Border>
 

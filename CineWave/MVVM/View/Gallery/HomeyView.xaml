@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="25" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -15,10 +15,8 @@
                    FontSize="20"
                    FontWeight="Medium"
                    Margin="10 0 0 0"
-
                    Foreground="{StaticResource QuinaryBrush}" />
         <UniformGrid Grid.Row="1">
-
             <ScrollViewer d:Margin="10"
                           VerticalScrollBarVisibility="Auto">
                 <ItemsControl

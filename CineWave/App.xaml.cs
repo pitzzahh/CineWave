@@ -13,6 +13,7 @@ using CineWave.MVVM.ViewModel.AddMovie;
 using CineWave.MVVM.ViewModel.Gallery;
 using CineWave.MVVM.ViewModel.Login;
 using CineWave.MVVM.ViewModel.ManageMovies;
+using CineWave.MVVM.ViewModel.MessagePopup;
 using CineWave.MVVM.ViewModel.Reservations;
 using CineWave.MVVM.ViewModel.SeatsBooking;
 using CineWave.MVVM.ViewModel.Trailer;
@@ -37,6 +38,8 @@ namespace CineWave
 
             serviceCollection.AddSingleton<MainViewModel>();
             serviceCollection.AddSingleton<HomeViewModel>();
+            serviceCollection.AddSingleton<MessageViewModel>();
+            serviceCollection.AddScoped<Message>();
             serviceCollection.AddSingleton<ReservationsViewModel>();
             serviceCollection.AddSingleton<SeatBookingViewModel>();
             serviceCollection.AddSingleton<ManageMoviesViewModel>();

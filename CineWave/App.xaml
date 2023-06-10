@@ -13,7 +13,8 @@
              xmlns:reservationsView="clr-namespace:CineWave.MVVM.View.Reservations"
              xmlns:seatsBookingView="clr-namespace:CineWave.MVVM.View.SeatsBooking"
              xmlns:addMovieView="clr-namespace:CineWave.MVVM.View.AddMovie"
-             xmlns:manageMoviesView="clr-namespace:CineWave.MVVM.View.ManageMovies">
+             xmlns:manageMoviesView="clr-namespace:CineWave.MVVM.View.ManageMovies"
+             xmlns:messages="clr-namespace:CineWave.MVVM.ViewModel.MessagePopup">
     <Application.Resources>
         
         <ResourceDictionary>
@@ -54,8 +55,11 @@
                 <components:SeatBookingRegistrationForm/>
             </DataTemplate>
             
+            <DataTemplate DataType="{x:Type messages:MessageViewModel}">
+                <components:Message/>
+            </DataTemplate>
+            
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" /> 
                 <!--  ModernControls WPF  -->
                 <ResourceDictionary
                     Source="pack://application:,,,/Russkyc.ModernControls.WPF;component/Themes/BaseTheme/DefaultDark.xaml" />

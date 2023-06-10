@@ -6,31 +6,23 @@
              mc:Ignorable="d"
              d:DesignWidth="770"
              d:DesignHeight="700">
-    <Grid>
+    <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="25" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0"
-                    Orientation="Horizontal"
-                    VerticalAlignment="Center"
-                    Background="{StaticResource PrimaryBrush}">
-            <Label Content="Current Movie:"
-                   FontSize="20"
+        <TextBlock FontSize="20"
                    FontWeight="Medium"
-                   Margin="10 0 10 0"
-                   VerticalAlignment="Center"
-                   Foreground="{StaticResource QuinaryBrush}" />
-            <Label Content="{Binding CurrentMovie}"
-                   FontSize="20"
-                   FontWeight="Medium"
-                   VerticalAlignment="Center"
-                   Foreground="{StaticResource QuinaryBrush}" />
-        </StackPanel>
+                   Margin="10 0 0 0"
+                   Foreground="{StaticResource QuinaryBrush}">
+            <Run Text="Current Movie: " />
+            <Run Text="{Binding CurrentMovie}" 
+                 FontWeight="Normal"/>
+        </TextBlock>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="0 5 0 0">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="35" />

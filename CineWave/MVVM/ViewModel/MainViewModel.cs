@@ -8,6 +8,7 @@ using CineWave.MVVM.View.Login;
 using CineWave.MVVM.ViewModel.AddMovie;
 using CineWave.MVVM.ViewModel.Gallery;
 using CineWave.MVVM.ViewModel.ManageMovies;
+using CineWave.MVVM.ViewModel.MessagePopup;
 using CineWave.MVVM.ViewModel.Reservations;
 using CineWave.MVVM.ViewModel.SeatsBooking;
 using CineWave.MVVM.ViewModel.Trailer;
@@ -22,10 +23,13 @@ public partial class MainViewModel : BaseViewModel
 {
     [ObservableProperty] private INavigationService _navService;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly MessageViewModel _messageViewModel;
 
-    public MainViewModel(INavigationService navigationService, IUnitOfWork unitOfWork)
+    public MainViewModel(INavigationService navigationService, IUnitOfWork unitOfWork,
+        MessageViewModel messageViewModel)
     {
         _unitOfWork = unitOfWork;
+        _messageViewModel = messageViewModel;
         NavService = navigationService;
         NavigateToHome();
     }
@@ -42,7 +46,8 @@ public partial class MainViewModel : BaseViewModel
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         try
         {
-            Task.Run(App.ServiceProvider.GetRequiredService<HomeViewModel>().GetMoviesFromApi) ; // Run the method on a separate thread
+            Task.Run(App.ServiceProvider.GetRequiredService<HomeViewModel>()
+                .GetMoviesFromApi); // Run the method on a separate thread
         }
         catch (Exception e)
         {
@@ -61,7 +66,8 @@ public partial class MainViewModel : BaseViewModel
     {
         NavService.NavigateTo<SeatBookingViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().SetCurrentMovie); // Run the method on a separate thread
+        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>()
+            .SetCurrentMovie); // Run the method on a separate thread
     }
 
     [RelayCommand]
@@ -69,7 +75,7 @@ public partial class MainViewModel : BaseViewModel
     {
         NavService.NavigateTo<AddMovieViewModel>();
     }
-    
+
     [RelayCommand]
     public void NavigateToManageMovie()
     {
@@ -79,6 +85,10 @@ public partial class MainViewModel : BaseViewModel
     [RelayCommand]
     public void Logout()
     {
+        _messageViewModel.Message = "Logout";
+        _messageViewModel.MessageType = MessageViewModel.Type.Question;
+        _messageViewModel.ShowMessageWindow();
+        if (!_messageViewModel.IsYes) return;
         Task.Run(_unitOfWork.MoviesRepository.GetAll); // Run the method on a separate thread
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;

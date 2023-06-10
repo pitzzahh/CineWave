@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
         xmlns:fontawesome="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
@@ -66,7 +67,8 @@
                     </StackPanel>
 
                     <!-- Menus -->
-                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                Margin="5 0 0 0">
                         <moderncontrols:ModernRadioButton x:Name="GalleryButton"
                                                           IsChecked="True"
                                                           Style="{StaticResource MenuButton}"
@@ -114,11 +116,12 @@
                                                  Command="{Binding LogoutCommand}"
                                                  HoverBackground="{StaticResource QuinaryBrush}"
                                                  DefaultBackground="DimGray"
-                                                 Margin="0,10"
+                                                 Margin="10"
                                                  HoverForeground="{StaticResource PrimaryBrush}"
                                                  PressedBackground="{StaticResource PrimaryBrush}"
                                                  PressedForeground="{StaticResource QuinaryBrush}" />
-
+                    <materialDesign:MaterialDateDisplay Margin="12"
+                                                        Foreground="{StaticResource QuinaryBrush}" />
                 </StackPanel>
             </Border>
 
@@ -164,7 +167,7 @@
                                     Style="{StaticResource ControlButton}">
                                 <fontawesome:IconImage Icon="WindowMinimize"
                                                        Width="15"
-                                                       Style="{StaticResource ControlButtonIcon}"/>
+                                                       Style="{StaticResource ControlButtonIcon}" />
                             </Button>
                         </StackPanel>
                     </Border>
@@ -172,7 +175,7 @@
                     <!-- Main Content -->
                     <ContentControl Grid.Row="1"
                                     Content="{Binding NavService.CurrentView}"
-                                    Padding="20" />
+                                    Margin="5" />
                 </Grid>
             </Border>
         </Grid>

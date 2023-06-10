@@ -9,7 +9,7 @@ public class SeatStatusToColorConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return (bool)value ? Brushes.Red : Brushes.Green;
+        return (bool)value ? Brushes.Red : new SolidBrush( Color.FromName("#FFECF39E"));
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

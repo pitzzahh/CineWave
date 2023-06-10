@@ -12,6 +12,7 @@ public class UnitOfWork : IUnitOfWork
         _context = context;
         MoviesRepository = new MoviesRepository(_context);
         CustomersRepository = new CustomersRepository(_context);
+        TicketsRepository = new TicketsRepository(_context);
     }
 
     public void Dispose()
@@ -21,6 +22,7 @@ public class UnitOfWork : IUnitOfWork
 
     public MoviesRepository MoviesRepository { get; }
     public CustomersRepository CustomersRepository { get; }
+    public TicketsRepository TicketsRepository { get; }
     
     public int Complete()
     {

@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using CineWave.Components;
-using CineWave.MVVM.Model.Movies;
+using CineWave.DB.Core;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
 using CineWave.MVVM.ViewModel.AddMovie;
@@ -21,9 +21,11 @@ namespace CineWave.MVVM.ViewModel;
 public partial class MainViewModel : BaseViewModel
 {
     [ObservableProperty] private INavigationService _navService;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public MainViewModel(INavigationService navigationService)
+    public MainViewModel(INavigationService navigationService, IUnitOfWork unitOfWork)
     {
+        _unitOfWork = unitOfWork;
         NavService = navigationService;
         NavigateToHome();
     }
@@ -58,6 +60,8 @@ public partial class MainViewModel : BaseViewModel
     public void NavigateToSeatBooking()
     {
         NavService.NavigateTo<SeatBookingViewModel>();
+        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().SetCurrentMovie); // Run the method on a separate thread
     }
 
     [RelayCommand]
@@ -75,6 +79,7 @@ public partial class MainViewModel : BaseViewModel
     [RelayCommand]
     public void Logout()
     {
+        Task.Run(_unitOfWork.MoviesRepository.GetAll); // Run the method on a separate thread
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
         App.ServiceProvider.GetRequiredService<MainWindow>().Hide();

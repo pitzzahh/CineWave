@@ -73,7 +73,7 @@
                   VerticalAlignment="Center"
                   HorizontalAlignment="Center">
                 <ItemsControl ItemsSource="{Binding Seats}"
-                              Width="900"
+                              Width="1000"
                               HorizontalAlignment="Center"
                               HorizontalContentAlignment="Center">
                     <ItemsControl.ItemsPanel>
@@ -86,7 +86,8 @@
         </Grid>
 
         <!-- Cinema Screen -->
-        <Grid Grid.Row="2" HorizontalAlignment="Center">
+        <Grid Grid.Row="2" HorizontalAlignment="Center"
+              Margin="0 0 0 5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="25" />

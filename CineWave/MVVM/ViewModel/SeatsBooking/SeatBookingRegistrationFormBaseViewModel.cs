@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using CineWave.Components;
 using CineWave.DB.Core;
@@ -29,18 +30,20 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
     }
 
     [RelayCommand]
-    public void OnBuy()
+    public async Task OnBuy()
     {
         if (!CheckInputs()) return; // TODO: fix checking inputs
-        var currentMovie = _unitOfWork.MoviesRepository.ToList().FirstOrDefault(m => m.NowShowing);
+        Movie? currentMovie = null;
+        await Application.Current.Dispatcher.InvokeAsync(() =>
+        {
+            currentMovie = _unitOfWork.MoviesRepository.GetAll().FirstOrDefault(m => m.NowShowing);
+        });
         if (currentMovie != null)
         {
             var ticket = new Ticket(currentMovie.MovieId, currentMovie.MoviePrice);
             var customer = new Customer(0, ticket.TicketId);
-            
         }
 
-        // TODO: save ticket and customer to database and cache
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
     }

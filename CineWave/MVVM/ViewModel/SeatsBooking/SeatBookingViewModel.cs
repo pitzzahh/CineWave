@@ -21,6 +21,7 @@ public partial class SeatBookingViewModel : BaseViewModel
     {
         _unitOfWork = unitOfWork;
         Task.Run(CreateSeats);
+        Task.Run(SetCurrentMovie);
     }
 
     public bool IsSeatAvailable(string seatNumber)
@@ -33,14 +34,24 @@ public partial class SeatBookingViewModel : BaseViewModel
         return true;
     }
 
+    public async Task SetCurrentMovie()
+    {
+        await Application.Current
+            .Dispatcher
+            .InvokeAsync(() =>
+            {
+                CurrentMovie = _unitOfWork.MoviesRepository.GetAll().FirstOrDefault(m => m.NowShowing)?.MovieName ??
+                               "No movie is currently showing";
+            });
+    }
+
     private async Task CreateSeats()
     {
         await Application.Current.Dispatcher.InvokeAsync(() =>
         {
-            CurrentMovie = _unitOfWork.MoviesRepository.ToList().FirstOrDefault(m => m.NowShowing)?.MovieName ?? "No movie is currently showing";
             for (var row = 'A'; row <= 'E'; row++)
             {
-                for (var column = 1; column <= 8; column++)
+                for (var column = 1; column <= 10; column++)
                 {
                     var seatNumber = $"{row}{column}";
                     SeatNumber = seatNumber;

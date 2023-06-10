@@ -40,12 +40,17 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
         });
         if (currentMovie != null)
         {
+            if (!IsSeatAvailable().Result)
+            {
+                MessageBox.Show("Seat is not available");
+                return;
+ 
+            }
             var ticket = new Ticket(currentMovie.MovieId, currentMovie.MoviePrice);
             var customer = new Customer(0, ticket.TicketId);
+            Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+            CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
         }
-
-        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
     }
 
     [RelayCommand]
@@ -73,6 +78,19 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
     private bool IsValidPayment()
     {
         return decimal.TryParse(Payment, out var paymentAmount) && paymentAmount >= 0;
+    }
+    
+    public async Task<bool> IsSeatAvailable()
+    {
+        var result = false;
+        await Application.Current.Dispatcher.InvokeAsync(() =>
+        {
+            var seat = _unitOfWork.SeatsRepository.GetAll()
+                .Where(s => s.SeatNumber == SeatNumber)
+                .FirstOrDefault(m => m.IsTaken);
+            result = seat?.IsTaken ?? false;
+        });
+        return result;
     }
 
     public void Receive(GetSeatInfoMessage message)

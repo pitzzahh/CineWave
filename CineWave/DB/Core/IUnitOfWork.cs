@@ -6,5 +6,8 @@ namespace CineWave.DB.Core;
 public interface IUnitOfWork : IDisposable
 {
     MoviesRepository MoviesRepository { get; }
+    CustomersRepository CustomersRepository { get; }
+    TicketsRepository TicketsRepository { get; }
+    SeatsRepository SeatsRepository { get; }
     int Complete();
 }

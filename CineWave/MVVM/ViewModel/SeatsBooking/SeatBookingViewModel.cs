@@ -24,16 +24,6 @@ public partial class SeatBookingViewModel : BaseViewModel
         Task.Run(SetCurrentMovie);
     }
 
-    public bool IsSeatAvailable(string seatNumber)
-    {
-        return true;
-    }
-
-    public bool BookSeat(string seatNumber, Customer customer)
-    {
-        return true;
-    }
-
     public async Task SetCurrentMovie()
     {
         await Application.Current

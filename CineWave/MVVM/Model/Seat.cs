@@ -4,12 +4,13 @@ public class Seat
 {
     public string SeatNumber { get; }
     public int CustomerId { get; set; }
-    public bool IsTaken { get; set; }
+    public int MovieId { get; set; }
+    public bool IsTaken { get; set; } = false;
 
-    public Seat(string seatNumber, int customerId)
+    public Seat(string seatNumber, int customerId, int movieId)
     {
         SeatNumber = seatNumber;
         CustomerId = customerId;
-        IsTaken = false;
+        MovieId = movieId;
     }
 }

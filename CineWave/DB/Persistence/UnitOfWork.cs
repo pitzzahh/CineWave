@@ -14,12 +14,14 @@ public class UnitOfWork : IUnitOfWork
         MoviesRepository = new MoviesRepository(_context);
         CustomersRepository = new CustomersRepository(_context);
         TicketsRepository = new TicketsRepository(_context);
+        SeatsRepository = new SeatsRepository(_context);
     }
 
 
     public MoviesRepository MoviesRepository { get; }
     public CustomersRepository CustomersRepository { get; }
     public TicketsRepository TicketsRepository { get; }
+    public SeatsRepository SeatsRepository { get; }
 
     public void Dispose() => GC.SuppressFinalize(this);
 

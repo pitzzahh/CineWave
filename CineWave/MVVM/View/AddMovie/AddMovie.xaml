@@ -6,7 +6,7 @@
              xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
              mc:Ignorable="d"
-             d:DesignWidth="550">
+             d:DesignWidth="750">
 
     <UserControl.Resources>
         <system:Double x:Key="ShortComboBoxWidth">100</system:Double>
@@ -101,7 +101,7 @@
             </StackPanel>
 
             <StackPanel Margin="5" HorizontalAlignment="Stretch">
-                <Label Content="Screening Date"
+                <Label Content="Screening Date and Time"
                        FontWeight="Medium"
                        FontSize="14.5"
                        Foreground="{StaticResource QuinaryBrush}" />
@@ -141,6 +141,34 @@
                                FontWeight="Medium" />
                         <moderncontrols:ModernComboBox ItemsSource="{Binding ScreeningDateDays}"
                                                        SelectedItem="{Binding ScreeningDateDay}"
+                                                       Width="{StaticResource ShortComboBoxWidth}"
+                                                       DefaultBackground="{StaticResource PrimaryBrush}"
+                                                       Foreground="{StaticResource QuinaryBrush}" />
+                        <Label Content="Required"
+                               Opacity="0.7"
+                               Foreground="{StaticResource QuinaryBrush}" />
+                    </StackPanel>
+                    <StackPanel Margin="5 0">
+                        <Label Content="Hour"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="13"
+                               FontWeight="Medium" />
+                        <moderncontrols:ModernComboBox ItemsSource="{Binding ScreeningDateHourList}"
+                                                       SelectedItem="{Binding ScreeningDateHourTime}"
+                                                       Width="{StaticResource ShortComboBoxWidth}"
+                                                       DefaultBackground="{StaticResource PrimaryBrush}"
+                                                       Foreground="{StaticResource QuinaryBrush}" />
+                        <Label Content="Required"
+                               Opacity="0.7"
+                               Foreground="{StaticResource QuinaryBrush}" />
+                    </StackPanel>
+                    <StackPanel Margin="5 0">
+                        <Label Content="Minute"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="13"
+                               FontWeight="Medium" />
+                        <moderncontrols:ModernComboBox ItemsSource="{Binding ScreeningDateMinuteList}"
+                                                       SelectedItem="{Binding ScreeningDateMinuteTime}"
                                                        Width="{StaticResource ShortComboBoxWidth}"
                                                        DefaultBackground="{StaticResource PrimaryBrush}"
                                                        Foreground="{StaticResource QuinaryBrush}" />

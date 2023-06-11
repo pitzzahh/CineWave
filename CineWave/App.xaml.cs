@@ -7,13 +7,11 @@ using CineWave.DB.Core;
 using CineWave.DB.Persistence;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
-using CineWave.MVVM.View.ManageMovies;
 using CineWave.MVVM.ViewModel;
 using CineWave.MVVM.ViewModel.AddMovie;
 using CineWave.MVVM.ViewModel.Gallery;
 using CineWave.MVVM.ViewModel.Login;
 using CineWave.MVVM.ViewModel.ManageMovies;
-using CineWave.MVVM.ViewModel.MessagePopup;
 using CineWave.MVVM.ViewModel.Reservations;
 using CineWave.MVVM.ViewModel.SeatsBooking;
 using CineWave.MVVM.ViewModel.Trailer;
@@ -38,15 +36,13 @@ namespace CineWave
 
             serviceCollection.AddSingleton<MainViewModel>();
             serviceCollection.AddSingleton<HomeViewModel>();
-            serviceCollection.AddSingleton<MessageViewModel>();
-            serviceCollection.AddScoped<Message>();
             serviceCollection.AddSingleton<ReservationsViewModel>();
             serviceCollection.AddSingleton<SeatBookingViewModel>();
             serviceCollection.AddSingleton<ManageMoviesViewModel>();
             serviceCollection.AddSingleton<MovieInfoCardViewModel>();
             serviceCollection.AddSingleton<SeatCardViewModel>();
             serviceCollection.AddSingleton<SeatBookingRegistrationForm>();
-            serviceCollection.AddTransient<SeatBookingRegistrationFormBaseViewModel>();
+            serviceCollection.AddTransient<SeatBookingRegistrationFormViewModel>();
             serviceCollection.AddTransient<AddMovieViewModel>();
             serviceCollection.AddSingleton<TrailerViewModel>();
             serviceCollection.AddSingleton<ManageMoviesViewModel>();
@@ -64,7 +60,7 @@ namespace CineWave
             
             serviceCollection.AddSingleton<SeatBookingRegistrationForm>(provider => new SeatBookingRegistrationForm
             {
-                DataContext = provider.GetRequiredService<SeatBookingRegistrationFormBaseViewModel>()
+                DataContext = provider.GetRequiredService<SeatBookingRegistrationFormViewModel>()
             });
             
             serviceCollection.AddSingleton<Func<Type, BaseViewModel>>(provider => viewModelType => (BaseViewModel)provider.GetRequiredService(viewModelType));

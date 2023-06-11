@@ -13,8 +13,7 @@
              xmlns:reservationsView="clr-namespace:CineWave.MVVM.View.Reservations"
              xmlns:seatsBookingView="clr-namespace:CineWave.MVVM.View.SeatsBooking"
              xmlns:addMovieView="clr-namespace:CineWave.MVVM.View.AddMovie"
-             xmlns:manageMoviesView="clr-namespace:CineWave.MVVM.View.ManageMovies"
-             xmlns:messages="clr-namespace:CineWave.MVVM.ViewModel.MessagePopup">
+             xmlns:manageMoviesView="clr-namespace:CineWave.MVVM.View.ManageMovies">
     <Application.Resources>
         
         <ResourceDictionary>
@@ -43,7 +42,7 @@
                 <manageMoviesView:ManageMoviesView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type gallery:MovieCardBaseViewModel}">
+            <DataTemplate DataType="{x:Type gallery:MovieCardViewModel}">
                 <components:MovieCard/>
             </DataTemplate>
             
@@ -51,12 +50,8 @@
                 <components:SeatCard/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type seatsBooking:SeatBookingRegistrationFormBaseViewModel}">
+            <DataTemplate DataType="{x:Type seatsBooking:SeatBookingRegistrationFormViewModel}">
                 <components:SeatBookingRegistrationForm/>
-            </DataTemplate>
-            
-            <DataTemplate DataType="{x:Type messages:MessageViewModel}">
-                <components:Message/>
             </DataTemplate>
             
             <ResourceDictionary.MergedDictionaries>

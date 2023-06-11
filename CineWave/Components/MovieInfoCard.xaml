@@ -13,7 +13,7 @@
                     <TextBlock Text="{Binding MovieName}" FontWeight="Bold" FontSize="16"/>
                     <TextBlock Text="{Binding MoviePrice, StringFormat='Price: {0:C}'}"/>
                     <TextBlock Text="{Binding ReleaseDate, StringFormat='Released on: {0:d}'}"/>
-                    <TextBlock Text="{Binding NowShowing, StringFormat='Now Showing: {0}'}"/>
+                    <TextBlock Text="{Binding ScreeningDateTime, StringFormat='Screening Date: {0:d}'}"/>
                 </StackPanel>
             </Grid>
         </Border>

@@ -12,15 +12,15 @@ public class Movie
     public double MoviePrice { get; set; }
     public bool NowShowing { get; set; }
     public DateOnly ReleaseDate { get; set; }
-    public DateOnly ScreeningDate { get; set; }
+    public DateTime ScreeningDateTime { get; set; }
     
-    public Movie(string? movieName, double moviePrice, bool nowShowing, DateOnly releaseDate, DateOnly screeningDate)
+    public Movie(string? movieName, double moviePrice, bool nowShowing, DateOnly releaseDate, DateTime screeningDateTime)
     {
         MovieName = movieName;
         MoviePrice = moviePrice;
         NowShowing = nowShowing;
         ReleaseDate = releaseDate;
-        ScreeningDate = releaseDate;
+        ScreeningDateTime = screeningDateTime;
     }
 
 }

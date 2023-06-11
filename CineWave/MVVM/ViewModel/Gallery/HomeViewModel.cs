@@ -11,8 +11,8 @@ namespace CineWave.MVVM.ViewModel.Gallery;
 
 public partial class HomeViewModel : BaseViewModel
 {
-    private readonly ObservableCollection<MovieCardBaseViewModel> _movies = new();
-    public IEnumerable<MovieCardBaseViewModel> MovieCardViewModels => _movies;
+    private readonly ObservableCollection<MovieCardViewModel> _movies = new();
+    public IEnumerable<MovieCardViewModel> MovieCardViewModels => _movies;
     private readonly List<string> _trailers = new();
     [ObservableProperty] private string? _currentMovieId;
 
@@ -27,7 +27,7 @@ public partial class HomeViewModel : BaseViewModel
             _movies.Clear();
             foreach (var result in results)
             {
-                _movies.Add(new MovieCardBaseViewModel(
+                _movies.Add(new MovieCardViewModel(
                     $"https://image.tmdb.org/t/p/w500/{result["poster_path"]}",
                     result["original_title"]?.ToString(),
                     result["overview"]?.ToString()

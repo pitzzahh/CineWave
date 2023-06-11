@@ -19,13 +19,19 @@ public partial class AddMovieViewModel : BaseViewModel
     [ObservableProperty] private int _screeningDateDay;
     private string? _screeningDateMonth;
     [ObservableProperty] private int _screeningDateYear = DateTime.Now.Year;
-    [ObservableProperty] private ObservableCollection<int> _releaseDateDays = new();
 
+    [ObservableProperty] private int _screeningDateHourTime = DateTime.Now.Hour;
+    [ObservableProperty] private int _screeningDateMinuteTime = DateTime.Now.Minute;
+
+    [ObservableProperty] private ObservableCollection<int> _releaseDateDays = new();
     [ObservableProperty] private ObservableCollection<string> _releaseDateMonths = new();
     [ObservableProperty] private ObservableCollection<int> _releaseDateYears = new();
     [ObservableProperty] private ObservableCollection<int> _screeningDateDays = new();
     [ObservableProperty] private ObservableCollection<string> _screeningDateMonths = new();
     [ObservableProperty] private ObservableCollection<int> _screeningDateYears = new();
+
+    [ObservableProperty] private ObservableCollection<int> _screeningDateHourList = new();
+    [ObservableProperty] private ObservableCollection<int> _screeningDateMinuteList = new();
 
     private readonly IUnitOfWork _unitOfWork;
 
@@ -57,6 +63,16 @@ public partial class AddMovieViewModel : BaseViewModel
         {
             ReleaseDateYears.Add(i);
             ScreeningDateYears.Add(i);
+        }
+
+        for (var i = 1; i <= 24; i++)
+        {
+            ScreeningDateHourList.Add(i);
+        }
+
+        for (var i = 1; i <= 60; i++)
+        {
+            ScreeningDateMinuteList.Add(i);
         }
     }
 
@@ -92,9 +108,15 @@ public partial class AddMovieViewModel : BaseViewModel
         if (MovieName is null || Price is null || !StringHelper.IsWholeNumberOrDecimal(Price))
             return;
         var releaseDate = new DateOnly(ReleaseDateYear, StringHelper.GetMonthInt(ReleaseDateMonth), ReleaseDateDay);
-        var screeningDate = new DateOnly(ScreeningDateYear, StringHelper.GetMonthInt(ScreeningDateMonth), ScreeningDateDay);
-        _unitOfWork.MoviesRepository.Add(new Movie(MovieName, Convert.ToDouble(Price), false, releaseDate,
-            screeningDate));
+        var screeningDateTime = new DateTime(
+            ScreeningDateYear,
+            StringHelper.GetMonthInt(ScreeningDateMonth),
+            ScreeningDateDay,
+            ScreeningDateHourTime,
+            ScreeningDateMinuteTime,
+            0
+        );
+        _unitOfWork.MoviesRepository.Add(new Movie(MovieName, Convert.ToDouble(Price), false, releaseDate, screeningDateTime));
         var complete = _unitOfWork.Complete();
 
         if (complete == 1)
@@ -129,6 +151,7 @@ public partial class AddMovieViewModel : BaseViewModel
         {
             ScreeningDateDays.Add(i);
         }
+
         ScreeningDateDay = 1;
     }
 }

@@ -15,7 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CineWave.MVVM.ViewModel.SeatsBooking;
 
-public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, IRecipient<GetSeatInfoMessage>
+public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IRecipient<GetSeatInfoMessage>
 {
     [ObservableProperty] private string? _movieName;
     [ObservableProperty] private string? _moviePrice;
@@ -23,7 +23,7 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
     [ObservableProperty] private string? _payment;
     private readonly IUnitOfWork _unitOfWork;
 
-    public SeatBookingRegistrationFormBaseViewModel(IUnitOfWork unitOfWork)
+    public SeatBookingRegistrationFormViewModel(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
         WeakReferenceMessenger.Default.Register(this);
@@ -79,8 +79,8 @@ public partial class SeatBookingRegistrationFormBaseViewModel : BaseViewModel, I
     {
         return decimal.TryParse(Payment, out var paymentAmount) && paymentAmount >= 0;
     }
-    
-    public async Task<bool> IsSeatAvailable()
+
+    private async Task<bool> IsSeatAvailable()
     {
         var result = false;
         await Application.Current.Dispatcher.InvokeAsync(() =>

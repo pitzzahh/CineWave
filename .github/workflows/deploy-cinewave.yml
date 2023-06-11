@@ -9,7 +9,7 @@ env:
 
 jobs:
   deploy:
-    runs-on: windows-2019
+    runs-on: windows-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2

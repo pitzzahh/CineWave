@@ -5,19 +5,18 @@ namespace CineWave.MVVM.ViewModel.ManageMovies;
 
 public partial class MovieInfoCardViewModel : BaseViewModel
 {
-    [ObservableProperty] private string? _movieName;
-
+    [ObservableProperty] private string _movieName = null!;
     [ObservableProperty] private double _moviePrice;
+    [ObservableProperty] private TimeOnly _runtime;
+    [ObservableProperty] private DateOnly _releaseDate;
+    [ObservableProperty] private DateTime _screeningDateTime;
 
-    [ObservableProperty] private DateTime _releaseDate;
-
-    [ObservableProperty] private bool _nowShowing;
-
-    public MovieInfoCardViewModel(string movieName, double moviePrice, DateTime releaseDate, bool nowShowing)
+    public MovieInfoCardViewModel(string movieName, double moviePrice, TimeOnly runtime, DateOnly releaseDate, DateTime screeningDateTime)
     {
         MovieName = movieName;
         MoviePrice = moviePrice;
+        Runtime = runtime;
         ReleaseDate = releaseDate;
-        NowShowing = nowShowing;
+        ScreeningDateTime = screeningDateTime;
     }
 }

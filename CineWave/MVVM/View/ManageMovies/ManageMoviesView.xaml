@@ -16,7 +16,7 @@
                    FontWeight="Medium"
                    Margin="10 0 0 0"
                    Foreground="{StaticResource QuinaryBrush}" />
-        <UniformGrid Grid.Row="1">
+        <UniformGrid Grid.Row="1" Margin="10">
             <ScrollViewer d:Margin="10"
                           VerticalScrollBarVisibility="Auto">
                 <ItemsControl

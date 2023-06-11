@@ -42,8 +42,7 @@ public partial class MainViewModel : BaseViewModel
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         try
         {
-            Task.Run(App.ServiceProvider.GetRequiredService<HomeViewModel>()
-                .GetMoviesFromApi); // Run the method on a separate thread
+            Task.Run(App.ServiceProvider.GetRequiredService<HomeViewModel>().GetMoviesFromApi); // Run the method on a separate thread
         }
         catch (Exception e)
         {
@@ -75,6 +74,8 @@ public partial class MainViewModel : BaseViewModel
     public void NavigateToManageMovie()
     {
         NavService.NavigateTo<ManageMoviesViewModel>();
+        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+        Task.Run(App.ServiceProvider.GetRequiredService<ManageMoviesViewModel>().CreateMovieInfoCards); // Run the method on a separate thread
     }
 
     [RelayCommand]

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using CineWave.DB.Core;
@@ -15,6 +14,7 @@ public partial class SeatBookingViewModel : BaseViewModel
     private readonly IUnitOfWork _unitOfWork;
     private readonly ObservableCollection<SeatCardViewModel> _seats = new(); // For seats choose
     public IEnumerable<SeatCardViewModel> Seats => _seats;
+    private const string MovieNotFound = "No movie is currently showing";
 
     public SeatBookingViewModel(IUnitOfWork unitOfWork)
     {
@@ -29,8 +29,7 @@ public partial class SeatBookingViewModel : BaseViewModel
             .Dispatcher
             .InvokeAsync(() =>
             {
-                CurrentMovie = _unitOfWork.MoviesRepository.GetAll().FirstOrDefault(m => m.NowShowing)?.MovieName ??
-                               "No movie is currently showing";
+                CurrentMovie = _unitOfWork.MoviesRepository.GetNowShowingMovie()?.MovieName ?? MovieNotFound;
             });
     }
 
@@ -40,7 +39,7 @@ public partial class SeatBookingViewModel : BaseViewModel
         {
             foreach (var seat in _unitOfWork.SeatsRepository.GetAll())
             {
-                _seats.Add(new SeatCardViewModel(seat.SeatNumber, seat.IsTaken, _unitOfWork));
+                _seats.Add(new SeatCardViewModel(seat.SeatNumber, CurrentMovie == MovieNotFound || seat.IsTaken, _unitOfWork));
             }
             _unitOfWork.Complete();
         });

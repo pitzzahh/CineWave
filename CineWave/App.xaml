@@ -46,6 +46,10 @@
                 <components:MovieCard/>
             </DataTemplate>
             
+            <DataTemplate DataType="{x:Type manageMovies:MovieInfoCardViewModel}">
+                <components:MovieInfoCard/>
+            </DataTemplate>
+            
             <DataTemplate DataType="{x:Type seatsBooking:SeatCardViewModel}">
                 <components:SeatCard/>
             </DataTemplate>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using CineWave.Components;
 using CineWave.DB;
@@ -73,15 +74,19 @@ namespace CineWave
         {
             Debug.Assert(ServiceProvider != null, nameof(ServiceProvider) + " != null");
             var unitOfWork = ServiceProvider.GetRequiredService<IUnitOfWork>();
-            for (var row = 'A'; row <= 'E'; row++)
+            var count = unitOfWork.SeatsRepository.GetAll().Count();
+            if (count != 50)
             {
-                for (var column = 1; column <= 10; column++)
+                for (var row = 'A'; row <= 'E'; row++)
                 {
-                    var seatNumber = $"{row}{column}";
-                    unitOfWork.SeatsRepository.Add(new Seat(seatNumber, false));
-                }
+                    for (var column = 1; column <= 10; column++)
+                    {
+                        var seatNumber = $"{row}{column}";
+                        unitOfWork.SeatsRepository.Add(new Seat(seatNumber, false));
+                    }
+                } 
+                unitOfWork.Complete();
             }
-            unitOfWork.Complete();
             ServiceProvider.GetRequiredService<LoginWindow>().Show();
             base.OnStartup(e);
         }

@@ -4,18 +4,76 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Border Background="White" BorderBrush="#DDDDDD" BorderThickness="1" Margin="5">
-            <Grid>
-                <!-- Movie card content -->
-                <StackPanel Margin="10">
-                    <TextBlock Text="{Binding MovieName}" FontWeight="Bold" FontSize="16"/>
-                    <TextBlock Text="{Binding MoviePrice, StringFormat='Price: {0:C}'}"/>
-                    <TextBlock Text="{Binding ReleaseDate, StringFormat='Released on: {0:d}'}"/>
-                    <TextBlock Text="{Binding ScreeningDateTime, StringFormat='Screening Date: {0:d}'}"/>
+             Width="380"
+             Margin="10"
+             Height="165">
+    <Border CornerRadius="5"
+            Padding="10"
+            BorderThickness="1">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0.1,0" EndPoint="1,1.1">
+                <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
+                <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <!-- Movie card content -->
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontWeight="Bold"
+                           Content="Movie Name:"
+                           Foreground="{StaticResource QuinaryBrush}"
+                           FontSize="14" />
+                    <Label Content="{Binding MovieName}"
+                           FontWeight="Medium"
+                           Foreground="{StaticResource QuinaryBrush}"
+                           FontSize="14" />
                 </StackPanel>
-            </Grid>
-        </Border>
-    </Grid>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label FontWeight="Bold"
+                           Content="Movie Price:"
+                           Foreground="{StaticResource QuinaryBrush}"
+                           FontSize="14" />
+                    <Label Content="{Binding MoviePrice}"
+                           FontWeight="Medium"
+                           Foreground="{StaticResource QuinaryBrush}"
+                           FontSize="14" />
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Label FontWeight="Bold"
+                           Content="Runtime:"
+                           Foreground="{StaticResource QuinaryBrush}"
+                           FontSize="14" />
+                    <Label Content="{Binding Runtime}"
+                           FontWeight="Medium"
+                           Foreground="{StaticResource QuinaryBrush}"
+                           FontSize="14" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label FontWeight="Bold"
+                           Content="Released On:"
+                           Foreground="{StaticResource QuinaryBrush}"
+                           FontSize="14" />
+                    <Label Content="{Binding ReleaseDate}"
+                           FontWeight="Medium"
+                           Foreground="{StaticResource QuinaryBrush}"
+                           FontSize="14" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label FontWeight="Bold"
+                           Content="Screening Date:"
+                           Foreground="{StaticResource QuinaryBrush}"
+                           FontSize="14" />
+                    <Label Content="{Binding ScreeningDateTime}"
+                           FontWeight="Medium"
+                           Foreground="{StaticResource QuinaryBrush}"
+                           FontSize="14" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
 </UserControl>

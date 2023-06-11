@@ -20,6 +20,9 @@ public partial class AddMovieViewModel : BaseViewModel
     private string? _screeningDateMonth;
     [ObservableProperty] private int _screeningDateYear = DateTime.Now.Year;
 
+    [ObservableProperty] private int _runtimeHourTime = DateTime.Now.Hour;
+    [ObservableProperty] private int _runtimeMinuteTime = DateTime.Now.Minute;
+
     [ObservableProperty] private int _screeningDateHourTime = DateTime.Now.Hour;
     [ObservableProperty] private int _screeningDateMinuteTime = DateTime.Now.Minute;
 
@@ -29,6 +32,9 @@ public partial class AddMovieViewModel : BaseViewModel
     [ObservableProperty] private ObservableCollection<int> _screeningDateDays = new();
     [ObservableProperty] private ObservableCollection<string> _screeningDateMonths = new();
     [ObservableProperty] private ObservableCollection<int> _screeningDateYears = new();
+
+    [ObservableProperty] private ObservableCollection<int> _runtimeHourList = new();
+    [ObservableProperty] private ObservableCollection<int> _runtimeMinuteList = new();
 
     [ObservableProperty] private ObservableCollection<int> _screeningDateHourList = new();
     [ObservableProperty] private ObservableCollection<int> _screeningDateMinuteList = new();
@@ -74,6 +80,16 @@ public partial class AddMovieViewModel : BaseViewModel
         {
             ScreeningDateMinuteList.Add(i);
         }
+        
+        for (var i = 1; i <= 24; i++)
+        {
+            RuntimeHourList.Add(i);
+        }
+
+        for (var i = 1; i <= 60; i++)
+        {
+            RuntimeMinuteList.Add(i);
+        }
     }
 
     public string? ReleaseDateMonth
@@ -116,7 +132,15 @@ public partial class AddMovieViewModel : BaseViewModel
             ScreeningDateMinuteTime,
             0
         );
-        _unitOfWork.MoviesRepository.Add(new Movie(MovieName, Convert.ToDouble(Price), false, releaseDate, screeningDateTime));
+        _unitOfWork.MoviesRepository.Add(new Movie(
+                MovieName,
+                new TimeOnly(RuntimeHourTime, RuntimeMinuteTime),
+                Convert.ToDouble(Price),
+                false,
+                releaseDate,
+                screeningDateTime
+            )
+        );
         var complete = _unitOfWork.Complete();
 
         if (complete == 1)

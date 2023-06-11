@@ -8,6 +8,8 @@ public class CineWaveDataContext : DbContext
 {
     public DbSet<Movie> Movies { get; set; } = null!;
     public DbSet<Customer> Customers { get; set; } = null!;
+    public DbSet<Ticket> Tickets { get; set; } = null!;
+    public DbSet<Seat> Seats { get; set; } = null!;
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

@@ -17,7 +17,6 @@ public class UnitOfWork : IUnitOfWork
         SeatsRepository = new SeatsRepository(_context);
     }
 
-
     public MoviesRepository MoviesRepository { get; }
     public CustomersRepository CustomersRepository { get; }
     public TicketsRepository TicketsRepository { get; }

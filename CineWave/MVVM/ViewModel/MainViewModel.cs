@@ -62,8 +62,7 @@ public partial class MainViewModel : BaseViewModel
     {
         NavService.NavigateTo<SeatBookingViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>()
-            .SetCurrentMovie); // Run the method on a separate thread
+        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().SetCurrentMovie); // Run the method on a separate thread
     }
 
     [RelayCommand]

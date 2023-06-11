@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using CineWave.DB.Core;
-using CineWave.MVVM.Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CineWave.MVVM.ViewModel.SeatsBooking;
@@ -39,15 +38,11 @@ public partial class SeatBookingViewModel : BaseViewModel
     {
         await Application.Current.Dispatcher.InvokeAsync(() =>
         {
-            for (var row = 'A'; row <= 'E'; row++)
+            foreach (var seat in _unitOfWork.SeatsRepository.GetAll())
             {
-                for (var column = 1; column <= 10; column++)
-                {
-                    var seatNumber = $"{row}{column}";
-                    SeatNumber = seatNumber;
-                    _seats.Add(new SeatCardViewModel(seatNumber, false, _unitOfWork));
-                }
+                _seats.Add(new SeatCardViewModel(seat.SeatNumber, seat.IsTaken, _unitOfWork));
             }
+            _unitOfWork.Complete();
         });
     }
 }

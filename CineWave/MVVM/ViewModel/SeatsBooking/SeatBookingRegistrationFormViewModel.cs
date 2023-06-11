@@ -1,6 +1,8 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using CineWave.Components;
@@ -32,24 +34,64 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     [RelayCommand]
     public async Task OnBuy()
     {
-        if (!CheckInputs()) return; // TODO: fix checking inputs
-        Movie? currentMovie = null;
-        await Application.Current.Dispatcher.InvokeAsync(() =>
+        if (CheckInputs())
         {
-            currentMovie = _unitOfWork.MoviesRepository.GetAll().FirstOrDefault(m => m.NowShowing);
-        });
+            MessageBox.Show("Please enter a valid payment");
+            return;
+        }
+
+        var currentMovie = _unitOfWork.MoviesRepository.GetAll().FirstOrDefault(m => m.NowShowing);
+
         if (currentMovie != null)
         {
-            if (!IsSeatAvailable().Result)
+            if (double.Parse(Payment ?? "0") < currentMovie.MoviePrice)
+            {
+                MessageBox.Show("Payment is not enough");
+                return;
+            }
+            
+            if (!IsSeatAvailable())
             {
                 MessageBox.Show("Seat is not available");
                 return;
- 
             }
-            var ticket = new Ticket(currentMovie.MovieId, currentMovie.MoviePrice);
-            var customer = new Customer(0, ticket.TicketId);
-            Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-            CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
+
+            if (SeatNumber != null)
+            {
+                var ticket = new Ticket(currentMovie.MovieId, currentMovie.MoviePrice, SeatNumber);
+                var customer = new Customer(0, ticket.TicketId);
+
+                await Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    _unitOfWork.CustomersRepository.Add(customer);
+                    _unitOfWork.TicketsRepository.Add(ticket);
+                });
+            }
+
+            var complete = _unitOfWork.Complete();
+            if (complete == 1)
+            {
+                var result = MessageBox.Show("Ticket bought successfully", "Confirmation", MessageBoxButton.OKCancel);
+                switch (result)
+                {
+                    case MessageBoxResult.OK:
+                        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+                        CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
+                        break;
+                    case MessageBoxResult.Cancel:
+                        // Cancel button is clicked
+                        // Perform the desired action here
+                        break;
+                    case MessageBoxResult.None:
+                    case MessageBoxResult.Yes:
+                    case MessageBoxResult.No:
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                var tickets = _unitOfWork.TicketsRepository.GetAll();
+                var customers = _unitOfWork.CustomersRepository.GetAll();
+            }
         }
     }
 
@@ -72,18 +114,18 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
 
     private bool CheckInputs()
     {
-        return string.IsNullOrEmpty(Payment) || !IsValidPayment();
+        return !IsValidPayment();
     }
 
     private bool IsValidPayment()
     {
-        return decimal.TryParse(Payment, out var paymentAmount) && paymentAmount >= 0;
+        return Regex.IsMatch(Payment?? "0", @"^\d+(\.\d+)?$");
     }
 
-    private async Task<bool> IsSeatAvailable()
+    private bool IsSeatAvailable()
     {
-        var result = false;
-        await Application.Current.Dispatcher.InvokeAsync(() =>
+        var result = false; 
+        Application.Current.Dispatcher.InvokeAsync(() =>
         {
             var seat = _unitOfWork.SeatsRepository.GetAll()
                 .Where(s => s.SeatNumber == SeatNumber)

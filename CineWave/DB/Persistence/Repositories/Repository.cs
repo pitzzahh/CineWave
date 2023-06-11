@@ -37,7 +37,6 @@ public class Repository<T> where T : class
 
     public IEnumerable<T> GetAll()
     {
-        var enumerable = _context.Set<T>().ToList();
-        return enumerable;
+        return _context.Set<T>().ToList();
     }
 }

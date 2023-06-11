@@ -5,6 +5,7 @@ using CineWave.Components;
 using CineWave.DB;
 using CineWave.DB.Core;
 using CineWave.DB.Persistence;
+using CineWave.MVVM.Model;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
 using CineWave.MVVM.ViewModel;
@@ -71,7 +72,16 @@ namespace CineWave
         protected override void OnStartup(StartupEventArgs e)
         {
             Debug.Assert(ServiceProvider != null, nameof(ServiceProvider) + " != null");
-            ServiceProvider.GetRequiredService<IUnitOfWork>().MoviesRepository.GetAll();
+            var unitOfWork = ServiceProvider.GetRequiredService<IUnitOfWork>();
+            for (var row = 'A'; row <= 'E'; row++)
+            {
+                for (var column = 1; column <= 10; column++)
+                {
+                    var seatNumber = $"{row}{column}";
+                    unitOfWork.SeatsRepository.Add(new Seat(seatNumber, false));
+                }
+            }
+            unitOfWork.Complete();
             ServiceProvider.GetRequiredService<LoginWindow>().Show();
             base.OnStartup(e);
         }

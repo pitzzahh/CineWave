@@ -1,16 +1,17 @@
-﻿namespace CineWave.MVVM.Model;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CineWave.MVVM.Model;
 
 public class Seat
 {
-    public string SeatNumber { get; }
-    public int CustomerId { get; set; }
-    public int MovieId { get; set; }
-    public bool IsTaken { get; set; } = false;
+    [Key]
+    public int SeatId { get; set; }
+    public string SeatNumber { get; set; }
+    public bool IsTaken { get; set; }
 
-    public Seat(string seatNumber, int customerId, int movieId)
+    public Seat(string seatNumber, bool isTaken)
     {
         SeatNumber = seatNumber;
-        CustomerId = customerId;
-        MovieId = movieId;
+        IsTaken = isTaken;
     }
 }

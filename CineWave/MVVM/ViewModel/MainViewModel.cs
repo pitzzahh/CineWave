@@ -20,14 +20,13 @@ namespace CineWave.MVVM.ViewModel;
 
 public partial class MainViewModel : BaseViewModel
 {
-    [ObservableProperty] private INavigationService _navService;
+    [ObservableProperty] private INavigationService _navService = null!;
     private readonly IUnitOfWork _unitOfWork;
 
     public MainViewModel(INavigationService navigationService, IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
         NavService = navigationService;
-        NavigateToHome();
     }
 
     public void ShowTrailer()
@@ -62,7 +61,6 @@ public partial class MainViewModel : BaseViewModel
         NavService.NavigateTo<SeatBookingViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().SetCurrentMovie); // Run the method on a separate thread
-        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().CreateSeats); // Run the method on a separate thread
     }
 
     [RelayCommand]

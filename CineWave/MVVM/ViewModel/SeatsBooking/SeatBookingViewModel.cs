@@ -29,20 +29,14 @@ public partial class SeatBookingViewModel : BaseViewModel
             .InvokeAsync(() =>
             {
                 CurrentMovie = _unitOfWork.MoviesRepository.GetNowShowingMovie()?.MovieName ?? MovieNotFound; 
+                var enumerable = _unitOfWork.SeatsRepository.GetAll();
+                if (_seats.Count.Equals(50)) return;
+                foreach (var seat in enumerable)
+                {
+                    _seats.Add(new SeatCardViewModel(seat.SeatNumber, CurrentMovie == MovieNotFound || seat.IsTaken, _unitOfWork));
+                }
+                _unitOfWork.Complete();
             });
     }
 
-    public async Task CreateSeats()
-    {
-        await Application.Current.Dispatcher.InvokeAsync(() =>
-        {
-            var enumerable = _unitOfWork.SeatsRepository.GetAll();
-            if (_seats.Count.Equals(50)) return;
-            foreach (var seat in enumerable)
-            {
-                _seats.Add(new SeatCardViewModel(seat.SeatNumber, CurrentMovie == MovieNotFound || seat.IsTaken, _unitOfWork));
-            }
-            _unitOfWork.Complete();
-        });
-    }
 }

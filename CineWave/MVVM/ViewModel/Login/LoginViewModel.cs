@@ -1,7 +1,5 @@
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using CineWave.MVVM.View;
-using CineWave.MVVM.ViewModel.Gallery;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,8 +9,8 @@ namespace CineWave.MVVM.ViewModel.Login;
 public partial class LoginViewModel : BaseViewModel
 {
     [ObservableProperty] private bool _isLoginFormVisible = true;
-    [Required] private string? _username;
-    [Required] private string? _password;
+    private string? _username;
+    private string? _password;
     [ObservableProperty] private bool _canLogin;
 
     public string? Username
@@ -43,7 +41,7 @@ public partial class LoginViewModel : BaseViewModel
         IsLoginFormVisible = false;
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         App.ServiceProvider.GetRequiredService<MainWindow>().Show();
-        App.ServiceProvider.GetRequiredService<MainViewModel>().NavService.NavigateTo<HomeViewModel>();
+        App.ServiceProvider.GetRequiredService<MainViewModel>().NavigateToHome();
     }
 
     private void UpdateCanLogin()

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using CineWave.Components;
 using CineWave.DB.Core;
+using CineWave.Helpers;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.Movies;
@@ -114,12 +115,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
 
     private bool CheckInputs()
     {
-        return !IsValidPayment();
-    }
-
-    private bool IsValidPayment()
-    {
-        return Regex.IsMatch(Payment?? "0", @"^\d+(\.\d+)?$");
+        return !StringHelper.IsWholeNumberOrDecimal(Payment?? "0");
     }
 
     private bool IsSeatAvailable()

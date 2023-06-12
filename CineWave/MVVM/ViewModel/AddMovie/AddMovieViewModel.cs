@@ -20,8 +20,8 @@ public partial class AddMovieViewModel : BaseViewModel
     private string? _screeningDateMonth;
     [ObservableProperty] private int _screeningDateYear = DateTime.Now.Year;
 
-    [ObservableProperty] private int _runtimeHourTime = DateTime.Now.Hour;
-    [ObservableProperty] private int _runtimeMinuteTime = DateTime.Now.Minute;
+    [ObservableProperty] private int _runtimeHourTime = 1;
+    [ObservableProperty] private int _runtimeMinuteTime = 1;
 
     [ObservableProperty] private int _screeningDateHourTime = DateTime.Now.Hour;
     [ObservableProperty] private int _screeningDateMinuteTime = DateTime.Now.Minute;
@@ -76,17 +76,17 @@ public partial class AddMovieViewModel : BaseViewModel
             ScreeningDateHourList.Add(i);
         }
 
-        for (var i = 1; i <= 60; i++)
+        for (var i = 0; i <= 59; i++)
         {
             ScreeningDateMinuteList.Add(i);
         }
         
-        for (var i = 1; i <= 24; i++)
+        for (var i = 1; i <= 5; i++)
         {
             RuntimeHourList.Add(i);
         }
 
-        for (var i = 1; i <= 60; i++)
+        for (var i = 0; i <= 59; i++)
         {
             RuntimeMinuteList.Add(i);
         }

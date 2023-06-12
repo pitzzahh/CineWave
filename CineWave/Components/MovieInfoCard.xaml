@@ -3,10 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:helpers="clr-namespace:CineWave.Helpers"
              mc:Ignorable="d"
              Width="380"
              Margin="10"
              Height="165">
+    <UserControl.Resources>
+        <helpers:TimeOnlyConverter x:Key="TimeOnlyConverter" />
+    </UserControl.Resources>
     <Border CornerRadius="5"
             Padding="10"
             BorderThickness="1">
@@ -46,7 +50,7 @@
                            Content="Runtime:"
                            Foreground="{StaticResource QuinaryBrush}"
                            FontSize="14" />
-                    <Label Content="{Binding Runtime}"
+                    <Label Content="{Binding Runtime, Converter={StaticResource TimeOnlyConverter}}"
                            FontWeight="Medium"
                            Foreground="{StaticResource QuinaryBrush}"
                            FontSize="14" />

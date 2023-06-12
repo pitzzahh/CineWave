@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,8 +20,6 @@ public partial class SeatBookingViewModel : BaseViewModel
     public SeatBookingViewModel(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
-        Task.Run(CreateSeats);
-        Task.Run(SetCurrentMovie);
     }
 
     public async Task SetCurrentMovie()
@@ -29,15 +28,17 @@ public partial class SeatBookingViewModel : BaseViewModel
             .Dispatcher
             .InvokeAsync(() =>
             {
-                CurrentMovie = _unitOfWork.MoviesRepository.GetNowShowingMovie()?.MovieName ?? MovieNotFound;
+                CurrentMovie = _unitOfWork.MoviesRepository.GetNowShowingMovie()?.MovieName ?? MovieNotFound; 
             });
     }
 
-    private async Task CreateSeats()
+    public async Task CreateSeats()
     {
         await Application.Current.Dispatcher.InvokeAsync(() =>
         {
-            foreach (var seat in _unitOfWork.SeatsRepository.GetAll())
+            var enumerable = _unitOfWork.SeatsRepository.GetAll();
+            if (_seats.Count.Equals(50)) return;
+            foreach (var seat in enumerable)
             {
                 _seats.Add(new SeatCardViewModel(seat.SeatNumber, CurrentMovie == MovieNotFound || seat.IsTaken, _unitOfWork));
             }

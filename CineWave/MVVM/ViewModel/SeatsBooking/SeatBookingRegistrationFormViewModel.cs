@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using CineWave.Components;
@@ -41,7 +40,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
             return;
         }
 
-        var currentMovie = _unitOfWork.MoviesRepository.GetAll().FirstOrDefault(m => m.NowShowing);
+        var currentMovie = _unitOfWork.MoviesRepository.GetNowShowingMovie();
 
         if (currentMovie != null)
         {
@@ -72,7 +71,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
             var complete = _unitOfWork.Complete();
             if (complete == 1)
             {
-                var result = MessageBox.Show("Ticket bought successfully", "Confirmation", MessageBoxButton.OKCancel);
+                var result = MessageBox.Show("Ticket bought successfully", "Confirmation", MessageBoxButton.OK);
                 switch (result)
                 {
                     case MessageBoxResult.OK:
@@ -80,16 +79,12 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
                         CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
                         break;
                     case MessageBoxResult.Cancel:
-                        // Cancel button is clicked
-                        // Perform the desired action here
-                        break;
                     case MessageBoxResult.None:
                     case MessageBoxResult.Yes:
                     case MessageBoxResult.No:
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-
                 var tickets = _unitOfWork.TicketsRepository.GetAll();
                 var customers = _unitOfWork.CustomersRepository.GetAll();
             }

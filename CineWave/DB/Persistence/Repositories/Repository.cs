@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace CineWave.DB.Persistence.Repositories;
 
@@ -13,6 +14,7 @@ public abstract class Repository<T> where T : class
     protected Repository(DbContext context)
     {
         _context = context;
+        new DatabaseFacade(context).EnsureCreatedAsync();
     }
 
     public void Add(T entity)

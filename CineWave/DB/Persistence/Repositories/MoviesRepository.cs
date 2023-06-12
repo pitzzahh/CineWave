@@ -14,7 +14,10 @@ public class MoviesRepository : Repository<Movie>
     public Movie? GetNowShowingMovie()
     {
         var currentTime = DateTime.Now;
-        return GetAll().FirstOrDefault(m => m.ScreeningDateTime.Day == currentTime.Day && (currentTime <= m.ScreeningDateTime && currentTime.AddHours(m.Runtime.Hour) >= currentTime));
+        return GetAll().FirstOrDefault(movie =>
+            movie.ScreeningDateTime.Day == currentTime.Day &&
+            currentTime >= movie.ScreeningDateTime &&
+            currentTime <= movie.ScreeningDateTime.Add(movie.Runtime.ToTimeSpan())
+        );
     }
-
 }

@@ -59,12 +59,6 @@ public partial class AddMovieViewModel : BaseViewModel
         Application.Current.Dispatcher.InvokeAsync(() =>
         {
             // Populate the ComboBox items
-            for (var i = 1; i <= 31; i++)
-            {
-                ReleaseDateDays.Add(i);
-                ScreeningDateDays.Add(i);
-            }
-
             for (var i = 1; i <= 12; i++)
             {
                 ReleaseDateMonths.Add(StringHelper.GetMonthString(i));
@@ -143,7 +137,6 @@ public partial class AddMovieViewModel : BaseViewModel
                 MovieName,
                 new TimeOnly(RuntimeHourTime, RuntimeMinuteTime),
                 Convert.ToDouble(Price),
-                false,
                 releaseDate,
                 screeningDateTime
             )

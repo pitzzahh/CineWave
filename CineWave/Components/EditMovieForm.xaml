@@ -6,7 +6,7 @@
         xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
         xmlns:system="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
-        Width="730"
+        Width="718"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
@@ -44,6 +44,7 @@
                     Foreground="{StaticResource QuinaryBrush}" />
             </StackPanel>
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
+                          HorizontalAlignment="Center"
                           Margin="5 0 5 5">
                 <StackPanel>
                     <StackPanel>
@@ -242,19 +243,15 @@
 
                     <StackPanel Orientation="Horizontal" Margin="0 20">
                         <moderncontrols:ModernButton Content="Update Movie"
-                                                     Width="100"
                                                      Command="{Binding UpdateMovieCommand}"
                                                      FontWeight="Bold"
                                                      Margin="5" />
                         <moderncontrols:ModernButton Content="Remove Movie"
-                                                     Width="100"
-                                                     Background="{StaticResource SecondaryBrush}"
                                                      HoverBackground="{StaticResource RedBrush}"
                                                      Command="{Binding RemoveMovieCommand}"
                                                      FontWeight="Bold"
                                                      Margin="5" />
                         <moderncontrols:ModernButton Content="Cancel"
-                                                     Width="100"
                                                      DefaultBackground="{StaticResource TertiaryBrush}"
                                                      Command="{Binding CancelCommand}"
                                                      FontWeight="Bold"

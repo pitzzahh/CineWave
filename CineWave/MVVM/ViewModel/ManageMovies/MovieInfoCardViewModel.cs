@@ -43,7 +43,6 @@ public partial class MovieInfoCardViewModel : BaseViewModel
         }
         else
         {
-            editMovieForm.Show();
             var movieInfo = new EditMovieInfo(
                 MovieName,
                 Runtime,
@@ -52,6 +51,7 @@ public partial class MovieInfoCardViewModel : BaseViewModel
                 ScreeningDateTime
             );
             WeakReferenceMessenger.Default.Send(new GetMovieInfoMessage(movieInfo));
+            editMovieForm.Show();
         }
     }
 }

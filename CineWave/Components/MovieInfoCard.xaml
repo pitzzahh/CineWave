@@ -25,6 +25,7 @@
                                      DefaultBackground="Transparent"
                                      HoverBackground="Transparent"
                                      HoverForeground="Transparent"
+                                     Cursor="Hand"
                                      PressedBackground="Transparent"
                                      PressedBorderBrush="Transparent"
                                      HorizontalContentAlignment="Left">

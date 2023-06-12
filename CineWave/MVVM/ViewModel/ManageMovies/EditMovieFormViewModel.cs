@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Threading.Tasks;
 using System.Windows;
 using CineWave.Components;
 using CineWave.DB.Core;
@@ -49,6 +50,7 @@ public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovie
     public EditMovieFormViewModel(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
+        WeakReferenceMessenger.Default.Register(this);
         SetComboBoxItems(DateTime.Now);
     }
 
@@ -102,6 +104,7 @@ public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovie
     public void OnCancel()
     {
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+        Task.Run(App.ServiceProvider.GetRequiredService<ManageMoviesViewModel>().CreateMovieInfoCards); // Run the method on a separate thread
         CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<EditMovieForm>());
     }
 
@@ -209,16 +212,22 @@ public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovie
     public void Receive(GetMovieInfoMessage message)
     {
         var editMovieInfo = message.Value;
+        Debug.Print($"Received Movie: {editMovieInfo}");
         MovieName = editMovieInfo.MovieName;
-        Price = editMovieInfo.MoviePrice.ToString(CultureInfo.CurrentCulture);
-        ReleaseDateDay = editMovieInfo.ReleaseDate.Day;
-        ReleaseDateMonth = StringHelper.GetMonthString(editMovieInfo.ReleaseDate.Month);
-        ReleaseDateYear = editMovieInfo.ReleaseDate.Year;
-        ScreeningDateDay = editMovieInfo.ScreeningDateTime.Day;
-        ScreeningDateMonth = StringHelper.GetMonthString(editMovieInfo.ScreeningDateTime.Month);
-        ScreeningDateYear = editMovieInfo.ScreeningDateTime.Year;
+        
         RuntimeHourTime = editMovieInfo.Runtime.Hour;
         RuntimeMinuteTime = editMovieInfo.Runtime.Minute;
+        
+        Price = editMovieInfo.MoviePrice.ToString(CultureInfo.CurrentCulture);
+
+        ReleaseDateYear = editMovieInfo.ReleaseDate.Year;
+        ReleaseDateMonth = StringHelper.GetMonthString(editMovieInfo.ReleaseDate.Month);
+        ReleaseDateDay = editMovieInfo.ReleaseDate.Day;
+
+        ScreeningDateYear = editMovieInfo.ScreeningDateTime.Year;
+        ScreeningDateMonth = StringHelper.GetMonthString(editMovieInfo.ScreeningDateTime.Month);
+        ScreeningDateDay = editMovieInfo.ScreeningDateTime.Day;
+
         ScreeningDateHourTime = editMovieInfo.ScreeningDateTime.Hour;
         ScreeningDateMinuteTime = editMovieInfo.ScreeningDateTime.Minute;
     }

@@ -45,17 +45,13 @@ public partial class AddMovieViewModel : BaseViewModel
     public AddMovieViewModel(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
-        // Initialize the default values for the date properties
-        var currentDate = DateTime.Now;
-        ReleaseDateMonth = StringHelper.GetMonthString(currentDate.Month);
-        ReleaseDateDay = currentDate.Day;
-        ScreeningDateMonth = StringHelper.GetMonthString(currentDate.Month);
-        ScreeningDateDay = currentDate.Day;
-        SetComboBoxItems(currentDate);
+        SetComboBoxItems();
     }
 
-    private void SetComboBoxItems(DateTime currentDate)
+    private void SetComboBoxItems()
     {
+        var currentDate = DateTime.Now;
+        SetReleaseAndScreeningDates(currentDate);
         Application.Current.Dispatcher.InvokeAsync(() =>
         {
             // Populate the ComboBox items
@@ -91,6 +87,14 @@ public partial class AddMovieViewModel : BaseViewModel
                 RuntimeMinuteList.Add(i);
             }
         });
+    }
+
+    private void SetReleaseAndScreeningDates(DateTime currentDate)
+    {
+        ReleaseDateMonth = StringHelper.GetMonthString(currentDate.Month);
+        ReleaseDateDay = currentDate.Day;
+        ScreeningDateMonth = StringHelper.GetMonthString(currentDate.Month);
+        ScreeningDateDay = currentDate.Day;
     }
 
     public string? ReleaseDateMonth
@@ -161,10 +165,19 @@ public partial class AddMovieViewModel : BaseViewModel
         );
         var complete = _unitOfWork.Complete();
 
-        if (complete == 1)
+        if (complete != 1)
         {
-            MessageBox.Show($"Movie {MovieName} Added Successfully");
+            MessageBox.Show("Cannot add movie, please try again later");
+            return;
         }
+        MovieName = string.Empty;
+        RuntimeHourTime = 1;
+        RuntimeMinuteTime = 1;
+        Price = string.Empty;
+        SetReleaseAndScreeningDates(DateTime.Now);
+        UpdateReleaseDateDays();
+        UpdateScreeningDateDays();
+        MessageBox.Show($"Movie {MovieName} Added Successfully");
     }
 
     private void UpdateReleaseDateDays()

@@ -15,7 +15,6 @@ public partial class ManageMoviesViewModel : BaseViewModel
     public ManageMoviesViewModel(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
-        Task.Run(CreateMovieInfoCards);
     }
 
     public async Task CreateMovieInfoCards()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using CineWave.DB.Core;
 using CineWave.Helpers;
 using CineWave.MVVM.Model.Movies;
@@ -46,50 +47,56 @@ public partial class AddMovieViewModel : BaseViewModel
         _unitOfWork = unitOfWork;
         // Initialize the default values for the date properties
         var currentDate = DateTime.Now;
-        ReleaseDateYear = currentDate.Year;
         ReleaseDateMonth = StringHelper.GetMonthString(currentDate.Month);
         ReleaseDateDay = currentDate.Day;
-        ScreeningDateYear = currentDate.Year;
         ScreeningDateMonth = StringHelper.GetMonthString(currentDate.Month);
         ScreeningDateDay = currentDate.Day;
-        // Populate the ComboBox items
-        for (var i = 1; i <= 31; i++)
-        {
-            ReleaseDateDays.Add(i);
-            ScreeningDateDays.Add(i);
-        }
+        SetComboBoxItems(currentDate);
+    }
 
-        for (var i = 1; i <= 12; i++)
+    private void SetComboBoxItems(DateTime currentDate)
+    {
+        Application.Current.Dispatcher.InvokeAsync(() =>
         {
-            ReleaseDateMonths.Add(StringHelper.GetMonthString(i));
-            ScreeningDateMonths.Add(StringHelper.GetMonthString(i));
-        }
+            // Populate the ComboBox items
+            for (var i = 1; i <= 31; i++)
+            {
+                ReleaseDateDays.Add(i);
+                ScreeningDateDays.Add(i);
+            }
 
-        for (var i = 1800; i <= currentDate.Year; i++)
-        {
-            ReleaseDateYears.Add(i);
-            ScreeningDateYears.Add(i);
-        }
+            for (var i = 1; i <= 12; i++)
+            {
+                ReleaseDateMonths.Add(StringHelper.GetMonthString(i));
+                ScreeningDateMonths.Add(StringHelper.GetMonthString(i));
+            }
 
-        for (var i = 1; i <= 24; i++)
-        {
-            ScreeningDateHourList.Add(i);
-        }
+            for (var i = 1800; i <= currentDate.Year; i++)
+            {
+                ReleaseDateYears.Add(i);
+                ScreeningDateYears.Add(i);
+            }
 
-        for (var i = 0; i <= 59; i++)
-        {
-            ScreeningDateMinuteList.Add(i);
-        }
-        
-        for (var i = 1; i <= 5; i++)
-        {
-            RuntimeHourList.Add(i);
-        }
+            for (var i = 1; i <= 24; i++)
+            {
+                ScreeningDateHourList.Add(i);
+            }
 
-        for (var i = 0; i <= 59; i++)
-        {
-            RuntimeMinuteList.Add(i);
-        }
+            for (var i = 0; i <= 59; i++)
+            {
+                ScreeningDateMinuteList.Add(i);
+            }
+
+            for (var i = 1; i <= 5; i++)
+            {
+                RuntimeHourList.Add(i);
+            }
+
+            for (var i = 0; i <= 59; i++)
+            {
+                RuntimeMinuteList.Add(i);
+            }
+        });
     }
 
     public string? ReleaseDateMonth

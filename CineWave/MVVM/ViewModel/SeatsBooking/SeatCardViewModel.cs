@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 using System.Windows;
 using CineWave.Components;
 using CineWave.DB.Core;
@@ -40,14 +39,14 @@ public partial class SeatCardViewModel : BaseViewModel
         }
         else
         {
-            var currentMovie = _unitOfWork.MoviesRepository.GetAll().FirstOrDefault(m => m.NowShowing);
+            var currentMovie = _unitOfWork.MoviesRepository.GetNowShowingMovie();
             if (currentMovie == null)
             {
                 MessageBox.Show("No movie is currently showing!");
                 return;
             }
             seatBookingRegistrationForm.Show();
-            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new ReservationInfo(currentMovie.MovieName ?? "", currentMovie.MoviePrice, SeatNumber ?? "")));
+            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new ReservationInfo(currentMovie.MovieName, currentMovie.MoviePrice, SeatNumber ?? "")));
         }
     }
 }

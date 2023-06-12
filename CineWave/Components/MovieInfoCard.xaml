@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:helpers="clr-namespace:CineWave.Helpers"
              mc:Ignorable="d"
-             Width="380"
-             Margin="10"
+             Width="350"
+             Margin="5"
              Height="165">
     <UserControl.Resources>
         <helpers:TimeOnlyConverter x:Key="TimeOnlyConverter" />

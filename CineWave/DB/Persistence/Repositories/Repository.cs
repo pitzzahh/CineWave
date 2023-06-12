@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CineWave.DB.Persistence.Repositories;
 
-public class Repository<T> where T : class
+public abstract class Repository<T> where T : class
 {
     private readonly DbContext _context;
 

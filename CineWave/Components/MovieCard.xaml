@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             Height="550"
-             Width="370">
+             Height="750"
+             Width="415">
 
     <Border CornerRadius="20"
             Padding="10">
@@ -18,7 +18,8 @@
             </Grid.RowDefinitions>
 
             <Image Source="{Binding MovieImage}"
-                   Height="500" />
+                   Width="415"
+                   Height="650" />
 
             <TextBlock Grid.Row="1"
                        Text="{Binding MovieName}"

@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using CineWave.Components;
-using CineWave.DB.Core;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
 using CineWave.MVVM.ViewModel.AddMovie;
@@ -21,11 +20,9 @@ namespace CineWave.MVVM.ViewModel;
 public partial class MainViewModel : BaseViewModel
 {
     [ObservableProperty] private INavigationService _navService = null!;
-    private readonly IUnitOfWork _unitOfWork;
 
-    public MainViewModel(INavigationService navigationService, IUnitOfWork unitOfWork)
+    public MainViewModel(INavigationService navigationService)
     {
-        _unitOfWork = unitOfWork;
         NavService = navigationService;
     }
 
@@ -41,7 +38,8 @@ public partial class MainViewModel : BaseViewModel
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         try
         {
-            Task.Run(App.ServiceProvider.GetRequiredService<HomeViewModel>().GetMoviesFromApi); // Run the method on a separate thread
+            Task.Run(App.ServiceProvider.GetRequiredService<HomeViewModel>()
+                .GetMoviesFromApi); // Run the method on a separate thread
         }
         catch (Exception e)
         {
@@ -74,13 +72,13 @@ public partial class MainViewModel : BaseViewModel
     {
         NavService.NavigateTo<ManageMoviesViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        Task.Run(App.ServiceProvider.GetRequiredService<ManageMoviesViewModel>().CreateMovieInfoCards); // Run the method on a separate thread
+        Task.Run(App.ServiceProvider.GetRequiredService<ManageMoviesViewModel>()
+            .CreateMovieInfoCards); // Run the method on a separate thread
     }
 
     [RelayCommand]
     public void Logout()
     {
-        Task.Run(_unitOfWork.MoviesRepository.GetAll); // Run the method on a separate thread
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
         App.ServiceProvider.GetRequiredService<MainWindow>().Hide();

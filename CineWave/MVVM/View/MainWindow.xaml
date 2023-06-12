@@ -26,103 +26,96 @@
         </Border.BorderBrush>
 
         <Grid>
-
             <Grid.ColumnDefinitions>
                 <!--Nav-->
-                <ColumnDefinition Width="230" />
+                <ColumnDefinition Width="65" />
                 <!--Content-->
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!-- Nav Section -->
-            <Border CornerRadius="10,0,0,10">
-                <!-- Border content goes here -->
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0.02,0.2" EndPoint="1.5,1.9">
-                        <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
-                        <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
-                    </LinearGradientBrush>
-                </Border.Background>
+            <Grid>
 
-                <StackPanel>
-                    <StackPanel Height="35"
-                                Margin="5,25"
-                                Orientation="Horizontal">
+                <Grid.RowDefinitions>
+                    <!-- Nav -->
+                    <RowDefinition Height="45" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
+                <!-- Nav Section -->
+                <Border Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0">
+                    <StackPanel>
+                        <!-- Logo -->
                         <Image HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Width="50"
                                Height="50"
-                               Margin="5,0,0,0"
+                               Margin="5,5,0,20"
                                Source="/Resources/Images/logo.png" />
+                        <!-- Menus -->
+                        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                                    Margin="5 5 0 0">
+                            <moderncontrols:ModernRadioButton x:Name="GalleryButton"
+                                                              IsChecked="True"
+                                                              Style="{StaticResource MenuButton}"
+                                                              Command="{Binding NavigateToHomeCommand}"
+                                                              Tag="{StaticResource QuinaryBrush}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fontawesome:IconImage Icon="Home" Style="{StaticResource MenuButtonIcon}" />
+                                </StackPanel>
+                            </moderncontrols:ModernRadioButton>
+                            <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
+                                                              Command="{Binding NavigateToReservationsCommand}"
+                                                              Tag="{StaticResource QuinaryBrush}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fontawesome:IconImage Icon="Bookmark" Style="{StaticResource MenuButtonIcon}" />
+                                </StackPanel>
+                            </moderncontrols:ModernRadioButton>
+                            <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
+                                                              Command="{Binding NavigateToSeatBookingCommand}"
+                                                              Tag="{StaticResource QuinaryBrush}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fontawesome:IconImage Icon="Chair" Style="{StaticResource MenuButtonIcon}" />
+                                </StackPanel>
+                            </moderncontrols:ModernRadioButton>
+                            <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
+                                                              Command="{Binding NavigateToAddMovieCommand}"
+                                                              Tag="{StaticResource QuinaryBrush}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fontawesome:IconImage Icon="Add" Style="{StaticResource MenuButtonIcon}" />
+                                </StackPanel>
+                            </moderncontrols:ModernRadioButton>
+                            <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
+                                                              Command="{Binding NavigateToManageMovieCommand}"
+                                                              Tag="{StaticResource QuinaryBrush}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fontawesome:IconImage Icon="Edit" Style="{StaticResource MenuButtonIcon}" />
+                                </StackPanel>
+                            </moderncontrols:ModernRadioButton>
 
-                        <TextBlock Text="CineWave"
-                                   FontSize="30"
-                                   FontFamily="Segoe UI"
-                                   FontWeight="Bold"
-                                   VerticalAlignment="Center"
-                                   Margin="10,0,0,0"
-                                   Foreground="WhiteSmoke" />
+                            <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
+                                                              Command="{Binding LogoutCommand}"
+                                                              Tag="{StaticResource RedBrush}">
+                                <StackPanel Orientation="Horizontal">
+                                    <fontawesome:IconImage Icon="SignOut" Style="{StaticResource MenuButtonIcon}" />
+                                </StackPanel>
+                            </moderncontrols:ModernRadioButton>
+                        </StackPanel>
                     </StackPanel>
+                    <!-- Border content goes here -->
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0.02,0.2" EndPoint="1.5,1.9">
+                            <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
+                            <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
 
-                    <!-- Menus -->
-                    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                                Margin="5 0 0 0">
-                        <moderncontrols:ModernRadioButton x:Name="GalleryButton"
-                                                          IsChecked="True"
-                                                          Style="{StaticResource MenuButton}"
-                                                          Command="{Binding NavigateToHomeCommand}"
-                                                          Tag="{StaticResource QuinaryBrush}">
-                            <StackPanel Orientation="Horizontal">
-                                <fontawesome:IconImage Icon="Home" Style="{StaticResource MenuButtonIcon}" />
-                                <TextBlock Text="Gallery" Style="{StaticResource MenuButtonText}" />
-                            </StackPanel>
-                        </moderncontrols:ModernRadioButton>
-                        <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
-                                                          Command="{Binding NavigateToReservationsCommand}"
-                                                          Tag="{StaticResource QuinaryBrush}">
-                            <StackPanel Orientation="Horizontal">
-                                <fontawesome:IconImage Icon="Bookmark" Style="{StaticResource MenuButtonIcon}" />
-                                <TextBlock Text="Reservations" Style="{StaticResource MenuButtonText}" />
-                            </StackPanel>
-                        </moderncontrols:ModernRadioButton>
-                        <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
-                                                          Command="{Binding NavigateToSeatBookingCommand}"
-                                                          Tag="{StaticResource QuinaryBrush}">
-                            <StackPanel Orientation="Horizontal">
-                                <fontawesome:IconImage Icon="Chair" Style="{StaticResource MenuButtonIcon}" />
-                                <TextBlock Text="Seat Booking" Style="{StaticResource MenuButtonText}" />
-                            </StackPanel>
-                        </moderncontrols:ModernRadioButton>
-                        <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
-                                                          Command="{Binding NavigateToAddMovieCommand}"
-                                                          Tag="{StaticResource QuinaryBrush}">
-                            <StackPanel Orientation="Horizontal">
-                                <fontawesome:IconImage Icon="Add" Style="{StaticResource MenuButtonIcon}" />
-                                <TextBlock Text="Add Movies" Style="{StaticResource MenuButtonText}" />
-                            </StackPanel>
-                        </moderncontrols:ModernRadioButton>
-                        <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
-                                                          Command="{Binding NavigateToManageMovieCommand}"
-                                                          Tag="{StaticResource QuinaryBrush}">
-                            <StackPanel Orientation="Horizontal">
-                                <fontawesome:IconImage Icon="Edit" Style="{StaticResource MenuButtonIcon}" />
-                                <TextBlock Text="Manage Movies" Style="{StaticResource MenuButtonText}" />
-                            </StackPanel>
-                        </moderncontrols:ModernRadioButton>
-                    </StackPanel>
-                    <moderncontrols:ModernButton Content="Logout"
-                                                 Command="{Binding LogoutCommand}"
-                                                 HoverBackground="{StaticResource QuinaryBrush}"
-                                                 DefaultBackground="DimGray"
-                                                 Margin="10"
-                                                 HoverForeground="{StaticResource PrimaryBrush}"
-                                                 PressedBackground="{StaticResource PrimaryBrush}"
-                                                 PressedForeground="{StaticResource QuinaryBrush}" />
-                </StackPanel>
-            </Border>
+                </Border>
+            </Grid>
 
-            <Border Grid.Column="1" CornerRadius="0 10 10 0">
+            <Border Grid.Row="0"
+                    Grid.Column="1"
+                    CornerRadius="0 10 10 0">
 
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0.88,0.02" EndPoint="1,1">

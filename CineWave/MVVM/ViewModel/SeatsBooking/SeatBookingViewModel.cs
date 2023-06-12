@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,14 +28,12 @@ public partial class SeatBookingViewModel : BaseViewModel
             .InvokeAsync(() =>
             {
                 CurrentMovie = _unitOfWork.MoviesRepository.GetNowShowingMovie()?.MovieName ?? MovieNotFound; 
-                var enumerable = _unitOfWork.SeatsRepository.GetAll();
                 if (_seats.Count.Equals(50)) return;
-                foreach (var seat in enumerable)
+                foreach (var seat in _unitOfWork.SeatsRepository.GetAll())
                 {
-                    _seats.Add(new SeatCardViewModel(seat.SeatNumber, CurrentMovie == MovieNotFound || seat.IsTaken, _unitOfWork));
+                    _seats.Add(new SeatCardViewModel(seat.SeatNumber, seat.IsTaken, _unitOfWork));
                 }
                 _unitOfWork.Complete();
             });
     }
-
 }

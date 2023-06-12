@@ -25,204 +25,206 @@
                    Margin="10 0 0 0"
                    Foreground="{StaticResource QuinaryBrush}" />
 
-        <StackPanel Grid.Row="1">
-            <StackPanel Margin="5 15 5 5">
-                <Label Content="Movie Name"
-                       FontWeight="Medium"
-                       FontSize="14.5"
-                       Foreground="{StaticResource QuinaryBrush}" />
-                <moderncontrols:ModernTextBox
-                    HelperText="Required"
-                    Text="{Binding MovieName}"
-                    DefaultBackground="{StaticResource PrimaryBrush}"
-                    Foreground="{StaticResource QuinaryBrush}" />
-            </StackPanel>
-            <StackPanel Margin="5 15 5 5">
-                <Label Content="Runtime"
-                       FontWeight="Medium"
-                       FontSize="14.5"
-                       Foreground="{StaticResource QuinaryBrush}" />
-                <StackPanel Orientation="Horizontal">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <StackPanel Margin="5 15 5 5">
+                    <Label Content="Movie Name"
+                           FontWeight="Medium"
+                           FontSize="14.5"
+                           Foreground="{StaticResource QuinaryBrush}" />
+                    <moderncontrols:ModernTextBox
+                        HelperText="Required"
+                        Text="{Binding MovieName}"
+                        DefaultBackground="{StaticResource PrimaryBrush}"
+                        Foreground="{StaticResource QuinaryBrush}" />
+                </StackPanel>
+                <StackPanel Margin="5 15 5 5">
+                    <Label Content="Runtime"
+                           FontWeight="Medium"
+                           FontSize="14.5"
+                           Foreground="{StaticResource QuinaryBrush}" />
+                    <StackPanel Orientation="Horizontal">
 
-                    <StackPanel>
-                        <Label Content="Hour"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="13"
-                               FontWeight="Medium" />
-                        <moderncontrols:ModernComboBox ItemsSource="{Binding RuntimeHourList}"
-                                                       SelectedItem="{Binding RuntimeHourTime}"
-                                                       Width="{StaticResource ShortComboBoxWidth}"
-                                                       DefaultBackground="{StaticResource PrimaryBrush}"
-                                                       Foreground="{StaticResource QuinaryBrush}" />
-                        <Label Content="Required"
-                               Opacity="0.7"
-                               Foreground="{StaticResource QuinaryBrush}" />
-                    </StackPanel>
-                    <StackPanel Margin="5 0">
-                        <Label Content="Minute"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="13"
-                               FontWeight="Medium" />
-                        <moderncontrols:ModernComboBox ItemsSource="{Binding RuntimeMinuteList}"
-                                                       SelectedItem="{Binding RuntimeMinuteTime}"
-                                                       Width="{StaticResource ShortComboBoxWidth}"
-                                                       DefaultBackground="{StaticResource PrimaryBrush}"
-                                                       Foreground="{StaticResource QuinaryBrush}" />
-                        <Label Content="Required"
-                               Opacity="0.7"
-                               Foreground="{StaticResource QuinaryBrush}" />
+                        <StackPanel>
+                            <Label Content="Hour"
+                                   Foreground="{StaticResource QuinaryBrush}"
+                                   FontSize="13"
+                                   FontWeight="Medium" />
+                            <moderncontrols:ModernComboBox ItemsSource="{Binding RuntimeHourList}"
+                                                           SelectedItem="{Binding RuntimeHourTime}"
+                                                           Width="{StaticResource ShortComboBoxWidth}"
+                                                           DefaultBackground="{StaticResource PrimaryBrush}"
+                                                           Foreground="{StaticResource QuinaryBrush}" />
+                            <Label Content="Required"
+                                   Opacity="0.7"
+                                   Foreground="{StaticResource QuinaryBrush}" />
+                        </StackPanel>
+                        <StackPanel Margin="5 0">
+                            <Label Content="Minute"
+                                   Foreground="{StaticResource QuinaryBrush}"
+                                   FontSize="13"
+                                   FontWeight="Medium" />
+                            <moderncontrols:ModernComboBox ItemsSource="{Binding RuntimeMinuteList}"
+                                                           SelectedItem="{Binding RuntimeMinuteTime}"
+                                                           Width="{StaticResource ShortComboBoxWidth}"
+                                                           DefaultBackground="{StaticResource PrimaryBrush}"
+                                                           Foreground="{StaticResource QuinaryBrush}" />
+                            <Label Content="Required"
+                                   Opacity="0.7"
+                                   Foreground="{StaticResource QuinaryBrush}" />
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
-            </StackPanel>
-            <StackPanel Margin="5">
-                <Label Content="Price"
-                       FontWeight="Medium"
-                       FontSize="14.5"
-                       Foreground="{StaticResource QuinaryBrush}" />
-                <moderncontrols:ModernTextBox
-                    HelperText="Required"
-                    Text="{Binding Price}"
-                    DefaultBackground="{StaticResource PrimaryBrush}"
-                    Foreground="{StaticResource QuinaryBrush}" />
-            </StackPanel>
+                <StackPanel Margin="5">
+                    <Label Content="Price"
+                           FontWeight="Medium"
+                           FontSize="14.5"
+                           Foreground="{StaticResource QuinaryBrush}" />
+                    <moderncontrols:ModernTextBox
+                        HelperText="Required"
+                        Text="{Binding Price}"
+                        DefaultBackground="{StaticResource PrimaryBrush}"
+                        Foreground="{StaticResource QuinaryBrush}" />
+                </StackPanel>
 
-            <StackPanel Margin="5" HorizontalAlignment="Stretch">
-                <Label Content="Release Date"
-                       FontWeight="Medium"
-                       FontSize="14.5"
-                       Foreground="{StaticResource QuinaryBrush}" />
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Margin="5 0">
-                        <Label Content="Year"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="13"
-                               FontWeight="Medium" />
-                        <moderncontrols:ModernComboBox ItemsSource="{Binding ReleaseDateYears}"
-                                                       SelectedItem="{Binding ReleaseDateYear}"
-                                                       Width="{StaticResource MediumComboBoxWidth}"
-                                                       DefaultBackground="{StaticResource PrimaryBrush}"
-                                                       Foreground="{StaticResource QuinaryBrush}" />
-                        <Label Content="Required"
-                               Opacity="0.7"
-                               Foreground="{StaticResource QuinaryBrush}" />
-                    </StackPanel>
-                    <StackPanel Margin="5 0">
-                        <Label Content="Month"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="13"
-                               FontWeight="Medium" />
-                        <moderncontrols:ModernComboBox ItemsSource="{Binding ReleaseDateMonths}"
-                                                       SelectedItem="{Binding ReleaseDateMonth}"
-                                                       Width="{StaticResource LongComboBoxWidth}"
-                                                       DefaultBackground="{StaticResource PrimaryBrush}"
-                                                       Foreground="{StaticResource QuinaryBrush}" />
-                        <Label Content="Required"
-                               Opacity="0.7"
-                               Foreground="{StaticResource QuinaryBrush}" />
-                    </StackPanel>
-                    <StackPanel Margin="5 0">
-                        <Label Content="Day"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="13"
-                               FontWeight="Medium" />
-                        <moderncontrols:ModernComboBox ItemsSource="{Binding ReleaseDateDays}"
-                                                       SelectedItem="{Binding ReleaseDateDay}"
-                                                       Width="{StaticResource ShortComboBoxWidth}"
-                                                       DefaultBackground="{StaticResource PrimaryBrush}"
-                                                       Foreground="{StaticResource QuinaryBrush}" />
-                        <Label Content="Required"
-                               Opacity="0.7"
-                               Foreground="{StaticResource QuinaryBrush}" />
+                <StackPanel Margin="5" HorizontalAlignment="Stretch">
+                    <Label Content="Release Date"
+                           FontWeight="Medium"
+                           FontSize="14.5"
+                           Foreground="{StaticResource QuinaryBrush}" />
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Margin="5 0">
+                            <Label Content="Year"
+                                   Foreground="{StaticResource QuinaryBrush}"
+                                   FontSize="13"
+                                   FontWeight="Medium" />
+                            <moderncontrols:ModernComboBox ItemsSource="{Binding ReleaseDateYears}"
+                                                           SelectedItem="{Binding ReleaseDateYear}"
+                                                           Width="{StaticResource MediumComboBoxWidth}"
+                                                           DefaultBackground="{StaticResource PrimaryBrush}"
+                                                           Foreground="{StaticResource QuinaryBrush}" />
+                            <Label Content="Required"
+                                   Opacity="0.7"
+                                   Foreground="{StaticResource QuinaryBrush}" />
+                        </StackPanel>
+                        <StackPanel Margin="5 0">
+                            <Label Content="Month"
+                                   Foreground="{StaticResource QuinaryBrush}"
+                                   FontSize="13"
+                                   FontWeight="Medium" />
+                            <moderncontrols:ModernComboBox ItemsSource="{Binding ReleaseDateMonths}"
+                                                           SelectedItem="{Binding ReleaseDateMonth}"
+                                                           Width="{StaticResource LongComboBoxWidth}"
+                                                           DefaultBackground="{StaticResource PrimaryBrush}"
+                                                           Foreground="{StaticResource QuinaryBrush}" />
+                            <Label Content="Required"
+                                   Opacity="0.7"
+                                   Foreground="{StaticResource QuinaryBrush}" />
+                        </StackPanel>
+                        <StackPanel Margin="5 0">
+                            <Label Content="Day"
+                                   Foreground="{StaticResource QuinaryBrush}"
+                                   FontSize="13"
+                                   FontWeight="Medium" />
+                            <moderncontrols:ModernComboBox ItemsSource="{Binding ReleaseDateDays}"
+                                                           SelectedItem="{Binding ReleaseDateDay}"
+                                                           Width="{StaticResource ShortComboBoxWidth}"
+                                                           DefaultBackground="{StaticResource PrimaryBrush}"
+                                                           Foreground="{StaticResource QuinaryBrush}" />
+                            <Label Content="Required"
+                                   Opacity="0.7"
+                                   Foreground="{StaticResource QuinaryBrush}" />
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
-            </StackPanel>
 
-            <StackPanel Margin="5" HorizontalAlignment="Stretch">
-                <Label Content="Screening Date and Time"
-                       FontWeight="Medium"
-                       FontSize="14.5"
-                       Foreground="{StaticResource QuinaryBrush}" />
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel Margin="5 0">
-                        <Label Content="Year"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="13"
-                               FontWeight="Medium" />
-                        <moderncontrols:ModernComboBox ItemsSource="{Binding ScreeningDateYears}"
-                                                       SelectedItem="{Binding ScreeningDateYear}"
-                                                       Width="{StaticResource MediumComboBoxWidth}"
-                                                       DefaultBackground="{StaticResource PrimaryBrush}"
-                                                       Foreground="{StaticResource QuinaryBrush}" />
-                        <Label Content="Required"
-                               Opacity="0.7"
-                               Foreground="{StaticResource QuinaryBrush}" />
-                    </StackPanel>
-                    <StackPanel Margin="5 0">
-                        <Label Content="Month"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="13"
-                               FontWeight="Medium" />
-                        <moderncontrols:ModernComboBox ItemsSource="{Binding ScreeningDateMonths}"
-                                                       SelectedItem="{Binding ScreeningDateMonth}"
-                                                       Width="{StaticResource LongComboBoxWidth}"
-                                                       DefaultBackground="{StaticResource PrimaryBrush}"
-                                                       Foreground="{StaticResource QuinaryBrush}" />
-                        <Label Content="Required"
-                               Opacity="0.7"
-                               Foreground="{StaticResource QuinaryBrush}" />
-                    </StackPanel>
-                    <StackPanel Margin="5 0">
-                        <Label Content="Day"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="13"
-                               FontWeight="Medium" />
-                        <moderncontrols:ModernComboBox ItemsSource="{Binding ScreeningDateDays}"
-                                                       SelectedItem="{Binding ScreeningDateDay}"
-                                                       Width="{StaticResource ShortComboBoxWidth}"
-                                                       DefaultBackground="{StaticResource PrimaryBrush}"
-                                                       Foreground="{StaticResource QuinaryBrush}" />
-                        <Label Content="Required"
-                               Opacity="0.7"
-                               Foreground="{StaticResource QuinaryBrush}" />
-                    </StackPanel>
-                    <StackPanel Margin="5 0">
-                        <Label Content="Hour"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="13"
-                               FontWeight="Medium" />
-                        <moderncontrols:ModernComboBox ItemsSource="{Binding ScreeningDateHourList}"
-                                                       SelectedItem="{Binding ScreeningDateHourTime}"
-                                                       Width="{StaticResource ShortComboBoxWidth}"
-                                                       DefaultBackground="{StaticResource PrimaryBrush}"
-                                                       Foreground="{StaticResource QuinaryBrush}" />
-                        <Label Content="Required"
-                               Opacity="0.7"
-                               Foreground="{StaticResource QuinaryBrush}" />
-                    </StackPanel>
-                    <StackPanel Margin="5 0">
-                        <Label Content="Minute"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="13"
-                               FontWeight="Medium" />
-                        <moderncontrols:ModernComboBox ItemsSource="{Binding ScreeningDateMinuteList}"
-                                                       SelectedItem="{Binding ScreeningDateMinuteTime}"
-                                                       Width="{StaticResource ShortComboBoxWidth}"
-                                                       DefaultBackground="{StaticResource PrimaryBrush}"
-                                                       Foreground="{StaticResource QuinaryBrush}" />
-                        <Label Content="Required"
-                               Opacity="0.7"
-                               Foreground="{StaticResource QuinaryBrush}" />
+                <StackPanel Margin="5" HorizontalAlignment="Stretch">
+                    <Label Content="Screening Date and Time"
+                           FontWeight="Medium"
+                           FontSize="14.5"
+                           Foreground="{StaticResource QuinaryBrush}" />
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Margin="5 0">
+                            <Label Content="Year"
+                                   Foreground="{StaticResource QuinaryBrush}"
+                                   FontSize="13"
+                                   FontWeight="Medium" />
+                            <moderncontrols:ModernComboBox ItemsSource="{Binding ScreeningDateYears}"
+                                                           SelectedItem="{Binding ScreeningDateYear}"
+                                                           Width="{StaticResource MediumComboBoxWidth}"
+                                                           DefaultBackground="{StaticResource PrimaryBrush}"
+                                                           Foreground="{StaticResource QuinaryBrush}" />
+                            <Label Content="Required"
+                                   Opacity="0.7"
+                                   Foreground="{StaticResource QuinaryBrush}" />
+                        </StackPanel>
+                        <StackPanel Margin="5 0">
+                            <Label Content="Month"
+                                   Foreground="{StaticResource QuinaryBrush}"
+                                   FontSize="13"
+                                   FontWeight="Medium" />
+                            <moderncontrols:ModernComboBox ItemsSource="{Binding ScreeningDateMonths}"
+                                                           SelectedItem="{Binding ScreeningDateMonth}"
+                                                           Width="{StaticResource LongComboBoxWidth}"
+                                                           DefaultBackground="{StaticResource PrimaryBrush}"
+                                                           Foreground="{StaticResource QuinaryBrush}" />
+                            <Label Content="Required"
+                                   Opacity="0.7"
+                                   Foreground="{StaticResource QuinaryBrush}" />
+                        </StackPanel>
+                        <StackPanel Margin="5 0">
+                            <Label Content="Day"
+                                   Foreground="{StaticResource QuinaryBrush}"
+                                   FontSize="13"
+                                   FontWeight="Medium" />
+                            <moderncontrols:ModernComboBox ItemsSource="{Binding ScreeningDateDays}"
+                                                           SelectedItem="{Binding ScreeningDateDay}"
+                                                           Width="{StaticResource ShortComboBoxWidth}"
+                                                           DefaultBackground="{StaticResource PrimaryBrush}"
+                                                           Foreground="{StaticResource QuinaryBrush}" />
+                            <Label Content="Required"
+                                   Opacity="0.7"
+                                   Foreground="{StaticResource QuinaryBrush}" />
+                        </StackPanel>
+                        <StackPanel Margin="5 0">
+                            <Label Content="Hour"
+                                   Foreground="{StaticResource QuinaryBrush}"
+                                   FontSize="13"
+                                   FontWeight="Medium" />
+                            <moderncontrols:ModernComboBox ItemsSource="{Binding ScreeningDateHourList}"
+                                                           SelectedItem="{Binding ScreeningDateHourTime}"
+                                                           Width="{StaticResource ShortComboBoxWidth}"
+                                                           DefaultBackground="{StaticResource PrimaryBrush}"
+                                                           Foreground="{StaticResource QuinaryBrush}" />
+                            <Label Content="Required"
+                                   Opacity="0.7"
+                                   Foreground="{StaticResource QuinaryBrush}" />
+                        </StackPanel>
+                        <StackPanel Margin="5 0">
+                            <Label Content="Minute"
+                                   Foreground="{StaticResource QuinaryBrush}"
+                                   FontSize="13"
+                                   FontWeight="Medium" />
+                            <moderncontrols:ModernComboBox ItemsSource="{Binding ScreeningDateMinuteList}"
+                                                           SelectedItem="{Binding ScreeningDateMinuteTime}"
+                                                           Width="{StaticResource ShortComboBoxWidth}"
+                                                           DefaultBackground="{StaticResource PrimaryBrush}"
+                                                           Foreground="{StaticResource QuinaryBrush}" />
+                            <Label Content="Required"
+                                   Opacity="0.7"
+                                   Foreground="{StaticResource QuinaryBrush}" />
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
-            </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="5 20">
-                <moderncontrols:ModernButton Content="Add Movie"
-                                             Width="100"
-                                             Command="{Binding AddMovieCommand}"
-                                             FontWeight="Bold"
-                                             Margin="5" />
+                <StackPanel Orientation="Horizontal" Margin="5 20">
+                    <moderncontrols:ModernButton Content="Add Movie"
+                                                 Width="100"
+                                                 Command="{Binding AddMovieCommand}"
+                                                 FontWeight="Bold"
+                                                 Margin="5" />
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -82,7 +82,6 @@
             <StackPanel Orientation="Horizontal" Margin="5 20">
                 <moderncontrols:ModernButton Content="Buy"
                                              Width="100"
-                                             IsEnabled="{Binding CanBuy}"
                                              Command="{Binding BuyCommand}"
                                              FontWeight="Bold"
                                              Margin="5" >

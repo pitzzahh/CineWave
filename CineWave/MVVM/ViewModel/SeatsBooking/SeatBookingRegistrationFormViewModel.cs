@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using CineWave.Components;
 using CineWave.DB.Core;
@@ -33,63 +32,56 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     }
 
     [RelayCommand]
-    public async Task OnBuy()
+    public void OnBuy()
     {
         if (CheckInputs())
         {
             MessageBox.Show("Please enter a valid payment");
-            return;
         }
 
         var currentMovie = _unitOfWork.MoviesRepository.GetMovieByName(MovieName ?? string.Empty);
 
-        if (currentMovie != null)
+        if (currentMovie == null) return;
+        if (currentMovie.MovieId != 0 && Payment != null && double.Parse(Payment) < currentMovie.MoviePrice)
         {
-            if (currentMovie.MovieId != 0 && double.Parse(Payment ?? "0") < currentMovie.MoviePrice)
-            {
-                MessageBox.Show("Payment is not enough");
-                return;
-            }
-            
-            if (!IsSeatAvailable())
-            {
-                MessageBox.Show("Seat is not available");
-                return;
-            }
-
-            if (SeatNumber != null)
-            {
-                var ticket = new Ticket(currentMovie.MovieId, currentMovie.MoviePrice, SeatNumber);
-                var customer = new Customer(0, ticket.TicketId);
-
-                await Application.Current.Dispatcher.InvokeAsync(() =>
-                {
-                    _unitOfWork.CustomersRepository.Add(customer);
-                    _unitOfWork.TicketsRepository.Add(ticket);
-                });
-            }
-
-            var complete = _unitOfWork.Complete();
-            if (complete == 1)
-            {
-                var result = MessageBox.Show("Ticket bought successfully", "Confirmation", MessageBoxButton.OK);
-                switch (result)
-                {
-                    case MessageBoxResult.OK:
-                        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-                        CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
-                        break;
-                    case MessageBoxResult.Cancel:
-                    case MessageBoxResult.None:
-                    case MessageBoxResult.Yes:
-                    case MessageBoxResult.No:
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-                var tickets = _unitOfWork.TicketsRepository.GetAll();
-                var customers = _unitOfWork.CustomersRepository.GetAll();
-            }
+            MessageBox.Show("Payment is not enough");
         }
+
+        var isSeatNotAvailable = IsSeatNotAvailable();
+        if (isSeatNotAvailable)
+        {
+            MessageBox.Show("Seat is not available");
+        }
+
+        if (SeatNumber != null)
+        {
+            var ticket = new Ticket(currentMovie.MovieId, currentMovie.MoviePrice, SeatNumber);
+            var customer = new Customer(0, ticket.TicketId);
+            _unitOfWork.CustomersRepository.Add(customer);
+            _unitOfWork.TicketsRepository.Add(ticket);
+        }
+
+        var complete = _unitOfWork.Complete();
+        if (complete != 1) return;
+        var firstOrDefault = _unitOfWork.SeatsRepository.GetAll().FirstOrDefault(seat => seat.SeatNumber == SeatNumber);
+        if (firstOrDefault != null) firstOrDefault.IsTaken = true;
+        _unitOfWork.Complete();
+        var result = MessageBox.Show("Ticket bought successfully", "Confirmation", MessageBoxButton.OK);
+        switch (result)
+        {
+            case MessageBoxResult.OK:
+                Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+                CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
+                break;
+            case MessageBoxResult.Cancel:
+            case MessageBoxResult.None:
+            case MessageBoxResult.Yes:
+            case MessageBoxResult.No:
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        var tickets = _unitOfWork.TicketsRepository.GetAll();
+        var customers = _unitOfWork.CustomersRepository.GetAll();
     }
 
     [RelayCommand]
@@ -107,14 +99,12 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
 
     private bool CheckInputs()
     {
-        return !StringHelper.IsWholeNumberOrDecimal(Payment?? "0");
+        return Payment is null || !StringHelper.IsWholeNumberOrDecimal(Payment);
     }
 
-    private bool IsSeatAvailable()
+    private bool IsSeatNotAvailable()
     {
-        return _unitOfWork.SeatsRepository.GetAll()
-            .Where(s => s.SeatNumber == SeatNumber)
-            .FirstOrDefault(m => m.IsTaken)?.IsTaken ?? false;
+        return _unitOfWork.SeatsRepository.GetAll().FirstOrDefault(s => s.SeatNumber == SeatNumber)?.IsTaken ?? false;
     }
 
     public void Receive(GetSeatInfoMessage message)

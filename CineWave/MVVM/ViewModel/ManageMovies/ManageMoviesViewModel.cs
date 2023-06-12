@@ -30,8 +30,7 @@ public partial class ManageMoviesViewModel : BaseViewModel
                         movie.MoviePrice,
                         movie.Runtime,
                         movie.ReleaseDate,
-                        movie.ScreeningDateTime,
-                        _unitOfWork
+                        movie.ScreeningDateTime
                     )
                 );
             }

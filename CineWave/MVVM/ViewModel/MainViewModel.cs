@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using CineWave.Components;
@@ -36,15 +35,8 @@ public partial class MainViewModel : BaseViewModel
     {
         NavService.NavigateTo<HomeViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        try
-        {
-            Task.Run(App.ServiceProvider.GetRequiredService<HomeViewModel>()
-                .GetMoviesFromApi); // Run the method on a separate thread
-        }
-        catch (Exception e)
-        {
-            Debug.Print(e.StackTrace);
-        }
+        Task.Run(App.ServiceProvider.GetRequiredService<HomeViewModel>()
+            .GetMoviesFromApi); // Run the method on a separate thread
     }
 
     [RelayCommand]
@@ -58,7 +50,8 @@ public partial class MainViewModel : BaseViewModel
     {
         NavService.NavigateTo<SeatBookingViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().SetCurrentMovie); // Run the method on a separate thread
+        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>()
+            .SetCurrentMovie); // Run the method on a separate thread
     }
 
     [RelayCommand]

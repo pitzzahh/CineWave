@@ -12,6 +12,8 @@
     <UserControl.Resources>
         <helpers:TimeOnlyConverter x:Key="TimeOnlyConverter" />
         <helpers:PriceConverter x:Key="PriceConverter" />
+        <helpers:DateToStringConverter x:Key="DateToStringConverter" />
+        <helpers:ScreeningDateTimeConverter x:Key="ScreeningDateTimeConverter" />
     </UserControl.Resources>
     <Border CornerRadius="5">
         <Border.Background>
@@ -69,7 +71,7 @@
                                Content="Released On:"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />
-                        <Label Content="{Binding ReleaseDate}"
+                        <Label Content="{Binding ReleaseDate, Converter={StaticResource DateToStringConverter}}"
                                FontWeight="Medium"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />
@@ -80,10 +82,16 @@
                                Content="Screening Date:"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />
-                        <Label Content="{Binding ScreeningDateTime}"
-                               FontWeight="Medium"
+                        <Label FontWeight="Medium"
                                Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="14" />
+                               FontSize="14">
+                            <Label.Content>
+                                <MultiBinding Converter="{StaticResource ScreeningDateTimeConverter}">
+                                    <Binding Path="ScreeningDateTime" />
+                                    <Binding Path="Runtime" />
+                                </MultiBinding>
+                            </Label.Content>
+                        </Label>
                     </StackPanel>
                 </StackPanel>
             </Grid>

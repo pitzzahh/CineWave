@@ -38,6 +38,7 @@
             </Grid.RowDefinitions>
             <Button Width="80"
                     Height="80"
+                    Cursor="Hand"
                     IsEnabled="{Binding IsSeatAvailable, Mode=TwoWay }"
                     Command="{Binding OpenFormCommand}"
                     Uid="{Binding SeatNumber, Mode=OneWay}" />

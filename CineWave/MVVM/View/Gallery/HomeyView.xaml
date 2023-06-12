@@ -17,7 +17,9 @@
                    Margin="10 0"
                    Foreground="{StaticResource QuinaryBrush}" />
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" 
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center">
             <Grid HorizontalAlignment="Center">
                 <ItemsControl
                     ItemsSource="{Binding MovieCardViewModels}">

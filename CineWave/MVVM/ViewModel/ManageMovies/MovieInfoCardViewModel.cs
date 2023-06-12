@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using CineWave.Components;
-using CineWave.DB.Core;
 using CineWave.Messages.ManageMovies;
 using CineWave.MVVM.Model.Movies;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -19,12 +18,9 @@ public partial class MovieInfoCardViewModel : BaseViewModel
     [ObservableProperty] private DateOnly _releaseDate;
     [ObservableProperty] private DateTime _screeningDateTime;
 
-    private readonly IUnitOfWork _unitOfWork;
-
     public MovieInfoCardViewModel(string movieName, double moviePrice, TimeOnly runtime, DateOnly releaseDate,
-        DateTime screeningDateTime, IUnitOfWork unitOfWork)
+        DateTime screeningDateTime)
     {
-        _unitOfWork = unitOfWork;
         MovieName = movieName;
         MoviePrice = moviePrice;
         Runtime = runtime;

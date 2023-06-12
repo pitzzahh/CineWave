@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using CineWave.Helpers;
@@ -20,20 +21,27 @@ public partial class HomeViewModel : BaseViewModel
     {
         // Fetch movie data from TMDb API
         // Parse the JSON response
-        var results = JObject.Parse(await TmdbHelper.GetTopMovies()).GetValue("results");
-        if (results == null) return;
-        await Application.Current.Dispatcher.InvokeAsync(() =>
+        try
         {
-            _movies.Clear();
-            foreach (var result in results)
+            var results = JObject.Parse(await TmdbHelper.GetTopMovies()).GetValue("results");
+            if (results == null) return;
+            await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                _movies.Add(new MovieCardViewModel(
-                    $"https://image.tmdb.org/t/p/w500/{result["poster_path"]}",
-                    result["original_title"]?.ToString(),
-                    result["overview"]?.ToString()
-                ));
-            }
-        });
+                _movies.Clear();
+                foreach (var result in results)
+                {
+                    _movies.Add(new MovieCardViewModel(
+                        $"https://image.tmdb.org/t/p/w500/{result["poster_path"]}",
+                        result["original_title"]?.ToString(),
+                        result["overview"]?.ToString()
+                    ));
+                }
+            });
+        }
+        catch (Exception e)
+        {
+            Debug.Print(e.StackTrace);
+        }
     }
 
     public async Task GetRandomTrailer()

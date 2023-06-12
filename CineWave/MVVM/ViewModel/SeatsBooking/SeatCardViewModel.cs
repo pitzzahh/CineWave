@@ -4,6 +4,7 @@ using CineWave.Components;
 using CineWave.DB.Core;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
+using CineWave.MVVM.Model.SeatsBooking;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -46,7 +47,7 @@ public partial class SeatCardViewModel : BaseViewModel
                 return;
             }
             seatBookingRegistrationForm.Show();
-            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new ReservationInfo(currentMovie.MovieName, currentMovie.MoviePrice, SeatNumber ?? "")));
+            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new BookMovieInfo(currentMovie.MovieName, currentMovie.MoviePrice, SeatNumber ?? "")));
         }
     }
 }

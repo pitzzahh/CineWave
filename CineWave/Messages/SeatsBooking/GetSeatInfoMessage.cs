@@ -1,11 +1,12 @@
 ﻿using CineWave.MVVM.Model;
+using CineWave.MVVM.Model.SeatsBooking;
 using CommunityToolkit.Mvvm.Messaging.Messages;
 
 namespace CineWave.Messages.SeatsBooking;
 
-public class GetSeatInfoMessage : ValueChangedMessage<ReservationInfo>
+public class GetSeatInfoMessage : ValueChangedMessage<BookMovieInfo>
 {
-    public GetSeatInfoMessage(ReservationInfo value) : base(value)
+    public GetSeatInfoMessage(BookMovieInfo value) : base(value)
     {
     }
 }

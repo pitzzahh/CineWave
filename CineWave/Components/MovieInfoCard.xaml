@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
              xmlns:helpers="clr-namespace:CineWave.Helpers"
              mc:Ignorable="d"
-             Width="350"
+             Width="450"
              Margin="5"
-             Height="165">
+             Height="200">
     <UserControl.Resources>
         <helpers:TimeOnlyConverter x:Key="TimeOnlyConverter" />
     </UserControl.Resources>
@@ -20,64 +21,72 @@
                 <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
             </LinearGradientBrush>
         </Border.Background>
-        <Grid>
-            <!-- Movie card content -->
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label FontWeight="Bold"
-                           Content="Movie Name:"
-                           Foreground="{StaticResource QuinaryBrush}"
-                           FontSize="14" />
-                    <Label Content="{Binding MovieName}"
-                           FontWeight="Medium"
-                           Foreground="{StaticResource QuinaryBrush}"
-                           FontSize="14" />
-                </StackPanel>
+        <moderncontrols:ModernButton Command="{Binding OpenFormCommand}"
+                                     DefaultBackground="Transparent"
+                                     HoverBackground="Transparent"
+                                     HoverForeground="Transparent"
+                                     PressedBackground="Transparent"
+                                     PressedBorderBrush="Transparent"
+                                     HorizontalContentAlignment="Left">
+            <Grid>
+                <!-- Movie card content -->
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold"
+                               Content="Movie Name:"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                        <Label Content="{Binding MovieName}"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label FontWeight="Bold"
-                           Content="Movie Price:"
-                           Foreground="{StaticResource QuinaryBrush}"
-                           FontSize="14" />
-                    <Label Content="{Binding MoviePrice}"
-                           FontWeight="Medium"
-                           Foreground="{StaticResource QuinaryBrush}"
-                           FontSize="14" />
-                </StackPanel>
-                
-                <StackPanel Orientation="Horizontal">
-                    <Label FontWeight="Bold"
-                           Content="Runtime:"
-                           Foreground="{StaticResource QuinaryBrush}"
-                           FontSize="14" />
-                    <Label Content="{Binding Runtime, Converter={StaticResource TimeOnlyConverter}}"
-                           FontWeight="Medium"
-                           Foreground="{StaticResource QuinaryBrush}"
-                           FontSize="14" />
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold"
+                               Content="Movie Price:"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                        <Label Content="{Binding MoviePrice}"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label FontWeight="Bold"
-                           Content="Released On:"
-                           Foreground="{StaticResource QuinaryBrush}"
-                           FontSize="14" />
-                    <Label Content="{Binding ReleaseDate}"
-                           FontWeight="Medium"
-                           Foreground="{StaticResource QuinaryBrush}"
-                           FontSize="14" />
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold"
+                               Content="Runtime:"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                        <Label Content="{Binding Runtime, Converter={StaticResource TimeOnlyConverter}}"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label FontWeight="Bold"
-                           Content="Screening Date:"
-                           Foreground="{StaticResource QuinaryBrush}"
-                           FontSize="14" />
-                    <Label Content="{Binding ScreeningDateTime}"
-                           FontWeight="Medium"
-                           Foreground="{StaticResource QuinaryBrush}"
-                           FontSize="14" />
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold"
+                               Content="Released On:"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                        <Label Content="{Binding ReleaseDate}"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold"
+                               Content="Screening Date:"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                        <Label Content="{Binding ScreeningDateTime}"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-        </Grid>
+            </Grid>
+        </moderncontrols:ModernButton>
     </Border>
 </UserControl>

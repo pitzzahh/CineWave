@@ -83,6 +83,7 @@ public partial class MainViewModel : BaseViewModel
         App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
         App.ServiceProvider.GetRequiredService<MainWindow>().Hide();
         App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>().Hide();
+        App.ServiceProvider.GetRequiredService<EditMovieForm>().Hide();
         App.ServiceProvider.GetRequiredService<LoginWindow>().Show();
     }
 }

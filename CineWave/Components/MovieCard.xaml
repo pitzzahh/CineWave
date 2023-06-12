@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             Height="750"
+             Height="700"
              Width="420">
 
     <Border CornerRadius="20"
@@ -17,7 +17,7 @@
             </Grid.RowDefinitions>
             <Image Source="{Binding MovieImage}"
                    Width="420"
-                   Height="650" />
+                   Height="600" />
             <TextBlock Grid.Row="1"
                        Text="{Binding MovieName}"
                        FontSize="19"

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CineWave.MVVM.Model;
+namespace CineWave.MVVM.Model.SeatsBooking;
 
 public class Seat
 {

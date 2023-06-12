@@ -7,6 +7,7 @@ using CineWave.DB;
 using CineWave.DB.Core;
 using CineWave.DB.Persistence;
 using CineWave.MVVM.Model;
+using CineWave.MVVM.Model.SeatsBooking;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
 using CineWave.MVVM.ViewModel;
@@ -45,6 +46,7 @@ namespace CineWave
             serviceCollection.AddSingleton<SeatCardViewModel>();
             serviceCollection.AddSingleton<SeatBookingRegistrationForm>();
             serviceCollection.AddTransient<SeatBookingRegistrationFormViewModel>();
+            serviceCollection.AddTransient<EditMovieFormViewModel>();
             serviceCollection.AddTransient<AddMovieViewModel>();
             serviceCollection.AddSingleton<TrailerViewModel>();
             serviceCollection.AddSingleton<ManageMoviesViewModel>();
@@ -63,6 +65,11 @@ namespace CineWave
             serviceCollection.AddSingleton<SeatBookingRegistrationForm>(provider => new SeatBookingRegistrationForm
             {
                 DataContext = provider.GetRequiredService<SeatBookingRegistrationFormViewModel>()
+            });
+            
+            serviceCollection.AddSingleton<EditMovieForm>(provider => new EditMovieForm()
+            {
+                DataContext = provider.GetRequiredService<EditMovieFormViewModel>()
             });
             
             serviceCollection.AddSingleton<Func<Type, BaseViewModel>>(provider => viewModelType => (BaseViewModel)provider.GetRequiredService(viewModelType));

@@ -89,7 +89,7 @@
                       Fill="{StaticResource QuinaryBrush}" />
             </Border>
             <StackPanel Grid.Row="1" >
-                <TextBlock Text="SCREEN"
+                <TextBlock Text="BIG SCREEN"
                            Foreground="{StaticResource QuinaryBrush}"
                            HorizontalAlignment="Center"
                            FontWeight="Bold"

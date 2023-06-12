@@ -54,7 +54,7 @@
                         <Image HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Height="50"
-                               Margin="5"
+                               Margin="5 28"
                                Source="/Resources/Images/logo.png" />
                     </StackPanel>
 

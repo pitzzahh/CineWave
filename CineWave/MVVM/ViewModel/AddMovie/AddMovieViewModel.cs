@@ -122,8 +122,26 @@ public partial class AddMovieViewModel : BaseViewModel
     [RelayCommand]
     public void AddMovie()
     {
-        if (MovieName is null || Price is null || !StringHelper.IsWholeNumberOrDecimal(Price))
+        if (MovieName is null)
+        {
+            MessageBox.Show("Please enter a movie name");
             return;
+        }
+
+        if (Price is null)
+        {
+            MessageBox.Show("Please enter a price");
+            return;
+        }
+        
+        var isInvalidPayment = !StringHelper.IsWholeNumberOrDecimal(Price);
+        
+        if (isInvalidPayment)
+        {
+            MessageBox.Show("Please enter a valid price");
+            return;
+        }
+
         var releaseDate = new DateOnly(ReleaseDateYear, StringHelper.GetMonthInt(ReleaseDateMonth), ReleaseDateDay);
         var screeningDateTime = new DateTime(
             ScreeningDateYear,

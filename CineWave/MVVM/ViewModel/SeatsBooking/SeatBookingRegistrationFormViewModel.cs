@@ -40,7 +40,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
             return;
         }
 
-        var currentMovie = _unitOfWork.MoviesRepository.GetNowShowingMovie();
+        var currentMovie = _unitOfWork.MoviesRepository.GetMovieByName(MovieName ?? string.Empty);
 
         if (currentMovie != null)
         {
@@ -98,14 +98,10 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
         CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
     }
 
-    private void CloseRegistrationWindow(Window seatBookingRegistrationForm)
+    private static void CloseRegistrationWindow(Window seatBookingRegistrationForm)
     {
         if (!seatBookingRegistrationForm.IsVisible) return;
         seatBookingRegistrationForm.Hide();
-        MovieName = "";
-        MoviePrice = "";
-        SeatNumber = "";
-        Payment = "";
     }
 
     private bool CheckInputs()
@@ -115,15 +111,9 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
 
     private bool IsSeatAvailable()
     {
-        var result = false; 
-        Application.Current.Dispatcher.InvokeAsync(() =>
-        {
-            var seat = _unitOfWork.SeatsRepository.GetAll()
-                .Where(s => s.SeatNumber == SeatNumber)
-                .FirstOrDefault(m => m.IsTaken);
-            result = seat?.IsTaken ?? false;
-        });
-        return result;
+        return _unitOfWork.SeatsRepository.GetAll()
+            .Where(s => s.SeatNumber == SeatNumber)
+            .FirstOrDefault(m => m.IsTaken)?.IsTaken ?? false;
     }
 
     public void Receive(GetSeatInfoMessage message)

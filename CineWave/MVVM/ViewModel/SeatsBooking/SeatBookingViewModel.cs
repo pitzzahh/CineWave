@@ -23,17 +23,16 @@ public partial class SeatBookingViewModel : BaseViewModel
 
     public async Task SetCurrentMovie()
     {
-        await Application.Current
-            .Dispatcher
-            .InvokeAsync(() =>
+        var noMovieIsCurrentlyShowing = _unitOfWork.MoviesRepository.GetNowShowingMovie()?.MovieName ?? MovieNotFound;
+        var seats = _unitOfWork.SeatsRepository.GetAll();
+        await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                CurrentMovie = _unitOfWork.MoviesRepository.GetNowShowingMovie()?.MovieName ?? MovieNotFound; 
+                CurrentMovie = noMovieIsCurrentlyShowing; 
                 if (_seats.Count.Equals(50)) return;
-                foreach (var seat in _unitOfWork.SeatsRepository.GetAll())
+                foreach (var seat in seats)
                 {
                     _seats.Add(new SeatCardViewModel(seat.SeatNumber, seat.IsTaken, _unitOfWork));
                 }
-                _unitOfWork.Complete();
             });
     }
 }

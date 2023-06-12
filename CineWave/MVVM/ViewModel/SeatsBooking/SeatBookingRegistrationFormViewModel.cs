@@ -23,6 +23,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     [ObservableProperty] private string? _moviePrice;
     [ObservableProperty] private string? _seatNumber;
     [ObservableProperty] private string? _payment;
+    [ObservableProperty] private string _isMovieFree = "Visible";
     private readonly IUnitOfWork _unitOfWork;
 
     public SeatBookingRegistrationFormViewModel(IUnitOfWork unitOfWork)
@@ -44,7 +45,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
 
         if (currentMovie != null)
         {
-            if (double.Parse(Payment ?? "0") < currentMovie.MoviePrice)
+            if (currentMovie.MovieId != 0 && double.Parse(Payment ?? "0") < currentMovie.MoviePrice)
             {
                 MessageBox.Show("Payment is not enough");
                 return;
@@ -120,6 +121,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     {
         var reservationInfo = message.Value;
         MovieName = reservationInfo.MovieName;
+        IsMovieFree = reservationInfo.MoviePrice == 0 ? "Hidden" : "Visible";
         MoviePrice = reservationInfo.MoviePrice.ToString(CultureInfo.InvariantCulture);
         SeatNumber = reservationInfo.SeatNumber;
     }

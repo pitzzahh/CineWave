@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
+        xmlns:helpers="clr-namespace:CineWave.Helpers"
         mc:Ignorable="d"
         Height="350"
         WindowStyle="None"
@@ -11,6 +12,10 @@
         Background="Transparent"
         AllowsTransparency="True"
         Width="500">
+    
+    <Window.Resources>
+        <helpers:PriceConverter x:Key="PriceConverter" />
+    </Window.Resources>
 
     <Border CornerRadius="5">
         <Border.Background>
@@ -48,7 +53,7 @@
                        FontWeight="Medium"
                        Margin="10 0"
                        Foreground="{StaticResource QuinaryBrush}" />
-                <Label Content="{Binding MoviePrice}"
+                <Label Content="{Binding MoviePrice, Converter={StaticResource PriceConverter}}"
                        Foreground="{StaticResource QuinaryBrush}" />
             </StackPanel>
 
@@ -63,7 +68,7 @@
                        Foreground="{StaticResource QuinaryBrush}" />
             </StackPanel>
 
-            <StackPanel Margin="5">
+            <StackPanel Margin="5" Visibility="{Binding IsMovieFree}">
                 <Label Content="_payment"
                        FontWeight="Medium"
                        Foreground="{StaticResource QuinaryBrush}" />

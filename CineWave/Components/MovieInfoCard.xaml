@@ -6,15 +6,14 @@
              xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
              xmlns:helpers="clr-namespace:CineWave.Helpers"
              mc:Ignorable="d"
-             Width="450"
+             Width="400"
              Margin="5"
-             Height="200">
+             Height="185">
     <UserControl.Resources>
         <helpers:TimeOnlyConverter x:Key="TimeOnlyConverter" />
+        <helpers:PriceConverter x:Key="PriceConverter" />
     </UserControl.Resources>
-    <Border CornerRadius="5"
-            Padding="10"
-            BorderThickness="1">
+    <Border CornerRadius="5">
         <Border.Background>
             <LinearGradientBrush StartPoint="0.1,0" EndPoint="1,1.1">
                 <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
@@ -48,7 +47,7 @@
                                Content="Movie Price:"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />
-                        <Label Content="{Binding MoviePrice}"
+                        <Label Content="{Binding MoviePrice, Converter={StaticResource PriceConverter}}"
                                FontWeight="Medium"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />

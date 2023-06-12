@@ -23,4 +23,9 @@ public static class StringHelper
 
         return monthInt + 1;
     }
+    
+    public static string GetCurrencySymbol(CultureInfo culture)
+    {
+        return new RegionInfo(culture.Name).CurrencySymbol;
+    }
 }

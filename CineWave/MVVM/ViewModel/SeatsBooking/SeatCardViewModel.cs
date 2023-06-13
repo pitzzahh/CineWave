@@ -29,7 +29,7 @@ public partial class SeatCardViewModel : BaseViewModel
     {
         if (!IsSeatAvailable)
         {
-            MessageBox.Show("This seat is already taken!");
+            MessageBox.Show("This seat is already taken or no movie is currently showing!");
             return;
         }
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");

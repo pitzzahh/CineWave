@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using CineWave.Components;
 using CineWave.DB.Core;
@@ -34,7 +35,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     [RelayCommand]
     public void OnBuy()
     {
-        if (CheckInputs())
+        if (MoviePrice != "0" && CheckInputs())
         {
             MessageBox.Show("Please enter a valid payment");
         }
@@ -42,7 +43,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
         var currentMovie = _unitOfWork.MoviesRepository.GetMovieByName(MovieName ?? string.Empty);
 
         if (currentMovie == null) return;
-        if (currentMovie.MovieId != 0 && Payment != null && double.Parse(Payment) < currentMovie.MoviePrice)
+        if (currentMovie.MovieId != 0 && MoviePrice != "0" && Payment != null && double.Parse(Payment) < currentMovie.MoviePrice)
         {
             MessageBox.Show("Payment is not enough");
         }
@@ -62,7 +63,11 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
         }
 
         var complete = _unitOfWork.Complete();
-        if (complete != 1) return;
+        if (complete == 0)
+        {
+            MessageBox.Show("Failed to buy ticket");
+            return;
+        }
         var firstOrDefault = _unitOfWork.SeatsRepository.GetAll().FirstOrDefault(seat => seat.SeatNumber == SeatNumber);
         if (firstOrDefault != null) firstOrDefault.IsTaken = true;
         _unitOfWork.Complete();
@@ -80,8 +85,8 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        var tickets = _unitOfWork.TicketsRepository.GetAll();
-        var customers = _unitOfWork.CustomersRepository.GetAll();
+        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().SetCurrentMovie); // Run the method on a separate thread
+        OnCancel();
     }
 
     [RelayCommand]

@@ -29,12 +29,11 @@ public partial class SeatBookingViewModel : BaseViewModel
         await Application.Current.Dispatcher.InvokeAsync(() =>
         {
             CurrentMovie = noMovieIsCurrentlyShowing;
-            if (_seats.Count.Equals(50)) return;
-
+            _seats.Clear();
             var sortedSeats = seats.OrderBy(seat => seat.SeatNumber, new SeatNumberComparer());
             foreach (var seat in sortedSeats)
             {
-                _seats.Add(new SeatCardViewModel(seat.SeatNumber, seat.IsTaken, _unitOfWork));
+                _seats.Add(new SeatCardViewModel(seat.SeatNumber, CurrentMovie == MovieNotFound ||seat.IsTaken, _unitOfWork));
             }
         });
     }

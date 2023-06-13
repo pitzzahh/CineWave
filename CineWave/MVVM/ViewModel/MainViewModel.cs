@@ -43,6 +43,9 @@ public partial class MainViewModel : BaseViewModel
     public void NavigateToReservations()
     {
         NavService.NavigateTo<ReservationsViewModel>();
+        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
+        Task.Run(App.ServiceProvider.GetRequiredService<ReservationsViewModel>()
+            .CreateMovieInfoCards); // Run the method on a separate thread
     }
 
     [RelayCommand]

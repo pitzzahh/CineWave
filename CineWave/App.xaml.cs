@@ -6,7 +6,6 @@ using CineWave.Components;
 using CineWave.DB;
 using CineWave.DB.Core;
 using CineWave.DB.Persistence;
-using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.SeatsBooking;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
@@ -20,6 +19,7 @@ using CineWave.MVVM.ViewModel.SeatsBooking;
 using CineWave.MVVM.ViewModel.Trailer;
 using CineWave.Services;
 using Microsoft.Extensions.DependencyInjection;
+
 namespace CineWave
 {
     /// <summary>
@@ -43,11 +43,13 @@ namespace CineWave
             serviceCollection.AddSingleton<ReservationsViewModel>();
             serviceCollection.AddSingleton<SeatBookingViewModel>();
             serviceCollection.AddSingleton<ManageMoviesViewModel>();
+            serviceCollection.AddSingleton<RMovieInfoCardViewModel>();
             serviceCollection.AddSingleton<MovieInfoCardViewModel>();
-            serviceCollection.AddSingleton<SBSeatCardViewModel>();
+            serviceCollection.AddSingleton<SbSeatCardViewModel>();
             serviceCollection.AddSingleton<RSeatCardViewModel>();
             serviceCollection.AddSingleton<SeatBookingRegistrationForm>();
             serviceCollection.AddTransient<SeatBookingRegistrationFormViewModel>();
+            serviceCollection.AddTransient<RSeatBookingRegistrationFormViewModel>();
             serviceCollection.AddTransient<EditMovieFormViewModel>();
             serviceCollection.AddTransient<AddMovieViewModel>();
             serviceCollection.AddSingleton<TrailerViewModel>();

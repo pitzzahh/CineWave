@@ -14,8 +14,8 @@ public partial class SeatBookingViewModel : BaseViewModel
     [ObservableProperty] private string? _currentMovie;
     [ObservableProperty] private string? _seatNumber;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly ObservableCollection<SBSeatCardViewModel> _seats = new(); // For seats choose
-    public IEnumerable<SBSeatCardViewModel> Seats => _seats;
+    private readonly ObservableCollection<SbSeatCardViewModel> _seats = new(); // For seats choose
+    public IEnumerable<SbSeatCardViewModel> Seats => _seats;
     private const string MovieNotFound = "No movie is currently showing";
 
     public SeatBookingViewModel(IUnitOfWork unitOfWork)
@@ -34,7 +34,7 @@ public partial class SeatBookingViewModel : BaseViewModel
             var sortedSeats = seats.OrderBy(seat => seat.SeatNumber, new SeatNumberComparer());
             foreach (var seat in sortedSeats)
             {
-                _seats.Add(new SBSeatCardViewModel(seat.SeatNumber, CurrentMovie == MovieNotFound ||seat.IsTaken, _unitOfWork));
+                _seats.Add(new SbSeatCardViewModel(seat.SeatNumber, CurrentMovie == MovieNotFound ||seat.IsTaken, _unitOfWork));
             }
         });
     }

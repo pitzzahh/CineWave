@@ -50,11 +50,19 @@
                 <components:MovieInfoCard/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type seatsBooking:SBSeatCardViewModel}">
+            <DataTemplate DataType="{x:Type reservations:RMovieInfoCardViewModel}">
+                <components:MovieInfoCard/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type seatsBooking:SbSeatCardViewModel}">
                 <components:SeatCard/>
             </DataTemplate>
             
             <DataTemplate DataType="{x:Type seatsBooking:SeatBookingRegistrationFormViewModel}">
+                <components:SeatBookingRegistrationForm/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type reservations:RSeatBookingRegistrationFormViewModel}">
                 <components:SeatBookingRegistrationForm/>
             </DataTemplate>
             

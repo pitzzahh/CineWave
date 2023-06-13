@@ -10,14 +10,15 @@ using CineWave.Helpers;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.Movies;
+using CineWave.MVVM.ViewModel.SeatsBooking;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CineWave.MVVM.ViewModel.SeatsBooking;
+namespace CineWave.MVVM.ViewModel.Reservations;
 
-public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IRecipient<GetSeatInfoMessage>
+public partial class RSeatBookingRegistrationFormViewModel : BaseViewModel, IRecipient<GetSeatInfoMessage>
 {
     [ObservableProperty] private string? _movieName;
     [ObservableProperty] private string? _moviePrice;
@@ -26,7 +27,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     [ObservableProperty] private string _isMovieFree = "Visible";
     private readonly IUnitOfWork _unitOfWork;
 
-    public SeatBookingRegistrationFormViewModel(IUnitOfWork unitOfWork)
+    public RSeatBookingRegistrationFormViewModel(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
         WeakReferenceMessenger.Default.Register(this);

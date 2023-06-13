@@ -50,7 +50,7 @@
                 <components:MovieInfoCard/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type seatsBooking:SeatCardViewModel}">
+            <DataTemplate DataType="{x:Type seatsBooking:SBSeatCardViewModel}">
                 <components:SeatCard/>
             </DataTemplate>
             

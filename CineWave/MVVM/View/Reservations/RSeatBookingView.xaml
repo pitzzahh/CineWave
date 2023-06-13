@@ -1,0 +1,113 @@
+﻿<Window x:Class="CineWave.Components.RSeatBookingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        d:DesignWidth="770"
+        d:DesignHeight="700">
+
+    <Border CornerRadius="5">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0.02,0.2" EndPoint="1.5,1.9">
+                <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
+                <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock FontSize="20"
+                       FontWeight="Medium"
+                       Margin="10 0 0 0"
+                       Foreground="{StaticResource QuinaryBrush}">
+                <Run Text="Current Movie: " />
+                <Run Text="{Binding CurrentMovie}"
+                     FontWeight="Normal" />
+            </TextBlock>
+
+            <Grid Grid.Row="1" Margin="0 10 0 0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="35" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0"
+                            Background="{StaticResource PrimaryBrush}"
+                            Orientation="Horizontal">
+                    <TextBlock Text="SIDE"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="25">
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="270" />
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2"
+                            Background="{StaticResource PrimaryBrush}"
+                            Orientation="Horizontal">
+                    <TextBlock Text="SIDE"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="25">
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="270" />
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                </StackPanel>
+
+                <!-- Seats -->
+                <Grid Grid.Column="1"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center">
+                    <ItemsControl ItemsSource="{Binding Seats}"
+                                  Width="1000"
+                                  HorizontalAlignment="Center"
+                                  HorizontalContentAlignment="Center">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </Grid>
+            </Grid>
+
+            <!-- Cinema Screen -->
+            <Grid Grid.Row="2" HorizontalAlignment="Center"
+                  Margin="0 0 0 5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Border>
+                    <Path Data="M4 -1 Q300 20 600 0"
+                          Fill="{StaticResource QuinaryBrush}" />
+                </Border>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="BIG SCREEN"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               HorizontalAlignment="Center"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               FontSize="20">
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+
+</Window>

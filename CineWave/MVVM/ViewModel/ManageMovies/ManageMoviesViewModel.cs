@@ -6,7 +6,7 @@ using CineWave.DB.Core;
 
 namespace CineWave.MVVM.ViewModel.ManageMovies;
 
-public partial class ManageMoviesViewModel : BaseViewModel
+public class ManageMoviesViewModel : BaseViewModel
 {
     private readonly ObservableCollection<MovieInfoCardViewModel> _movieInfoCardViewModels = new();
     public IEnumerable<MovieInfoCardViewModel> MovieInfoCardViewModels => _movieInfoCardViewModels;

@@ -85,7 +85,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().SetCurrentMovie); // Run the method on a separate thread
+        Task.Run(App.ServiceProvider.GetRequiredService<RSeatBookingViewModel>().SetCurrentMovie); // Run the method on a separate thread
         OnCancel();
     }
 

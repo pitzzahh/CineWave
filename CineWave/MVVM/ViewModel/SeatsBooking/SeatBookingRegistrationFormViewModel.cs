@@ -56,8 +56,8 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
 
         if (SeatNumber != null)
         {
-            var ticket = new Ticket(currentMovie.MovieId, currentMovie.MoviePrice, SeatNumber);
-            var customer = new Customer(0, ticket.TicketId);
+            var ticket = new Ticket(currentMovie.MovieId, SeatNumber);
+            var customer = new Customer(ticket.TicketId);
             _unitOfWork.CustomersRepository.Add(customer);
             _unitOfWork.TicketsRepository.Add(ticket);
         }

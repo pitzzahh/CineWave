@@ -9,12 +9,10 @@ public class Ticket
     public int TicketId { get; set; }
     public int MovieId { get; set; }
     public string SeatNumber { get; set; }
-    public double Price { get; set; }
     
-    public Ticket(int movieId, double price, string seatNumber)
+    public Ticket(int movieId, string seatNumber)
     {
         MovieId = movieId;
-        Price = price;
         SeatNumber = seatNumber;
     }
 

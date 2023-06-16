@@ -4,8 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:CineWave.Components"
+             xmlns:helpers="clr-namespace:CineWave.Helpers"
+             xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
              mc:Ignorable="d"
              d:DesignHeight="200" d:DesignWidth="400">
+    <UserControl.Resources>
+        <helpers:TimeOnlyConverter x:Key="TimeOnlyConverter" />
+        <helpers:PriceConverter x:Key="PriceConverter" />
+        <helpers:DateToStringConverter x:Key="DateToStringConverter" />
+        <helpers:ScreeningDateTimeConverter x:Key="ScreeningDateTimeConverter" />
+    </UserControl.Resources>
     <Border CornerRadius="5">
         <Border.Background>
             <LinearGradientBrush StartPoint="0.1,0" EndPoint="1,1.1">
@@ -13,29 +21,79 @@
                 <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
             </LinearGradientBrush>
         </Border.Background>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" 
-                       Foreground="{StaticResource QuinaryBrush}"
-                       Text="Reservation Number" FontSize="16" FontWeight="Bold" Margin="10" />
-            <TextBlock Grid.Row="1" 
-                       Foreground="{StaticResource QuinaryBrush}"
-                       Text="Customer Name" FontSize="14" Margin="10" />
-            <TextBlock Grid.Row="2" 
-                       Foreground="{StaticResource QuinaryBrush}"
-                       Text="Movie Name" FontSize="14" Margin="10" />
-            <TextBlock Grid.Row="3" 
-                       Foreground="{StaticResource QuinaryBrush}"
-                       Text="Seat Number" FontSize="14" Margin="10" />
-            <TextBlock Grid.Row="4" 
-                       Foreground="{StaticResource QuinaryBrush}"
-                       Text="Screening Date" FontSize="14" Margin="10" />
-        </Grid>
+        <moderncontrols:ModernButton Command="{Binding OpenFormCommand}"
+                                     DefaultBackground="Transparent"
+                                     HoverBackground="Transparent"
+                                     HoverForeground="Transparent"
+                                     Cursor="Hand"
+                                     PressedBackground="Transparent"
+                                     PressedBorderBrush="Transparent"
+                                     HorizontalContentAlignment="Left">
+            <Grid>
+                <!-- Movie card content -->
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold"
+                               Content="Movie Name:"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                        <Label Content="{Binding MovieName}"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold"
+                               Content="Movie Price:"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                        <Label Content="{Binding MoviePrice, Converter={StaticResource PriceConverter}}"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold"
+                               Content="Runtime:"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                        <Label Content="{Binding Runtime, Converter={StaticResource TimeOnlyConverter}}"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold"
+                               Content="Released On:"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                        <Label Content="{Binding ReleaseDate, Converter={StaticResource DateToStringConverter}}"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold"
+                               Content="Screening Date:"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                        <Label FontWeight="Medium"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14">
+                            <Label.Content>
+                                <MultiBinding Converter="{StaticResource ScreeningDateTimeConverter}">
+                                    <Binding Path="ScreeningDateTime" />
+                                    <Binding Path="Runtime" />
+                                </MultiBinding>
+                            </Label.Content>
+                        </Label>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </moderncontrols:ModernButton>
     </Border>
 </UserControl>

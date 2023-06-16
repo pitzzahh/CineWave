@@ -6,7 +6,9 @@
   &lt;Assembly Path="C:\Users\pitzzahh\RiderProjects\CineWave\CineWave\obj\Debug\net7.0-windows\refint\CineWave.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\7.0.4\ref\net7.0\System.Security.Permissions.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\pitzzahh\.nuget\packages\russkyc.moderncontrols.wpf\1.7.1\lib\net6.0-windows7.0\Russkyc.ModernControls.WPF.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.15\ref\net6.0\WindowsBase.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
+	
 	
 	
 	

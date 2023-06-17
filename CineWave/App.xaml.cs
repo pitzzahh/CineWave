@@ -15,6 +15,8 @@ using CineWave.MVVM.ViewModel.Gallery;
 using CineWave.MVVM.ViewModel.Login;
 using CineWave.MVVM.ViewModel.ManageMovies;
 using CineWave.MVVM.ViewModel.Reservations;
+using CineWave.MVVM.ViewModel.Reservations.MovieList;
+using CineWave.MVVM.ViewModel.Reservations.SeatBooking;
 using CineWave.MVVM.ViewModel.SeatsBooking;
 using CineWave.MVVM.ViewModel.Trailer;
 using CineWave.Services;

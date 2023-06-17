@@ -16,7 +16,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CineWave.MVVM.ViewModel.Reservations;
+namespace CineWave.MVVM.ViewModel.Reservations.SeatBooking;
 
 public partial class RSeatBookingRegistrationFormViewModel : BaseViewModel, IRecipient<GetSeatInfoMessage>
 {

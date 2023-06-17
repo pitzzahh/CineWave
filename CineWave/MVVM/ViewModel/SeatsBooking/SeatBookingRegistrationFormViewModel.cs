@@ -33,6 +33,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
     public void OnBuy()
     {
         if (MoviePrice != "0" && CheckInputs())
@@ -43,7 +44,8 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
         var currentMovie = _unitOfWork.MoviesRepository.GetMovieByName(MovieName ?? string.Empty);
 
         if (currentMovie == null) return;
-        if (currentMovie.MovieId != 0 && MoviePrice != "0" && Payment != null && double.Parse(Payment) < currentMovie.MoviePrice)
+        if (currentMovie.MovieId != 0 && MoviePrice != "0" && Payment != null &&
+            double.Parse(Payment) < currentMovie.MoviePrice)
         {
             MessageBox.Show("Payment is not enough");
         }
@@ -68,6 +70,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
             MessageBox.Show("Failed to buy ticket");
             return;
         }
+
         var firstOrDefault = _unitOfWork.SeatsRepository.GetAll().FirstOrDefault(seat => seat.SeatNumber == SeatNumber);
         if (firstOrDefault != null) firstOrDefault.IsTaken = true;
         _unitOfWork.Complete();
@@ -85,11 +88,15 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().SetCurrentMovie); // Run the method on a separate thread
+
+        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>()
+            .SetCurrentMovie); // Run the method on a separate thread
         OnCancel();
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
+    #pragma warning disable CA1822
     public void OnCancel()
     {
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");

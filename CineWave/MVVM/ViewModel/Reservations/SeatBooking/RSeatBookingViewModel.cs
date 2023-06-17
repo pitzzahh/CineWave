@@ -8,7 +8,7 @@ using CineWave.Helpers;
 using CineWave.MVVM.ViewModel.SeatsBooking;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace CineWave.MVVM.ViewModel.Reservations;
+namespace CineWave.MVVM.ViewModel.Reservations.SeatBooking;
 
 public partial class RSeatBookingViewModel : BaseViewModel
 {

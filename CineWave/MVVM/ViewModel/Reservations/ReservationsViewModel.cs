@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using CineWave.DB.Core;
+using CineWave.MVVM.ViewModel.Reservations.MovieList;
 
 namespace CineWave.MVVM.ViewModel.Reservations;
 

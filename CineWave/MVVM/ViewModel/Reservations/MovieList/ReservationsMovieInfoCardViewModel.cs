@@ -8,9 +8,9 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CineWave.MVVM.ViewModel.Reservations;
+namespace CineWave.MVVM.ViewModel.Reservations.MovieList;
 
-public partial class RMovieInfoCardViewModel : BaseViewModel
+public partial class ReservationsMovieInfoCardViewModel : BaseViewModel
 {
     [ObservableProperty] private string _movieName = null!;
     [ObservableProperty] private double _moviePrice;
@@ -18,7 +18,7 @@ public partial class RMovieInfoCardViewModel : BaseViewModel
     [ObservableProperty] private DateOnly _releaseDate;
     [ObservableProperty] private DateTime _screeningDateTime;
 
-    public RMovieInfoCardViewModel(string movieName, double moviePrice, TimeOnly runtime, DateOnly releaseDate,
+    public ReservationsMovieInfoCardViewModel(string movieName, double moviePrice, TimeOnly runtime, DateOnly releaseDate,
         DateTime screeningDateTime)
     {
         MovieName = movieName;
@@ -32,7 +32,7 @@ public partial class RMovieInfoCardViewModel : BaseViewModel
     public void OpenForm()
     {
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        var editMovieForm = App.ServiceProvider.GetRequiredService<EditMovieForm>();
+        var editMovieForm = App.ServiceProvider.GetRequiredService<EditMovieForm>();// TODO: change to SeatsReservationForm
         if (editMovieForm.IsVisible)
         {
             editMovieForm.Hide();

@@ -3,13 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:CineWave.Components"
              xmlns:helpers="clr-namespace:CineWave.Helpers"
              xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
              mc:Ignorable="d"
-             d:DesignHeight="200" d:DesignWidth="400">
+             d:DesignHeight="150" d:DesignWidth="400">
     <UserControl.Resources>
-        <helpers:TimeOnlyConverter x:Key="TimeOnlyConverter" />
         <helpers:PriceConverter x:Key="PriceConverter" />
         <helpers:DateToStringConverter x:Key="DateToStringConverter" />
         <helpers:ScreeningDateTimeConverter x:Key="ScreeningDateTimeConverter" />
@@ -34,43 +32,21 @@
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Label FontWeight="Bold"
-                               Content="Movie Name:"
+                               Content="Customer:"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />
-                        <Label Content="{Binding MovieName}"
+                        <Label Content="{Binding CustomerName}"
                                FontWeight="Medium"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />
                     </StackPanel>
-
+                    
                     <StackPanel Orientation="Horizontal">
                         <Label FontWeight="Bold"
-                               Content="Movie Price:"
+                               Content="Movie:"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />
-                        <Label Content="{Binding MoviePrice, Converter={StaticResource PriceConverter}}"
-                               FontWeight="Medium"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="14" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
-                        <Label FontWeight="Bold"
-                               Content="Runtime:"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="14" />
-                        <Label Content="{Binding Runtime, Converter={StaticResource TimeOnlyConverter}}"
-                               FontWeight="Medium"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="14" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal">
-                        <Label FontWeight="Bold"
-                               Content="Released On:"
-                               Foreground="{StaticResource QuinaryBrush}"
-                               FontSize="14" />
-                        <Label Content="{Binding ReleaseDate, Converter={StaticResource DateToStringConverter}}"
+                        <Label Content="{Binding MovieName, Converter={StaticResource PriceConverter}}"
                                FontWeight="Medium"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />
@@ -84,13 +60,24 @@
                         <Label FontWeight="Medium"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14">
-                            <Label.Content>
+                            <Label.Content> 
                                 <MultiBinding Converter="{StaticResource ScreeningDateTimeConverter}">
                                     <Binding Path="ScreeningDateTime" />
                                     <Binding Path="Runtime" />
                                 </MultiBinding>
                             </Label.Content>
                         </Label>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold"
+                               Content="Reservation Date:"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                        <Label Content="{Binding ReservationDate, Converter={StaticResource DateToStringConverter}}"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
                     </StackPanel>
                 </StackPanel>
             </Grid>

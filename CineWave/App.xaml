@@ -13,7 +13,9 @@
              xmlns:reservationsView="clr-namespace:CineWave.MVVM.View.Reservations"
              xmlns:seatsBookingView="clr-namespace:CineWave.MVVM.View.SeatsBooking"
              xmlns:addMovieView="clr-namespace:CineWave.MVVM.View.AddMovie"
-             xmlns:manageMoviesView="clr-namespace:CineWave.MVVM.View.ManageMovies">
+             xmlns:manageMoviesView="clr-namespace:CineWave.MVVM.View.ManageMovies"
+             xmlns:movieList="clr-namespace:CineWave.MVVM.ViewModel.Reservations.MovieList"
+             xmlns:seatBooking="clr-namespace:CineWave.MVVM.ViewModel.Reservations.SeatBooking">
     <Application.Resources>
         
         <ResourceDictionary>
@@ -50,7 +52,7 @@
                 <components:MovieInfoCard/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type reservations:RMovieInfoCardViewModel}">
+            <DataTemplate DataType="{x:Type movieList:RMovieInfoCardViewModel}">
                 <components:MovieInfoCard/>
             </DataTemplate>
             
@@ -62,7 +64,7 @@
                 <components:SeatBookingRegistrationForm/>
             </DataTemplate>
             
-            <DataTemplate DataType="{x:Type reservations:RSeatBookingRegistrationFormViewModel}">
+            <DataTemplate DataType="{x:Type seatBooking:RSeatBookingRegistrationFormViewModel}">
                 <components:SeatBookingRegistrationForm/>
             </DataTemplate>
             

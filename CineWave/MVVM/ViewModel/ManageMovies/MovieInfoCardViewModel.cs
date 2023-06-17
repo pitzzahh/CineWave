@@ -29,6 +29,7 @@ public partial class MovieInfoCardViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
     public void OpenForm()
     {
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");

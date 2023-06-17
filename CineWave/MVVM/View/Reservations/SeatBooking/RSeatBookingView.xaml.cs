@@ -1,4 +1,4 @@
-﻿namespace CineWave.Components;
+﻿namespace CineWave.MVVM.View.Reservations.SeatBooking;
 
 public partial class RSeatBookingView
 {

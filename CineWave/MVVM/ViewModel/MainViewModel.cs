@@ -40,15 +40,16 @@ public partial class MainViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
     public void NavigateToReservations()
     {
         NavService.NavigateTo<ReservationsViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        Task.Run(App.ServiceProvider.GetRequiredService<ReservationsViewModel>()
-            .CreateMovieInfoCards); // Run the method on a separate thread
+        Task.Run(App.ServiceProvider.GetRequiredService<ReservationsViewModel>().CreateMovieInfoCards); // Run the method on a separate thread
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
     public void NavigateToSeatBooking()
     {
         NavService.NavigateTo<SeatBookingViewModel>();
@@ -58,12 +59,14 @@ public partial class MainViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
     public void NavigateToAddMovie()
     {
         NavService.NavigateTo<AddMovieViewModel>();
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
     public void NavigateToManageMovie()
     {
         NavService.NavigateTo<ManageMoviesViewModel>();
@@ -73,6 +76,8 @@ public partial class MainViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
+    #pragma warning disable CA1822
     public void Logout()
     {
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");

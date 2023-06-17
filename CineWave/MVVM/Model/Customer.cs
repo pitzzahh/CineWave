@@ -1,16 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using CineWave.MVVM.Model.Movies;
 
-namespace CineWave.MVVM.Model;
-
-public class Customer
+namespace CineWave.MVVM.Model
 {
-    [Key]
-    public int Id { get; set; }
-    public int CustomerName { get; set; }
-    public int TicketId { get; set; }
-    
-    public Customer(int ticketId)
+    public class Customer
     {
-        TicketId = ticketId;
+        [Key]
+        public int CustomerId { get; set; }
+        public string? CustomerName { get; set; }
+        [ForeignKey("Ticket")]
+        public int TicketId { get; set; }
+        public Ticket Ticket { get; set; } = null!; // Navigation property
+        
+        public Customer(int ticketId)
+        {
+            TicketId = ticketId;
+        }
     }
 }

@@ -1,21 +1,22 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 
 namespace CineWave.MVVM.ViewModel.Reservations;
 
 public partial class ReservationCardViewModel : BaseViewModel
 {
-    [ObservableProperty]
-    private string _customerName;
-    private string _movieName;
+    [ObservableProperty] private string _customerName;
+    [ObservableProperty] private string _movieName;
     [ObservableProperty] private TimeOnly _runtime;
     [ObservableProperty] private DateTime _screeningDateTime;
     [ObservableProperty] private DateOnly _reservationDate;
-    
-    [RelayCommand]
-    public void OpenForm()
+
+    public ReservationCardViewModel(string customerName, string movieName, TimeOnly runtime, DateTime screeningDateTime, DateOnly reservationDate)
     {
-        throw new NotImplementedException();
+        _customerName = customerName;
+        _movieName = movieName;
+        _runtime = runtime;
+        _screeningDateTime = screeningDateTime;
+        _reservationDate = reservationDate;
     }
 }

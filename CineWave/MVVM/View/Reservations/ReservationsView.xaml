@@ -24,7 +24,11 @@
                        VerticalAlignment="Center"
                        Foreground="{StaticResource QuinaryBrush}" />
             <moderncontrols:ModernButton Grid.Column="2"
+                                         DefaultBackground="{StaticResource QuinaryBrush}"
+                                         DefaultForeground="{StaticResource PrimaryBrush}"  
                                          Content="Add Reservation"
+                                         Command="{Binding OpenMovieListCommand}"
+                                         CornerRadius="5"
                                          VerticalAlignment="Center" />
         </Grid>
 

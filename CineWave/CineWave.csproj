@@ -38,7 +38,7 @@
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
-      <Page Update="MVVM\View\Reservations\RSeatBookingView.xaml">
+      <Page Update="MVVM\View\Reservations\SeatBooking\RSeatBookingView.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
@@ -60,6 +60,10 @@
     <ItemGroup>
       <None Remove="Resources\Images\logo.png" />
       <Resource Include="Resources\Images\logo.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="MVVM\View\Reservations\MovieList\" />
     </ItemGroup>
 
 </Project>

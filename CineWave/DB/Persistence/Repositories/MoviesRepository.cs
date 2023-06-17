@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CineWave.MVVM.Model.Movies;
 using Microsoft.EntityFrameworkCore;
@@ -24,5 +25,10 @@ public class MoviesRepository : Repository<Movie>
     public Movie? GetMovieByName(string movieName)
     {
         return GetAll().FirstOrDefault(movie => movie.MovieName == movieName);
+    }
+    
+    public IEnumerable<Movie>? GetAvailableMoviesForReservation()
+    {
+        return GetAll().Where(movie => movie.ScreeningDateTime.Day > DateTime.Now.AddDays(1).Day);
     }
 }

@@ -15,14 +15,14 @@ public class UnitOfWork : IUnitOfWork
         CustomersRepository = new CustomersRepository(_context);
         TicketsRepository = new TicketsRepository(_context);
         SeatsRepository = new SeatsRepository(_context);
+        ReservationsRepository = new ReservationsRepository(_context);
     }
 
     public MoviesRepository MoviesRepository { get; }
     public CustomersRepository CustomersRepository { get; }
     public TicketsRepository TicketsRepository { get; }
     public SeatsRepository SeatsRepository { get; }
-
+    public ReservationsRepository ReservationsRepository { get; }
     public void Dispose() => GC.SuppressFinalize(this);
-
     public int Complete() => _context.SaveChangesAsync().Result;
 }

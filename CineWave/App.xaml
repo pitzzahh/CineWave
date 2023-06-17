@@ -72,6 +72,10 @@
                 <components:EditMovieForm/>
             </DataTemplate>
             
+            <DataTemplate DataType="{x:Type reservations:ReservationCardViewModel}">
+                <components:ReservationCard/>
+            </DataTemplate>
+            
             <ResourceDictionary.MergedDictionaries>
                 <!--  ModernControls WPF  -->
                 <ResourceDictionary

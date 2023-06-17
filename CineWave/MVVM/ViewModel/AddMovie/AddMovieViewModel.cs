@@ -97,6 +97,7 @@ public partial class AddMovieViewModel : BaseViewModel
         ScreeningDateDay = currentDate.Day;
     }
 
+    // ReSharper disable once MemberCanBePrivate.Global
     public string? ReleaseDateMonth
     {
         get => _releaseDateMonth;
@@ -110,6 +111,7 @@ public partial class AddMovieViewModel : BaseViewModel
         }
     }
 
+    // ReSharper disable once MemberCanBePrivate.Global
     public string? ScreeningDateMonth
     {
         get => _screeningDateMonth;
@@ -124,6 +126,7 @@ public partial class AddMovieViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    // ReSharper disable once UnusedMember.Global
     public void AddMovie()
     {
         if (MovieName is null)

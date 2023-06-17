@@ -19,8 +19,7 @@
                 <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
             </LinearGradientBrush>
         </Border.Background>
-        <moderncontrols:ModernButton Command="{Binding OpenFormCommand}"
-                                     DefaultBackground="Transparent"
+        <moderncontrols:ModernButton DefaultBackground="Transparent"
                                      HoverBackground="Transparent"
                                      HoverForeground="Transparent"
                                      Cursor="Hand"
@@ -46,7 +45,7 @@
                                Content="Movie:"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />
-                        <Label Content="{Binding MovieName, Converter={StaticResource PriceConverter}}"
+                        <Label Content="{Binding MovieName}"
                                FontWeight="Medium"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />

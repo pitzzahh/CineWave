@@ -1,16 +1,16 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using CineWave.DB.Core;
-using CineWave.MVVM.ViewModel.Reservations.MovieList;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace CineWave.MVVM.ViewModel.Reservations;
 
-public class ReservationsViewModel : BaseViewModel
+public partial class ReservationsViewModel : BaseViewModel
 {
-    private readonly ObservableCollection<RMovieInfoCardViewModel> _movieInfoCardViewModels = new();
-    public IEnumerable<RMovieInfoCardViewModel> MovieInfoCardViewModels => _movieInfoCardViewModels;
+    [ObservableProperty]
+    private ObservableCollection<ReservationCardViewModel> _reservationCardViewModels = new();
     private readonly IUnitOfWork _unitOfWork;
 
     public ReservationsViewModel(IUnitOfWork unitOfWork)
@@ -20,23 +20,28 @@ public class ReservationsViewModel : BaseViewModel
 
     public async Task CreateMovieInfoCards()
     {
+        var reservations = _unitOfWork.ReservationsRepository.GetAll();
         await Application.Current.Dispatcher.InvokeAsync(() =>
         {
-            _movieInfoCardViewModels.Clear();
-            foreach (var movie in _unitOfWork.MoviesRepository.GetAll())
+            ReservationCardViewModels.Clear();
+            foreach (var reservation in reservations)
             {
-                _movieInfoCardViewModels.Add(
-                    new RMovieInfoCardViewModel(
-                        movie.MovieName,
-                        movie.MoviePrice,
-                        movie.Runtime,
-                        movie.ReleaseDate,
-                        movie.ScreeningDateTime
-                    )
-                );
+                ReservationCardViewModels.Add(
+                    new ReservationCardViewModel(
+                        reservation.Customer.CustomerName ?? "404 Customer Name not found",
+                        reservation.Customer.Ticket.Movie.MovieName,
+                        reservation.Customer.Ticket.Movie.Runtime,
+                        reservation.Customer.Ticket.Movie.ScreeningDateTime,
+                        reservation.DateOfReservation
+                    ));
             }
             _unitOfWork.Complete();
         });
     }
 
+    [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
+    public void OpenMovieList()
+    {
+    }
 }

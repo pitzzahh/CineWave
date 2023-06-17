@@ -9,5 +9,6 @@ public interface IUnitOfWork : IDisposable
     CustomersRepository CustomersRepository { get; }
     TicketsRepository TicketsRepository { get; }
     SeatsRepository SeatsRepository { get; }
+    ReservationsRepository ReservationsRepository { get; }
     int Complete();
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows;
 using CineWave.Components;
 using CineWave.DB;
@@ -84,8 +83,7 @@ public partial class App
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        Debug.Assert(ServiceProvider != null, nameof(ServiceProvider) + " != null");
-        ServiceProvider.GetRequiredService<LoginWindow>().Show();
+        (ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<LoginWindow>().Show();
         base.OnStartup(e);
     }
 }

@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using System.Threading.Tasks;
 using CineWave.MVVM.View;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;

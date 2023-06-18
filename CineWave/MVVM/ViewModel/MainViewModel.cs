@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using System;
 using System.Threading.Tasks;
 using CineWave.Components;
 using CineWave.MVVM.View;
@@ -28,8 +28,7 @@ public partial class MainViewModel : BaseViewModel
     public void NavigateToHome()
     {
         NavService.NavigateTo<HomeViewModel>();
-        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
+        (App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
         // Run the method on a separate thread
         Task.Run(App.ServiceProvider.GetRequiredService<HomeViewModel>().GetMoviesFromApi);
     }
@@ -40,9 +39,8 @@ public partial class MainViewModel : BaseViewModel
     public void NavigateToReservations()
     {
         NavService.NavigateTo<ReservationsViewModel>();
-        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         // Run the method on a separate thread
-        Task.Run(App.ServiceProvider.GetRequiredService<ReservationsViewModel>().CreateMovieInfoCards);
+        Task.Run((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<ReservationsViewModel>().CreateMovieInfoCards);
     }
 
     [RelayCommand]
@@ -51,9 +49,8 @@ public partial class MainViewModel : BaseViewModel
     public void NavigateToSeatBooking()
     {
         NavService.NavigateTo<SeatBookingViewModel>();
-        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         // Run the method on a separate thread
-        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().SetCurrentMovie);
+        Task.Run((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingViewModel>().SetCurrentMovie);
     }
 
     [RelayCommand]
@@ -70,9 +67,8 @@ public partial class MainViewModel : BaseViewModel
     public void NavigateToManageMovie()
     {
         NavService.NavigateTo<ManageMoviesViewModel>();
-        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         // Run the method on a separate thread
-        Task.Run(App.ServiceProvider.GetRequiredService<ManageMoviesViewModel>().CreateMovieInfoCards);
+        Task.Run((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<ManageMoviesViewModel>().CreateMovieInfoCards);
     }
 
     [RelayCommand]
@@ -81,8 +77,7 @@ public partial class MainViewModel : BaseViewModel
     #pragma warning disable CA1822
     public void Logout()
     {
-        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
+        (App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
         App.ServiceProvider.GetRequiredService<MainWindow>().Hide();
         App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>().Hide();
         App.ServiceProvider.GetRequiredService<EditMovieForm>().Hide();

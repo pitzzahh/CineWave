@@ -1,0 +1,98 @@
+﻿<Window x:Class="CineWave.MVVM.View.Reservations.SeatBooking.SeatBookingReservationForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
+        xmlns:helpers="clr-namespace:CineWave.Helpers"
+        mc:Ignorable="d"
+        Height="350"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Width="500">
+
+    <Window.Resources>
+        <helpers:PriceConverter x:Key="PriceConverter" />
+    </Window.Resources>
+
+    <Border CornerRadius="5">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0.02,0.2" EndPoint="1.5,1.9">
+                <GradientStop Color="{StaticResource PrimaryColor}" Offset="0" />
+                <GradientStop Color="{StaticResource SecondaryColor}" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <StackPanel>
+            <StackPanel MouseEnter="OnEnterControlBar"
+                        MouseLeftButtonDown="OnMoveWindow">
+                <Label Content="Seat Booking Registration"
+                       HorizontalAlignment="Center"
+                       FontSize="16"
+                       Margin="0 10"
+                       FontWeight="Medium"
+                       Foreground="{StaticResource QuinaryBrush}" />
+            </StackPanel>
+
+            <!-- Movie Name -->
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 20 0 5">
+                <Label Content="Movie:"
+                       FontWeight="Medium"
+                       Margin="10 0"
+                       Foreground="{StaticResource QuinaryBrush}" />
+                <Label Content="{Binding MovieName}"
+                       Foreground="{StaticResource QuinaryBrush}" />
+            </StackPanel>
+
+            <!-- Movie Price -->
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 0 0 5">
+                <Label Content="Price:"
+                       FontWeight="Medium"
+                       Margin="10 0"
+                       Foreground="{StaticResource QuinaryBrush}" />
+                <Label Content="{Binding MoviePrice, Converter={StaticResource PriceConverter}}"
+                       Foreground="{StaticResource QuinaryBrush}" />
+            </StackPanel>
+
+            <!-- Seat Description -->
+            <StackPanel Orientation="Horizontal"
+                        Margin="0 0 0 20">
+                <Label Content="Seat Number: "
+                       FontWeight="Medium"
+                       Margin="10 0"
+                       Foreground="{StaticResource QuinaryBrush}" />
+                <Label Content="{Binding SeatNumber}"
+                       Foreground="{StaticResource QuinaryBrush}" />
+            </StackPanel>
+
+            <StackPanel Margin="5" Visibility="{Binding IsMovieFree}">
+                <Label Content="_payment"
+                       FontWeight="Medium"
+                       Foreground="{StaticResource QuinaryBrush}" />
+                <moderncontrols:ModernTextBox
+                    HelperText="Required"
+                    Text="{Binding Payment}"
+                    DefaultBackground="{StaticResource PrimaryBrush}"
+                    Foreground="{StaticResource QuinaryBrush}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="5 20">
+                <moderncontrols:ModernButton Content="Buy"
+                                             Width="100"
+                                             Command="{Binding BuyCommand}"
+                                             FontWeight="Bold"
+                                             Margin="5" />
+                <moderncontrols:ModernButton Content="Cancel"
+                                             Width="100"
+                                             FontWeight="Bold"
+                                             Command="{Binding CancelCommand}"
+                                             HoverBackground="{StaticResource RedBrush}"
+                                             PressedBackground="{StaticResource PrimaryBrush}"
+                                             Margin="5" />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

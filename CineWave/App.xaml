@@ -71,8 +71,8 @@
             </DataTemplate>
 
             <!-- Reservation SeatBooking -->
-            <DataTemplate DataType="{x:Type seatBooking:RSeatBookingRegistrationFormViewModel}">
-                <components:SeatBookingRegistrationForm />
+            <DataTemplate DataType="{x:Type seatBooking:SeatBookingReservationFormViewModel}">
+                <reservationsSeatBookingView:SeatBookingReservationForm />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type reservationsSeatBooking:SeatBookingWindowViewModel}">
@@ -89,7 +89,7 @@
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type seatsBooking:SeatBookingRegistrationFormViewModel}">
-                <components:SeatBookingRegistrationForm />
+                <reservationsSeatBookingView:SeatBookingReservationForm />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type seatsBooking:SeatBookingViewModel}">

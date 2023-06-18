@@ -10,6 +10,7 @@ using CineWave.Helpers;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.Movies;
+using CineWave.MVVM.View.Reservations.SeatBooking;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -92,7 +93,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
         {
             case MessageBoxResult.OK:
                 WindowHelper.ShowOrCloseWindow((App.ServiceProvider ?? throw new InvalidOperationException())
-                    .GetRequiredService<SeatBookingRegistrationForm>());
+                    .GetRequiredService<SeatBookingReservationForm>());
                 break;
             case MessageBoxResult.Cancel:
             case MessageBoxResult.None:
@@ -114,7 +115,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     public void OnCancel()
     {
         WindowHelper.ShowOrCloseWindow((App.ServiceProvider ?? throw new InvalidOperationException())
-            .GetRequiredService<SeatBookingRegistrationForm>());
+            .GetRequiredService<SeatBookingReservationForm>());
     }
 
     private bool CheckInputs()

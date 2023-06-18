@@ -9,4 +9,9 @@ public static class WindowHelper
         if (!window.IsVisible) window.Show();
         else window.Hide();
     }
+    
+    public static void HideWindow(Window window)
+    {
+        if (window.IsVisible) window.Hide();
+    }
 }

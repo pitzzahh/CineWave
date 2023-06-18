@@ -10,6 +10,7 @@ using CineWave.Helpers;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.Movies;
+using CineWave.MVVM.View.Reservations.SeatBooking;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -17,7 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CineWave.MVVM.ViewModel.Reservations.SeatBooking;
 
-public partial class RSeatBookingRegistrationFormViewModel : BaseViewModel, IRecipient<GetSeatInfoMessage>
+public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecipient<GetSeatInfoMessage>
 {
     private readonly IUnitOfWork _unitOfWork;
     [ObservableProperty] private string _isMovieFree = "Visible";
@@ -26,7 +27,7 @@ public partial class RSeatBookingRegistrationFormViewModel : BaseViewModel, IRec
     [ObservableProperty] private string? _payment;
     [ObservableProperty] private string? _seatNumber;
 
-    public RSeatBookingRegistrationFormViewModel(IUnitOfWork unitOfWork)
+    public SeatBookingReservationFormViewModel(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
         WeakReferenceMessenger.Default.Register(this);
@@ -42,6 +43,7 @@ public partial class RSeatBookingRegistrationFormViewModel : BaseViewModel, IRec
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
     public void OnBuy()
     {
         if (MoviePrice != "0" && CheckInputs()) MessageBox.Show("Please enter a valid payment");
@@ -78,7 +80,7 @@ public partial class RSeatBookingRegistrationFormViewModel : BaseViewModel, IRec
         {
             case MessageBoxResult.OK:
                 Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-                CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
+                CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingReservationForm>());
                 break;
             case MessageBoxResult.Cancel:
             case MessageBoxResult.None:
@@ -94,10 +96,12 @@ public partial class RSeatBookingRegistrationFormViewModel : BaseViewModel, IRec
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
+    #pragma warning disable CA1822
     public void OnCancel()
     {
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
+        CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingReservationForm>());
     }
 
     private static void CloseRegistrationWindow(Window seatBookingRegistrationForm)

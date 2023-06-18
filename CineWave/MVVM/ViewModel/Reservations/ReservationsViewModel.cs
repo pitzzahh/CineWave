@@ -5,6 +5,7 @@ using System.Windows;
 using CineWave.DB.Core;
 using CineWave.Helpers;
 using CineWave.MVVM.View.Reservations.MovieList;
+using CineWave.MVVM.View.Reservations.SeatBooking;
 using CineWave.MVVM.ViewModel.Reservations.MovieList;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -56,6 +57,7 @@ public partial class ReservationsViewModel : BaseViewModel
             return;
         }
         WindowHelper.ShowOrCloseWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<MovieListWindow>());
+        WindowHelper.HideWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingWindow>());
         Task.Run((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<MovieListViewModel>().CreateMovieInfoCards);
     }
 }

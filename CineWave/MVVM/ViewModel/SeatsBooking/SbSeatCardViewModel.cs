@@ -2,8 +2,10 @@
 using System.Windows;
 using CineWave.Components;
 using CineWave.DB.Core;
+using CineWave.Helpers;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model.SeatsBooking;
+using CineWave.MVVM.View.Reservations.SeatBooking;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -35,7 +37,7 @@ public partial class SbSeatCardViewModel : BaseViewModel
         }
 
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        var seatBookingRegistrationForm = App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>();
+        var seatBookingRegistrationForm = App.ServiceProvider.GetRequiredService<SeatBookingReservationForm>();
         if (seatBookingRegistrationForm.IsVisible)
         {
             seatBookingRegistrationForm.Hide();
@@ -50,7 +52,7 @@ public partial class SbSeatCardViewModel : BaseViewModel
             }
 
             seatBookingRegistrationForm.Show();
-            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new BookMovieInfo(currentMovie.MovieName,
+            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new BookMovieInfo(currentMovie.MovieName ?? StringHelper.MovieNotFound,
                 currentMovie.MoviePrice, SeatNumber ?? "")));
         }
     }

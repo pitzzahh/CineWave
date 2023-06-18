@@ -8,8 +8,8 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True"
-        d:DesignWidth="770"
-        d:DesignHeight="700">
+        Width="1100"
+        Height="650">
 
     <Border CornerRadius="5">
         <Border.Background>

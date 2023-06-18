@@ -53,6 +53,7 @@ public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovie
         SetComboBoxItems(DateTime.Now);
     }
 
+    // ReSharper disable once MemberCanBePrivate.Global
     public string? ReleaseDateMonth
     {
         get => _releaseDateMonth;
@@ -64,6 +65,7 @@ public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovie
         }
     }
 
+    // ReSharper disable once MemberCanBePrivate.Global
     public string? ScreeningDateMonth
     {
         get => _screeningDateMonth;
@@ -99,12 +101,13 @@ public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovie
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
     public void OnUpdateMovie()
     {
         var movieByName = _unitOfWork.MoviesRepository.GetMovieByName(MovieName);
         if (movieByName == null) return;
         movieByName.MovieName = MovieName;
-        movieByName.MoviePrice = double.Parse(Price ?? "0");
+        movieByName.MoviePrice = double.Parse(Price);
 
         var releaseDate = new DateOnly(ReleaseDateYear, StringHelper.GetMonthInt(ReleaseDateMonth), ReleaseDateDay);
         var screeningDateTime = new DateTime(
@@ -130,6 +133,7 @@ public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovie
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
     public void OnRemoveMovie()
     {
         var movieByName = _unitOfWork.MoviesRepository.GetMovieByName(MovieName);
@@ -147,6 +151,7 @@ public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovie
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
     public void OnCancel()
     {
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");

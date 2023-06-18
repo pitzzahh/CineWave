@@ -7,6 +7,7 @@ using CineWave.DB.Persistence;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
 using CineWave.MVVM.View.Reservations.MovieList;
+using CineWave.MVVM.View.Reservations.SeatBooking;
 using CineWave.MVVM.ViewModel;
 using CineWave.MVVM.ViewModel.AddMovie;
 using CineWave.MVVM.ViewModel.Gallery;
@@ -37,6 +38,7 @@ public partial class App
 
         serviceCollection.AddTransient<LoginViewModel>();
         serviceCollection.AddSingleton<MovieListViewModel>();
+        serviceCollection.AddSingleton<SeatBookingWindowViewModel>();
 
         serviceCollection.AddSingleton<MainViewModel>();
         serviceCollection.AddSingleton<HomeViewModel>();
@@ -49,9 +51,9 @@ public partial class App
         serviceCollection.AddSingleton<ReservationCardViewModel>();
         serviceCollection.AddSingleton<SbSeatCardViewModel>();
         serviceCollection.AddSingleton<RSeatCardViewModel>();
-        serviceCollection.AddSingleton<SeatBookingRegistrationForm>();
+        serviceCollection.AddSingleton<SeatBookingReservationForm>();
         serviceCollection.AddTransient<SeatBookingRegistrationFormViewModel>();
-        serviceCollection.AddTransient<RSeatBookingRegistrationFormViewModel>();
+        serviceCollection.AddTransient<SeatBookingReservationFormViewModel>();
         serviceCollection.AddTransient<EditMovieFormViewModel>();
         serviceCollection.AddTransient<AddMovieViewModel>();
         serviceCollection.AddSingleton<TrailerViewModel>();
@@ -67,13 +69,18 @@ public partial class App
         {
             DataContext = provider.GetRequiredService<MovieListViewModel>()
         });
+        
+        serviceCollection.AddSingleton<SeatBookingWindow>(provider => new SeatBookingWindow
+        {
+            DataContext = provider.GetRequiredService<SeatBookingWindowViewModel>()
+        });
 
         serviceCollection.AddSingleton<MainWindow>(provider => new MainWindow
         {
             DataContext = provider.GetRequiredService<MainViewModel>()
         });
 
-        serviceCollection.AddSingleton<SeatBookingRegistrationForm>(provider => new SeatBookingRegistrationForm
+        serviceCollection.AddSingleton<SeatBookingReservationForm>(provider => new SeatBookingReservationForm
         {
             DataContext = provider.GetRequiredService<SeatBookingRegistrationFormViewModel>()
         });

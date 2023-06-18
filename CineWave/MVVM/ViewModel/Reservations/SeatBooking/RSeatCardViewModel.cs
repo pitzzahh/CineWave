@@ -1,7 +1,8 @@
-﻿using System.Diagnostics;
+﻿using System;
 using System.Windows;
 using CineWave.Components;
-using CineWave.DB.Core;
+using CineWave.Helpers;
+using CineWave.Messages.ManageMovies;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model.SeatsBooking;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -11,17 +12,18 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CineWave.MVVM.ViewModel.Reservations.SeatBooking;
 
-public partial class RSeatCardViewModel : BaseViewModel
+public partial class RSeatCardViewModel : BaseViewModel, IRecipient<GetMovieInfoMessage>
 {
-    private readonly IUnitOfWork _unitOfWork;
+    private string MovieName { get; set; } = null!;
+    private double MoviePrice { get; set; }
     [ObservableProperty] private bool _isSeatAvailable;
     [ObservableProperty] private string? _seatNumber;
 
-    public RSeatCardViewModel(string seatNumber, bool isTaken, IUnitOfWork unitOfWork)
+    public RSeatCardViewModel(string seatNumber, bool isTaken)
     {
-        _unitOfWork = unitOfWork;
         SeatNumber = seatNumber;
         IsSeatAvailable = !isTaken;
+        WeakReferenceMessenger.Default.Register(this);
     }
 
     [RelayCommand]
@@ -33,25 +35,14 @@ public partial class RSeatCardViewModel : BaseViewModel
             MessageBox.Show("This seat is already taken or no movie is currently showing!");
             return;
         }
+        WindowHelper.ShowOrCloseWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingRegistrationForm>());
+        WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new BookMovieInfo(MovieName, MoviePrice, SeatNumber ?? "")));
+    }
 
-        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        var seatBookingRegistrationForm = App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>(); // 
-        if (seatBookingRegistrationForm.IsVisible)
-        {
-            seatBookingRegistrationForm.Hide();
-        }
-        else
-        {
-            var currentMovie = _unitOfWork.MoviesRepository.GetNowShowingMovie();
-            if (currentMovie == null)
-            {
-                MessageBox.Show("No movie is currently showing!");
-                return;
-            }
-
-            seatBookingRegistrationForm.Show();
-            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new BookMovieInfo(currentMovie.MovieName,
-                currentMovie.MoviePrice, SeatNumber ?? "")));
-        }
+    public void Receive(GetMovieInfoMessage message)
+    {
+        var movieInfo = message.Value;
+        MovieName = movieInfo.MovieName;
+        MoviePrice = movieInfo.MoviePrice;
     }
 }

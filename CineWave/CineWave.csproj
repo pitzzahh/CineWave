@@ -51,20 +51,20 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.0.0-rc1.1"/>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0"/>
-        <PackageReference Include="FontAwesome.Sharp" Version="6.1.1"/>
-        <PackageReference Include="Material.Icons.Avalonia" Version="2.0.1"/>
-        <PackageReference Include="Material.Icons.WPF" Version="2.0.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
-        <PackageReference Include="Russkyc.ModernControls.WPF" Version="1.7.1"/>
+        <PackageReference Include="Avalonia" Version="11.0.0-rc1.1" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+        <PackageReference Include="FontAwesome.Sharp" Version="6.1.1" />
+        <PackageReference Include="Material.Icons.Avalonia" Version="2.0.1" />
+        <PackageReference Include="Material.Icons.WPF" Version="2.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Russkyc.ModernControls.WPF" Version="1.7.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Resources\Images\logo.png"/>
-        <Resource Include="Resources\Images\logo.png"/>
+        <None Remove="Resources\Images\logo.png" />
+        <Resource Include="Resources\Images\logo.png" />
     </ItemGroup>
 
 </Project>

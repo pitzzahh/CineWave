@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using CineWave.Components;
 using CineWave.DB.Core;
 using CineWave.Helpers;
 using CineWave.Messages.SeatsBooking;

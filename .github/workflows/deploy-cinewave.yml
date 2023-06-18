@@ -49,3 +49,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/CineWave/bin/Release/net6.0-windows/win-x64/publish/CineWave.exe
           asset_name: CineWave.exe
+          asset_content_type: application/octet-stream

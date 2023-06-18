@@ -49,13 +49,17 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    
+
                     <StackPanel>
-                        <Image HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Height="50"
-                               Margin="5 28"
-                               Source="/Resources/Images/logo.png" />
+                        <moderncontrols:ModernRadioButton Style="{StaticResource MenuButton}"
+                                                          HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          Margin="5 28"
+                                                          Height="50"
+                                                          Command="{Binding NavigateToHomeCommand}">
+                            <Image Source="/Resources/Images/logo.png" />
+                        </moderncontrols:ModernRadioButton>
+
                     </StackPanel>
 
                     <!-- Nav Section -->
@@ -70,7 +74,6 @@
                                 <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                                             Margin="5 5 0 0">
                                     <moderncontrols:ModernRadioButton x:Name="GalleryButton"
-                                                                      IsChecked="True"
                                                                       ToolTip="Top Movies Gallery"
                                                                       Style="{StaticResource MenuButton}"
                                                                       Command="{Binding NavigateToHomeCommand}"
@@ -125,11 +128,8 @@
                                     </moderncontrols:ModernRadioButton>
                                 </StackPanel>
                             </StackPanel>
-
                         </Border>
                     </StackPanel>
-
-
                 </Grid>
 
             </Border>
@@ -170,8 +170,7 @@
                             <Button Tag="{StaticResource QuinaryBrush}"
                                     Click="OnMaximizeWindow"
                                     Style="{StaticResource ControlButton}">
-                                <fontawesome:IconImage Icon="Square" Style="{StaticResource ControlButtonIcon}">
-                                </fontawesome:IconImage>
+                                <fontawesome:IconImage Icon="Square" Style="{StaticResource ControlButtonIcon}" />
                             </Button>
                             <Button Tag="{StaticResource QuinaryBrush}"
                                     Click="OnMinimizeWindow"

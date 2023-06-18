@@ -10,7 +10,6 @@ using CineWave.Helpers;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.Movies;
-using CineWave.MVVM.ViewModel.SeatsBooking;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -20,12 +19,12 @@ namespace CineWave.MVVM.ViewModel.Reservations.SeatBooking;
 
 public partial class RSeatBookingRegistrationFormViewModel : BaseViewModel, IRecipient<GetSeatInfoMessage>
 {
+    private readonly IUnitOfWork _unitOfWork;
+    [ObservableProperty] private string _isMovieFree = "Visible";
     [ObservableProperty] private string? _movieName;
     [ObservableProperty] private string? _moviePrice;
-    [ObservableProperty] private string? _seatNumber;
     [ObservableProperty] private string? _payment;
-    [ObservableProperty] private string _isMovieFree = "Visible";
-    private readonly IUnitOfWork _unitOfWork;
+    [ObservableProperty] private string? _seatNumber;
 
     public RSeatBookingRegistrationFormViewModel(IUnitOfWork unitOfWork)
     {
@@ -33,27 +32,28 @@ public partial class RSeatBookingRegistrationFormViewModel : BaseViewModel, IRec
         WeakReferenceMessenger.Default.Register(this);
     }
 
+    public void Receive(GetSeatInfoMessage message)
+    {
+        var reservationInfo = message.Value;
+        MovieName = reservationInfo.MovieName;
+        IsMovieFree = reservationInfo.MoviePrice == 0 ? "Hidden" : "Visible";
+        MoviePrice = reservationInfo.MoviePrice.ToString(CultureInfo.InvariantCulture);
+        SeatNumber = reservationInfo.SeatNumber;
+    }
+
     [RelayCommand]
     public void OnBuy()
     {
-        if (MoviePrice != "0" && CheckInputs())
-        {
-            MessageBox.Show("Please enter a valid payment");
-        }
+        if (MoviePrice != "0" && CheckInputs()) MessageBox.Show("Please enter a valid payment");
 
         var currentMovie = _unitOfWork.MoviesRepository.GetMovieByName(MovieName ?? string.Empty);
 
         if (currentMovie == null) return;
-        if (currentMovie.MovieId != 0 && MoviePrice != "0" && Payment != null && double.Parse(Payment) < currentMovie.MoviePrice)
-        {
-            MessageBox.Show("Payment is not enough");
-        }
+        if (currentMovie.MovieId != 0 && MoviePrice != "0" && Payment != null &&
+            double.Parse(Payment) < currentMovie.MoviePrice) MessageBox.Show("Payment is not enough");
 
         var isSeatNotAvailable = IsSeatNotAvailable();
-        if (isSeatNotAvailable)
-        {
-            MessageBox.Show("Seat is not available");
-        }
+        if (isSeatNotAvailable) MessageBox.Show("Seat is not available");
 
         if (SeatNumber != null)
         {
@@ -69,6 +69,7 @@ public partial class RSeatBookingRegistrationFormViewModel : BaseViewModel, IRec
             MessageBox.Show("Failed to buy ticket");
             return;
         }
+
         var firstOrDefault = _unitOfWork.SeatsRepository.GetAll().FirstOrDefault(seat => seat.SeatNumber == SeatNumber);
         if (firstOrDefault != null) firstOrDefault.IsTaken = true;
         _unitOfWork.Complete();
@@ -86,7 +87,9 @@ public partial class RSeatBookingRegistrationFormViewModel : BaseViewModel, IRec
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().SetCurrentMovie); // Run the method on a separate thread
+
+        Task.Run(App.ServiceProvider.GetRequiredService<RSeatBookingViewModel>()
+            .SetCurrentMovie); // Run the method on a separate thread
         OnCancel();
     }
 
@@ -111,14 +114,5 @@ public partial class RSeatBookingRegistrationFormViewModel : BaseViewModel, IRec
     private bool IsSeatNotAvailable()
     {
         return _unitOfWork.SeatsRepository.GetAll().FirstOrDefault(s => s.SeatNumber == SeatNumber)?.IsTaken ?? false;
-    }
-
-    public void Receive(GetSeatInfoMessage message)
-    {
-        var reservationInfo = message.Value;
-        MovieName = reservationInfo.MovieName;
-        IsMovieFree = reservationInfo.MoviePrice == 0 ? "Hidden" : "Visible";
-        MoviePrice = reservationInfo.MoviePrice.ToString(CultureInfo.InvariantCulture);
-        SeatNumber = reservationInfo.SeatNumber;
     }
 }

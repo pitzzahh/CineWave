@@ -19,12 +19,12 @@ namespace CineWave.MVVM.ViewModel.SeatsBooking;
 
 public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IRecipient<GetSeatInfoMessage>
 {
+    private readonly IUnitOfWork _unitOfWork;
+    [ObservableProperty] private string _isMovieFree = "Visible";
     [ObservableProperty] private string? _movieName;
     [ObservableProperty] private string? _moviePrice;
-    [ObservableProperty] private string? _seatNumber;
     [ObservableProperty] private string? _payment;
-    [ObservableProperty] private string _isMovieFree = "Visible";
-    private readonly IUnitOfWork _unitOfWork;
+    [ObservableProperty] private string? _seatNumber;
 
     public SeatBookingRegistrationFormViewModel(IUnitOfWork unitOfWork)
     {
@@ -39,6 +39,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
         if (MoviePrice != "0" && CheckInputs())
         {
             MessageBox.Show("Please enter a valid payment");
+            return;
         }
 
         var currentMovie = _unitOfWork.MoviesRepository.GetMovieByName(MovieName ?? string.Empty);
@@ -83,6 +84,9 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
         var firstOrDefault = _unitOfWork.SeatsRepository
             .Find(seat => seat.MovieId == currentMovie.MovieId && seat.SeatNumber == SeatNumber).FirstOrDefault();
         if (firstOrDefault != null) firstOrDefault.IsTaken = true;
+
+        var setTakenResult = _unitOfWork.Complete();
+        if (setTakenResult == 0) return;
         var result = MessageBox.Show("Ticket bought successfully", "Confirmation", MessageBoxButton.OK);
         switch (result)
         {
@@ -98,6 +102,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
                 throw new ArgumentOutOfRangeException();
         }
 
+        Payment = "";
         Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>()
             .SetCurrentMovie); // Run the method on a separate thread
         OnCancel();

@@ -9,9 +9,9 @@ namespace CineWave.MVVM.ViewModel.Reservations;
 
 public partial class ReservationsViewModel : BaseViewModel
 {
-    [ObservableProperty]
-    private ObservableCollection<ReservationCardViewModel> _reservationCardViewModels = new();
     private readonly IUnitOfWork _unitOfWork;
+
+    [ObservableProperty] private ObservableCollection<ReservationCardViewModel> _reservationCardViewModels = new();
 
     public ReservationsViewModel(IUnitOfWork unitOfWork)
     {
@@ -25,7 +25,6 @@ public partial class ReservationsViewModel : BaseViewModel
         {
             ReservationCardViewModels.Clear();
             foreach (var reservation in reservations)
-            {
                 ReservationCardViewModels.Add(
                     new ReservationCardViewModel(
                         reservation.Customer.CustomerName ?? "404 Customer Name not found",
@@ -34,14 +33,13 @@ public partial class ReservationsViewModel : BaseViewModel
                         reservation.Customer.Ticket.Movie.ScreeningDateTime,
                         reservation.DateOfReservation
                     ));
-            }
             _unitOfWork.Complete();
         });
     }
 
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
-    #pragma warning disable CA1822
+#pragma warning disable CA1822
     public void OpenMovieList()
     {
     }

@@ -8,7 +8,6 @@
              mc:Ignorable="d"
              d:DesignHeight="150" d:DesignWidth="400">
     <UserControl.Resources>
-        <helpers:PriceConverter x:Key="PriceConverter" />
         <helpers:DateToStringConverter x:Key="DateToStringConverter" />
         <helpers:ScreeningDateTimeConverter x:Key="ScreeningDateTimeConverter" />
     </UserControl.Resources>
@@ -39,7 +38,7 @@
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />
                     </StackPanel>
-                    
+
                     <StackPanel Orientation="Horizontal">
                         <Label FontWeight="Bold"
                                Content="Movie:"
@@ -59,7 +58,7 @@
                         <Label FontWeight="Medium"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14">
-                            <Label.Content> 
+                            <Label.Content>
                                 <MultiBinding Converter="{StaticResource ScreeningDateTimeConverter}">
                                     <Binding Path="ScreeningDateTime" />
                                     <Binding Path="Runtime" />
@@ -67,7 +66,7 @@
                             </Label.Content>
                         </Label>
                     </StackPanel>
-                    
+
                     <StackPanel Orientation="Horizontal">
                         <Label FontWeight="Bold"
                                Content="Reservation Date:"

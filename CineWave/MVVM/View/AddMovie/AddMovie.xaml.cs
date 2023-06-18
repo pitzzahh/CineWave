@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-
-namespace CineWave.MVVM.View.AddMovie;
+﻿namespace CineWave.MVVM.View.AddMovie;
 
 public partial class AddMovie
 {

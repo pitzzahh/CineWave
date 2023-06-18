@@ -21,12 +21,12 @@ public class MoviesRepository : Repository<Movie>
             currentTime <= movie.ScreeningDateTime.Add(movie.Runtime.ToTimeSpan())
         );
     }
-    
+
     public Movie? GetMovieByName(string movieName)
     {
-        return GetAll().FirstOrDefault(movie => movie.MovieName == movieName);
+        return Find(movie => movie.MovieName == movieName).FirstOrDefault();
     }
-    
+
     public IEnumerable<Movie>? GetAvailableMoviesForReservation()
     {
         return GetAll().Where(movie => movie.ScreeningDateTime.Day > DateTime.Now.AddDays(1).Day);

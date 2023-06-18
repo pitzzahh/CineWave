@@ -9,7 +9,6 @@ namespace CineWave.MVVM.ViewModel.ManageMovies;
 public class ManageMoviesViewModel : BaseViewModel
 {
     private readonly ObservableCollection<MovieInfoCardViewModel> _movieInfoCardViewModels = new();
-    public IEnumerable<MovieInfoCardViewModel> MovieInfoCardViewModels => _movieInfoCardViewModels;
     private readonly IUnitOfWork _unitOfWork;
 
     public ManageMoviesViewModel(IUnitOfWork unitOfWork)
@@ -17,13 +16,14 @@ public class ManageMoviesViewModel : BaseViewModel
         _unitOfWork = unitOfWork;
     }
 
+    public IEnumerable<MovieInfoCardViewModel> MovieInfoCardViewModels => _movieInfoCardViewModels;
+
     public async Task CreateMovieInfoCards()
     {
         await Application.Current.Dispatcher.InvokeAsync(() =>
         {
             _movieInfoCardViewModels.Clear();
             foreach (var movie in _unitOfWork.MoviesRepository.GetAll())
-            {
                 _movieInfoCardViewModels.Add(
                     new MovieInfoCardViewModel(
                         movie.MovieName,
@@ -33,7 +33,6 @@ public class ManageMoviesViewModel : BaseViewModel
                         movie.ScreeningDateTime
                     )
                 );
-            }
             _unitOfWork.Complete();
         });
     }

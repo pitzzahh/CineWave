@@ -8,8 +8,8 @@ namespace CineWave.MVVM.ViewModel.Reservations.MovieList;
 
 public partial class MovieListViewModel : BaseViewModel
 {
-    [ObservableProperty] private ObservableCollection<RMovieInfoCardViewModel> _movieInfoCardViewModels = new();
     private readonly IUnitOfWork _unitOfWork;
+    [ObservableProperty] private ObservableCollection<RMovieInfoCardViewModel> _movieInfoCardViewModels = new();
 
     public MovieListViewModel(IUnitOfWork unitOfWork)
     {
@@ -22,7 +22,6 @@ public partial class MovieListViewModel : BaseViewModel
         {
             MovieInfoCardViewModels.Clear();
             foreach (var movie in _unitOfWork.MoviesRepository.GetAll())
-            {
                 MovieInfoCardViewModels.Add(
                     new RMovieInfoCardViewModel(
                         movie.MovieName,
@@ -32,7 +31,6 @@ public partial class MovieListViewModel : BaseViewModel
                         movie.ScreeningDateTime
                     )
                 );
-            }
             _unitOfWork.Complete();
         });
     }

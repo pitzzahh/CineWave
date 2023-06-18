@@ -23,6 +23,14 @@ public class UnitOfWork : IUnitOfWork
     public TicketsRepository TicketsRepository { get; }
     public SeatsRepository SeatsRepository { get; }
     public ReservationsRepository ReservationsRepository { get; }
-    public void Dispose() => GC.SuppressFinalize(this);
-    public int Complete() => _context.SaveChangesAsync().Result;
+
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+    }
+
+    public int Complete()
+    {
+        return _context.SaveChangesAsync().Result;
+    }
 }

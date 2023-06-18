@@ -12,10 +12,9 @@ namespace CineWave.MVVM.ViewModel.Gallery;
 
 public partial class HomeViewModel : BaseViewModel
 {
-    private readonly ObservableCollection<MovieCardViewModel> _movies = new();
-    public IEnumerable<MovieCardViewModel> MovieCardViewModels => _movies;
-    private readonly List<string> _trailers = new();
+    [ObservableProperty] private ObservableCollection<MovieCardViewModel> _movieCardViewModels = new();
     [ObservableProperty] private string? _currentMovieId;
+    private readonly List<string> _trailers = new();
 
     public async Task GetMoviesFromApi()
     {
@@ -27,15 +26,13 @@ public partial class HomeViewModel : BaseViewModel
             if (results == null) return;
             await Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                _movies.Clear();
+                MovieCardViewModels.Clear();
                 foreach (var result in results)
-                {
-                    _movies.Add(new MovieCardViewModel(
+                    MovieCardViewModels.Add(new MovieCardViewModel(
                         $"https://image.tmdb.org/t/p/w500/{result["poster_path"]}",
                         result["original_title"]?.ToString(),
                         result["overview"]?.ToString()
                     ));
-                }
             });
         }
         catch (Exception e)

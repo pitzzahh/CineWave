@@ -21,86 +21,86 @@
              xmlns:movieList="clr-namespace:CineWave.MVVM.ViewModel.Reservations.MovieList"
              xmlns:seatBooking="clr-namespace:CineWave.MVVM.ViewModel.Reservations.SeatBooking">
     <Application.Resources>
-        
+
         <ResourceDictionary>
-            
+
             <!-- User Controls -->
             <!-- Add Movie -->
             <DataTemplate DataType="{x:Type addMovie:AddMovieViewModel}">
-                <addMovieView:AddMovie/>
+                <addMovieView:AddMovie />
             </DataTemplate>
-            
+
             <!-- Gallery -->
             <DataTemplate DataType="{x:Type gallery:HomeViewModel}">
-                <galleryView:HomeView/>
+                <galleryView:HomeView />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type gallery:MovieCardViewModel}">
-                <components:MovieCard/>
+                <components:MovieCard />
             </DataTemplate>
-            
+
             <!-- Manage Movies -->
             <DataTemplate DataType="{x:Type manageMovies:EditMovieFormViewModel}">
-                <components:EditMovieForm/>
+                <components:EditMovieForm />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type manageMovies:ManageMoviesViewModel}">
-                <manageMoviesView:ManageMoviesView/>
+                <manageMoviesView:ManageMoviesView />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type manageMovies:MovieInfoCardViewModel}">
-                <components:MovieInfoCard/>
+                <components:MovieInfoCard />
             </DataTemplate>
-            
+
             <!-- Reservations -->
             <DataTemplate DataType="{x:Type reservations:ReservationCardViewModel}">
-                <components:ReservationCard/>
+                <components:ReservationCard />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type reservations:ReservationsViewModel}">
-                <reservationsView:ReservationsView/>
+                <reservationsView:ReservationsView />
             </DataTemplate>
-            
+
             <!-- Reservation Movie List -->
             <DataTemplate DataType="{x:Type reservationsMovieList:MovieListViewModel}">
-                <reservationsMovieListView:MovieListView/>
+                <reservationsMovieListView:MovieListView />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type movieList:RMovieInfoCardViewModel}">
-                <components:MovieInfoCard/>
+                <components:MovieInfoCard />
             </DataTemplate>
-            
+
             <!-- Reservation SeatBooking -->
             <DataTemplate DataType="{x:Type seatBooking:RSeatBookingRegistrationFormViewModel}">
-                <components:SeatBookingRegistrationForm/>
+                <components:SeatBookingRegistrationForm />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type reservationsSeatBooking:RSeatBookingViewModel}">
-                <reservationsSeatBookingView:RSeatBookingView/>
+                <reservationsSeatBookingView:RSeatBookingView />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type reservationsSeatBooking:RSeatCardViewModel}">
-                <components:SeatCard/>  <!-- Reuse of seat card component -->
+                <components:SeatCard />  <!-- Reuse of seat card component -->
             </DataTemplate>
-            
+
             <!-- SeatBooking -->
             <DataTemplate DataType="{x:Type seatsBooking:SbSeatCardViewModel}">
-                <components:SeatCard/>
+                <components:SeatCard />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type seatsBooking:SeatBookingRegistrationFormViewModel}">
-                <components:SeatBookingRegistrationForm/>
+                <components:SeatBookingRegistrationForm />
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type seatsBooking:SeatBookingViewModel}">
-                <seatsBookingView:SeatBookingView/>
+                <seatsBookingView:SeatBookingView />
             </DataTemplate>
-            
+
             <!-- Trailer (Unused) -->
             <DataTemplate DataType="{x:Type trailer:TrailerViewModel}">
-                <trailerView:TrailerView/>
+                <trailerView:TrailerView />
             </DataTemplate>
-            
+
             <ResourceDictionary.MergedDictionaries>
                 <!--  ModernControls WPF  -->
                 <ResourceDictionary
@@ -109,12 +109,12 @@
                     Source="pack://application:,,,/Russkyc.ModernControls.WPF;component/Themes/ColorThemes/Blue.xaml" />
                 <ResourceDictionary
                     Source="pack://application:,,,/Russkyc.ModernControls.WPF;component/Themes/Generic.xaml" />
-                <ResourceDictionary Source="Resources/Syles/Colors.xaml"/>
-                <ResourceDictionary Source="Resources/Syles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="Resources/Syles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Syles/ButtonStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
+
         </ResourceDictionary>
 
     </Application.Resources>
-    
+
 </Application>

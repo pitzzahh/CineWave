@@ -7,7 +7,8 @@ internal static class TmdbHelper
 {
     private const string BaseUrl = "https://api.themoviedb.org/3/";
 
-    private static readonly string ApiKey = PseudoRandomEncryptor.Decrypt("NmViYmRmOWJiNzVjM2E0ZjVkNDRlODhiNjdhODVmYmY=");
+    private static readonly string ApiKey =
+        PseudoRandomEncryptor.Decrypt("NmViYmRmOWJiNzVjM2E0ZjVkNDRlODhiNjdhODVmYmY=");
 
     public static async Task<string> GetMovieData(string movieTitle)
     {
@@ -35,5 +36,4 @@ internal static class TmdbHelper
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadAsStringAsync();
     }
-
 }

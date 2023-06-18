@@ -8,7 +8,7 @@ public class NavigationService : ObservableObject, INavigationService
 {
     private readonly Func<Type, BaseViewModel?> _viewModelFactory;
     
-    private BaseViewModel? _currenView;
+    private BaseViewModel? _currentView;
 
     public NavigationService(Func<Type, BaseViewModel?> viewModelFactory)
     {
@@ -16,16 +16,16 @@ public class NavigationService : ObservableObject, INavigationService
     }
 
     public BaseViewModel? CurrentView {
-        get => _currenView;
+        get => _currentView;
         private set
         {
-            _currenView = value;
+            _currentView = value;
             OnPropertyChanged();
         }
     }
     
     public void NavigateTo<T>() where T : BaseViewModel
     {
-        CurrentView = _viewModelFactory.Invoke(typeof(T)); 
+        CurrentView = _viewModelFactory.Invoke(typeof(T));
     }
 }

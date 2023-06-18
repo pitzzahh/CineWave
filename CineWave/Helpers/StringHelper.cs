@@ -9,7 +9,7 @@ public static class StringHelper
     {
         return int.TryParse(input, out _) || double.TryParse(input, out _);
     }
-    
+
     public static string GetMonthString(int month)
     {
         return CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month);
@@ -23,7 +23,7 @@ public static class StringHelper
 
         return monthInt + 1;
     }
-    
+
     public static string GetCurrencySymbol(CultureInfo culture)
     {
         return new RegionInfo(culture.Name).CurrencySymbol;

@@ -7,7 +7,7 @@ using System.Windows.Interop;
 namespace CineWave.MVVM.View;
 
 /// <summary>
-/// Interaction logic for MainWindow.xaml
+///     Interaction logic for MainWindow.xaml
 /// </summary>
 public partial class MainWindow
 {
@@ -19,6 +19,7 @@ public partial class MainWindow
 
     [DllImport("user32.dll")]
     private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wp, int lp);
+
     private void OnMoveWindow(object sender, MouseButtonEventArgs e)
     {
         SendMessage(new WindowInteropHelper(this).Handle, 161, 2, 0);

@@ -19,7 +19,8 @@
                                   VerticalAlignment="Center">
                                 <Path
                                     Data="M9 3C7.895 3 7 3.895 7 5L7 13L17 13L17 5C17 3.895 16.105 3 15 3L9 3zM3.5 9C2.672 9 2 9.672 2 10.5L2 20C2 20.552 2.448 21 3 21L5 21L5 10.5C5 9.672 4.328 9 3.5 9zM20.5 9C19.672 9 19 9.672 19 10.5L19 21L21 21C21.552 21 22 20.552 22 20L22 10.5C22 9.672 21.328 9 20.5 9zM7 15L7 21L17 21L17 15L7 15z"
-                                    Fill="{Binding IsSeatAvailable, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource SeatStatusToColorConverter}}" Stroke="{StaticResource TertiaryBrush}"
+                                    Fill="{Binding IsSeatAvailable, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource SeatStatusToColorConverter}}"
+                                    Stroke="{StaticResource TertiaryBrush}"
                                     StrokeThickness="1"
                                     Height="60" Stretch="Uniform" />
                             </Grid>

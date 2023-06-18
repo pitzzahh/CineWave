@@ -18,8 +18,8 @@
                    Margin="10 0 0 0"
                    Foreground="{StaticResource QuinaryBrush}">
             <Run Text="Current Movie: " />
-            <Run Text="{Binding CurrentMovie}" 
-                 FontWeight="Normal"/>
+            <Run Text="{Binding CurrentMovie}"
+                 FontWeight="Normal" />
         </TextBlock>
 
         <Grid Grid.Row="1" Margin="0 10 0 0">
@@ -29,7 +29,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="35" />
             </Grid.ColumnDefinitions>
-            
+
             <StackPanel Grid.Column="0"
                         Background="{StaticResource PrimaryBrush}"
                         Orientation="Horizontal">
@@ -44,7 +44,7 @@
                     </TextBlock.LayoutTransform>
                 </TextBlock>
             </StackPanel>
-            
+
             <StackPanel Grid.Column="2"
                         Background="{StaticResource PrimaryBrush}"
                         Orientation="Horizontal">
@@ -88,14 +88,13 @@
                 <Path Data="M4 -1 Q300 20 600 0"
                       Fill="{StaticResource QuinaryBrush}" />
             </Border>
-            <StackPanel Grid.Row="1" >
+            <StackPanel Grid.Row="1">
                 <TextBlock Text="BIG SCREEN"
                            Foreground="{StaticResource QuinaryBrush}"
                            HorizontalAlignment="Center"
                            FontWeight="Bold"
                            VerticalAlignment="Center"
-                           FontSize="20">
-                </TextBlock>
+                           FontSize="20" />
             </StackPanel>
         </Grid>
     </Grid>

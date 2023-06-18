@@ -1,5 +1,4 @@
-﻿using CineWave.MVVM.Model;
-using CineWave.MVVM.Model.SeatsBooking;
+﻿using CineWave.MVVM.Model.SeatsBooking;
 using CommunityToolkit.Mvvm.Messaging.Messages;
 
 namespace CineWave.Messages.SeatsBooking;

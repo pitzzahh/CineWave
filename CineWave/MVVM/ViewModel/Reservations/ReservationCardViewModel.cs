@@ -7,11 +7,12 @@ public partial class ReservationCardViewModel : BaseViewModel
 {
     [ObservableProperty] private string _customerName;
     [ObservableProperty] private string _movieName;
+    [ObservableProperty] private DateOnly _reservationDate;
     [ObservableProperty] private TimeOnly _runtime;
     [ObservableProperty] private DateTime _screeningDateTime;
-    [ObservableProperty] private DateOnly _reservationDate;
 
-    public ReservationCardViewModel(string customerName, string movieName, TimeOnly runtime, DateTime screeningDateTime, DateOnly reservationDate)
+    public ReservationCardViewModel(string customerName, string movieName, TimeOnly runtime, DateTime screeningDateTime,
+        DateOnly reservationDate)
     {
         _customerName = customerName;
         _movieName = movieName;

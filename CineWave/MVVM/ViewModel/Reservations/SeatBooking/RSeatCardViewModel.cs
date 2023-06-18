@@ -13,10 +13,10 @@ namespace CineWave.MVVM.ViewModel.Reservations.SeatBooking;
 
 public partial class RSeatCardViewModel : BaseViewModel
 {
+    private readonly IUnitOfWork _unitOfWork;
     [ObservableProperty] private bool _isSeatAvailable;
     [ObservableProperty] private string? _seatNumber;
-    private readonly IUnitOfWork _unitOfWork;
-    
+
     public RSeatCardViewModel(string seatNumber, bool isTaken, IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
@@ -32,6 +32,7 @@ public partial class RSeatCardViewModel : BaseViewModel
             MessageBox.Show("This seat is already taken or no movie is currently showing!");
             return;
         }
+
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
         var seatBookingRegistrationForm = App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>(); // 
         if (seatBookingRegistrationForm.IsVisible)
@@ -46,8 +47,10 @@ public partial class RSeatCardViewModel : BaseViewModel
                 MessageBox.Show("No movie is currently showing!");
                 return;
             }
+
             seatBookingRegistrationForm.Show();
-            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new BookMovieInfo(currentMovie.MovieName, currentMovie.MoviePrice, SeatNumber ?? "")));
+            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new BookMovieInfo(currentMovie.MovieName,
+                currentMovie.MoviePrice, SeatNumber ?? "")));
         }
     }
 }

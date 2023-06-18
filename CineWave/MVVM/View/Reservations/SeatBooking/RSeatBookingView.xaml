@@ -109,8 +109,7 @@
                                HorizontalAlignment="Center"
                                FontWeight="Bold"
                                VerticalAlignment="Center"
-                               FontSize="20">
-                    </TextBlock>
+                               FontSize="20" />
                 </StackPanel>
             </Grid>
         </Grid>

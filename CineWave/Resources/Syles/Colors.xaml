@@ -6,28 +6,28 @@
     <Color x:Key="TertiaryColor">#FF4F772D</Color>
     <Color x:Key="QuaternaryColor">#FF90A955</Color>
     <Color x:Key="QuinaryColor">#FFECF39E</Color>
-    
+
     <Color x:Key="Red">#e63946</Color>
-    <SolidColorBrush x:Key="RedBrush" Color="{StaticResource Red}"/>
+    <SolidColorBrush x:Key="RedBrush" Color="{StaticResource Red}" />
 
     <!-- Background Colors -->
-    <SolidColorBrush x:Key="BackgroundColor" Color="#FFF2F2F2"/>
-    <SolidColorBrush x:Key="ForegroundBrush" Color="Black"/>
+    <SolidColorBrush x:Key="BackgroundColor" Color="#FFF2F2F2" />
+    <SolidColorBrush x:Key="ForegroundBrush" Color="Black" />
 
     <!-- Button Styles -->
     <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="Padding" Value="10"/>
-        <Setter Property="Margin" Value="5"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="MinWidth" Value="100"/>
-        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="Background" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="MinWidth" Value="100" />
+        <Setter Property="MinHeight" Value="30" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -35,7 +35,7 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}">
                         <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"/>
+                                          VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -43,21 +43,21 @@
     </Style>
 
     <!-- Additional Styles -->
-    
-    <SolidColorBrush x:Key="PrimaryBrush" Color="#FF0D1B2A"/>
-    <SolidColorBrush x:Key="SecondaryBrush" Color="#FF31572C"/>
-    <SolidColorBrush x:Key="TertiaryBrush" Color="#FF4F772D"/>
-    <SolidColorBrush x:Key="QuaternaryBrush" Color="#FF4F772D"/>
-    <SolidColorBrush x:Key="QuinaryBrush" Color="#FFECF39E"/>
-    
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="#FF0D1B2A" />
+    <SolidColorBrush x:Key="SecondaryBrush" Color="#FF31572C" />
+    <SolidColorBrush x:Key="TertiaryBrush" Color="#FF4F772D" />
+    <SolidColorBrush x:Key="QuaternaryBrush" Color="#FF4F772D" />
+    <SolidColorBrush x:Key="QuinaryBrush" Color="#FFECF39E" />
+
 
     <!-- Window Border Color -->
-    <SolidColorBrush x:Key="WindowBorderColorBrush" Color="{StaticResource SecondaryColor}"/>
+    <SolidColorBrush x:Key="WindowBorderColorBrush" Color="{StaticResource SecondaryColor}" />
 
     <!-- Additional Background Colors -->
-    <SolidColorBrush x:Key="CustomBackgroundColor1" Color="{StaticResource SecondaryColor}"/>
-    <SolidColorBrush x:Key="CustomBackgroundColor2" Color="{StaticResource TertiaryColor}"/>
-    <SolidColorBrush x:Key="CustomBackgroundColor3" Color="{StaticResource QuaternaryColor}"/>
-    <SolidColorBrush x:Key="CustomBackgroundColor4" Color="{StaticResource QuinaryColor}"/>
+    <SolidColorBrush x:Key="CustomBackgroundColor1" Color="{StaticResource SecondaryColor}" />
+    <SolidColorBrush x:Key="CustomBackgroundColor2" Color="{StaticResource TertiaryColor}" />
+    <SolidColorBrush x:Key="CustomBackgroundColor3" Color="{StaticResource QuaternaryColor}" />
+    <SolidColorBrush x:Key="CustomBackgroundColor4" Color="{StaticResource QuinaryColor}" />
 
 </ResourceDictionary>

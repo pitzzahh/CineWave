@@ -8,7 +8,6 @@ using CineWave.MVVM.ViewModel.Gallery;
 using CineWave.MVVM.ViewModel.ManageMovies;
 using CineWave.MVVM.ViewModel.Reservations;
 using CineWave.MVVM.ViewModel.SeatsBooking;
-using CineWave.MVVM.ViewModel.Trailer;
 using CineWave.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -25,41 +24,41 @@ public partial class MainViewModel : BaseViewModel
         NavService = navigationService;
     }
 
-    public void ShowTrailer()
-    {
-        NavService.NavigateTo<TrailerViewModel>();
-    }
-
     [RelayCommand]
     public void NavigateToHome()
     {
         NavService.NavigateTo<HomeViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        Task.Run(App.ServiceProvider.GetRequiredService<HomeViewModel>()
-            .GetMoviesFromApi); // Run the method on a separate thread
+        App.ServiceProvider.GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
+        // Run the method on a separate thread
+        Task.Run(App.ServiceProvider.GetRequiredService<HomeViewModel>().GetMoviesFromApi);
     }
 
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
+    // ReSharper disable once UnusedMember.Global
     public void NavigateToReservations()
     {
         NavService.NavigateTo<ReservationsViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        Task.Run(App.ServiceProvider.GetRequiredService<ReservationsViewModel>().CreateMovieInfoCards); // Run the method on a separate thread
+        // Run the method on a separate thread
+        Task.Run(App.ServiceProvider.GetRequiredService<ReservationsViewModel>().CreateMovieInfoCards);
     }
 
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
+    // ReSharper disable once UnusedMember.Global
     public void NavigateToSeatBooking()
     {
         NavService.NavigateTo<SeatBookingViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>()
-            .SetCurrentMovie); // Run the method on a separate thread
+        // Run the method on a separate thread
+        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().SetCurrentMovie);
     }
 
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
+    // ReSharper disable once UnusedMember.Global
     public void NavigateToAddMovie()
     {
         NavService.NavigateTo<AddMovieViewModel>();
@@ -67,16 +66,18 @@ public partial class MainViewModel : BaseViewModel
 
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
+    // ReSharper disable once UnusedMember.Global
     public void NavigateToManageMovie()
     {
         NavService.NavigateTo<ManageMoviesViewModel>();
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        Task.Run(App.ServiceProvider.GetRequiredService<ManageMoviesViewModel>()
-            .CreateMovieInfoCards); // Run the method on a separate thread
+        // Run the method on a separate thread
+        Task.Run(App.ServiceProvider.GetRequiredService<ManageMoviesViewModel>().CreateMovieInfoCards);
     }
 
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
+    // ReSharper disable once UnusedMember.Global
     #pragma warning disable CA1822
     public void Logout()
     {

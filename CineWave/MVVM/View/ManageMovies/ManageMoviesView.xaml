@@ -15,7 +15,7 @@
                    FontWeight="Medium"
                    Margin="10 0 0 0"
                    Foreground="{StaticResource QuinaryBrush}" />
-        <UniformGrid Grid.Row="1" HorizontalAlignment="Center" >
+        <UniformGrid Grid.Row="1" HorizontalAlignment="Center">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ItemsControl
                     ItemsSource="{Binding MovieInfoCardViewModels}">

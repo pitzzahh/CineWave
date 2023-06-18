@@ -10,16 +10,12 @@
             <RowDefinition Height="25" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
         <TextBlock Text="Top Movies"
                    FontSize="20"
                    FontWeight="Medium"
                    Margin="10 0"
                    Foreground="{StaticResource QuinaryBrush}" />
-
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" 
-                      VerticalAlignment="Center"
-                      HorizontalAlignment="Center">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <Grid HorizontalAlignment="Center">
                 <ItemsControl
                     ItemsSource="{Binding MovieCardViewModels}">
@@ -32,5 +28,4 @@
             </Grid>
         </ScrollViewer>
     </Grid>
-
 </UserControl>

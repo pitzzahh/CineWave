@@ -12,7 +12,7 @@
         Background="Transparent"
         AllowsTransparency="True"
         Width="500">
-    
+
     <Window.Resources>
         <helpers:PriceConverter x:Key="PriceConverter" />
     </Window.Resources>
@@ -28,11 +28,11 @@
             <StackPanel MouseEnter="OnEnterControlBar"
                         MouseLeftButtonDown="OnMoveWindow">
                 <Label Content="Seat Booking Registration"
-                           HorizontalAlignment="Center"
-                           FontSize="16"
-                           Margin="0 10"
-                           FontWeight="Medium"
-                           Foreground="{StaticResource QuinaryBrush}" />
+                       HorizontalAlignment="Center"
+                       FontSize="16"
+                       Margin="0 10"
+                       FontWeight="Medium"
+                       Foreground="{StaticResource QuinaryBrush}" />
             </StackPanel>
 
             <!-- Movie Name -->
@@ -45,7 +45,7 @@
                 <Label Content="{Binding MovieName}"
                        Foreground="{StaticResource QuinaryBrush}" />
             </StackPanel>
-            
+
             <!-- Movie Price -->
             <StackPanel Orientation="Horizontal"
                         Margin="0 0 0 5">
@@ -84,8 +84,7 @@
                                              Width="100"
                                              Command="{Binding BuyCommand}"
                                              FontWeight="Bold"
-                                             Margin="5" >
-                </moderncontrols:ModernButton>
+                                             Margin="5" />
                 <moderncontrols:ModernButton Content="Cancel"
                                              Width="100"
                                              FontWeight="Bold"

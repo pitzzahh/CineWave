@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace CineWave.Helpers;
 
-public class ScreeningDateTimeConverter  : IMultiValueConverter
+public class ScreeningDateTimeConverter : IMultiValueConverter
 {
     public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
     {

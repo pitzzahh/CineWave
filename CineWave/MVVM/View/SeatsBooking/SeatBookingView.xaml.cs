@@ -1,8 +1,6 @@
-﻿using System.Windows.Controls;
+﻿namespace CineWave.MVVM.View.SeatsBooking;
 
-namespace CineWave.MVVM.View.SeatsBooking;
-
-public partial class SeatBookingView : UserControl
+public partial class SeatBookingView
 {
     public SeatBookingView()
     {

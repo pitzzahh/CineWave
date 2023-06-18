@@ -1,7 +1,7 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace CineWave.MVVM.ViewModel.Trailer; 
+namespace CineWave.MVVM.ViewModel.Trailer;
 
 public partial class TrailerViewModel : BaseViewModel
 {

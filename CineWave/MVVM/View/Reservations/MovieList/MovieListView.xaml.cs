@@ -4,11 +4,11 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
 
-namespace CineWave.MVVM.View.Reservations.SeatBooking;
+namespace CineWave.MVVM.View.Reservations.MovieList;
 
-public partial class RSeatBookingView
+public partial class MovieListView
 {
-    public RSeatBookingView()
+    public MovieListView()
     {
         InitializeComponent();
     }

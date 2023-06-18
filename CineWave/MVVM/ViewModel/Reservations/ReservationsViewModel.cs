@@ -41,6 +41,7 @@ public partial class ReservationsViewModel : BaseViewModel
 
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
+    #pragma warning disable CA1822
     public void OpenMovieList()
     {
     }

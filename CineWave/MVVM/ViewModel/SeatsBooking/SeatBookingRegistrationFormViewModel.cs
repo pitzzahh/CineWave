@@ -48,20 +48,29 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
             double.Parse(Payment) < currentMovie.MoviePrice)
         {
             MessageBox.Show("Payment is not enough");
+            return;
         }
 
         var isSeatNotAvailable = IsSeatNotAvailable();
         if (isSeatNotAvailable)
         {
             MessageBox.Show("Seat is not available");
+            return;
         }
 
         if (SeatNumber != null)
         {
             var ticket = new Ticket(currentMovie.MovieId, SeatNumber);
-            var customer = new Customer(ticket.TicketId);
-            _unitOfWork.CustomersRepository.Add(customer);
             _unitOfWork.TicketsRepository.Add(ticket);
+            var addTicketResult = _unitOfWork.Complete();
+            if (addTicketResult != 0)
+            {
+                var ticketResult = _unitOfWork.TicketsRepository
+                    .Find(t => t.MovieId == currentMovie.MovieId && t.SeatNumber == SeatNumber).FirstOrDefault();
+                Debug.Assert(ticketResult != null, nameof(ticketResult) + " != null");
+                var customer = new Customer(ticketResult.TicketId);
+                _unitOfWork.CustomersRepository.Add(customer);
+            }
         }
 
         var complete = _unitOfWork.Complete();
@@ -71,9 +80,9 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
             return;
         }
 
-        var firstOrDefault = _unitOfWork.SeatsRepository.GetAll().FirstOrDefault(seat => seat.SeatNumber == SeatNumber);
+        var firstOrDefault = _unitOfWork.SeatsRepository
+            .Find(seat => seat.MovieId == currentMovie.MovieId && seat.SeatNumber == SeatNumber).FirstOrDefault();
         if (firstOrDefault != null) firstOrDefault.IsTaken = true;
-        _unitOfWork.Complete();
         var result = MessageBox.Show("Ticket bought successfully", "Confirmation", MessageBoxButton.OK);
         switch (result)
         {
@@ -96,7 +105,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
 
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
-    #pragma warning disable CA1822
+#pragma warning disable CA1822
     public void OnCancel()
     {
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");

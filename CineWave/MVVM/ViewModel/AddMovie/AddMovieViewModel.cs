@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using CineWave.DB.Core;
 using CineWave.Helpers;
 using CineWave.MVVM.Model.Movies;
+using CineWave.MVVM.Model.SeatsBooking;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MessageBox = System.Windows.MessageBox;
@@ -127,6 +130,7 @@ public partial class AddMovieViewModel : BaseViewModel
 
     [RelayCommand]
     // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once MemberCanBePrivate.Global
     public void AddMovie()
     {
         if (MovieName is null)
@@ -166,13 +170,24 @@ public partial class AddMovieViewModel : BaseViewModel
                 screeningDateTime
             )
         );
-        var complete = _unitOfWork.Complete();
-
-        if (complete != 1)
+        var result = _unitOfWork.Complete();
+        if (result == 0)
         {
             MessageBox.Show("Cannot add movie, please try again later");
             return;
         }
+        var firstOrDefault = _unitOfWork.MoviesRepository.Find(m => m.MovieName == MovieName).FirstOrDefault();
+        for (var row = 'A'; row <= 'E'; row++)
+        {
+            for (var column = 1; column <= 10; column++)
+            {
+                var seatNumber = $"{row}{column}";
+                var seat = new Seat(seatNumber, false);
+                Debug.Assert(firstOrDefault != null, nameof(firstOrDefault) + " != null");
+                seat.MovieId = firstOrDefault.MovieId;
+                _unitOfWork.SeatsRepository.Add(seat);
+            }
+        } 
         MovieName = string.Empty;
         RuntimeHourTime = 1;
         RuntimeMinuteTime = 1;

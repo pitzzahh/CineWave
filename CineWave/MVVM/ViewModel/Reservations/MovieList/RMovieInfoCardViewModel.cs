@@ -29,25 +29,9 @@ public partial class RMovieInfoCardViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    #pragma warning disable CA1822
     public void OpenForm()
     {
-        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        var editMovieForm = App.ServiceProvider.GetRequiredService<EditMovieForm>();
-        if (editMovieForm.IsVisible)
-        {
-            editMovieForm.Hide();
-        }
-        else
-        {
-            var movieInfo = new EditMovieInfo(
-                MovieName,
-                Runtime,
-                MoviePrice,
-                ReleaseDate,
-                ScreeningDateTime
-            );
-            WeakReferenceMessenger.Default.Send(new GetMovieInfoMessage(movieInfo));
-            editMovieForm.Show();
-        }
+        Debug.Print("On Reservation");
     }
 }

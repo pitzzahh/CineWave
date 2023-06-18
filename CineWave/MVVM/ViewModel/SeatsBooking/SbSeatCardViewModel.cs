@@ -15,7 +15,7 @@ public partial class SbSeatCardViewModel : BaseViewModel
 {
     [ObservableProperty] private bool _isSeatAvailable;
     [ObservableProperty] private string? _seatNumber;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _unitOfWork; 
     public SbSeatCardViewModel(string seatNumber, bool isTaken, IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;

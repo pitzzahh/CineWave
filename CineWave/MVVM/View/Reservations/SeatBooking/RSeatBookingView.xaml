@@ -4,6 +4,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
         d:DesignWidth="770"
         d:DesignHeight="700">
 
@@ -23,6 +27,8 @@
             </Grid.RowDefinitions>
 
             <TextBlock FontSize="20"
+                       MouseEnter="OnEnterControlBar"
+                       MouseLeftButtonDown="OnMoveWindow"
                        FontWeight="Medium"
                        Margin="10 0 0 0"
                        Foreground="{StaticResource QuinaryBrush}">

@@ -63,7 +63,7 @@
 
             <!-- Reservation Movie List -->
             <DataTemplate DataType="{x:Type reservationsMovieList:MovieListViewModel}">
-                <reservationsMovieListView:MovieListView />
+                <reservationsMovieListView:MovieListWindow />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type movieList:RMovieInfoCardViewModel}">

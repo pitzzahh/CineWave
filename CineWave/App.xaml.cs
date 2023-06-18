@@ -6,6 +6,7 @@ using CineWave.DB.Core;
 using CineWave.DB.Persistence;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
+using CineWave.MVVM.View.Reservations.MovieList;
 using CineWave.MVVM.ViewModel;
 using CineWave.MVVM.ViewModel.AddMovie;
 using CineWave.MVVM.ViewModel.Gallery;
@@ -35,6 +36,7 @@ public partial class App
         serviceCollection.AddSingleton<CineWaveDataContext>();
 
         serviceCollection.AddTransient<LoginViewModel>();
+        serviceCollection.AddTransient<MovieListViewModel>();
 
         serviceCollection.AddSingleton<MainViewModel>();
         serviceCollection.AddSingleton<HomeViewModel>();
@@ -59,6 +61,11 @@ public partial class App
         serviceCollection.AddTransient<LoginWindow>(provider => new LoginWindow
         {
             DataContext = provider.GetRequiredService<LoginViewModel>()
+        });
+        
+        serviceCollection.AddTransient<MovieListWindow>(provider => new MovieListWindow
+        {
+            DataContext = provider.GetRequiredService<MovieListViewModel>()
         });
 
         serviceCollection.AddSingleton<MainWindow>(provider => new MainWindow

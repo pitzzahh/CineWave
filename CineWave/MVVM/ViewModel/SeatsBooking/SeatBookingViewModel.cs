@@ -25,7 +25,7 @@ public partial class SeatBookingViewModel : BaseViewModel
     public async Task SetCurrentMovie()
     {
         var currentlyShowing = _unitOfWork.MoviesRepository.GetNowShowingMovie() ?? new Movie();
-        var seats = _unitOfWork.SeatsRepository.GetAll().Where(s => s.MovieId == currentlyShowing?.MovieId).ToList();
+        var seats = _unitOfWork.SeatsRepository.GetAll().Where(s => s.MovieId == currentlyShowing.MovieId).ToList();
         await Application.Current.Dispatcher.InvokeAsync(() =>
         {
             CurrentMovie = currentlyShowing.MovieName ?? MovieNotFound;

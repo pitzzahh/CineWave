@@ -6,9 +6,9 @@ using System.Windows.Interop;
 
 namespace CineWave.MVVM.View.Reservations.MovieList;
 
-public partial class MovieListView
+public partial class MovieListWindow
 {
-    public MovieListView()
+    public MovieListWindow()
     {
         InitializeComponent();
     }

@@ -5,11 +5,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
         WindowStyle="None"
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True"
         d:DesignHeight="300" d:DesignWidth="300">
-
     <Border CornerRadius="5">
         <Border.Background>
             <LinearGradientBrush StartPoint="0.02,0.2" EndPoint="1.5,1.9">
@@ -35,10 +35,12 @@
                            Padding="10 0"
                            Foreground="{StaticResource QuinaryBrush}" />
             </StackPanel>
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Grid.Row="1" 
+                          Margin="0 10"
+                          VerticalScrollBarVisibility="Auto">
                 <Grid HorizontalAlignment="Center">
                     <ItemsControl
-                        ItemsSource="{Binding MovieInfoCardViewModels}">
+                        ItemsSource="{Binding RMovieInfoCardViewModels}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel />

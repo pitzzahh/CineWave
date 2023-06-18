@@ -91,8 +91,8 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
         switch (result)
         {
             case MessageBoxResult.OK:
-                Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-                CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
+                WindowHelper.ShowOrCloseWindow((App.ServiceProvider ?? throw new InvalidOperationException())
+                    .GetRequiredService<SeatBookingRegistrationForm>());
                 break;
             case MessageBoxResult.Cancel:
             case MessageBoxResult.None:
@@ -103,24 +103,18 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
         }
 
         Payment = "";
-        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>()
-            .SetCurrentMovie); // Run the method on a separate thread
+        // Run the method on a separate thread
+        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingViewModel>().SetCurrentMovie);
         OnCancel();
     }
 
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
-#pragma warning disable CA1822
+    #pragma warning disable CA1822
     public void OnCancel()
     {
-        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
-    }
-
-    private static void CloseRegistrationWindow(Window seatBookingRegistrationForm)
-    {
-        if (!seatBookingRegistrationForm.IsVisible) return;
-        seatBookingRegistrationForm.Hide();
+        WindowHelper.ShowOrCloseWindow((App.ServiceProvider ?? throw new InvalidOperationException())
+            .GetRequiredService<SeatBookingRegistrationForm>());
     }
 
     private bool CheckInputs()

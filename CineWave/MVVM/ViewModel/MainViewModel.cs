@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CineWave.Components;
 using CineWave.MVVM.View;
 using CineWave.MVVM.View.Login;
+using CineWave.MVVM.View.Reservations.MovieList;
 using CineWave.MVVM.ViewModel.AddMovie;
 using CineWave.MVVM.ViewModel.Gallery;
 using CineWave.MVVM.ViewModel.ManageMovies;
@@ -80,6 +81,7 @@ public partial class MainViewModel : BaseViewModel
         (App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
         App.ServiceProvider.GetRequiredService<MainWindow>().Hide();
         App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>().Hide();
+        App.ServiceProvider.GetRequiredService<MovieListWindow>().Hide();
         App.ServiceProvider.GetRequiredService<EditMovieForm>().Hide();
         App.ServiceProvider.GetRequiredService<LoginWindow>().Show();
     }

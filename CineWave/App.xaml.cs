@@ -36,7 +36,7 @@ public partial class App
         serviceCollection.AddSingleton<CineWaveDataContext>();
 
         serviceCollection.AddTransient<LoginViewModel>();
-        serviceCollection.AddTransient<MovieListViewModel>();
+        serviceCollection.AddSingleton<MovieListViewModel>();
 
         serviceCollection.AddSingleton<MainViewModel>();
         serviceCollection.AddSingleton<HomeViewModel>();
@@ -63,7 +63,7 @@ public partial class App
             DataContext = provider.GetRequiredService<LoginViewModel>()
         });
         
-        serviceCollection.AddTransient<MovieListWindow>(provider => new MovieListWindow
+        serviceCollection.AddSingleton<MovieListWindow>(provider => new MovieListWindow
         {
             DataContext = provider.GetRequiredService<MovieListViewModel>()
         });

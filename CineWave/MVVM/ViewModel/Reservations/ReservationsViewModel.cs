@@ -1,10 +1,11 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using CineWave.DB.Core;
+using CineWave.Helpers;
 using CineWave.MVVM.View.Reservations.MovieList;
+using CineWave.MVVM.ViewModel.Reservations.MovieList;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,8 +33,8 @@ public partial class ReservationsViewModel : BaseViewModel
             {
                 ReservationCardViewModels.Add(
                     new ReservationCardViewModel(
-                        reservation.Customer.CustomerName ?? "404 Customer Name not found",
-                        reservation.Customer.Ticket.Movie.MovieName,
+                        reservation.Customer.CustomerName ?? StringHelper.CustomerNotFound,
+                        reservation.Customer.Ticket.Movie.MovieName ?? StringHelper.MovieNotFound,
                         reservation.Customer.Ticket.Movie.Runtime,
                         reservation.Customer.Ticket.Movie.ScreeningDateTime,
                         reservation.DateOfReservation
@@ -49,13 +50,12 @@ public partial class ReservationsViewModel : BaseViewModel
     #pragma warning disable CA1822
     public void OpenMovieList()
     {
-        var currentMovie = _unitOfWork.MoviesRepository.GetNowShowingMovie();
-        if (currentMovie == null)
+        if (!_unitOfWork.MoviesRepository.DoesHaveMoviesForReservation())
         {
             MessageBox.Show("No upcoming movie available for reservation!");
             return;
         }
-        (App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<MovieListWindow>().Hide();
-        (App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<MovieListWindow>().Show();
+        WindowHelper.ShowOrCloseWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<MovieListWindow>());
+        Task.Run((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<MovieListViewModel>().CreateMovieInfoCards);
     }
 }

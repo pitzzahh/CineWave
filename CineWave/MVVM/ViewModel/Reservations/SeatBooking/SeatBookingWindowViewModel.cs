@@ -8,7 +8,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CineWave.MVVM.ViewModel.Reservations.SeatBooking;
 
-public partial class RSeatBookingViewModel : BaseViewModel
+public partial class SeatBookingWindowViewModel : BaseViewModel
 {
     private const string MovieNotFound = "No movie is currently showing";
     private readonly IUnitOfWork _unitOfWork;
@@ -16,7 +16,7 @@ public partial class RSeatBookingViewModel : BaseViewModel
     [ObservableProperty] private string? _seatNumber;
     [ObservableProperty] private ObservableCollection<RSeatCardViewModel> _seats = new(); // For seats choose
 
-    public RSeatBookingViewModel(IUnitOfWork unitOfWork)
+    public SeatBookingWindowViewModel(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }

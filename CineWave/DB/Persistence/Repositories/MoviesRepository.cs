@@ -27,8 +27,13 @@ public class MoviesRepository : Repository<Movie>
         return Find(movie => movie.MovieName == movieName).FirstOrDefault();
     }
 
-    public IEnumerable<Movie>? GetAvailableMoviesForReservation()
+    public IEnumerable<Movie> GetAvailableMoviesForReservation()
     {
-        return GetAll().Where(movie => movie.ScreeningDateTime.Day > DateTime.Now.AddDays(1).Day);
+        return GetAll().Where(movie => movie.ScreeningDateTime.Day > DateTime.Now.Day);
+    }
+    
+    public bool DoesHaveMoviesForReservation()
+    {
+        return GetAvailableMoviesForReservation().Any();
     }
 }

@@ -5,6 +5,8 @@ namespace CineWave.Helpers;
 
 public static class StringHelper
 {
+    public static string MovieNotFound => "404 Movie Not Found";
+    public static string CustomerNotFound => "404 Customer Name not found";
     public static bool IsWholeNumberOrDecimal(string input)
     {
         return int.TryParse(input, out _) || double.TryParse(input, out _);

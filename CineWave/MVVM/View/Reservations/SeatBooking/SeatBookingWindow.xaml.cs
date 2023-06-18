@@ -6,9 +6,9 @@ using System.Windows.Interop;
 
 namespace CineWave.MVVM.View.Reservations.SeatBooking;
 
-public partial class RSeatBookingView
+public partial class SeatBookingWindow
 {
-    public RSeatBookingView()
+    public SeatBookingWindow()
     {
         InitializeComponent();
     }

@@ -24,7 +24,8 @@ public partial class RMovieInfoCardViewModel : BaseViewModel
     }
 
     [RelayCommand]
-#pragma warning disable CA1822
+    // ReSharper disable once MemberCanBePrivate.Global
+    #pragma warning disable CA1822
     public void OpenForm()
     {
         Debug.Print("On Reservation");

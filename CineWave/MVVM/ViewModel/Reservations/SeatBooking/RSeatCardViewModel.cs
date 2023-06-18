@@ -25,6 +25,7 @@ public partial class RSeatCardViewModel : BaseViewModel
     }
 
     [RelayCommand]
+    // ReSharper disable once MemberCanBePrivate.Global
     public void OpenForm()
     {
         if (!IsSeatAvailable)

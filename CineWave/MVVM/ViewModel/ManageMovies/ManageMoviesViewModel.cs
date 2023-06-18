@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using CineWave.DB.Core;
+using CineWave.Helpers;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CineWave.MVVM.ViewModel.ManageMovies;
 
-public class ManageMoviesViewModel : BaseViewModel
+public partial class ManageMoviesViewModel : BaseViewModel
 {
-    private readonly ObservableCollection<MovieInfoCardViewModel> _movieInfoCardViewModels = new();
+    [ObservableProperty] private ObservableCollection<MovieInfoCardViewModel> _movieInfoCardViewModels = new();
     private readonly IUnitOfWork _unitOfWork;
 
     public ManageMoviesViewModel(IUnitOfWork unitOfWork)
@@ -16,17 +17,15 @@ public class ManageMoviesViewModel : BaseViewModel
         _unitOfWork = unitOfWork;
     }
 
-    public IEnumerable<MovieInfoCardViewModel> MovieInfoCardViewModels => _movieInfoCardViewModels;
-
     public async Task CreateMovieInfoCards()
     {
         await Application.Current.Dispatcher.InvokeAsync(() =>
         {
-            _movieInfoCardViewModels.Clear();
+            MovieInfoCardViewModels.Clear();
             foreach (var movie in _unitOfWork.MoviesRepository.GetAll())
-                _movieInfoCardViewModels.Add(
+                MovieInfoCardViewModels.Add(
                     new MovieInfoCardViewModel(
-                        movie.MovieName,
+                        movie.MovieName ?? StringHelper.MovieNotFound,
                         movie.MoviePrice,
                         movie.Runtime,
                         movie.ReleaseDate,

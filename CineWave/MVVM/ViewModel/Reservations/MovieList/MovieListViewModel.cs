@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows;
 using CineWave.DB.Core;
+using CineWave.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CineWave.MVVM.ViewModel.Reservations.MovieList;
@@ -9,7 +10,7 @@ namespace CineWave.MVVM.ViewModel.Reservations.MovieList;
 public partial class MovieListViewModel : BaseViewModel
 {
     private readonly IUnitOfWork _unitOfWork;
-    [ObservableProperty] private ObservableCollection<RMovieInfoCardViewModel> _movieInfoCardViewModels = new();
+    [ObservableProperty] private ObservableCollection<RMovieInfoCardViewModel> _rMovieInfoCardViewModels = new();
 
     public MovieListViewModel(IUnitOfWork unitOfWork)
     {
@@ -18,20 +19,22 @@ public partial class MovieListViewModel : BaseViewModel
 
     public async Task CreateMovieInfoCards()
     {
+        var availableMoviesForReservation = _unitOfWork.MoviesRepository.GetAvailableMoviesForReservation();
         await Application.Current.Dispatcher.InvokeAsync(() =>
         {
-            MovieInfoCardViewModels.Clear();
-            foreach (var movie in _unitOfWork.MoviesRepository.GetAll())
-                MovieInfoCardViewModels.Add(
+            RMovieInfoCardViewModels.Clear();
+            foreach (var movie in availableMoviesForReservation)
+            {
+                RMovieInfoCardViewModels.Add(
                     new RMovieInfoCardViewModel(
-                        movie.MovieName,
+                        movie.MovieName ?? StringHelper.MovieNotFound,
                         movie.MoviePrice,
                         movie.Runtime,
                         movie.ReleaseDate,
                         movie.ScreeningDateTime
                     )
                 );
-            _unitOfWork.Complete();
+            }
         });
     }
 }

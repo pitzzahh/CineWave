@@ -23,8 +23,8 @@ jobs:
         run: dotnet restore ${{ env.PROJECT_PATH }}
 
       - name: Build and publish the project
-        run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r win-x64 -p:PublishSingleFile=true
-
+        run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r win-x64 -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true -p:PublishReadyToRun=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DeleteExistingFiles=true
+      
       - name: Deploy artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -47,6 +47,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/CineWave/bin/Release/net6.0-windows/win-x64/publish/CineWave.exe
+          asset_path: CineWave/bin/Release/net6.0-windows/win-x64/publish/CineWave.exe
           asset_name: CineWave.exe
           asset_content_type: application/octet-stream

@@ -61,20 +61,7 @@
                         Style="{StaticResource ControlButton}">
                     <fontawesome:IconImage Icon="WindowMinimize"
                                            Width="14"
-                                           Style="{StaticResource ControlButtonIcon}">
-                        <fontawesome:IconImage.Triggers>
-                            <EventTrigger RoutedEvent="Button.Click">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Width"
-                                                         Duration="0:0:0.3"
-                                                         From="50"
-                                                         To="10" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </fontawesome:IconImage.Triggers>
-                    </fontawesome:IconImage>
+                                           Style="{StaticResource ControlButtonIcon}"/>
                 </Button>
             </StackPanel>
 

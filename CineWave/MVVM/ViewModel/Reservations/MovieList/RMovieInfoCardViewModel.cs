@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using CineWave.Helpers;
 using CineWave.Messages.ManageMovies;
 using CineWave.MVVM.Model.Movies;
-using CineWave.MVVM.View.Reservations.MovieList;
 using CineWave.MVVM.View.Reservations.SeatBooking;
 using CineWave.MVVM.ViewModel.Reservations.SeatBooking;
 using CommunityToolkit.Mvvm.ComponentModel;

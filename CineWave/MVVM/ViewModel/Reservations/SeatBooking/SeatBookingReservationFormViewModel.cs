@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using CineWave.DB.Core;
 using CineWave.Helpers;
-using CineWave.Messages.SeatsBooking;
+using CineWave.Messages.Reservations;
 using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.Movies;
 using CineWave.MVVM.View.Reservations.SeatBooking;
@@ -17,11 +17,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CineWave.MVVM.ViewModel.Reservations.SeatBooking;
 
-public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecipient<GetSeatInfoMessage>
+public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecipient<RGetSeatInfoMessage>
 {
     private readonly IUnitOfWork _unitOfWork;
     [ObservableProperty] private string _isMovieFree = "Visible";
     [ObservableProperty] private string? _movieName;
+    [ObservableProperty] private string? _customerName;
     [ObservableProperty] private string? _moviePrice;
     [ObservableProperty] private string? _payment;
     [ObservableProperty] private string? _seatNumber;
@@ -32,7 +33,7 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
         WeakReferenceMessenger.Default.Register(this);
     }
 
-    public void Receive(GetSeatInfoMessage message)
+    public void Receive(RGetSeatInfoMessage message)
     {
         var reservationInfo = message.Value;
         MovieName = reservationInfo.MovieName;
@@ -45,7 +46,17 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
     // ReSharper disable once MemberCanBePrivate.Global
     public void OnBuy()
     {
-        if (MoviePrice != "0" && CheckInputs()) MessageBox.Show("Please enter a valid payment");
+        if (CustomerName is null)
+        {
+            MessageBox.Show("Please enter customer name");
+            return;
+        }
+
+        if (MoviePrice != "0" && CheckInputs())
+        {
+            MessageBox.Show("Please enter a valid payment");
+            return;
+        }
 
         var currentMovie = _unitOfWork.MoviesRepository.GetMovieByName(MovieName ?? string.Empty);
 
@@ -54,7 +65,11 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
             double.Parse(Payment) < currentMovie.MoviePrice) MessageBox.Show("Payment is not enough");
 
         var isSeatNotAvailable = IsSeatNotAvailable();
-        if (isSeatNotAvailable) MessageBox.Show("Seat is not available");
+        if (isSeatNotAvailable)
+        {
+            MessageBox.Show("Seat is not available");
+            return;
+        }
 
         if (SeatNumber != null)
         {
@@ -117,6 +132,6 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
 
     private bool IsSeatNotAvailable()
     {
-        return _unitOfWork.SeatsRepository.GetAll().FirstOrDefault(s => s.SeatNumber == SeatNumber)?.IsTaken ?? false;
+        return _unitOfWork.SeatsRepository.Find(s => s.SeatNumber == SeatNumber).FirstOrDefault()?.IsTaken ?? false;
     }
 }

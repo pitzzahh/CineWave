@@ -4,12 +4,12 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using CineWave.Components;
 using CineWave.DB.Core;
 using CineWave.Helpers;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.Movies;
-using CineWave.MVVM.View.Reservations.SeatBooking;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -23,7 +23,6 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     [ObservableProperty] private string _isMovieFree = "Visible";
     [ObservableProperty] private string? _movieName;
     [ObservableProperty] private string? _moviePrice;
-    [ObservableProperty] private string? _customerName;
     [ObservableProperty] private string? _payment;
     [ObservableProperty] private string? _seatNumber;
 
@@ -37,11 +36,6 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     // ReSharper disable once MemberCanBePrivate.Global
     public void OnBuy()
     {
-        if (CustomerName is null)
-        {
-            MessageBox.Show("Please enter customer name");
-            return;
-        }
         if (MoviePrice != "0" && CheckInputs())
         {
             MessageBox.Show("Please enter a valid payment");
@@ -98,7 +92,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
         {
             case MessageBoxResult.OK:
                 WindowHelper.ShowOrCloseWindow((App.ServiceProvider ?? throw new InvalidOperationException())
-                    .GetRequiredService<SeatBookingReservationForm>());
+                    .GetRequiredService<SeatBookingRegistrationForm>());
                 break;
             case MessageBoxResult.Cancel:
             case MessageBoxResult.None:
@@ -119,8 +113,8 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     #pragma warning disable CA1822
     public void OnCancel()
     {
-        WindowHelper.ShowOrCloseWindow((App.ServiceProvider ?? throw new InvalidOperationException())
-            .GetRequiredService<SeatBookingReservationForm>());
+        WindowHelper.HideWindow((App.ServiceProvider ?? throw new InvalidOperationException())
+            .GetRequiredService<SeatBookingRegistrationForm>());
     }
 
     private bool CheckInputs()
@@ -130,7 +124,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
 
     private bool IsSeatNotAvailable()
     {
-        return _unitOfWork.SeatsRepository.GetAll().FirstOrDefault(s => s.SeatNumber == SeatNumber)?.IsTaken ?? false;
+        return _unitOfWork.SeatsRepository.Find(s => s.SeatNumber == SeatNumber).FirstOrDefault()?.IsTaken ?? false;
     }
 
     public void Receive(GetSeatInfoMessage message)

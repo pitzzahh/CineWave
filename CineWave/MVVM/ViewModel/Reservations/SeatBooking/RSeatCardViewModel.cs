@@ -3,6 +3,7 @@ using System.Windows;
 using CineWave.Components;
 using CineWave.Helpers;
 using CineWave.Messages.ManageMovies;
+using CineWave.Messages.Reservations;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model.SeatsBooking;
 using CineWave.MVVM.View.Reservations.SeatBooking;
@@ -37,7 +38,7 @@ public partial class RSeatCardViewModel : BaseViewModel, IRecipient<GetMovieInfo
             return;
         }
         WindowHelper.ShowOrCloseWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingReservationForm>());
-        WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new BookMovieInfo(MovieName, MoviePrice, SeatNumber ?? "")));
+        WeakReferenceMessenger.Default.Send(new RGetSeatInfoMessage(new BookMovieInfo(MovieName, MoviePrice, SeatNumber ?? "")));
     }
 
     public void Receive(GetMovieInfoMessage message)

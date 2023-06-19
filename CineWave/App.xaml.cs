@@ -51,6 +51,7 @@ public partial class App
         serviceCollection.AddSingleton<ReservationCardViewModel>();
         serviceCollection.AddSingleton<SbSeatCardViewModel>();
         serviceCollection.AddSingleton<RSeatCardViewModel>();
+        serviceCollection.AddSingleton<SeatBookingRegistrationForm>();
         serviceCollection.AddSingleton<SeatBookingReservationForm>();
         serviceCollection.AddTransient<SeatBookingRegistrationFormViewModel>();
         serviceCollection.AddTransient<SeatBookingReservationFormViewModel>();
@@ -80,9 +81,14 @@ public partial class App
             DataContext = provider.GetRequiredService<MainViewModel>()
         });
 
-        serviceCollection.AddSingleton<SeatBookingReservationForm>(provider => new SeatBookingReservationForm
+        serviceCollection.AddSingleton<SeatBookingRegistrationForm>(provider => new SeatBookingRegistrationForm
         {
             DataContext = provider.GetRequiredService<SeatBookingRegistrationFormViewModel>()
+        });
+        
+        serviceCollection.AddSingleton<SeatBookingReservationForm>(provider => new SeatBookingReservationForm
+        {
+            DataContext = provider.GetRequiredService<SeatBookingReservationFormViewModel>()
         });
 
         serviceCollection.AddSingleton<EditMovieForm>(provider => new EditMovieForm

@@ -82,6 +82,7 @@ public partial class MainViewModel : BaseViewModel
     {
         (App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<MainWindow>().GalleryButton.IsChecked = true;
         WindowHelper.HideWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<MainWindow>());
+        WindowHelper.HideWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingRegistrationForm>());
         WindowHelper.HideWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingReservationForm>());
         WindowHelper.HideWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingWindow>());
         WindowHelper.HideWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<MovieListWindow>());

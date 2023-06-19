@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Height="450"
         WindowStyle="None"
+        Title="SeatBookingReservationForm"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True"

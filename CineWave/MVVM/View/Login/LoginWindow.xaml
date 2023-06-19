@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True"
-        Title="LoginView" Height="550" Width="600">
+        Title="Login Window" Height="550" Width="600">
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

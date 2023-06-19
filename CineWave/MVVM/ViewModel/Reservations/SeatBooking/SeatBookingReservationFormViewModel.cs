@@ -33,15 +33,6 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
         WeakReferenceMessenger.Default.Register(this);
     }
 
-    public void Receive(RGetSeatInfoMessage message)
-    {
-        var reservationInfo = message.Value;
-        MovieName = reservationInfo.MovieName;
-        IsMovieFree = reservationInfo.MoviePrice == 0 ? "Hidden" : "Visible";
-        MoviePrice = reservationInfo.MoviePrice.ToString(CultureInfo.InvariantCulture);
-        SeatNumber = reservationInfo.SeatNumber;
-    }
-
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
     public void OnBuy()
@@ -115,8 +106,7 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
     // ReSharper disable once MemberCanBeMadeStatic.Global
     public void OnCancel()
     {
-        Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingReservationForm>());
+        CloseRegistrationWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingReservationForm>());
     }
 
     private static void CloseRegistrationWindow(Window seatBookingRegistrationForm)
@@ -133,5 +123,14 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
     private bool IsSeatNotAvailable()
     {
         return _unitOfWork.SeatsRepository.Find(s => s.SeatNumber == SeatNumber).FirstOrDefault()?.IsTaken ?? false;
+    }
+    
+    public void Receive(RGetSeatInfoMessage message)
+    {
+        var reservationInfo = message.Value;
+        MovieName = reservationInfo.MovieName;
+        IsMovieFree = reservationInfo.MoviePrice == 0 ? "Hidden" : "Visible";
+        MoviePrice = reservationInfo.MoviePrice.ToString(CultureInfo.InvariantCulture);
+        SeatNumber = reservationInfo.SeatNumber;
     }
 }

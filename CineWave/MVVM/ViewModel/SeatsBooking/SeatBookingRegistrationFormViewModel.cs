@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using CineWave.Components;
 using CineWave.DB.Core;
 using CineWave.Helpers;
 using CineWave.Messages.SeatsBooking;
@@ -24,6 +23,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     [ObservableProperty] private string _isMovieFree = "Visible";
     [ObservableProperty] private string? _movieName;
     [ObservableProperty] private string? _moviePrice;
+    [ObservableProperty] private string? _customerName;
     [ObservableProperty] private string? _payment;
     [ObservableProperty] private string? _seatNumber;
 
@@ -37,6 +37,11 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     // ReSharper disable once MemberCanBePrivate.Global
     public void OnBuy()
     {
+        if (CustomerName is null)
+        {
+            MessageBox.Show("Please enter customer name");
+            return;
+        }
         if (MoviePrice != "0" && CheckInputs())
         {
             MessageBox.Show("Please enter a valid payment");

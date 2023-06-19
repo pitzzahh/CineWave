@@ -6,7 +6,7 @@
         xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
         xmlns:helpers="clr-namespace:CineWave.Helpers"
         mc:Ignorable="d"
-        Height="350"
+        Height="450"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
@@ -27,7 +27,7 @@
         <StackPanel>
             <StackPanel MouseEnter="OnEnterControlBar"
                         MouseLeftButtonDown="OnMoveWindow">
-                <Label Content="Seat Booking Registration"
+                <Label Content="Seat Booking Reservation"
                        HorizontalAlignment="Center"
                        FontSize="16"
                        Margin="0 10"
@@ -68,8 +68,19 @@
                        Foreground="{StaticResource QuinaryBrush}" />
             </StackPanel>
 
+            <StackPanel Margin="5">
+                <Label Content="Customer Name"
+                       FontWeight="Medium"
+                       Foreground="{StaticResource QuinaryBrush}" />
+                <moderncontrols:ModernTextBox
+                    HelperText="Required"
+                    Text="{Binding CustomerName}"
+                    DefaultBackground="{StaticResource PrimaryBrush}"
+                    Foreground="{StaticResource QuinaryBrush}" />
+            </StackPanel>
+
             <StackPanel Margin="5" Visibility="{Binding IsMovieFree}">
-                <Label Content="_payment"
+                <Label Content="Payment"
                        FontWeight="Medium"
                        Foreground="{StaticResource QuinaryBrush}" />
                 <moderncontrols:ModernTextBox

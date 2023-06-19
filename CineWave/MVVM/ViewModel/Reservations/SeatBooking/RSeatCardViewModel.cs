@@ -5,6 +5,7 @@ using CineWave.Helpers;
 using CineWave.Messages.ManageMovies;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model.SeatsBooking;
+using CineWave.MVVM.View.Reservations.SeatBooking;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -35,7 +36,7 @@ public partial class RSeatCardViewModel : BaseViewModel, IRecipient<GetMovieInfo
             MessageBox.Show("This seat is already taken or no movie is currently showing!");
             return;
         }
-        WindowHelper.ShowOrCloseWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingRegistrationForm>());
+        WindowHelper.ShowOrCloseWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingReservationForm>());
         WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new BookMovieInfo(MovieName, MoviePrice, SeatNumber ?? "")));
     }
 

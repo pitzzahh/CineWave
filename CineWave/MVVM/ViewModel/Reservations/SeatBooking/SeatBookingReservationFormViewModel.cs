@@ -97,6 +97,7 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
     #pragma warning disable CA1822
+    // ReSharper disable once MemberCanBeMadeStatic.Global
     public void OnCancel()
     {
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");

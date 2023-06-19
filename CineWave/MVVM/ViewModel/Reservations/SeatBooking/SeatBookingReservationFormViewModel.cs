@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using CineWave.DB.Core;
 using CineWave.Helpers;
-using CineWave.Messages.Reservations;
+using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.Movies;
 using CineWave.MVVM.View.Reservations.SeatBooking;
@@ -17,7 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CineWave.MVVM.ViewModel.Reservations.SeatBooking;
 
-public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecipient<RGetSeatInfoMessage>
+public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecipient<GetSeatInfoMessage>
 {
     private readonly IUnitOfWork _unitOfWork;
     [ObservableProperty] private string _isMovieFree = "Visible";
@@ -50,26 +49,36 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
         }
 
         var currentMovie = _unitOfWork.MoviesRepository.GetMovieByName(MovieName ?? string.Empty);
-
+ 
         if (currentMovie == null) return;
         if (currentMovie.MovieId != 0 && MoviePrice != "0" && Payment != null &&
-            double.Parse(Payment) < currentMovie.MoviePrice) MessageBox.Show("Payment is not enough");
+            double.Parse(Payment) < currentMovie.MoviePrice)
+        {
+            MessageBox.Show("Payment is not enough");
+            return;
+        }
 
-        var isSeatNotAvailable = IsSeatNotAvailable();
+        var isSeatNotAvailable = IsSeatNotAvailable(currentMovie.MovieId);
         if (isSeatNotAvailable)
         {
             MessageBox.Show("Seat is not available");
             return;
         }
 
-        if (SeatNumber != null)
+        if (SeatNumber == null) return;
+        var ticket = new Ticket(currentMovie.MovieId, SeatNumber);
+        _unitOfWork.TicketsRepository.Add(ticket);
+        var ticketAddResult = _unitOfWork.Complete();
+        if(ticketAddResult == 0) return;
+        var savedTicket = _unitOfWork.TicketsRepository
+            .Find(t => t.MovieId == currentMovie.MovieId && t.SeatNumber == SeatNumber)
+            .FirstOrDefault();
+        if (savedTicket == null) return;
+        var customer = new Customer(savedTicket.TicketId)
         {
-            var ticket = new Ticket(currentMovie.MovieId, SeatNumber);
-            var customer = new Customer(ticket.TicketId);
-            _unitOfWork.CustomersRepository.Add(customer);
-            _unitOfWork.TicketsRepository.Add(ticket);
-        }
-
+            CustomerName = CustomerName
+        };
+        _unitOfWork.CustomersRepository.Add(customer);
         var complete = _unitOfWork.Complete();
         if (complete == 0)
         {
@@ -77,15 +86,15 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
             return;
         }
 
-        var firstOrDefault = _unitOfWork.SeatsRepository.GetAll().FirstOrDefault(seat => seat.SeatNumber == SeatNumber);
+        var firstOrDefault = _unitOfWork.SeatsRepository.GetAll()
+            .FirstOrDefault(seat => seat.MovieId == currentMovie.MovieId && seat.SeatNumber == SeatNumber);
         if (firstOrDefault != null) firstOrDefault.IsTaken = true;
         _unitOfWork.Complete();
         var result = MessageBox.Show("Ticket bought successfully", "Confirmation", MessageBoxButton.OK);
         switch (result)
         {
             case MessageBoxResult.OK:
-                Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-                CloseRegistrationWindow(App.ServiceProvider.GetRequiredService<SeatBookingReservationForm>());
+                OnCancel();
                 break;
             case MessageBoxResult.Cancel:
             case MessageBoxResult.None:
@@ -95,24 +104,19 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
                 throw new ArgumentOutOfRangeException();
         }
 
-        Task.Run(App.ServiceProvider.GetRequiredService<SeatBookingWindowViewModel>()
+        Task.Run((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingWindowViewModel>()
             .SetCurrentMovie); // Run the method on a separate thread
-        OnCancel();
+
     }
 
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
-    #pragma warning disable CA1822
+#pragma warning disable CA1822
     // ReSharper disable once MemberCanBeMadeStatic.Global
     public void OnCancel()
     {
-        CloseRegistrationWindow((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingReservationForm>());
-    }
-
-    private static void CloseRegistrationWindow(Window seatBookingRegistrationForm)
-    {
-        if (!seatBookingRegistrationForm.IsVisible) return;
-        seatBookingRegistrationForm.Hide();
+        WindowHelper.HideWindow((App.ServiceProvider ?? throw new InvalidOperationException())
+            .GetRequiredService<SeatBookingReservationForm>());
     }
 
     private bool CheckInputs()
@@ -120,12 +124,13 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
         return Payment is null || !StringHelper.IsWholeNumberOrDecimal(Payment);
     }
 
-    private bool IsSeatNotAvailable()
+    private bool IsSeatNotAvailable(int movieId)
     {
-        return _unitOfWork.SeatsRepository.Find(s => s.SeatNumber == SeatNumber).FirstOrDefault()?.IsTaken ?? false;
+        return _unitOfWork.SeatsRepository.Find(s => s.MovieId == movieId && s.SeatNumber == SeatNumber)
+            .FirstOrDefault()?.IsTaken ?? false;
     }
-    
-    public void Receive(RGetSeatInfoMessage message)
+
+    public void Receive(GetSeatInfoMessage message)
     {
         var reservationInfo = message.Value;
         MovieName = reservationInfo.MovieName;

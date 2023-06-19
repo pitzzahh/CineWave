@@ -15,6 +15,7 @@ public partial class SeatBookingWindowViewModel : BaseViewModel, IRecipient<GetM
 {
     private readonly IUnitOfWork _unitOfWork;
     [ObservableProperty] private string _currentMovie = null!;
+    private static double MoviePrice { get; set; }
     [ObservableProperty] private string _seatNumber = null!;
     [ObservableProperty] private ObservableCollection<RSeatCardViewModel> _seats = new(); // For seats choose
 
@@ -38,7 +39,7 @@ public partial class SeatBookingWindowViewModel : BaseViewModel, IRecipient<GetM
                     for (var column = 1; column <= 10; column++)
                     {
                         var seatNumber = $"{row}{column}";
-                        Seats.Add(new RSeatCardViewModel(seatNumber, true));
+                        Seats.Add(new RSeatCardViewModel(CurrentMovie, MoviePrice, seatNumber, true));
                     }
                 }
             }
@@ -46,7 +47,7 @@ public partial class SeatBookingWindowViewModel : BaseViewModel, IRecipient<GetM
             {
                 foreach (var seat in seats.OrderBy(seat => seat.SeatNumber, new SeatNumberComparer()))
                 {
-                    Seats.Add(new RSeatCardViewModel(seat.SeatNumber, seat.IsTaken));   
+                    Seats.Add(new RSeatCardViewModel(CurrentMovie, MoviePrice, seat.SeatNumber, seat.IsTaken));   
                 }
             }
         });
@@ -56,5 +57,6 @@ public partial class SeatBookingWindowViewModel : BaseViewModel, IRecipient<GetM
     {
         var editMovieInfo = message.Value;
         CurrentMovie = editMovieInfo.MovieName;
+        MoviePrice = editMovieInfo.MoviePrice;
     }
 }

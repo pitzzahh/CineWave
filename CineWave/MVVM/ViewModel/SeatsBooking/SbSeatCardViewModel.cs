@@ -37,7 +37,7 @@ public partial class SbSeatCardViewModel : BaseViewModel
         }
 
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");
-        var seatBookingRegistrationForm = App.ServiceProvider.GetRequiredService<SeatBookingReservationForm>();
+        var seatBookingRegistrationForm = App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>();
         if (seatBookingRegistrationForm.IsVisible)
         {
             seatBookingRegistrationForm.Hide();

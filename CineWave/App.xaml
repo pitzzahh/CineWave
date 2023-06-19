@@ -89,7 +89,7 @@
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type seatsBooking:SeatBookingRegistrationFormViewModel}">
-                <reservationsSeatBookingView:SeatBookingReservationForm />
+                <components:SeatBookingRegistrationForm />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type seatsBooking:SeatBookingViewModel}">

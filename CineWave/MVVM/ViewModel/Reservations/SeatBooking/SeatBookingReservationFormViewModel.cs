@@ -3,12 +3,14 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using CineWave.Components;
 using CineWave.DB.Core;
 using CineWave.Helpers;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.Movies;
 using CineWave.MVVM.Model.Reservations;
+using CineWave.MVVM.View.Reservations.MovieList;
 using CineWave.MVVM.View.Reservations.SeatBooking;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -70,22 +72,20 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
         var ticket = new Ticket(currentMovie.MovieId, SeatNumber);
         _unitOfWork.TicketsRepository.Add(ticket);
         var ticketAddResult = _unitOfWork.Complete();
+        
         if(ticketAddResult == 0) return;
         var savedTicket = _unitOfWork.TicketsRepository
             .Find(t => t.MovieId == currentMovie.MovieId && t.SeatNumber == SeatNumber)
             .FirstOrDefault();
         if (savedTicket == null) return;
+        
         var customer = new Customer(savedTicket.TicketId)
         {
             CustomerName = CustomerName
         };
         _unitOfWork.CustomersRepository.Add(customer);
-        var complete = _unitOfWork.Complete();
-        if (complete == 0)
-        {
-            MessageBox.Show("Failed to buy ticket");
-            return;
-        }
+        var customerAddResult = _unitOfWork.Complete();
+        if (customerAddResult == 0) return;
 
         var savedCustomer = _unitOfWork.CustomersRepository
             .Find(c => c.CustomerName == CustomerName && c.TicketId == savedTicket.TicketId)
@@ -97,9 +97,15 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
         _unitOfWork.ReservationsRepository.Add(reservation);
 
         var reservationAddResult = _unitOfWork.Complete();
-        if (reservationAddResult == 0) return;
+        if (reservationAddResult == 0)
+        {
+            MessageBox.Show("Failed to buy ticket");
+            return;
+        }
+        
         var reservedSeat = _unitOfWork.SeatsRepository.GetAll()                                            
             .FirstOrDefault(seat => seat.MovieId == currentMovie.MovieId && seat.SeatNumber == SeatNumber);
+        
         if (reservedSeat != null) reservedSeat.IsTaken = true;                                             
         var result = MessageBox.Show("Ticket bought successfully", "Confirmation", MessageBoxButton.OK);
         switch (result)
@@ -119,6 +125,11 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
         Payment = "";
         Task.Run((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingWindowViewModel>()
             .SetCurrentMovie); // Run the method on a separate thread
+        WindowHelper.HideWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
+        WindowHelper.HideWindow(App.ServiceProvider.GetRequiredService<SeatBookingWindow>());
+        WindowHelper.HideWindow(App.ServiceProvider.GetRequiredService<MovieListWindow>());
+        // Run the method on a separate thread
+        Task.Run((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<ReservationsViewModel>().CreateMovieInfoCards);
     }
 
     [RelayCommand]

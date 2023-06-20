@@ -28,7 +28,7 @@ public partial class SeatBookingWindowViewModel : BaseViewModel, IRecipient<GetM
     public async Task SetCurrentMovie()
     {
         var currentlyShowing = _unitOfWork.MoviesRepository.GetMovieByName(CurrentMovie) ?? new Movie();
-        var seats = _unitOfWork.SeatsRepository.GetAll().Where(s => s.MovieId == currentlyShowing.MovieId).ToList();
+        var seats = _unitOfWork.SeatsRepository.Find(s => s.MovieId == currentlyShowing.MovieId).ToList();
         await Application.Current.Dispatcher.InvokeAsync(() =>
         {
             Seats.Clear();

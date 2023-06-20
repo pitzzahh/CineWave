@@ -18,6 +18,7 @@ namespace CineWave.MVVM.ViewModel.ManageMovies;
 public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovieInfoMessage>
 {
     private readonly IUnitOfWork _unitOfWork;
+    private string OriginalUnEditedMovie { get; set; }
     [ObservableProperty] private string _movieName = null!;
     [ObservableProperty] private string _price = null!;
     [ObservableProperty] private int _releaseDateDay;
@@ -82,7 +83,7 @@ public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovie
         var editMovieInfo = message.Value;
         Debug.Print($"Received Movie: {editMovieInfo}");
         MovieName = editMovieInfo.MovieName;
-
+        OriginalUnEditedMovie = editMovieInfo.MovieName;
         RuntimeHourTime = editMovieInfo.Runtime.Hour;
         RuntimeMinuteTime = editMovieInfo.Runtime.Minute;
 
@@ -104,7 +105,7 @@ public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovie
     // ReSharper disable once MemberCanBePrivate.Global
     public void OnUpdateMovie()
     {
-        var movieByName = _unitOfWork.MoviesRepository.GetMovieByName(MovieName);
+        var movieByName = _unitOfWork.MoviesRepository.GetMovieByName(OriginalUnEditedMovie);
         if (movieByName == null) return;
         movieByName.MovieName = MovieName;
         movieByName.MoviePrice = double.Parse(Price);
@@ -136,7 +137,7 @@ public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovie
     // ReSharper disable once MemberCanBePrivate.Global
     public void OnRemoveMovie()
     {
-        var movieByName = _unitOfWork.MoviesRepository.GetMovieByName(MovieName);
+        var movieByName = _unitOfWork.MoviesRepository.GetMovieByName(OriginalUnEditedMovie);
         if (movieByName == null) return;
         _unitOfWork.MoviesRepository.Remove(movieByName);
         var result = _unitOfWork.Complete();

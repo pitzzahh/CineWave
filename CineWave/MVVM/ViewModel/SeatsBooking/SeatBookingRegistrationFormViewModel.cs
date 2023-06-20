@@ -10,6 +10,7 @@ using CineWave.Helpers;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.Movies;
+using CineWave.MVVM.View.Reservations.MovieList;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -69,7 +70,10 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
                 var ticketResult = _unitOfWork.TicketsRepository
                     .Find(t => t.MovieId == currentMovie.MovieId && t.SeatNumber == SeatNumber).FirstOrDefault();
                 Debug.Assert(ticketResult != null, nameof(ticketResult) + " != null");
-                var customer = new Customer(ticketResult.TicketId);
+                var customer = new Customer(ticketResult.TicketId)
+                {
+                    CustomerName = "OnSiteCustomer"
+                };
                 _unitOfWork.CustomersRepository.Add(customer);
             }
         }

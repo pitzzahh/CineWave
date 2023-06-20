@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using CineWave.Helpers;
 using CineWave.MVVM.View;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -38,7 +39,7 @@ public partial class LoginViewModel : BaseViewModel
     // ReSharper disable once UnusedMember.Global
     public void Login()
     {
-        var isAuthenticated = Password != null && Username is "pitzzahh" && Password is "123456";
+        var isAuthenticated = Password != null && Username == PseudoRandomEncryptor.Decrypt("YWRtaW4=") && Password == PseudoRandomEncryptor.Decrypt("bmltZGE=");
         if (!isAuthenticated) return;
         IsLoginFormVisible = false;
         Debug.Assert(App.ServiceProvider != null, "App.ServiceProvider != null");

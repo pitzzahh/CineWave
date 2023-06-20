@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using CineWave.Helpers;
-using CineWave.Messages.ManageMovies;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model.SeatsBooking;
 using CineWave.MVVM.View.Reservations.SeatBooking;

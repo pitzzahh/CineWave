@@ -18,7 +18,7 @@ namespace CineWave.MVVM.ViewModel.ManageMovies;
 public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovieInfoMessage>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private string OriginalUnEditedMovie { get; set; }
+    private string OriginalUnEditedMovie { get; set; } = null!;
     [ObservableProperty] private string _movieName = null!;
     [ObservableProperty] private string _price = null!;
     [ObservableProperty] private int _releaseDateDay;

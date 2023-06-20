@@ -7,7 +7,7 @@
              xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
              mc:Ignorable="d"
              Margin="5"
-             d:DesignHeight="180" d:DesignWidth="400">
+             Height="180" Width="400">
     <UserControl.Resources>
         <helpers:DateToStringConverter x:Key="DateToStringConverter" />
         <helpers:ScreeningDateTimeConverter x:Key="ScreeningDateTimeConverter" />
@@ -22,7 +22,6 @@
         <moderncontrols:ModernButton DefaultBackground="Transparent"
                                      HoverBackground="Transparent"
                                      HoverForeground="Transparent"
-                                     Cursor="Hand"
                                      PressedBackground="Transparent"
                                      PressedBorderBrush="Transparent"
                                      HorizontalContentAlignment="Left">
@@ -50,7 +49,7 @@
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />
                     </StackPanel>
-                    
+
                     <StackPanel Orientation="Horizontal">
                         <Label FontWeight="Bold"
                                Content="Seat Number:"

@@ -106,7 +106,9 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
         var reservedSeat = _unitOfWork.SeatsRepository.GetAll()                                            
             .FirstOrDefault(seat => seat.MovieId == currentMovie.MovieId && seat.SeatNumber == SeatNumber);
         
-        if (reservedSeat != null) reservedSeat.IsTaken = true;                                             
+        if (reservedSeat != null) reservedSeat.IsTaken = true;
+        var seatTakenChange = _unitOfWork.Complete();
+        if (seatTakenChange == 0) return;
         var result = MessageBox.Show("Ticket bought successfully", "Confirmation", MessageBoxButton.OK);
         switch (result)
         {

@@ -121,7 +121,7 @@
             </StackPanel>
             <StackPanel Grid.Row="2" Orientation="Horizontal" FlowDirection="RightToLeft">
                 <TextBlock Margin="5 0 0 0"
-                           Text="version 0.0.11-beta© 2023 CineWave"
+                           Text="version 0.0.12-beta© 2023 CineWave"
                            Foreground="{StaticResource QuinaryBrush}" />
             </StackPanel>
         </Grid>

@@ -36,13 +36,12 @@ public partial class ReservationsViewModel : BaseViewModel
                     new ReservationCardViewModel(
                         reservation.Customer.CustomerName ?? StringHelper.CustomerNotFound,
                         reservation.Customer.Ticket.Movie.MovieName ?? StringHelper.MovieNotFound,
+                        reservation.Customer.Ticket.SeatNumber,
                         reservation.Customer.Ticket.Movie.Runtime,
                         reservation.Customer.Ticket.Movie.ScreeningDateTime,
                         reservation.DateOfReservation
                     ));
             }
-
-            _unitOfWork.Complete();
         });
     }
 

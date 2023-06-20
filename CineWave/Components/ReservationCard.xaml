@@ -6,7 +6,7 @@
              xmlns:helpers="clr-namespace:CineWave.Helpers"
              xmlns:moderncontrols="clr-namespace:org.russkyc.moderncontrols;assembly=Russkyc.ModernControls.WPF"
              mc:Ignorable="d"
-             d:DesignHeight="150" d:DesignWidth="400">
+             d:DesignHeight="180" d:DesignWidth="400">
     <UserControl.Resources>
         <helpers:DateToStringConverter x:Key="DateToStringConverter" />
         <helpers:ScreeningDateTimeConverter x:Key="ScreeningDateTimeConverter" />
@@ -45,6 +45,17 @@
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />
                         <Label Content="{Binding MovieName}"
+                               FontWeight="Medium"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold"
+                               Content="Seat Number:"
+                               Foreground="{StaticResource QuinaryBrush}"
+                               FontSize="14" />
+                        <Label Content="{Binding SeatNumber}"
                                FontWeight="Medium"
                                Foreground="{StaticResource QuinaryBrush}"
                                FontSize="14" />

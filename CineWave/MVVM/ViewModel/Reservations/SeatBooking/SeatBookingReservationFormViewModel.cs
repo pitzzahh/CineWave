@@ -8,6 +8,7 @@ using CineWave.Helpers;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.Movies;
+using CineWave.MVVM.Model.Reservations;
 using CineWave.MVVM.View.Reservations.SeatBooking;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -86,10 +87,20 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
             return;
         }
 
-        var reservedSeat = _unitOfWork.SeatsRepository.GetAll()
+        var savedCustomer = _unitOfWork.CustomersRepository
+            .Find(c => c.CustomerName == CustomerName && c.TicketId == savedTicket.TicketId)
+            .FirstOrDefault();
+        
+        if (savedCustomer == null) return;
+        var reservation = new Reservation(savedCustomer.CustomerId, DateOnly.FromDateTime(DateTime.Now));  
+                                                                                                           
+        _unitOfWork.ReservationsRepository.Add(reservation);
+
+        var reservationAddResult = _unitOfWork.Complete();
+        if (reservationAddResult == 0) return;
+        var reservedSeat = _unitOfWork.SeatsRepository.GetAll()                                            
             .FirstOrDefault(seat => seat.MovieId == currentMovie.MovieId && seat.SeatNumber == SeatNumber);
-        if (reservedSeat != null) reservedSeat.IsTaken = true;
-        _unitOfWork.Complete();
+        if (reservedSeat != null) reservedSeat.IsTaken = true;                                             
         var result = MessageBox.Show("Ticket bought successfully", "Confirmation", MessageBoxButton.OK);
         switch (result)
         {
@@ -108,12 +119,11 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
         Payment = "";
         Task.Run((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingWindowViewModel>()
             .SetCurrentMovie); // Run the method on a separate thread
-
     }
 
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
-#pragma warning disable CA1822
+    #pragma warning disable CA1822
     // ReSharper disable once MemberCanBeMadeStatic.Global
     public void OnCancel()
     {

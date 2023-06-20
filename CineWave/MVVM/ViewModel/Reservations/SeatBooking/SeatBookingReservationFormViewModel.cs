@@ -86,9 +86,9 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
             return;
         }
 
-        var firstOrDefault = _unitOfWork.SeatsRepository.GetAll()
+        var reservedSeat = _unitOfWork.SeatsRepository.GetAll()
             .FirstOrDefault(seat => seat.MovieId == currentMovie.MovieId && seat.SeatNumber == SeatNumber);
-        if (firstOrDefault != null) firstOrDefault.IsTaken = true;
+        if (reservedSeat != null) reservedSeat.IsTaken = true;
         _unitOfWork.Complete();
         var result = MessageBox.Show("Ticket bought successfully", "Confirmation", MessageBoxButton.OK);
         switch (result)
@@ -104,6 +104,8 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
                 throw new ArgumentOutOfRangeException();
         }
 
+        CustomerName = "";
+        Payment = "";
         Task.Run((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingWindowViewModel>()
             .SetCurrentMovie); // Run the method on a separate thread
 

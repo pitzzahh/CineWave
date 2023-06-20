@@ -27,7 +27,7 @@ public partial class ReservationsViewModel : BaseViewModel
 
     public async Task CreateMovieInfoCards()
     {
-        var reservations = _unitOfWork.ReservationsRepository.GetAll();
+        var reservations = _unitOfWork.ReservationsRepository.GetReservationsDuringOrBeforeScreenTime();
         await Application.Current.Dispatcher.InvokeAsync(() =>
         {
             ReservationCardViewModels.Clear();

@@ -10,7 +10,6 @@ using CineWave.Helpers;
 using CineWave.Messages.SeatsBooking;
 using CineWave.MVVM.Model;
 using CineWave.MVVM.Model.Movies;
-using CineWave.MVVM.View.Reservations.MovieList;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -35,6 +34,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
 
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
+    // ReSharper disable once UnusedMember.Global
     public void OnBuy()
     {
         if (MoviePrice != "0" && CheckInputs())
@@ -72,7 +72,8 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
                 Debug.Assert(ticketResult != null, nameof(ticketResult) + " != null");
                 var customer = new Customer(ticketResult.TicketId)
                 {
-                    CustomerName = "OnSiteCustomer"
+                    CustomerName = "OnSiteCustomer",
+                    Payment = Convert.ToDouble(Payment)
                 };
                 _unitOfWork.CustomersRepository.Add(customer);
             }
@@ -115,6 +116,7 @@ public partial class SeatBookingRegistrationFormViewModel : BaseViewModel, IReci
     [RelayCommand]
     // ReSharper disable once MemberCanBePrivate.Global
     #pragma warning disable CA1822
+    // ReSharper disable once MemberCanBeMadeStatic.Global
     public void OnCancel()
     {
         WindowHelper.HideWindow((App.ServiceProvider ?? throw new InvalidOperationException())

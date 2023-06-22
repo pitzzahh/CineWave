@@ -44,13 +44,13 @@
                 <RowDefinition Height="15" />
             </Grid.RowDefinitions>
 
-            <StackPanel x:Name="ControlBarPanel"
-                        Orientation="Horizontal"
-                        FlowDirection="RightToLeft"
-                        Margin="0 0 5 0"
-                        Background="Transparent"
-                        MouseLeftButtonDown="OnMoveWindow"
-                        MouseEnter="OnEnterControlBar">
+            <StackPanel
+                Orientation="Horizontal"
+                FlowDirection="RightToLeft"
+                Margin="0 0 5 0"
+                Background="Transparent"
+                MouseLeftButtonDown="OnMoveWindow"
+                MouseEnter="OnEnterControlBar">
                 <Button Click="OnCloseWindow"
                         Tag="{StaticResource RedBrush}"
                         Style="{StaticResource ControlButton}">
@@ -61,7 +61,7 @@
                         Style="{StaticResource ControlButton}">
                     <fontawesome:IconImage Icon="WindowMinimize"
                                            Width="14"
-                                           Style="{StaticResource ControlButtonIcon}"/>
+                                           Style="{StaticResource ControlButtonIcon}" />
                 </Button>
             </StackPanel>
 
@@ -101,7 +101,6 @@
                        Foreground="{StaticResource BackgroundColor}" />
 
                 <moderncontrols:ModernTextBox
-                    x:Name="PasswordInput"
                     Background="{StaticResource PrimaryBrush}"
                     Foreground="White"
                     LeftIcon="{wpf:MaterialIconExt Password}"
@@ -115,7 +114,7 @@
                                              VerticalAlignment="Bottom"
                                              Content="LOGIN"
                                              CornerRadius="5"
-                                             IsEnabled="{Binding CanLogin}"
+                                             IsEnabled="{Binding CanLogin ,UpdateSourceTrigger=PropertyChanged}"
                                              Command="{Binding LoginCommand}"
                                              FontWeight="Medium" />
             </StackPanel>

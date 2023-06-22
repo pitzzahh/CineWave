@@ -16,6 +16,7 @@ public partial class AddMovieViewModel : BaseViewModel
 {
     private readonly IUnitOfWork _unitOfWork;
     [ObservableProperty] private string? _movieName;
+    [ObservableProperty] private string? _genre;
     [ObservableProperty] private string? _price;
     [ObservableProperty] private int _releaseDateDay;
 
@@ -42,6 +43,8 @@ public partial class AddMovieViewModel : BaseViewModel
     [ObservableProperty] private ObservableCollection<string> _screeningDateMonths = new();
     [ObservableProperty] private int _screeningDateYear = DateTime.Now.Year;
     [ObservableProperty] private ObservableCollection<int> _screeningDateYears = new();
+    
+    [ObservableProperty] private ObservableCollection<string> _genresSelection = new();
 
     public AddMovieViewModel(IUnitOfWork unitOfWork)
     {
@@ -99,6 +102,11 @@ public partial class AddMovieViewModel : BaseViewModel
             for (var i = 1; i <= 5; i++) RuntimeHourList.Add(i);
 
             for (var i = 0; i <= 59; i++) RuntimeMinuteList.Add(i);
+
+            foreach (var val in Enum.GetValues(typeof(Genres)))
+            {
+                GenresSelection.Add((val as string)!);
+            }
         });
     }
 

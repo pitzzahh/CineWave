@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CineWave.MVVM.Model.Movies;
 
@@ -21,6 +22,8 @@ public class Movie
     public string? MovieName { get; set; }
     public TimeOnly Runtime { get; set; }
     public double MoviePrice { get; set; }
+    [ForeignKey("Genre")] public int GenreId { get; set; }
+    public Genre Genre { get; set; } = null!; // Navigation property
     public DateOnly ReleaseDate { get; set; }
     public DateTime ScreeningDateTime { get; set; }
 }

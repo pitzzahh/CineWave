@@ -72,4 +72,8 @@
         <Resource Include="Resources\Images\logo.png" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="MVVM\Model\Statistics\" />
+    </ItemGroup>
+
 </Project>

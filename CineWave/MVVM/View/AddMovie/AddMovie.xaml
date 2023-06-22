@@ -39,6 +39,24 @@
                         Foreground="{StaticResource QuinaryBrush}" />
                 </StackPanel>
                 <StackPanel Margin="5 15 5 5">
+                    <Label Content="Genre"
+                           FontWeight="Medium"
+                           FontSize="14.5"
+                           Foreground="{StaticResource QuinaryBrush}" />
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <moderncontrols:ModernComboBox ItemsSource="{Binding Genres}"
+                                                           SelectedItem="{Binding Genre}"
+                                                           Width="{StaticResource MediumComboBoxWidth}"
+                                                           DefaultBackground="{StaticResource PrimaryBrush}"
+                                                           Foreground="{StaticResource QuinaryBrush}" />
+                            <Label Content="Required"
+                                   Opacity="0.7"
+                                   Foreground="{StaticResource QuinaryBrush}" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="5 15 5 5">
                     <Label Content="Runtime"
                            FontWeight="Medium"
                            FontSize="14.5"

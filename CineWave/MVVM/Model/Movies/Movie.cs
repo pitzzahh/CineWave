@@ -1,17 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CineWave.MVVM.Model.Movies;
 
 public class Movie
 {
-    public Movie(string movieName, TimeOnly runtime, double moviePrice, DateOnly releaseDate,
+    public Movie(string name, TimeOnly runtime, double price, DateOnly releaseDate,
         DateTime screeningDateTime)
     {
-        MovieName = movieName;
+        Name = name;
         Runtime = runtime;
-        MoviePrice = moviePrice;
+        Price = price;
         ReleaseDate = releaseDate;
         ScreeningDateTime = screeningDateTime;
     }
@@ -19,11 +19,10 @@ public class Movie
 
     [Key] public int MovieId { get; set; }
 
-    public string? MovieName { get; set; }
+    public string? Name { get; set; }
     public TimeOnly Runtime { get; set; }
-    public double MoviePrice { get; set; }
-    [ForeignKey("Genre")] public int GenreId { get; set; }
-    public Genre Genre { get; set; } = null!; // Navigation property
+    public double Price { get; set; }
     public DateOnly ReleaseDate { get; set; }
     public DateTime ScreeningDateTime { get; set; }
+    
 }

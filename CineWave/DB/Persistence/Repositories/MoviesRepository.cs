@@ -24,7 +24,7 @@ public class MoviesRepository : Repository<Movie>
 
     public Movie? GetMovieByName(string movieName)
     {
-        return Find(movie => movie.MovieName == movieName).FirstOrDefault();
+        return Find(movie => movie.Name == movieName).FirstOrDefault();
     }
 
     public IEnumerable<Movie> GetAvailableMoviesForReservation()

@@ -12,6 +12,7 @@ public class UnitOfWork : IUnitOfWork
     {
         _context = context;
         MoviesRepository = new MoviesRepository(_context);
+        GenresRepository = new GenresRepository(_context);
         CustomersRepository = new CustomersRepository(_context);
         TicketsRepository = new TicketsRepository(_context);
         SeatsRepository = new SeatsRepository(_context);
@@ -19,6 +20,7 @@ public class UnitOfWork : IUnitOfWork
     }
 
     public MoviesRepository MoviesRepository { get; }
+    public GenresRepository GenresRepository { get; }
     public CustomersRepository CustomersRepository { get; }
     public TicketsRepository TicketsRepository { get; }
     public SeatsRepository SeatsRepository { get; }

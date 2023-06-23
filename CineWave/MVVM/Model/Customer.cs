@@ -13,7 +13,7 @@ public class Customer
 
     [Key] public int CustomerId { get; set; }
 
-    public string? CustomerName { get; set; }
+    public string? Name { get; set; }
     public double Payment { get; set; }
 
     [ForeignKey("Ticket")] public int TicketId { get; set; }

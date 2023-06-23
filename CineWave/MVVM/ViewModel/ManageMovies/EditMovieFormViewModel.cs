@@ -107,8 +107,8 @@ public partial class EditMovieFormViewModel : BaseViewModel, IRecipient<GetMovie
     {
         var movieByName = _unitOfWork.MoviesRepository.GetMovieByName(OriginalUnEditedMovie);
         if (movieByName == null) return;
-        movieByName.MovieName = MovieName;
-        movieByName.MoviePrice = double.Parse(Price);
+        movieByName.Name = MovieName;
+        movieByName.Price = double.Parse(Price);
 
         var releaseDate = new DateOnly(ReleaseDateYear, StringHelper.GetMonthInt(ReleaseDateMonth), ReleaseDateDay);
         var screeningDateTime = new DateTime(

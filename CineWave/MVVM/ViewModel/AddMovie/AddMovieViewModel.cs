@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using CineWave.DB.Core;
@@ -19,6 +18,12 @@ public partial class AddMovieViewModel : BaseViewModel
     [ObservableProperty] private string? _genre;
     [ObservableProperty] private string? _price;
     [ObservableProperty] private int _releaseDateDay;
+    [ObservableProperty] private bool _isAction;
+    [ObservableProperty] private bool _isComedy;
+    [ObservableProperty] private bool _isDrama;
+    [ObservableProperty] private bool _isRomance;
+    [ObservableProperty] private bool _isSciFi;
+    [ObservableProperty] private bool _isThriller;
 
     [ObservableProperty] private ObservableCollection<int> _releaseDateDays = new();
     private string? _releaseDateMonth;
@@ -43,8 +48,6 @@ public partial class AddMovieViewModel : BaseViewModel
     [ObservableProperty] private ObservableCollection<string> _screeningDateMonths = new();
     [ObservableProperty] private int _screeningDateYear = DateTime.Now.Year;
     [ObservableProperty] private ObservableCollection<int> _screeningDateYears = new();
-    
-    [ObservableProperty] private ObservableCollection<string> _genresSelection = new();
 
     public AddMovieViewModel(IUnitOfWork unitOfWork)
     {
@@ -102,11 +105,6 @@ public partial class AddMovieViewModel : BaseViewModel
             for (var i = 1; i <= 5; i++) RuntimeHourList.Add(i);
 
             for (var i = 0; i <= 59; i++) RuntimeMinuteList.Add(i);
-
-            foreach (var val in Enum.GetValues(typeof(Genres)))
-            {
-                GenresSelection.Add((val as string)!);
-            }
         });
     }
 
@@ -152,29 +150,70 @@ public partial class AddMovieViewModel : BaseViewModel
             ScreeningDateMinuteTime,
             0
         );
-        _unitOfWork.MoviesRepository.Add(new Movie(
-                MovieName,
-                new TimeOnly(RuntimeHourTime, RuntimeMinuteTime),
-                Convert.ToDouble(Price),
-                releaseDate,
-                screeningDateTime
-            )
+
+        var movie = new Movie(
+            MovieName,
+            new TimeOnly(RuntimeHourTime, RuntimeMinuteTime),
+            Convert.ToDouble(Price),
+            releaseDate,
+            screeningDateTime
         );
-        var result = _unitOfWork.Complete();
-        if (result == 0)
+        var hasGenre = IsAction || IsComedy || IsDrama || IsRomance || IsSciFi || IsThriller;
+        if (!hasGenre)
+        {
+            MessageBox.Show("Please enter select at least one genre");
+            return;
+        }
+
+        _unitOfWork.MoviesRepository.Add(movie);
+        var movieAddResult = _unitOfWork.Complete();
+        if (movieAddResult == 0) return;
+
+        var addedMovie = _unitOfWork.MoviesRepository.GetMovieByName(MovieName);
+        if (addedMovie == null) return;
+        
+        if (IsAction) _unitOfWork.GenresRepository.Add(new Genre(EGenre.Action)
+        {
+            MovieId = addedMovie.MovieId
+        });
+        if (IsComedy) _unitOfWork.GenresRepository.Add(new Genre(EGenre.Comedy)
+        {
+            MovieId = addedMovie.MovieId
+        });
+        if (IsDrama) _unitOfWork.GenresRepository.Add(new Genre(EGenre.Drama)
+        {
+            MovieId = addedMovie.MovieId
+        });
+        if (IsRomance) _unitOfWork.GenresRepository.Add(new Genre(EGenre.Romance)
+        {
+            MovieId = addedMovie.MovieId
+        });
+        if (IsSciFi) _unitOfWork.GenresRepository.Add(new Genre(EGenre.SciFi)
+        {
+            MovieId = addedMovie.MovieId
+        });
+        if (IsThriller) _unitOfWork.GenresRepository.Add(new Genre(EGenre.Thriller)
+        {
+            MovieId = addedMovie.MovieId
+        });
+
+        var addMovieGenresResult = _unitOfWork.Complete();
+        if (addMovieGenresResult == 0)
         {
             MessageBox.Show("Cannot add movie, please try again later");
             return;
         }
 
-        var firstOrDefault = _unitOfWork.MoviesRepository.Find(m => m.MovieName == MovieName).FirstOrDefault();
+        var firstOrDefault = _unitOfWork.MoviesRepository.Find(m => m.Name == MovieName).FirstOrDefault();
         for (var row = 'A'; row <= 'E'; row++)
         for (var column = 1; column <= 10; column++)
         {
             var seatNumber = $"{row}{column}";
-            var seat = new Seat(seatNumber, false);
-            Debug.Assert(firstOrDefault != null, nameof(firstOrDefault) + " != null");
-            seat.MovieId = firstOrDefault.MovieId;
+            if (firstOrDefault == null) continue;
+            var seat = new Seat(seatNumber, false)
+            {
+                MovieId = firstOrDefault.MovieId
+            };
             _unitOfWork.SeatsRepository.Add(seat);
         }
 

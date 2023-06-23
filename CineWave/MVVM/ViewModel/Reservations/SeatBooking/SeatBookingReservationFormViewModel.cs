@@ -55,40 +55,47 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
  
         if (currentMovie == null) return;
         if (currentMovie.MovieId != 0 && MoviePrice != "0" && Payment != null &&
-            double.Parse(Payment) < currentMovie.MoviePrice)
+            double.Parse(Payment) < currentMovie.Price)
         {
             MessageBox.Show("Payment is not enough");
             return;
         }
 
-        var isSeatNotAvailable = IsSeatNotAvailable(currentMovie.MovieId);
-        if (isSeatNotAvailable)
+        var currentSeat = _unitOfWork.SeatsRepository
+            .Find(s => s.MovieId == currentMovie.MovieId && s.SeatNumber == SeatNumber)
+            .FirstOrDefault();
+        
+        if (currentSeat == null) return;
+
+        if (currentSeat.IsTaken)
         {
             MessageBox.Show("Seat is not available");
             return;
         }
 
-        if (SeatNumber == null) return;
-        var ticket = new Ticket(currentMovie.MovieId, SeatNumber);
+        var ticket = new Ticket(currentMovie.MovieId, currentSeat.SeatId);
         _unitOfWork.TicketsRepository.Add(ticket);
-        var ticketAddResult = _unitOfWork.Complete();
         
-        if(ticketAddResult == 0) return;
-        var savedTicket = _unitOfWork.TicketsRepository
-            .Find(t => t.MovieId == currentMovie.MovieId && t.SeatNumber == SeatNumber)
+        var addTicketResult = _unitOfWork.Complete();
+        
+        if (addTicketResult == 0) return;
+        
+        var addedTicket = _unitOfWork.TicketsRepository
+            .Find(t => t.MovieId == currentMovie.MovieId && t.SeatId == currentSeat.SeatId)
             .FirstOrDefault();
-        if (savedTicket == null) return;
         
-        var customer = new Customer(savedTicket.TicketId)
+        if (addedTicket == null) return;
+        
+        var customer = new Customer(addedTicket.TicketId)
         {
-            CustomerName = CustomerName
+            Name = CustomerName
         };
         _unitOfWork.CustomersRepository.Add(customer);
         var customerAddResult = _unitOfWork.Complete();
         if (customerAddResult == 0) return;
 
         var savedCustomer = _unitOfWork.CustomersRepository
-            .Find(c => c.CustomerName == CustomerName && c.TicketId == savedTicket.TicketId)
+            .Find(c => c.Name == CustomerName && c.TicketId == addedTicket.TicketId)
             .FirstOrDefault();
         
         if (savedCustomer == null) return;
@@ -99,12 +106,12 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
         var reservationAddResult = _unitOfWork.Complete();
         if (reservationAddResult == 0)
         {
-            MessageBox.Show("Failed to buy ticket");
+            MessageBox.Show("Failed to avail reservation");
             return;
         }
         
         var reservedSeat = _unitOfWork.SeatsRepository.GetAll()                                            
-            .FirstOrDefault(seat => seat.MovieId == currentMovie.MovieId && seat.SeatNumber == SeatNumber);
+            .FirstOrDefault(seat => seat.MovieId == currentMovie.MovieId && seat.SeatId == currentSeat.SeatId);
         
         if (reservedSeat != null) reservedSeat.IsTaken = true;
         var seatTakenChange = _unitOfWork.Complete();
@@ -125,7 +132,8 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
 
         CustomerName = "";
         Payment = "";
-        Task.Run((App.ServiceProvider ?? throw new InvalidOperationException()).GetRequiredService<SeatBookingWindowViewModel>()
+        Task.Run((App.ServiceProvider ?? throw new InvalidOperationException())
+            .GetRequiredService<SeatBookingWindowViewModel>()
             .SetCurrentMovie); // Run the method on a separate thread
         WindowHelper.HideWindow(App.ServiceProvider.GetRequiredService<SeatBookingRegistrationForm>());
         WindowHelper.HideWindow(App.ServiceProvider.GetRequiredService<SeatBookingWindow>());
@@ -147,12 +155,6 @@ public partial class SeatBookingReservationFormViewModel : BaseViewModel, IRecip
     private bool CheckInputs()
     {
         return Payment is null || !StringHelper.IsWholeNumberOrDecimal(Payment);
-    }
-
-    private bool IsSeatNotAvailable(int movieId)
-    {
-        return _unitOfWork.SeatsRepository.Find(s => s.MovieId == movieId && s.SeatNumber == SeatNumber)
-            .FirstOrDefault()?.IsTaken ?? false;
     }
 
     public void Receive(GetSeatInfoMessage message)

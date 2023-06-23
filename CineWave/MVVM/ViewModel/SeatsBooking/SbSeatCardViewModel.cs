@@ -51,7 +51,7 @@ public partial class SbSeatCardViewModel : BaseViewModel
             }
 
             seatBookingRegistrationForm.Show();
-            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new BookMovieInfo(currentMovie.MovieName ?? StringHelper.MovieNotFound, currentMovie.MoviePrice, SeatNumber)));
+            WeakReferenceMessenger.Default.Send(new GetSeatInfoMessage(new BookMovieInfo(currentMovie.Name ?? StringHelper.MovieNotFound, currentMovie.Price, SeatNumber)));
         }
     }
 }

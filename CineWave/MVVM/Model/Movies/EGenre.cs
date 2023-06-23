@@ -1,6 +1,6 @@
 ﻿namespace CineWave.MVVM.Model.Movies;
 
-public enum Genres
+public enum EGenre
 {
     Action,
     Comedy,

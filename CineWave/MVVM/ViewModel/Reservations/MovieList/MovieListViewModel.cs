@@ -27,8 +27,8 @@ public partial class MovieListViewModel : BaseViewModel
             {
                 RMovieInfoCardViewModels.Add(
                     new RMovieInfoCardViewModel(
-                        movie.MovieName ?? StringHelper.MovieNotFound,
-                        movie.MoviePrice,
+                        movie.Name ?? StringHelper.MovieNotFound,
+                        movie.Price,
                         movie.Runtime,
                         movie.ReleaseDate,
                         movie.ScreeningDateTime

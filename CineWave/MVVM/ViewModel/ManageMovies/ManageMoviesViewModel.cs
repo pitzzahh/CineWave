@@ -25,8 +25,8 @@ public partial class ManageMoviesViewModel : BaseViewModel
             foreach (var movie in _unitOfWork.MoviesRepository.GetAll())
                 MovieInfoCardViewModels.Add(
                     new MovieInfoCardViewModel(
-                        movie.MovieName ?? StringHelper.MovieNotFound,
-                        movie.MoviePrice,
+                        movie.Name ?? StringHelper.MovieNotFound,
+                        movie.Price,
                         movie.Runtime,
                         movie.ReleaseDate,
                         movie.ScreeningDateTime
